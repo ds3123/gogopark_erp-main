@@ -6,6 +6,8 @@ import { submit_Service_Error , submit_Delete_Service } from "store/actions/acti
 import{ useLocation } from "react-router";
 import { useQueryClient } from "react-query" ;
 
+import { delete_ServiceOrder } from "fp/services/delete/delete_ServiceOrder" ;
+
 
 
 // # 銷單 --------
@@ -23,7 +25,11 @@ export const useEffect_Click_Delete_Service = ( data : any , current_User_Name :
     // 點選 _ 事件
     const click_Delete_Service = () => {
 
-       dispatch( submit_Delete_Service( data ,  current_User_Name , history , current_Url , queryClient ) ) ;
+ 
+        delete_ServiceOrder( data ) ;
+         
+  
+       //  dispatch( submit_Delete_Service( data ,  current_User_Name , history , current_Url , queryClient ) ) ;
      
     } ;
 

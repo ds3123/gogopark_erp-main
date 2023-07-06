@@ -53,14 +53,14 @@ import Submit_Error from "components/index/components/Submit_Error"
 import cookie from 'react-cookies'
 
 import { colCovert_Basic_UPDATE , colCovert_Bath_UPDATE , colCovert_Beauty_UPDATE } from "hooks/crud/process/convert_Columns_Update" 
-import { useMatch_Obj } from "containers/data_components/Condition_for_Currnet_Tab" 
-import To_Previous_Page from "templates/note/To_Previous_Page" 
-import Data_Table_Id from 'templates/note/Data_Table_Id'
+import { useMatch_Obj } from "containers/data_components/Condition_for_Currnet_Tab" ;
+import To_Previous_Page from "templates/note/To_Previous_Page" ;
+import Data_Table_Id from 'templates/note/Data_Table_Id' ;
 
-import Update_Submit_Button from 'templates/button/Update_Submit_Button'
+import Update_Submit_Button from 'templates/button/Update_Submit_Button' ;
 
 import { ServiceSummaryFeeProvider } from "components/services/edit_components/summary_fee/contexts/serviceSummaryFeeContext"
-import { setTimeout } from "timers" 
+import { setTimeout } from "timers" ; 
 
 
 import Side_Extra_Fee_List from '../components/Side_Extra_Fee_List';

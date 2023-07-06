@@ -7,7 +7,7 @@ type ServiceTypes_ZH = "基礎" | "洗澡" | "美容" | "安親" | "住宿" | "�
 
 
 // 服務單資料
-type ServiceOrder = {
+interface ServiceOrder {
 
     service_type    : ServiceTypes_ZH ;  // for 主要服務
     

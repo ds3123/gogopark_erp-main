@@ -8,7 +8,6 @@ import { update_Service_By_Service_Url_Id } from "utils/api/api_Service" ;
 
 
 
-
 // # 點選 _ 提交異常 ( 服務轉異常 ) 
 export const submit_Service_Error = ( data              : any , 
                                       error_Cause       : string , 
@@ -76,6 +75,9 @@ export const submit_Undo_Service_Error = ( data    : any ,
     return ( dispatch : any ) => {
 
 
+
+
+
                 // 取得 _ 服務單 id 、API Url
                 const { service_Id , service_Url } =  switch_Service_Type_Id( data ) ;
 
@@ -123,6 +125,8 @@ export const submit_Delete_Service = ( data              : any ,
                                      ) => {
 
     return ( dispatch : any ) => {
+
+
 
                 // 取得 _ 服務單 id 、API Url
                 const { service_Id , service_Url } = switch_Service_Type_Id( data ) ;
