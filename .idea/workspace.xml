@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="369eb0cf-cbcd-444b-b49e-4445570306d7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/contact_customers/Contact_Customer_Row.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/contact_customers/Contact_Customers.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customers/edit/info/Customer_Consumption_Records.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/index/Beautician_Process.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/index/Submit_Error.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/management/data/archive/components/Care.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/management/data/archive/components/Lodge.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/management/data/error/Error_List.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/management/data/error/Error_Rows.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/management/data/plan_return/Plan_Return_List.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/services/Debug_Info.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/services/Side_Info.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/services/edit_components/Pet_Records.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/services/edit_components/Self_Adjust_Amount.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/services/edit_components/Service_Records.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/services/edit_components/summary_fee/Plan_Used_List.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/services/edit_components/summary_fee/Plan_Used_Records.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/data_components/Condition_for_Currnet_Tab.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/data_components/Data_Obj_Extra_Props.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/data_components/get_Api_Msg_String.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/data_components/get_Validator_Schema.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/data/useCustomer_Records.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/data/useLogin_User_Info.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/data/usePlan_Used_Records_Data.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/data/useSpecies_Prices.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/data/useSwitch_Species_Id_Name.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/panel/Modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/search/SearchBar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/data/Columns_Convert_Create.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/data/Columns_Convert_Update.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/data/switch.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/beautician/Beautician.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/beautician/Beautician.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/beautician/Left_Cards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/beautician/Left_Cards.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/beautician/main_components/Bath_Time_Records.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/beautician/main_components/Bath_Time_Records.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/beautician/main_components/inform_customer/Inform_Customer_Options.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/beautician/main_components/inform_customer/Inform_Customer_Options.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/beautician/main_components/pet_info/Pet_Info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/beautician/main_components/pet_info/Pet_Info.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/customers/Customers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customers/Customers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/customers/Customers_Rows.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customers/Customers_Rows.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/customers/edit/Create_Customer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customers/edit/Create_Customer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/customers/edit/Customer_Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customers/edit/Customer_Form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/customers/edit/Update_Customer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customers/edit/Update_Customer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/customers/edit/info/Customer_Services_Records.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customers/edit/info/Customer_Services_Records.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/Index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/Index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/Service_Report.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/Service_Rows.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/Service_Rows.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/Statistics_Rows.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/Statistics_Rows.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/Status_Cards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/Status_Cards.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/list/Appointment_Record.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/list/Appointment_Record.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/list/Customer_Confirm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/list/Customer_Confirm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/list/Service_Error.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/list/Service_Error.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/lodge/Lodge.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/lodge/Lodge.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/lodge/Lodge_Rows.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/lodge/Lodge_Rows.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/lodge/care/Care.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/lodge/care/Care.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/lodge/care/Care_Rows.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/lodge/care/Care_Rows.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/lodge/care/edit/Care_Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/lodge/care/edit/Care_Form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/management/Management.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/management/Management.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/management/data/archive/Archive_List.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/management/data/archive/Archive_List.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/management/data/archive/Customers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/management/data/archive/components/Customers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/management/data/archive/Pets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/management/data/archive/components/Pets.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/management/data/archive/Services.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/management/data/archive/components/Services.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pets/Pets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pets/Pets.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pets/Pets_Rows.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pets/Pets_Rows.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pets/edit/Pet_Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pets/edit/Pet_Form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pets/edit/Update_Pet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pets/edit/Update_Pet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pets/edit/info/Customer_Pets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pets/edit/info/Customer_Pets.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/plan/Plans.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/plan/Plans.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/plan/Plans_Rows.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/plan/Plans_Rows.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/plan/edit/Plan_Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/plan/edit/Plan_Form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/Nav_Qcode_List.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/Nav_Qcode_List.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/Service_History.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/Service_History.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/Services.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/Services.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/Services_Rows.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/Services_Rows.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/edit/Create_Service.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/edit/Create_Service.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/edit/Update_Service.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/edit/Update_Service.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/edit_components/Basic_Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/edit_components/Basic_Form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/edit_components/Bath_Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/edit_components/Bath_Form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/edit_components/Extra_Beauty.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/edit_components/Extra_Beauty.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/edit_components/Extra_Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/edit_components/Extra_Item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/edit_components/Pickup_Fee.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/edit_components/Pickup_Fee.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/edit_components/Qcode_Select_Options.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/edit_components/Qcode_Select_Options.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/edit_components/Service_Info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/edit_components/Service_Info.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/edit_components/summary_fee/Customer_Plans.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/edit_components/summary_fee/Customer_Plans.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/edit_components/summary_fee/Fee_Detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/edit_components/summary_fee/Fee_Detail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/services/edit_components/summary_fee/Summary_Fee.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/services/edit_components/summary_fee/Summary_Fee.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Create_Data_Container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Create_Data_Container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ajax_crud/useAjax_Create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/ajax_crud/useAjax_Create.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ajax_crud/useAjax_Read.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/ajax_crud/useAjax_Read.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/ajax_crud/useAjax_Update.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/ajax_crud/useAjax_Update.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/data/useForm_Validator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/data/useForm_Validator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/data/usePrice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/data/usePrice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/layout/useBath_Time_Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/layout/useBath_Time_Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/layout/useMulti_NavOptions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/layout/useMulti_NavOptions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/layout/usePagination.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/layout/usePagination.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/layout/usePlans_Records.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/layout/usePlans_Records.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/layout/useServiceType.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/layout/useServiceType.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/action_Beautician.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/action_Beautician.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/action_Customer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/action_Customer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/action_Extra_Service_Fee.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/action_Extra_Service_Fee.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/action_Global_Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/action_Global_Layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/action_Pet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/action_Pet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/action_Plan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/action_Plan.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/action_Service.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/action_Service.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/reducer_Beautician.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/reducer_Beautician.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/reducer_Customer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/reducer_Customer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/reducer_Extra_Service_Fee.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/reducer_Extra_Service_Fee.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/reducer_Form_Validator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/reducer_Form_Validator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/reducer_Global_Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/reducer_Global_Layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/reducer_Index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/reducer_Index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/reducer_Pet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/reducer_Pet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/reducer_Plan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/reducer_Plan.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/reducer_Service.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/reducer_Service.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/form/Date_Picker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/form/Date_Picker.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/form/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/form/Input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/nav/Nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/nav/Nav.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/nav/Nav_Options.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/nav/Nav_Options.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/panel/Side_Panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/panel/Side_Panel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/tab/Edit_Form_Tabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/tab/Edit_Form_Tabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Interface_Type.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Interface_Type.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/time/date.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/time/date.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/validator/form_validator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/validator/form_validator.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="gogopark_ts" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="ProjectId" id="1t2w6ewPCmJoF2MROCvxK4Y6E8t" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="CSS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Laravel_Projects/GogoPark" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="ts.external.directory.path" value="C:\AppServ\www\React_Projects\gogopark_ts\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\AppServ\www\React_Projects\gogopark_ts\src\components\contact_customers" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\AppServ\www\React_Projects\gogopark_ts\src\templates\search" />
+      <recent name="C:\AppServ\www\React_Projects\gogopark_ts\src\templates" />
+      <recent name="C:\AppServ\www\React_Projects\gogopark_ts\src\components\management\data\archive\components" />
+      <recent name="C:\AppServ\www\React_Projects\gogopark_ts\src\components\plan" />
+      <recent name="C:\AppServ\www\React_Projects\gogopark_ts\src\components\plan\edit" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Jest.renders learn react link">
+    <configuration name="renders learn react link" type="JavaScriptTestRunnerJest" temporary="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/App.test.tsx" />
+      <test-names>
+        <test-name value="renders learn react link" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.renders learn react link" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="369eb0cf-cbcd-444b-b49e-4445570306d7" name="Default Changelist" comment="" />
+      <created>1621980318009</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1621980318009</updated>
+      <workItem from="1621980320218" duration="663000" />
+      <workItem from="1621984028736" duration="2155000" />
+      <workItem from="1621986284781" duration="37000" />
+      <workItem from="1621986378359" duration="45000" />
+      <workItem from="1621986440003" duration="1018000" />
+      <workItem from="1621987477376" duration="554000" />
+      <workItem from="1621988058216" duration="60181000" />
+      <workItem from="1622258452617" duration="158557000" />
+      <workItem from="1622681851705" duration="69249000" />
+      <workItem from="1622857452760" duration="145846000" />
+      <workItem from="1623175619342" duration="1334000" />
+      <workItem from="1623177495916" duration="4145000" />
+      <workItem from="1623181809840" duration="12692000" />
+      <workItem from="1623194700518" duration="10000" />
+      <workItem from="1623194749631" duration="2833000" />
+      <workItem from="1623198055979" duration="3012000" />
+      <workItem from="1623201114824" duration="921000" />
+      <workItem from="1623202689150" duration="67802000" />
+      <workItem from="1623343715838" duration="265119000" />
+      <workItem from="1623803430830" duration="9036000" />
+      <workItem from="1623843648053" duration="25241000" />
+      <workItem from="1623910862283" duration="137977000" />
+      <workItem from="1624321021455" duration="131117000" />
+      <workItem from="1624635838453" duration="22285000" />
+      <workItem from="1624757713123" duration="52499000" />
+      <workItem from="1624928050539" duration="159853000" />
+      <workItem from="1625484830954" duration="20882000" />
+      <workItem from="1625532061717" duration="37895000" />
+      <workItem from="1625653576532" duration="4768000" />
+      <workItem from="1625665589617" duration="8278000" />
+      <workItem from="1625705376246" duration="90807000" />
+      <workItem from="1626002575350" duration="132696000" />
+      <workItem from="1626397874063" duration="289422000" />
+      <workItem from="1627268854683" duration="27122000" />
+      <workItem from="1627309017071" duration="104500000" />
+      <workItem from="1627571797464" duration="12000" />
+      <workItem from="1627571953751" duration="128931000" />
+      <workItem from="1627953036018" duration="125220000" />
+      <workItem from="1628218815414" duration="92807000" />
+      <workItem from="1628475554811" duration="33418000" />
+      <workItem from="1628564207165" duration="3049000" />
+      <workItem from="1628569853194" duration="25463000" />
+      <workItem from="1628661397429" duration="25936000" />
+      <workItem from="1628736603694" duration="37031000" />
+      <workItem from="1628826277543" duration="43167000" />
+      <workItem from="1628921085380" duration="27092000" />
+      <workItem from="1628998384703" duration="38857000" />
+      <workItem from="1629090152972" duration="33770000" />
+      <workItem from="1629168575478" duration="31665000" />
+      <workItem from="1629251280131" duration="47024000" />
+      <workItem from="1629420356104" duration="681000" />
+      <workItem from="1629440916267" duration="2582000" />
+      <workItem from="1629680361582" duration="26658000" />
+      <workItem from="1629718535349" duration="1208000" />
+      <workItem from="1629764770988" duration="26966000" />
+      <workItem from="1629852016053" duration="1281000" />
+      <workItem from="1629945269910" duration="23416000" />
+      <workItem from="1630025507779" duration="606000" />
+      <workItem from="1630284732003" duration="27962000" />
+      <workItem from="1630370749196" duration="31249000" />
+      <workItem from="1630457285725" duration="2201000" />
+      <workItem from="1630544313901" duration="604000" />
+      <workItem from="1630546727216" duration="39000" />
+      <workItem from="1630546836301" duration="23693000" />
+      <workItem from="1630573031801" duration="3758000" />
+      <workItem from="1630630278161" duration="1608000" />
+      <workItem from="1630890005539" duration="15051000" />
+      <workItem from="1630907627817" duration="14909000" />
+      <workItem from="1630976165604" duration="1347000" />
+      <workItem from="1631149308725" duration="27206000" />
+      <workItem from="1631234793030" duration="4158000" />
+      <workItem from="1631262397214" duration="643000" />
+      <workItem from="1631496219322" duration="62000" />
+      <workItem from="1631496298058" duration="1000" />
+      <workItem from="1631496353218" duration="4000" />
+      <workItem from="1631496571833" duration="48000" />
+      <workItem from="1631496702849" duration="594000" />
+      <workItem from="1631580127659" duration="6000" />
+      <workItem from="1631772962646" duration="8000" />
+      <workItem from="1631794562111" duration="9000" />
+      <workItem from="1632106037532" duration="4700000" />
+      <workItem from="1632201030252" duration="5029000" />
+      <workItem from="1632271368253" duration="11748000" />
+      <workItem from="1632358994809" duration="57000" />
+      <workItem from="1632377620862" duration="4000" />
+      <workItem from="1632407769180" duration="8000" />
+      <workItem from="1632444621207" duration="11000" />
+      <workItem from="1632660101393" duration="6254000" />
+      <workItem from="1632708229387" duration="26342000" />
+      <workItem from="1632789683193" duration="13427000" />
+      <workItem from="1632876262969" duration="11291000" />
+      <workItem from="1632963407428" duration="6000" />
+      <workItem from="1632966008456" duration="2012000" />
+      <workItem from="1632968055295" duration="14000" />
+      <workItem from="1632968093128" duration="25891000" />
+      <workItem from="1633309133000" duration="27699000" />
+      <workItem from="1633394971950" duration="27909000" />
+      <workItem from="1633481558831" duration="23316000" />
+      <workItem from="1633572557193" duration="19505000" />
+      <workItem from="1633654468036" duration="613000" />
+      <workItem from="1633774567400" duration="686000" />
+      <workItem from="1633918554741" duration="1165000" />
+      <workItem from="1634550373270" duration="152000" />
+    </task>
+    <task id="LOCAL-00001" summary="Intialize project : Install Third-Party Package">
+      <created>1622024165004</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1622024165004</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Setup Basic Structure">
+      <created>1622309355489</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1622309355489</updated>
+    </task>
+    <task id="LOCAL-00003" summary="improve Index-Page、Create-Data Panel">
+      <created>1622674965509</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1622674965509</updated>
+    </task>
+    <task id="LOCAL-00004" summary="improve all kinds section LAYOUT">
+      <created>1623098750322</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1623098750322</updated>
+    </task>
+    <task id="LOCAL-00005" summary="improve all kinds section LAYOUT _ 2">
+      <created>1623228406728</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1623228406728</updated>
+    </task>
+    <task id="LOCAL-00006" summary="improve all kinds section LAYOUT _ 3">
+      <created>1623343752329</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1623343752329</updated>
+    </task>
+    <task id="LOCAL-00007" summary="improve all kinds section LAYOUT _ 4">
+      <created>1623491718448</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1623491718448</updated>
+    </task>
+    <task id="LOCAL-00008" summary="improve all kinds section LAYOUT _ 5">
+      <created>1623750898887</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1623750898888</updated>
+    </task>
+    <task id="LOCAL-00009" summary="First Test Version Done =_=&quot; ...">
+      <created>1623798128274</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1623798128274</updated>
+    </task>
+    <task id="LOCAL-00010" summary="First Test Version Upload Demo04 ...">
+      <created>1623825692057</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1623825692057</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Add Lodge Functions : Query、Calculate">
+      <created>1624331235106</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1624331235106</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Improve _ Lodge、Care Functions">
+      <created>1624981536263</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1624981536263</updated>
+    </task>
+    <task id="LOCAL-00013" summary="&#10;Focus On _ Management Functions&#10;Continue to Improve the rest of Fuctions">
+      <created>1625731252289</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1625731252289</updated>
+    </task>
+    <task id="LOCAL-00014" summary="&#10;Focus On _ Management Functions&#10;Continue to Improve Price">
+      <created>1626397936076</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1626397936076</updated>
+    </task>
+    <task id="LOCAL-00015" summary="&#10;Focus On _ Create Data _ Validation&#10;Continue to Improve All kinds of Functions">
+      <created>1627714152198</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1627714152198</updated>
+    </task>
+    <task id="LOCAL-00016" summary="&#10;Focus On _ Service Data&#10;Continue to Improve All kinds of Functions">
+      <created>1628475800310</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1628475800311</updated>
+    </task>
+    <task id="LOCAL-00017" summary="&#10;almost there 2021.08.17">
+      <created>1629211948485</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1629211948485</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Intialize project : Install Third-Party Package" />
+    <MESSAGE value="Setup Basic Structure" />
+    <MESSAGE value="improve Index-Page、Create-Data Panel" />
+    <MESSAGE value="improve all kinds section LAYOUT" />
+    <MESSAGE value="improve all kinds section LAYOUT _ 2" />
+    <MESSAGE value="improve all kinds section LAYOUT _ 3" />
+    <MESSAGE value="improve all kinds section LAYOUT _ 4" />
+    <MESSAGE value="improve all kinds section LAYOUT _ 5" />
+    <MESSAGE value="First Test Version Done =_=&quot; ..." />
+    <MESSAGE value="First Test Version Upload Demo04 ..." />
+    <MESSAGE value="Add Lodge Functions : Query、Calculate" />
+    <MESSAGE value="Improve _ Lodge、Care Functions" />
+    <MESSAGE value="&#10;Focus On _ Management Functions&#10;Continue to Improve the rest of Fuctions" />
+    <MESSAGE value="&#10;Focus On _ Management Functions&#10;Continue to Improve Price" />
+    <MESSAGE value="&#10;Focus On _ Create Data _ Validation&#10;Continue to Improve All kinds of Functions" />
+    <MESSAGE value="&#10;Focus On _ Service Data&#10;Continue to Improve All kinds of Functions" />
+    <MESSAGE value="&#10;almost there 2021.08.17" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;almost there 2021.08.17" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1292" y="-1285" key="#Inspections" timestamp="1626053733518">
+      <screen x="186" y="-1440" width="2752" height="1152" />
+    </state>
+    <state x="1292" y="-1285" key="#Inspections/0.0.1536.864/186.-1440.2752.1152@186.-1440.2752.1152" timestamp="1626053733518" />
+    <state x="2680" y="-756" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1629970388565">
+      <screen x="1919" y="-1090" width="1920" height="1080" />
+    </state>
+    <state x="2680" y="-756" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864/1919.-1090.1920.1080/-1.-1080.1920.1080@1919.-1090.1920.1080" timestamp="1629970388565" />
+    <state x="1029" y="-1235" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1628136439429">
+      <screen x="186" y="-1440" width="2752" height="1152" />
+    </state>
+    <state x="1029" y="-1235" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864/186.-1440.2752.1152@186.-1440.2752.1152" timestamp="1628136439429" />
+    <state x="2666" y="-958" key="#renders_learn_react_link" timestamp="1632989842282">
+      <screen x="1919" y="-1090" width="1920" height="1080" />
+    </state>
+    <state x="2466" y="-1299" key="#renders_learn_react_link/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631241750127" />
+    <state x="1257" y="-1299" key="#renders_learn_react_link/0.0.1536.864/186.-1440.2752.1152@186.-1440.2752.1152" timestamp="1629273848469" />
+    <state x="2666" y="-958" key="#renders_learn_react_link/0.0.1536.864/1919.-1090.1920.1080/-1.-1080.1920.1080@1919.-1090.1920.1080" timestamp="1632989842282" />
+    <state x="820" y="-1434" key="CommitChangelistDialog2" timestamp="1629211945471">
+      <screen x="186" y="-1440" width="2752" height="1152" />
+    </state>
+    <state x="820" y="-1434" key="CommitChangelistDialog2/0.0.1536.864/186.-1440.2752.1152@186.-1440.2752.1152" timestamp="1629211945471" />
+    <state x="2129" y="-841" key="FileChooserDialogImpl" timestamp="1634550429268">
+      <screen x="1439" y="-1080" width="1920" height="1080" />
+    </state>
+    <state x="2609" y="-851" key="FileChooserDialogImpl/0.0.1536.864/-1.-1080.1920.1080/1919.-1090.1920.1080@1919.-1090.1920.1080" timestamp="1630893108016" />
+    <state x="2384" y="-1185" key="FileChooserDialogImpl/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1632298851857" />
+    <state x="2129" y="-841" key="FileChooserDialogImpl/0.0.1536.864/1439.-1080.1920.1080@1439.-1080.1920.1080" timestamp="1634550429268" />
+    <state x="1175" y="-1185" key="FileChooserDialogImpl/0.0.1536.864/186.-1440.2752.1152@186.-1440.2752.1152" timestamp="1627905106445" />
+    <state x="2609" y="-851" key="FileChooserDialogImpl/0.0.1536.864/1919.-1090.1920.1080/-1.-1080.1920.1080@1919.-1090.1920.1080" timestamp="1629947595179" />
+    <state width="1867" height="280" key="GridCell.Tab.0.bottom" timestamp="1632996720752">
+      <screen x="1919" y="-1090" width="1920" height="1080" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.0.bottom/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@-525.-1093.1920.1080" timestamp="1631247256224" />
+    <state width="2699" height="376" key="GridCell.Tab.0.bottom/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631242060428" />
+    <state width="1867" height="280" key="GridCell.Tab.0.bottom/0.0.1536.864/1919.-1090.1920.1080/-1.-1080.1920.1080@1919.-1090.1920.1080" timestamp="1632996720752" />
+    <state width="1867" height="280" key="GridCell.Tab.0.center" timestamp="1632996720752">
+      <screen x="1919" y="-1090" width="1920" height="1080" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.0.center/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@-525.-1093.1920.1080" timestamp="1631247256224" />
+    <state width="2699" height="376" key="GridCell.Tab.0.center/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631242060428" />
+    <state width="1867" height="280" key="GridCell.Tab.0.center/0.0.1536.864/1919.-1090.1920.1080/-1.-1080.1920.1080@1919.-1090.1920.1080" timestamp="1632996720752" />
+    <state width="1867" height="280" key="GridCell.Tab.0.left" timestamp="1632996720752">
+      <screen x="1919" y="-1090" width="1920" height="1080" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.0.left/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@-525.-1093.1920.1080" timestamp="1631247256224" />
+    <state width="2699" height="376" key="GridCell.Tab.0.left/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631242060428" />
+    <state width="1867" height="280" key="GridCell.Tab.0.left/0.0.1536.864/1919.-1090.1920.1080/-1.-1080.1920.1080@1919.-1090.1920.1080" timestamp="1632996720752" />
+    <state width="1867" height="280" key="GridCell.Tab.0.right" timestamp="1632996720752">
+      <screen x="1919" y="-1090" width="1920" height="1080" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.0.right/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@-525.-1093.1920.1080" timestamp="1631247256224" />
+    <state width="2699" height="376" key="GridCell.Tab.0.right/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631242060428" />
+    <state width="1867" height="280" key="GridCell.Tab.0.right/0.0.1536.864/1919.-1090.1920.1080/-1.-1080.1920.1080@1919.-1090.1920.1080" timestamp="1632996720752" />
+    <state width="2699" height="376" key="GridCell.Tab.1.bottom" timestamp="1631247256224">
+      <screen x="-525" y="-1093" width="1920" height="1080" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.1.bottom/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@-525.-1093.1920.1080" timestamp="1631247256224" />
+    <state width="2699" height="376" key="GridCell.Tab.1.bottom/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631242060428" />
+    <state width="2699" height="376" key="GridCell.Tab.1.center" timestamp="1631247256224">
+      <screen x="-525" y="-1093" width="1920" height="1080" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.1.center/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@-525.-1093.1920.1080" timestamp="1631247256224" />
+    <state width="2699" height="376" key="GridCell.Tab.1.center/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631242060428" />
+    <state width="2699" height="376" key="GridCell.Tab.1.left" timestamp="1631247256224">
+      <screen x="-525" y="-1093" width="1920" height="1080" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.1.left/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@-525.-1093.1920.1080" timestamp="1631247256224" />
+    <state width="2699" height="376" key="GridCell.Tab.1.left/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631242060428" />
+    <state width="2699" height="376" key="GridCell.Tab.1.right" timestamp="1631247256224">
+      <screen x="-525" y="-1093" width="1920" height="1080" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.1.right/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@-525.-1093.1920.1080" timestamp="1631247256224" />
+    <state width="2699" height="376" key="GridCell.Tab.1.right/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631242060428" />
+    <state width="2699" height="376" key="GridCell.Tab.2.bottom" timestamp="1631247256225">
+      <screen x="-525" y="-1093" width="1920" height="1080" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.2.bottom/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@-525.-1093.1920.1080" timestamp="1631247256225" />
+    <state width="2699" height="376" key="GridCell.Tab.2.bottom/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631242060429" />
+    <state width="2699" height="376" key="GridCell.Tab.2.center" timestamp="1631247256224">
+      <screen x="-525" y="-1093" width="1920" height="1080" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.2.center/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@-525.-1093.1920.1080" timestamp="1631247256224" />
+    <state width="2699" height="376" key="GridCell.Tab.2.center/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631242060429" />
+    <state width="2699" height="376" key="GridCell.Tab.2.left" timestamp="1631247256224">
+      <screen x="-525" y="-1093" width="1920" height="1080" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.2.left/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@-525.-1093.1920.1080" timestamp="1631247256224" />
+    <state width="2699" height="376" key="GridCell.Tab.2.left/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631242060428" />
+    <state width="2699" height="376" key="GridCell.Tab.2.right" timestamp="1631247256225">
+      <screen x="-525" y="-1093" width="1920" height="1080" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.2.right/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@-525.-1093.1920.1080" timestamp="1631247256225" />
+    <state width="2699" height="376" key="GridCell.Tab.2.right/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631242060429" />
+    <state width="2699" height="376" key="GridCell.Tab.3.bottom" timestamp="1631241726680">
+      <screen x="1395" y="-1440" width="2752" height="1152" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.3.bottom/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631241726680" />
+    <state width="2699" height="376" key="GridCell.Tab.3.center" timestamp="1631241726680">
+      <screen x="1395" y="-1440" width="2752" height="1152" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.3.center/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631241726680" />
+    <state width="2699" height="376" key="GridCell.Tab.3.left" timestamp="1631241726680">
+      <screen x="1395" y="-1440" width="2752" height="1152" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.3.left/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631241726680" />
+    <state width="2699" height="376" key="GridCell.Tab.3.right" timestamp="1631241726680">
+      <screen x="1395" y="-1440" width="2752" height="1152" />
+    </state>
+    <state width="2699" height="376" key="GridCell.Tab.3.right/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631241726680" />
+    <state x="1527" y="-1265" key="RollbackChangesDialog" timestamp="1626594565027">
+      <screen x="186" y="-1440" width="2752" height="1152" />
+    </state>
+    <state x="1527" y="-1265" key="RollbackChangesDialog/0.0.1536.864/186.-1440.2752.1152@186.-1440.2752.1152" timestamp="1626594565027" />
+    <state x="681" y="-1335" width="1745" height="888" key="SettingsEditor" timestamp="1626446094081">
+      <screen x="186" y="-1440" width="2752" height="1152" />
+    </state>
+    <state x="681" y="-1335" key="SettingsEditor/0.0.1536.864/186.-1440.2752.1152@186.-1440.2752.1152" timestamp="1626446094081" />
+    <state x="-366" y="-974" width="1477" height="883" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1631242052816">
+      <screen x="-525" y="-1093" width="1920" height="1080" />
+    </state>
+    <state x="-366" y="-974" width="1477" height="883" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1631242052816" />
+    <state x="1639" y="-1116" width="1785" height="964" maximized="true" key="dock-window-1" timestamp="1633594450854">
+      <screen x="1919" y="-1090" width="1920" height="1080" />
+    </state>
+    <state x="1639" y="-1116" width="1785" height="964" maximized="true" key="dock-window-1/0.0.1536.864/-1.-1080.1920.1080/1919.-1090.1920.1080@1919.-1090.1920.1080" timestamp="1633594450854" />
+    <state x="75" y="59" width="1548" height="891" key="dock-window-1/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1633498723957" />
+    <state x="1010" y="-1229" width="1966" height="1097" key="dock-window-1/0.0.1536.864/186.-1440.2752.1152@186.-1440.2752.1152" timestamp="1627721154378" />
+    <state x="324" y="-1080" width="1532" height="1058" maximized="true" key="dock-window-1/0.0.1536.864/1919.-1090.1920.1080/-1.-1080.1920.1080@1919.-1090.1920.1080" timestamp="1632991934816" />
+    <state x="218" y="77" width="1548" height="963" key="dock-window-2" timestamp="1626837122142">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="218" y="77" width="1548" height="963" key="dock-window-2/0.0.1536.864/186.-1440.2752.1152@186.-1440.2752.1152" timestamp="1626837122142" />
+    <state x="-453" y="-1051" width="1814" height="991" key="find.popup" timestamp="1633918835859">
+      <screen x="-525" y="-1093" width="1920" height="1080" />
+    </state>
+    <state x="128" y="-960" width="1791" height="960" key="find.popup/0.0.1536.864/-1.-1080.1920.1080/1919.-1090.1920.1080@1919.-1090.1920.1080" timestamp="1633596089524" />
+    <state x="-395" y="-1059" width="1775" height="1024" key="find.popup/0.0.1536.864/-525.-1093.1920.1080/1395.-1440.2752.1152@1395.-1440.2752.1152" timestamp="1633435247284" />
+    <state x="-402" y="-973" width="1265" height="960" key="find.popup/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@-525.-1093.1920.1080" timestamp="1631245854397" />
+    <state x="-453" y="-1051" width="1814" height="991" key="find.popup/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1633918835859" />
+    <state x="362" y="-1311" width="1813" height="1023" key="find.popup/0.0.1536.864/186.-1440.2752.1152@186.-1440.2752.1152" timestamp="1629799874882" />
+    <state x="2042" y="-970" width="1265" height="960" key="find.popup/0.0.1536.864/1919.-1090.1920.1080/-1.-1080.1920.1080@1919.-1090.1920.1080" timestamp="1632994684436" />
+    <state x="2599" y="-169" key="run.anything.popup" timestamp="1633594833292">
+      <screen x="1919" y="-1090" width="1920" height="1080" />
+    </state>
+    <state x="2599" y="-169" key="run.anything.popup/0.0.1536.864/-1.-1080.1920.1080/1919.-1090.1920.1080@1919.-1090.1920.1080" timestamp="1633594833292" />
+    <state x="2369" y="-458" key="run.anything.popup/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1632919900360" />
+    <state x="1160" y="-458" key="run.anything.popup/0.0.1536.864/186.-1440.2752.1152@186.-1440.2752.1152" timestamp="1629813846538" />
+    <state x="2599" y="-169" key="run.anything.popup/0.0.1536.864/1919.-1090.1920.1080/-1.-1080.1920.1080@1919.-1090.1920.1080" timestamp="1632992715983" />
+    <state x="2601" y="-979" width="840" height="970" key="search.everywhere.popup" timestamp="1633329559913">
+      <screen x="1919" y="-1090" width="1920" height="1080" />
+    </state>
+    <state x="2601" y="-979" width="840" height="970" key="search.everywhere.popup/0.0.1536.864/-1.-1080.1920.1080/1919.-1090.1920.1080@1919.-1090.1920.1080" timestamp="1633329559913" />
+    <state x="2373" y="-1322" width="1204" height="1035" key="search.everywhere.popup/0.0.1536.864/1395.-1440.2752.1152/-525.-1093.1920.1080@1395.-1440.2752.1152" timestamp="1630400024496" />
+    <state x="2121" y="-969" width="840" height="971" key="search.everywhere.popup/0.0.1536.864/1439.-1080.1920.1080/-481.-1200.1920.1200@1439.-1080.1920.1080" timestamp="1632727982141" />
+    <state x="1164" y="-1322" width="840" height="1034" key="search.everywhere.popup/0.0.1536.864/186.-1440.2752.1152@186.-1440.2752.1152" timestamp="1629293890285" />
+    <state x="2601" y="-979" width="840" height="970" key="search.everywhere.popup/0.0.1536.864/1919.-1090.1920.1080/-1.-1080.1920.1080@1919.-1090.1920.1080" timestamp="1632990724022" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="javascript-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

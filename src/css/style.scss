@@ -1,0 +1,474 @@
+@import "rwd"; // RWD 樣式 ( @include : phone-width、pad-width、pc-width、pc-big-width )
+
+
+body{
+
+
+
+  font-family:"微軟正黑體";
+
+  .pointer{ cursor:pointer; }
+
+
+
+  /* 標示 */
+  .redDot{
+
+    position      : absolute ;
+    top           : -8px ;
+    right         : -9px ;
+
+    display       : inline-block !important; 
+    width         : 19px !important; 
+    height        : 19px !important; 
+    line-height   : 19px !important; 
+    background    : red !important; 
+    border-radius : 20px !important; 
+    color         : white !important; 
+    text-align    : center !important; 
+    font-size     : 8pt !important;
+
+  }
+
+
+
+  /* 寬、高 */
+
+  .w-full{ width:100% !important ; }
+  .h-full{ height:100% !important ; }
+
+  .w-10{ display:inline-block !important; width:10% !important; }
+  .w-20{ display:inline-block !important; width:20% !important; }
+  .w-30{ display:inline-block !important; width:30% !important; }
+  .w-40{ display:inline-block !important; width:40% !important; }
+  .w-50{ display:inline-block !important; width:50% !important; }
+  .w-60{ display:inline-block !important; width:60% !important; }
+  .w-70{ display:inline-block !important; width:70% !important; }
+  .w-80{ display:inline-block !important; width:80% !important; }
+  .w-90{ display:inline-block !important; width:90% !important; }
+
+
+  /* HOVER */
+  .hover:hover{ background : rgba(0,0,0,.1); cursor: pointer ; }
+
+  /* 顯示 / 隱藏 */
+  .d_Block{    display:block !important; }
+  .d_in_Block{ display:inline-block !important; }
+  .d_None{     display:none !important; }
+
+
+  /* 位置 */
+  .relative{ position:relative !important; }
+  .absolute{ position:absolute !important; }
+
+  /* Margin */
+  .m_Right_5{  margin-right:5px  !important; }
+  .m_Right_10{ margin-right:10px !important; }
+  .m_Right_15{ margin-right:15px !important; }
+  .m_Right_20{ margin-right:20px !important; }
+  .m_Right_25{ margin-right:25px !important; }
+  .m_Right_30{ margin-right:30px !important; }
+  .m_Right_35{ margin-right:35px !important; }
+  .m_Right_40{ margin-right:40px !important; }
+  .m_Right_45{ margin-right:45px !important; }
+  .m_Right_50{ margin-right:50px !important; }
+  .m_Right_55{ margin-right:55px !important; }
+  .m_Right_60{ margin-right:60px !important; }
+  .m_Right_65{ margin-right:65px !important; }
+  .m_Right_70{ margin-right:70px !important; }
+  .m_Right_75{ margin-right:75px !important; }
+  .m_Right_80{ margin-right:80px !important; }
+  .m_Right_85{ margin-right:85px !important; }
+  .m_Right_90{ margin-right:90px !important; }
+  .m_Right_95{ margin-right:95px !important; }
+  .m_Right_100{ margin-right:100px !important; }
+
+  .m_Left_5{  margin-left:5px  !important; }
+  .m_Left_10{ margin-left:10px !important; }
+  .m_Left_15{ margin-left:15px !important; }
+  .m_Left_20{ margin-left:20px !important; }
+  .m_Left_25{ margin-left:25px !important; }
+  .m_Left_30{ margin-left:30px !important; }
+  .m_Left_40{ margin-left:40px !important; }
+  .m_Left_50{ margin-left:50px !important; }
+
+  .m_Bottom_5{  margin-bottom:5px  !important; }
+  .m_Bottom_10{ margin-bottom:10px !important; }
+  .m_Bottom_15{ margin-bottom:15px !important; }
+  .m_Bottom_20{ margin-bottom:20px !important; }
+  .m_Bottom_25{ margin-bottom:25px !important; }
+  .m_Bottom_30{ margin-bottom:30px !important; }
+  .m_Bottom_35{ margin-bottom:35px !important; }
+  .m_Bottom_40{ margin-bottom:40px !important; }
+  .m_Bottom_45{ margin-bottom:45px !important; }
+  .m_Bottom_50{ margin-bottom:50px !important; }
+  .m_Bottom_55{ margin-bottom:55px !important; }
+  .m_Bottom_60{ margin-bottom:60px !important; }
+  .m_Bottom_65{ margin-bottom:65px !important; }
+  .m_Bottom_70{ margin-bottom:70px !important; }
+  .m_Bottom_75{ margin-bottom:75px !important; }
+  .m_Bottom_80{ margin-bottom:80px !important; }
+  .m_Bottom_85{ margin-bottom:85px !important; }
+  .m_Bottom_90{ margin-bottom:90px !important; }
+  .m_Bottom_95{ margin-bottom:95px !important; }
+  .m_Bottom_100{ margin-bottom:100px !important; }
+  .m_Bottom_150{ margin-bottom:150px !important; }
+  .m_Bottom_200{ margin-bottom:200px !important; }
+
+  .m_Top_5{  margin-top:5px  !important; }
+  .m_Top_10{ margin-top:10px !important; }
+  .m_Top_15{ margin-top:15px !important; }
+  .m_Top_20{ margin-top:20px !important; }
+  .m_Top_25{ margin-top:25px !important; }
+  .m_Top_30{ margin-top:30px !important; }
+  .m_Top_35{ margin-top:35px !important; }
+  .m_Top_40{ margin-top:40px !important; }
+  .m_Top_45{ margin-top:45px !important; }
+  .m_Top_50{ margin-top:50px !important; }
+  .m_Top_60{ margin-top:60px !important; }
+  .m_Top_70{ margin-top:70px !important; }
+  .m_Top_80{ margin-top:80px !important; }
+  .m_Top_90{ margin-top:90px !important; }
+  .m_Top_100{ margin-top:100px !important; }
+  .m_Top_110{ margin-top:110px !important; }
+  .m_Top_120{ margin-top:120px !important; }
+  .m_Top_130{ margin-top:130px !important; }
+  .m_Top_140{ margin-top:140px !important; }
+  .m_Top_150{ margin-top:150px !important; }
+
+
+  /* Padding */
+  .p_5{ padding:5px !important; }
+  .p_10{ padding:10px !important; }
+  .p_15{ padding:15px !important; }
+  .p_20{ padding:20px !important; }
+  .p_Bottom_10{ padding-bottom:20px !important; }
+
+
+  /* --- 字體大小 --- */
+  .f_9{  font-size:9pt !important; }
+  .f_10{ font-size:10pt !important; }
+  .f_11{ font-size:11pt !important; }
+  .f_12{ font-size:12pt !important; }
+  .f_13{ font-size:13pt !important; }
+  .f_14{ font-size:14pt !important; }
+  .f_15{ font-size:15pt !important; }
+  .f_16{ font-size:16pt !important; }
+  .f_17{ font-size:17pt !important; }
+  .f_18{ font-size:18pt !important; }
+
+  /* --- 顏 色 --- */
+
+  // <Link/>
+  .linkColor{ color:black; }
+
+
+
+  
+  .fWhite{
+
+    color:white !important;
+    font-weight:bold !important;
+
+  }
+
+  
+  .fGray{
+
+    color:gray !important;
+    font-weight:bold !important;
+
+  }
+  
+
+  .fRed{
+
+    color:red !important;
+    font-weight:bold !important;
+
+  }
+
+  .fBalck{
+
+    color:black !important;
+    font-weight:bold !important;
+
+  }
+
+  .fLimeGreen{
+
+    color: #55cd6a !important;
+    font-weight:bold !important;
+
+  }
+
+  .fGreen{
+
+    color:green !important;
+    font-weight:bold !important;
+
+  }
+
+  .fDred{
+
+    color:rgb(160,0,0) !important;
+    font-weight:bold !important;
+
+  }
+
+  .fOrange{
+
+    color:darkorange !important;
+    font-weight:bold !important;
+
+  }
+
+  .fBlue{
+
+    color:rgb(0,0,180) !important;
+    font-weight:bold !important;
+
+  }
+
+  .fDblue{
+
+    color: darkblue !important;
+    font-weight:bold !important;
+
+  }
+
+  /* --- 元 素 --- */
+
+  input{
+
+    font-weight:bold;
+    font-family:"微軟正黑體";
+    color:darkblue !important;
+
+  }
+
+  .inputText{
+
+    font-weight:bold;
+    font-family:"微軟正黑體";
+    color:darkblue !important;
+    padding:8px;
+    border-radius:3px;
+    border:1px solid rgba(0,0,0,.2);
+    width:100px;
+
+  }
+
+  .select::after{
+
+    position: absolute !important;
+    top:17px !important;
+    right:15px !important;
+
+  }
+
+  textarea{
+
+    padding:10px;
+    font-family:"微軟正黑體" ;
+
+  }
+
+  button{
+
+    font-weight:bold;
+    font-family:"微軟正黑體";;
+
+  }
+
+
+  .table thead tr th{
+
+    font-weight:bold !important;
+    font-size:1.1em !important;
+    text-align:center !important;
+
+  }
+
+  .table tbody tr td{
+
+    text-align:center;
+
+  }
+
+
+  .column{
+
+    position: relative;
+
+  }
+
+  .label{
+
+    font-size:1.3em !important;
+
+    i{
+
+      position:relative;
+      top:-1px;
+      font-size:1.4em;
+    }
+
+    span{
+
+      color:darkorange;
+
+    }
+
+  }
+
+  .required::before{
+
+    z-index:2;
+    content:"*";
+    position:absolute;
+    top:5px;
+    left:1px;
+    font-size:1.1em;
+    color: #ff5755;
+
+  }
+
+  // ---------------------
+  .t_Left{
+
+    display        : flex !important;
+    justifyContent : left !important;
+
+  }
+
+  .t_Right{
+
+    text-align: right !important;
+
+  }
+
+  .td_Left{
+
+    text-align: left !important;
+
+  }
+
+
+  // 卡片
+  .card{
+
+    margin-bottom:15px;
+
+    .media-content{
+
+      .card-frame{
+
+        height:300px;
+        overflow:auto;
+
+      }
+
+    }
+
+  }
+
+  // 固定位置 ( 右側 )
+  .fixed_P_Right{
+
+    position:fixed;
+    top:13%;
+    right:1%;
+    z-index:90;
+
+  }
+
+  .date-picker{
+
+    position: relative;
+    top:-3px;
+    padding:5px;
+    font-size:12pt;
+
+  }
+
+  .date{ width:120px !important; }
+
+  // 新增住宿 > 寵物資料
+  .petData_check{
+
+    color    : #ffed46;
+    position : absolute ;
+    top      : -20px ;
+    right    : -15px;
+
+  }
+
+  // 評分區塊 ----------------------------
+
+  .starBox{
+
+    display    : inline-block ;
+    position   : absolute ;
+    top        : -4px ;
+    left       : -20px ;
+    width      : 20px;
+    text-align : center;
+
+    i{ font-size: 10pt }
+
+    b{
+      display     : inline-block;
+      height      : 15px;
+      line-height : 13px;
+      width       : 40px;
+      position    : absolute ;
+      top         : 20px;
+      left        : -10px;
+      font-size   : .6em;
+      color       : gray;
+    }
+
+  }
+
+  // 項目隱藏說明框 -----------------------
+
+  .item_Box{
+
+    position   : absolute;
+    width      : 180px;
+    top        : 0px;
+    right      : -190px;
+    padding    : 10px;
+    background : white;
+    z-index    : 100  ;
+    box-shadow : 0px 0px 4px 1px rgba(0,0,0,.1) ;
+    border-radius: 3px;
+
+    div{
+      display       : block;
+      margin-bottom : 10px;
+      line-height   : 25pt;
+      text-align    : left  ;
+    }
+
+
+  }
+
+
+  // --------------------------------------
+
+  // 頂層導覽
+  @import "css/component/NavBar";
+
+  // 主要內容
+  @import "css/component/MainContent";
+
+
+
+  // # 外掛 : -------------------------------------
+
+
+
+}
+
