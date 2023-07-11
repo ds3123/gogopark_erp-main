@@ -22,8 +22,7 @@ const Submit_Error = ( { current_User_Name , data } : Error ) => {
     // # 銷單 ------  
 
         // 點選 _ 提交銷單
-        const click_Delete_Service = useEffect_Click_Delete_Service( data , current_User_Name ) ;
-
+        const click_Delete_Service = useEffect_Click_Delete_Service( data ) ;
 
 
     // # 異常 ------ 

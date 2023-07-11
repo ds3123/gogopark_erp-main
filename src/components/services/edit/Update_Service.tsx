@@ -62,7 +62,6 @@ import Update_Submit_Button from 'templates/button/Update_Submit_Button' ;
 import { ServiceSummaryFeeProvider } from "components/services/edit_components/summary_fee/contexts/serviceSummaryFeeContext"
 import { setTimeout } from "timers" ; 
 
-
 import Side_Extra_Fee_List from '../components/Side_Extra_Fee_List';
 
 
@@ -390,7 +389,7 @@ const Update_Service = ( ) => {
                 
                 { /*  美容師處理結果 ()  */ }
                 { ( service_Type === "安親" || service_Type === "住宿"  ) || 
-                    <Beautician_Process  data={ data } register={ register } />
+                    <Beautician_Process  data = { data } register = { register } />
                 }
 
                 <hr/> <br/>

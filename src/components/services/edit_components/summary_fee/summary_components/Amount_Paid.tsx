@@ -19,12 +19,12 @@ type Paid = {
 // @ 實收金額
 const Amount_Paid = ( { receivable } : Paid ) => {
 
+
     // # Context
-    const value = useContext( SidePanelContext ) ;                     // 取得 context 值  
-    const data  = value.preLoadData ? value.preLoadData : value.data ; // 預先取得資料
+    const value = useContext( SidePanelContext ) ;                             // 取得 context 值  
+    const data  = value.preLoadData ? value.preLoadData : value.data ;         // 預先取得資料
 
-    const { register , setValue , editType } = useReact_Hook_Form_Context( ) ;  // 取得 context 值 : React Hook Form 屬性   
-
+    const { register , setValue , editType } = useReact_Hook_Form_Context() ;  // 取得 context 值 : React Hook Form 屬性   
 
 
     // 付款方式

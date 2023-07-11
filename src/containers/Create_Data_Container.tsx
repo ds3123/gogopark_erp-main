@@ -130,19 +130,19 @@ const Create_Data_Container = () => {
                     { current === "品種" && <Create_Species  { ...props } />  }
 
                     { /* 帳號項目 */ }
-                    { current === "帳號" && <Create_Account { ...props } />  }
+                    { current === "帳號" && <Create_Account { ...props } />   }
 
                     { /* 員工項目 */ }
                     { current === "員工" && <Create_Employee { ...props } />  }
 
                     { /* 權限項目 */ }
-                    { current === "權限" && <Create_Auth { ...props } />  }
+                    { current === "權限" && <Create_Auth { ...props } />      }
                     
                     { /* 其他 */ } 
-                    { current === "其他" && <Create_Other  { ...props } />  }
+                    { current === "其他" && <Create_Other  { ...props } />    }
 
                     { /* 商品 */ } 
-                    { current === "商品" && <Create_Product />  }
+                    { current === "商品" && <Create_Product />                }
         
                     { /* 提交按鈕 */ }
 

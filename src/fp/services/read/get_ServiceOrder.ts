@@ -1,8 +1,9 @@
-import { is_Delete } from "fp/state" ;
-import { compose , append_Obj } from "fp/tool" ;
+
+import { append_Obj } from "fp/tool" ;
 
 
-// 取得 _ 服務單 : 資料表 id
+
+// 取得 _ 服務單 : 資料表 id ( 藉由 _ 服務單本身資料  )  < T >
 export const get_ServiceOrderId = ( serviceData : ServiceOrder ) : string  => {
 
     return serviceData.service_type === "基礎" && serviceData.basic_id  ? serviceData.basic_id  :
@@ -13,7 +14,18 @@ export const get_ServiceOrderId = ( serviceData : ServiceOrder ) : string  => {
 } ;
 
 
-// 取得 _ 服務單 : API Url
+// 取得 _ 服務單 : 資料表 id ( 藉由 _ 方案使用記錄  )  < T >
+export const get_ServiceOrderId_By_PlanUsedRecord = ( record : PlanUsedRecord ) : string  => {
+
+    return ( record?.bath )   ? record?.bath?.bath_id : 
+           ( record?.beauty ) ? record?.beauty?.beauty_id :
+           "" ;
+
+} ;
+
+
+
+// 取得 _ 服務單 : API Url < T >
 export const get_ServiceOrderUrl = ( serviceType : ServiceTypes_ZH ) : string => {
 
     return serviceType === "基礎" ? "/basics"   : 
@@ -34,30 +46,47 @@ export const get_ServiceOrder_Url_Id = ( serviceData : ServiceOrder ) : { servic
 
 // ----------------------
 
-// 取得 _ 服務單銷單 : 修改物件
-export const get_ServiceOrder_Delete_Obj = ( delete_Submitter : string ) : Delete_Obj => {
 
-    return { 
-             is_delete        : is_Delete() ,
-             delete_submitter : delete_Submitter  
-           }
+// 取得 _ 基本修改物件
+export const get_ServiceOrder_BasicUpdate_Obj = ( fn_Url : string , fn_Id : any ) => {
 
+      return {
+               "serviceOrder_Url" : fn_Url ,
+               "serviceOrder_Id"  : fn_Id ,
+             }
+
+}
+
+
+// 取得 _ 服務單銷單 ( 資料表 : basic / bath / beauty ) : 所有資訊物件 < T >
+export const get_ServiceOrder_DeleteInfo_Obj = ( delete_Obj : Delete_Obj ) => ( serviceData : ServiceOrder ) : Delete_ServiceOrder_Info_Obj => {
+
+
+    const basicObj = get_ServiceOrder_BasicUpdate_Obj( 
+                                                       get_ServiceOrderUrl( serviceData.service_type ) , 
+                                                       get_ServiceOrderId( serviceData ) 
+                                                     ) ; 
+    
+   return append_Obj( "serviceOrder_DeleteObj" , delete_Obj )( basicObj ) ;    
+                
+                  
 } ;
 
 
 
-// 取得 _ 服務單銷單 : 所有資訊物件
-export const get_ServiceOrder_DeleteInfo_Obj = ( serviceData : ServiceOrder ) => {
+// 取得 _ 服務單銷單 ( 資料表 : basic / bath / beauty ) --> 藉由方案使用記錄 : 所有資訊物件 < T >
+export const get_ServiceOrder_DeleteInfo_Obj_By_PlanUsedRecord = ( delete_Obj : Delete_Obj ) => ( record : PlanUsedRecord ) : Delete_ServiceOrder_Info_Obj => {
 
-    const obj = {} ;
 
-    return compose(
-                    append_Obj( "serviceOrder_Url" , get_ServiceOrderUrl( serviceData.service_type ) ) ,
-                    append_Obj( "serviceOrder_Id" , get_ServiceOrderId( serviceData ) ) ,
-                    append_Obj( "ServiceOrder_DeleteObj" , get_ServiceOrder_Delete_Obj( "Danny" ) )  
-                  )( obj ) ; 
+    const basicObj = get_ServiceOrder_BasicUpdate_Obj( 
+                                                       get_ServiceOrderUrl( record.service_type )  , 
+                                                       get_ServiceOrderId_By_PlanUsedRecord( record ) 
+                                                      ) ; 
 
-                    
+    return append_Obj( "serviceOrder_DeleteObj" , delete_Obj )( basicObj ) ;  
+                                                      
+
+                  
 } ;
 
 

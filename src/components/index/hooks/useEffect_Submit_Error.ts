@@ -2,19 +2,19 @@
 import { useState } from 'react' ;
 import { useDispatch } from 'react-redux' ;
 import { useHistory } from "react-router-dom" ;
-import { submit_Service_Error , submit_Delete_Service } from "store/actions/action_Error" ; 
+import { submit_Service_Error  } from "store/actions/action_Error" ; 
 import{ useLocation } from "react-router";
 import { useQueryClient } from "react-query" ;
 
 import { delete_ServiceOrder } from "fp/services/delete/delete_ServiceOrder" ;
 
 
-
 // # 銷單 --------
 
 
+
 // 點選 _ 提交銷單
-export const useEffect_Click_Delete_Service = ( data : any , current_User_Name : string ) => {
+export const useEffect_Click_Delete_Service = ( data : any ) => {
 
     const dispatch    = useDispatch() ;
     const history     = useHistory() ;
@@ -22,27 +22,20 @@ export const useEffect_Click_Delete_Service = ( data : any , current_User_Name :
 
     const queryClient = useQueryClient() ;
     
-    // 點選 _ 事件
+    // 點選 _ 刪除函式
     const click_Delete_Service = () => {
 
- 
-        delete_ServiceOrder( data ) ;
-         
-  
-       //  dispatch( submit_Delete_Service( data ,  current_User_Name , history , current_Url , queryClient ) ) ;
-     
-    } ;
+        delete_ServiceOrder( data )( queryClient , dispatch , history )( current_Url ) ;
 
+    } ;
 
     return click_Delete_Service
 
 } ;
 
 
-
-
-
 // # 異常 --------
+
 
 // 點選 _ 轉異常
 export const useEffect_Click_Is_Error = () => {
@@ -57,6 +50,7 @@ export const useEffect_Click_Is_Error = () => {
     return { is_Error , click_Is_Error }
 
 } ;
+
 
 
 // 點選 _ 提交異常

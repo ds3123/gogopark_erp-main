@@ -59,7 +59,6 @@ export const useFetch_ExtraFees_By_PaymentDate = ( account_id : string , payment
   // 預設值
   const fallback    = [] as any[] ;  
 
-
   const { data = fallback } = useQuery( 
                                          serviceKeys.extra_fee( account_id , payment_date ) , 
                                          () => fetch_ExtraFees_By_PaymentDate( account_id , payment_date ) 
@@ -182,9 +181,8 @@ export const useFetch_Shop_Reservations_From_ServiceDate  = ( account_id : strin
 } ;
 
 
-// 取得 _ 特定店家，特定服務日期，所有 【 預約 】與 【 轉異常 】服務單
+// 取得 _ 特定店家，特定服務日期，所有 【 預約 】與 【 轉異常 】服務單 < T >
 export const useFetch_Shop_Services_With_Delete_Error_On_ServiceDate = ( account_id : string , service_date : string  ) => {
-
 
    // 預設值
    const fallback = [] as any[] ;  
@@ -196,7 +194,6 @@ export const useFetch_Shop_Services_With_Delete_Error_On_ServiceDate = ( account
                                        ) ;
 
    return data    
-
 
 } ; 
 

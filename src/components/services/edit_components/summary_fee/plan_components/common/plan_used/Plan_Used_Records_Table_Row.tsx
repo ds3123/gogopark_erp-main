@@ -1,7 +1,7 @@
 import { useAccount_Shop_Id } from "hooks/data/useAccount" ; 
 import { useFetch_Shop_Plan_UsedRecord_By_Id } from "hooks/react-query/plan/useFetchPlans" ;
 import { useEffect_Set_Extra_Items , useEffect_Set_Service_Date  } from "../../../hooks/useEffect_Plan_Used_Records_Table_Row" ;
-import { useEffect_Click_Delete_Service , useEffect_Click_Reset_Delete } from "../../../hooks/useEffect_Plan_Used_Records_Table_Row" ;
+import { useEffect_Click_Delete_Service , useEffect_Click_Undo_Delete_Service } from "../../../hooks/useEffect_Plan_Used_Records_Table_Row" ;
 
 
 
@@ -34,7 +34,7 @@ const Plan_Used_Records_Table_Row = ( { record_Id , service_Id } : Row ) => {
 
 
     // 點選 _ 復原 : 銷單
-    const click_Reset_Delete   = useEffect_Click_Reset_Delete() ;
+    const click_Undo_Delete_Service = useEffect_Click_Undo_Delete_Service() ;
 
 
     const is_Bath_Deleted   = data?.service_type === '洗澡' && !( data?.bath?.q_code ) ;   // 洗澡 ( 資料表：bath )   資料已刪除
@@ -88,7 +88,7 @@ const Plan_Used_Records_Table_Row = ( { record_Id , service_Id } : Row ) => {
                       { data?.is_delete === 0 ? 
                               "成立" : 
                               <b className = "tag is-medium is-rounded is-danger pointer" 
-                                 onClick   = { () => { if( window.confirm( "確認要復原銷單?" ) ) click_Reset_Delete( data ) } } > 
+                                 onClick   = { () => { if( window.confirm( "確認要復原銷單?" ) ) click_Undo_Delete_Service( data ) } } > 
                                         銷單 
                              </b>  
                      }      

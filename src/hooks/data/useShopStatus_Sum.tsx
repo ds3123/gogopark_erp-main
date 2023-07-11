@@ -5,6 +5,9 @@ import { Shop_Status , Service_Type } from 'utils/Interface_Type' ;
 /* 計算 _ 首頁各個到店狀態下，基礎、洗澡、美容的數量 */
 const useShopStatus_Sum = ( shop_Status : Shop_Status , pet_Arr : any[] )  => {
 
+        console.log(  "p" , pet_Arr  ) ; 
+
+
         // 計算數量
         const filter_Sum = ( status : Shop_Status , type : Service_Type ) : number => {
             return pet_Arr.filter( x  => {  return x['shop_status'] === status && x['service_type'] === type ; }).length ;

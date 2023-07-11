@@ -19,9 +19,9 @@ configure({ adapter : new Adapter() }) ;
 
 
 // Mock Service Worker 監聽 Server 生命週期 ( 先註解，改由各別測試檔案中設定 )
-// beforeAll( () => server.listen( { onUnhandledRequest: "bypass" } ) ) ;
-// afterEach( () => server.restoreHandlers() ) ;
-// afterAll( () => server.close() ) ;
+beforeAll( () => server.listen( { onUnhandledRequest: "bypass" } ) ) ;
+afterEach( () => server.restoreHandlers() ) ;
+afterAll( () => server.close() ) ;
 
 
 // -----------------------

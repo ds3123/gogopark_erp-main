@@ -24,7 +24,7 @@ const Summary_Fee = ( ) => {
         
 
        // 取得 _ 不同新增服務類型 : 應付金額 
-       const receivable   = usePrice_Service_Receivable( ) ;
+       const receivable   = usePrice_Service_Receivable() ;
 
 
     return <>
@@ -32,7 +32,7 @@ const Summary_Fee = ( ) => {
               { editType ? "" : <><hr/><br/></> }
              
               { /* # 費用明細 */ }
-              <div className="columns is-multiline is-mobile">
+              <div className = "columns is-multiline is-mobile" >
 
                   { /* 服務項目 */ }
                   <Service_Item />
