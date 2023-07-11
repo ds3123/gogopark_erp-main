@@ -21,6 +21,11 @@ import {
           get_ShopStatus_Home ,
           get_ShopStatus_DoneHome ,
 
+          get_ShopStatus_ServiceOrders ,
+          get_ShopStatus_ServiceOrderNum_Basic ,
+          get_ShopStatus_ServiceOrderNum_Bath ,
+          get_ShopStatus_ServiceOrderNum_Beauty ,
+
           get_ServiceStatus_Arrived ,
           get_ServiceStatus_Appointment_Today ,
           get_ServiceStatus_Appointment_Future ,
@@ -55,7 +60,6 @@ import {
      2. 預約狀態 -> service_status : 預約今天 + 預約未來
      3. 現場狀態 -> service_status : 已到店 ( WARN ! : 若以 shop_status 的 "到店等候中" ， 由於到店處理狀態會變化，因此加總數會 _ 僅計算 : "到店等候中" )
 
-
  
 */
 
@@ -65,14 +69,14 @@ describe( "篩選 ( filter ) 測試" , () => {
     describe( "測試 _ 到店狀態 ( shop_status )" , () => { 
 
         const data = [
-                        { shop_status : '到店美容中' } ,
-                        { shop_status : '已回家( 房 )' } ,
-                        { shop_status : '到店等候中' } ,
-                        { shop_status : '洗完等候中' } ,
-                        { shop_status : '尚未到店' } ,
-                        { shop_status : '已回家( 房 )' } ,
-                        { shop_status : '到店等候中' } ,
-                        { shop_status : '已回家( 房 )' } ,
+                        { shop_status : '到店美容中'    } ,
+                        { shop_status : '已回家( 房 )'  } ,
+                        { shop_status : '到店等候中'    } ,
+                        { shop_status : '洗完等候中'    } ,
+                        { shop_status : '尚未到店'      } ,
+                        { shop_status : '已回家( 房 )'  } ,
+                        { shop_status : '到店等候中'    } ,
+                        { shop_status : '已回家( 房 )'  } ,
                     ] ;
 
         test( "到店等候中 : get_ShopStatus_Wait()" , () => {
@@ -125,6 +129,67 @@ describe( "篩選 ( filter ) 測試" , () => {
         
         }) ;
 
+        test( "取得 _ 特定到店狀態下，所有服務單" , () => {
+        
+            expect( get_ShopStatus_ServiceOrders( '到店等候中' )( data ) ).toEqual([
+                                                                                   { shop_status : '到店等候中' } ,
+                                                                                    { shop_status : '到店等候中' } 
+                                                                                  ]) ;
+
+            expect( get_ShopStatus_ServiceOrders( '已回家( 房 )' )( data ) ).toEqual( [
+                                                                                      { shop_status : '已回家( 房 )' } ,
+                                                                                      { shop_status : '已回家( 房 )' } ,
+                                                                                      { shop_status : '已回家( 房 )' } ,
+                                                                                    ]) ;
+
+        
+        }) ;
+
+
+        describe( "取得 _ 特定到店狀態下，各類服務單數量" , () => { 
+
+
+            const data = [
+                             { shop_status : "到店等候中" , service_type : '基礎' } ,
+                             { shop_status : "洗完等候中" , service_type : '洗澡' } ,
+                             { shop_status : "已回家( 房 )" , service_type : '美容' } ,
+                             { shop_status : "到店等候中" , service_type : '洗澡' } ,
+                             { shop_status : "已回家( 房 )" , service_type : '基礎' } ,
+                             { shop_status : "到店等候中" , service_type : '美容' } ,
+                             { shop_status : "洗完等候中" , service_type : '洗澡' } ,
+                             { shop_status : "到店等候中" , service_type : '基礎' } ,
+                             { shop_status : "洗完等候中" , service_type : '美容' } ,
+                            ]
+            
+
+            test( "基礎單 : 數量 get_ShopStatus_ServiceOrderNum_Basic()" , () => {
+
+                 expect( get_ShopStatus_ServiceOrderNum_Basic( data , '到店等候中' ) ).toBe( 2 ) ;
+                 expect( get_ShopStatus_ServiceOrderNum_Basic( data , '已回家( 房 )' ) ).toBe( 1 ) ;
+            
+            }) ;
+
+            test( "洗澡單 : 數量 get_ShopStatus_ServiceOrderNum_Bath()" , () => {
+
+                 expect( get_ShopStatus_ServiceOrderNum_Bath( data , '到店等候中' ) ).toBe( 1 ) ;
+                 expect( get_ShopStatus_ServiceOrderNum_Bath( data , '洗完等候中' ) ).toBe( 2 ) ;
+            
+            
+            }) ;
+
+            test( "美容單 : 數量 get_ShopStatus_ServiceOrderNum_Beauty()" , () => {
+            
+            
+                 expect( get_ShopStatus_ServiceOrderNum_Beauty( data , '到店等候中' ) ).toBe( 1 ) ;
+                 expect( get_ShopStatus_ServiceOrderNum_Beauty( data , '洗完等候中' ) ).toBe( 1 ) ;
+                 expect( get_ShopStatus_ServiceOrderNum_Beauty( data , '已回家( 房 )' ) ).toBe( 1 ) ;
+
+
+            }) ;
+        
+        
+        }) ; 
+        
 
     }) ; 
 
@@ -312,8 +377,11 @@ describe( "計算測試" , () => {
 
         test( "get_Completed_BasicBathBeauty_Persentage : 取得 _ 已完成 : 基礎單 + 洗澡單 + 美容單 -> 完成率" , () => {
     
-        expect( get_Completed_BasicBathBeauty_Persentage( data ) ).toBe( 38 ) ;
+               const data_Zero = [] as any[] ;
 
+               expect( get_Completed_BasicBathBeauty_Persentage( data ) ).toBe( 38 ) ;
+               expect( get_Completed_BasicBathBeauty_Persentage( data_Zero ) ).toBe( 0 ) ;  // 當沒有資料時，希望顯示 0
+ 
         }) ;
 
         test( "get_ServiceOrder_CompletedNum_Basic : 取得 _ 已完成 '基礎單' : 數量" , () => {

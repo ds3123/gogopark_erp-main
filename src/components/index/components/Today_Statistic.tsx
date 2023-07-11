@@ -13,7 +13,7 @@ import {
          get_ServiceOrder_AppointmentNum_Total ,
          get_ServiceOrder_OnSiteNum_Total ,
         } from "fp/services/read/get_Statistic" ;
-import { useEffect_Error_Sum } from "../hooks/useEffect_Error" ;
+import { useEffect_Error_Sum } from "hooks/data/useError" ;
 
 
 type Statistic = {

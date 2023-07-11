@@ -1,6 +1,9 @@
 
 import { append_Obj } from "fp/tool" ;
 
+import { is_ServiceOrder_NotComplete_Paid } from 'fp/state' ;
+
+
 
 
 // 取得 _ 服務單 : 資料表 id ( 藉由 _ 服務單本身資料  )  < T >
@@ -90,5 +93,7 @@ export const get_ServiceOrder_DeleteInfo_Obj_By_PlanUsedRecord = ( delete_Obj : 
 } ;
 
 
+// # 篩選 ( filter )
 
-
+// 取得 _ 服務單 : 尚未完成付款 ( 實付金額為 0 或 僅付 _ 部分實付金額 ) < T >
+export const get_ServiceOrder_NotComplete_Paid = ( serviceOrders : any[] ) : any[] => serviceOrders.filter( is_ServiceOrder_NotComplete_Paid ) ;

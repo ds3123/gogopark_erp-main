@@ -50,6 +50,12 @@ export const serviceKeys = {
 
 
   // 取得 _ 特定店家，特定服務日期，所以 【 預約 】與 【 轉異常 】服務單 
-  "shop_services_delete_error_date" : ( account_id : string , service_date : string ) => [ "shop_services_delete_error_date" , account_id , service_date ]
+  "shop_services_delete_error_date" : ( account_id : string , service_date : string ) => [ "shop_services_delete_error_date" , account_id , service_date ] ,
+
+
+  // 取得 _ 特定店家，特定服務日期，到店狀態 ( shop_status ) : 已回家( 房 )
+  "shop_services_gonehome_by_servicedate" : ( account_id : string , service_date : string ) => [ "shop_services_gonehome_by_servicedate" , account_id , service_date ]
+
+
 
 }

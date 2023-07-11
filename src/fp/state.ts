@@ -2,6 +2,8 @@
 import cookie from 'react-cookies' ;
 
 
+// 判斷 _ 刪除狀態 ( 各類服務單 )
+export const is_Delete = ( x : any ) => x?.is_delete === 1 ; 
 
 
 // 判斷 _ 是否物件 ( Ex. 用以決定是否執行 _ 遞迴 )
@@ -43,3 +45,12 @@ export const is_ShopStatus_Process    = ( x : any ) : boolean => x?.shop_status 
 export const is_ShopStatus_Done       = ( x : any ) : boolean => x?.shop_status === '洗完等候中' ;   // <T>
 export const is_ShopStatus_Home       = ( x : any ) : boolean => x?.shop_status === '已回家( 房 )' ; // <T> 
 export const is_ShopStatus_DoneHome   = ( x : any ) : boolean => is_ShopStatus_Done( x ) || is_ShopStatus_Home( x ) ; // <T>
+
+
+
+// * 付款狀態
+
+// 服務單 : 尚未 _ 完成付款
+export const is_ServiceOrder_NotComplete_Paid = ( x : any ) : boolean => x?.amount_payable > x?.amount_paid ;
+
+

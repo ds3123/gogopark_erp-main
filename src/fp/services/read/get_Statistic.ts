@@ -19,6 +19,7 @@ import {
         is_ShopStatus_Home ,
         is_ShopStatus_DoneHome ,
        } from 'fp/state' ;
+import { Shop_Status } from 'utils/Interface_Type';
 
 
 
@@ -35,9 +36,9 @@ import {
 // # 篩選資料 : filter() 
 
 // * 篩選 _ 資料類型 ( service_type )
-export const get_ServiceOrder_Basic           = ( serviceOrders : any[] ) : any[] => serviceOrders.filter( is_ServiceType_Basic ) ;  // <T>
-export const get_ServiceOrder_Bath            = ( serviceOrders : any[] ) : any[] => serviceOrders.filter( is_ServiceType_Bath ) ;   // <T>
-export const get_ServiceOrder_Beauty          = ( serviceOrders : any[] ) : any[] => serviceOrders.filter( is_ServiceType_Beauty );  // <T>
+export const get_ServiceOrder_Basic           = ( serviceOrders : any[] ) : any[] => serviceOrders.filter( is_ServiceType_Basic ) ;           // <T>
+export const get_ServiceOrder_Bath            = ( serviceOrders : any[] ) : any[] => serviceOrders.filter( is_ServiceType_Bath ) ;            // <T>
+export const get_ServiceOrder_Beauty          = ( serviceOrders : any[] ) : any[] => serviceOrders.filter( is_ServiceType_Beauty );           // <T>
 export const get_ServiceOrder_BathBeauty      = ( serviceOrders : any[] ) : any[] => serviceOrders.filter( is_ServiceType_BathBeauty ) ;      // <T>
 export const get_ServiceOrder_BasicBathBeauty = ( serviceOrders : any[] ) : any[] => serviceOrders.filter( is_ServiceType_BasicBathBeauty ) ; // <T>
 
@@ -240,7 +241,59 @@ export const get_Completed_BasicBathBeauty_Persentage = ( data : any[] ) : numbe
 
     const completedServices = get_Completed_BasicBathBeauty_Sum( data ) ;
 
-    return get_Completed_Persentage( completedServices , data.length )
+    const result = get_Completed_Persentage( completedServices , data.length )  ;
+
+    return result ? result : 0 ;
 
 } ;
 
+
+
+// ------
+
+
+// 取得 _ 特定到店狀態下，所有服務單 < T >
+export const get_ShopStatus_ServiceOrders = ( shopStatus : Shop_Status ) => ( serviceOrders : any[] ) => serviceOrders.filter( x => x?.shop_status === shopStatus ) ;
+
+
+
+// 取得 _ 特定到店狀態下，基礎單 : 數量 < T >
+export const get_ShopStatus_ServiceOrderNum_Basic = ( data : any[] , shopStatus : Shop_Status )  => {
+
+    const result = compose(
+                            get_ShopStatus_ServiceOrders( shopStatus ) ,  // 篩選 _ 特定到店狀態 
+                            get_ServiceOrder_Basic                        // 篩選 _ 基礎單
+                           )( data ) ;
+
+    return result.length
+
+} ;
+
+
+// 取得 _ 特定到店狀態下，洗澡單 : 數量 < T >
+export const get_ShopStatus_ServiceOrderNum_Bath = ( data : any[] , shopStatus : Shop_Status )  => {
+
+
+    const result = compose(
+                            get_ShopStatus_ServiceOrders( shopStatus ) ,  // 篩選 _ 特定到店狀態 
+                            get_ServiceOrder_Bath                         // 篩選 _ 洗澡單
+                           )( data ) ;
+
+    return result.length
+
+} ;
+
+
+
+// 取得 _ 特定到店狀態下，美容單 : 數量 < T >
+export const get_ShopStatus_ServiceOrderNum_Beauty = ( data : any[] , shopStatus : Shop_Status )  => {
+
+
+    const result = compose(
+                             get_ShopStatus_ServiceOrders( shopStatus ) ,  // 篩選 _ 特定到店狀態 
+                             get_ServiceOrder_Beauty                       // 篩選 _ 美容單
+                           )( data ) ;
+
+    return result.length
+
+} ;

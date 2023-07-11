@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable no-lone-blocks */
-import { useEffect , useState } from "react"
 import { useSelector } from "react-redux"
 import Date_Picker from "templates/form/Date_Picker"
 import usePagination from "hooks/layout/usePagination"
@@ -11,13 +10,16 @@ import { useForm } from "react-hook-form" ;
 import { IService } from "utils/Interface_Type" ;
 import Usage_Note from "templates/note/Usage_Note" ; 
 import { sort_Data_By_UpdatedDate } from 'utils/data/sort_data' ;
-import { useRead_Services_GoneHome_UnPaid_By_Date } from "hooks/ajax_crud/useAjax_Read" ;
 import { usePet_Apply_Reject , usePet_Is_Rejected } from 'hooks/data/usePet' ;
 import { useAccount_Shop_Id } from "hooks/data/useAccount" ;
 
 import { useFetch_Shop_Services_With_Delete_Error_On_ServiceDate } from "hooks/react-query/service/useFetchServices" ;
 import { useFetch_ExtraFees_By_PaymentDate } from "hooks/react-query/service/useFetchServices"
 import { useEffect_Service_Error } from "../hooks/useEffect_Service_Error"  ;
+
+
+import { useEffect_ServiceOrder_Is_GoneHome_NotCompletePaid  } from "hooks/data/useService" ;
+
 
 
 const note_Str = `此區塊列舉 :「轉異常」、「銷單」、「刪除加價單」、「已回家( 房 ) 情況下，應收金額與實收金額不符合」資料` ;
@@ -44,7 +46,9 @@ const Service_Error = () => {
     const services_Delete_Error = useFetch_Shop_Services_With_Delete_Error_On_ServiceDate( shop_Id , service_Date ) ;
 
     // 取得 _ 已回家( 房 ) 情況下，應付金額 與 實付金額 不符合   
-    const is_GoHome_UnPaid      = useRead_Services_GoneHome_UnPaid_By_Date( shop_Id , service_Date ) ;
+    const is_GoHome_UnPaid = useEffect_ServiceOrder_Is_GoneHome_NotCompletePaid( shop_Id , service_Date ) ;
+
+
 
     // 取得 _ 特定日期，所有加價單
     const date_Extra_Fee        = useFetch_ExtraFees_By_PaymentDate( shop_Id , service_Date ) ; 
@@ -62,11 +66,6 @@ const Service_Error = () => {
     // 所有異常資料 _ 4 種類型 :「 轉異常 」、「 銷單 」、「 已回家( 房 ) 情況下，應收金額與實收金額不符合 」、「 被刪除的加價單 」
     const error_Data = useEffect_Service_Error( services_Delete_Error , is_GoHome_UnPaid , date_Extra_Fee ) ;
 
-
-
-
-
-    
 
     
     return <>

@@ -7,7 +7,8 @@ import {
          get_ServiceOrder_Url_Id , 
          get_ServiceOrder_BasicUpdate_Obj ,
          get_ServiceOrder_DeleteInfo_Obj ,
-         get_ServiceOrder_DeleteInfo_Obj_By_PlanUsedRecord
+         get_ServiceOrder_DeleteInfo_Obj_By_PlanUsedRecord ,
+         get_ServiceOrder_NotComplete_Paid
         } from "fp/services/read/get_ServiceOrder" ;
 
 
@@ -337,6 +338,38 @@ describe( "測試 get_ServiceOrder_DeleteInfo_Obj_By_PlanUsedRecord : 輸入 _ '
 
 
 }) ; 
+
+
+
+describe( "測試 _ 篩選 : 服務單 )" , () => { 
+
+
+      test( "get_ServiceOrder_NotComplete_Paid : 取得 _ 服務單 : 尚未完成付款 ( 實付金額為 0 或 僅付 _ 部分實付金額 ) " , () => {
+      
+             const data = [ 
+                            {  amount_payable : 400 , amount_paid : 200  } ,
+                            {  amount_payable : 700 , amount_paid : 700  } ,
+                            {  amount_payable : 500 , amount_paid : 0  } ,
+                            {  amount_payable : 600 , amount_paid : 600  } ,
+                            {  amount_payable : 200 , amount_paid : 100  } ,
+                          ] ;
+
+             const result = [ 
+                              {  amount_payable : 400 , amount_paid : 200  } ,    
+                              {  amount_payable : 500 , amount_paid : 0  } ,   
+                              {  amount_payable : 200 , amount_paid : 100  } , 
+                            ] ;
+                            
+            expect( get_ServiceOrder_NotComplete_Paid( data ) ).toEqual( result ) ;               
+      
+
+      }) ;
+
+
+}) ; 
+
+
+
 
 
 

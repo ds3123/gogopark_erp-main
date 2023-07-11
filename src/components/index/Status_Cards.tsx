@@ -3,15 +3,14 @@
 import { Shop_Status  } from 'utils/Interface_Type'
 import Service_Rows from "components/index/Service_Rows";
 import { useSelector } from "react-redux";
-import { Loading } from "templates/note/Loading"
- 
+import { get_ShopStatus_ServiceOrderNum_Basic , get_ShopStatus_ServiceOrderNum_Bath , get_ShopStatus_ServiceOrderNum_Beauty  } from "fp/services/read/get_Statistic" ;
+
 
 
 interface IStatus {
 
     shop_Status : Shop_Status ;
     pet_Arr     : {}[] ;
-    service_Sum : { basic_Num : number ; bath_Num : number ; beauty_Num : number }
 
 }
 
@@ -20,11 +19,8 @@ interface IStatus {
 const Status_Cards = ( props : IStatus ) => {
 
 
-    // 首頁資料 _ 是否下載中
-    const Index_isLoading = useSelector( ( state:any ) => state.Index.Index_isLoading ) ;
-
-    const { shop_Status , pet_Arr , service_Sum } = props ;
-    const { basic_Num , bath_Num , beauty_Num }   = service_Sum ;
+    const { shop_Status , pet_Arr  } = props ;
+    
 
     // 各階段標題 Icon
     let title_Icon  ;
@@ -56,9 +52,9 @@ const Status_Cards = ( props : IStatus ) => {
 
                                   <div className="relative" >
 
-                                    <b className="tag is-medium is-light is-rounded"> 基 礎 &nbsp; <b className="tag is-rounded is-warning"> { basic_Num }  </b> </b> &nbsp;
-                                    <b className="tag is-medium is-light is-rounded"> 洗 澡 &nbsp; <b className="tag is-rounded is-success"> { bath_Num }   </b> </b> &nbsp;
-                                    <b className="tag is-medium is-light is-rounded"> 美 容 &nbsp; <b className="tag is-rounded is-danger">  { beauty_Num } </b> </b>
+                                    <b className="tag is-medium is-light is-rounded"> 基 礎 &nbsp; <b className="tag is-rounded is-warning"> { get_ShopStatus_ServiceOrderNum_Basic( pet_Arr , shop_Status ) }  </b> </b> &nbsp;
+                                    <b className="tag is-medium is-light is-rounded"> 洗 澡 &nbsp; <b className="tag is-rounded is-success"> { get_ShopStatus_ServiceOrderNum_Bath( pet_Arr , shop_Status ) }   </b> </b> &nbsp;
+                                    <b className="tag is-medium is-light is-rounded"> 美 容 &nbsp; <b className="tag is-rounded is-danger">  { get_ShopStatus_ServiceOrderNum_Beauty( pet_Arr , shop_Status ) } </b> </b>
 
                                   </div>
 

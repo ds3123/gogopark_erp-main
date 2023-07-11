@@ -49,7 +49,7 @@ export const fetch_Services_By_PetSeial_ServiceType = ( pet_serial : string , se
 
 // 取得 _ 特定店家，特定到店日期，基礎、洗澡、美容、安親 等 4 種服務 ， 所有 "已使用" 的 Qcode ( for React Query )
 export const fetch_Shop_ServiceDate_Used_Qcodes = ( account_id : string , service_date : string ) =>            
-                axios.get< any[] >( `services/show_qcode/${ account_id }/${ service_date }` ).then( res => res.data ) ;
+                axios.get< any[] >( `/services/show_qcode/${ account_id }/${ service_date }` ).then( res => res.data ) ;
           
                 
 // 取得 _ 特定店家，特定服務日期開始，所有【 預約 】資料 ( for React Query )
@@ -67,6 +67,11 @@ export const fetch_Shop_Services_With_Delete_Error_On_ServiceDate = ( account_id
 export const fetch_Shop_Services_With_Error = ( account_id : string ) =>
                  axios.get< any[] >( `/services/show_shop_services_by_error/${ account_id }/1` ).then( res => res.data ) ;                    
 
+
+                 
+// 取得 _ 特定店家、特定日期，到店狀態 ( shop_status ) : 已回家( 房 )
+export const fetch_Shop_Services_GoneHome_By_ServiceDate = ( account_id : string , date : string ) =>  
+                axios.get< any[] >( `/services/show_services_is_gohome_by_date/${ account_id }/${ date }` ).then( res => res.data ) ;  
 
 
 

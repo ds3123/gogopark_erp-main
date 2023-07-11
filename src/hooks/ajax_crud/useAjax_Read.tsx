@@ -17,50 +17,16 @@ export const useRead_After_Date_Services = ( date : string ) => {
     const [ data , set_Data ] = useState( [] ) ;
 
     // 取得資料
-    useEffect(() => {
+    useEffect( () => {
 
         axios.get( `/services/show_after_services/${ date }` ).then( res => { set_Data( res.data ) ; } );
 
-    },[ date ]) ;
+    } , [ date ] ) ;
 
     return data ;
 
 } ; 
 
-
-// *  取得、篩選出 : 在 '已回家(房)' 情況下，'應付金額' 與 '實付金額' 不符合 ( 即 : 實付金額為 0，或僅付部分實付金額 ) 
-export const useRead_Services_GoneHome_UnPaid_By_Date = ( account_id : string ,  date : string ) => {
-
-     const [ data , set_Data ] = useState( [] ) ;
-
-     useEffect( ()  => {
-
-        let is_mounted = true ;
-
-        if( account_id && date ){
-
-            // 請求資料
-            get_Services_Have_Gone_Home_By_Date( account_id , date ).then( res => {
-
-                if( is_mounted ){
-     
-                   const unpaid = res.data.filter( ( x : any ) => x['amount_payable'] !== x['amount_paid'] ) ;
-     
-                   set_Data( unpaid ) ;
-     
-                }
-     
-            }) 
-
-        }
-
-        return () => { is_mounted = false ; }
-
-     } , [] ) ;
-
-     return data 
-
-} ; 
 
 
 // # 客戶 ----

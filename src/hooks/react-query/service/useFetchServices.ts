@@ -13,10 +13,14 @@ import {
          fetch_Shop_ServiceDate_Used_Qcodes ,
          fetch_Shop_Reservations_From_ServiceDate ,
          fetch_Shop_Services_With_Delete_Error_On_ServiceDate ,
-         fetch_Shop_Services_With_Error
+         fetch_Shop_Services_With_Error ,
+         fetch_Shop_Services_GoneHome_By_ServiceDate
         } from "utils/api/api_Service" ; 
 
 import { Service_Type_Api , Primary_Services } from "utils/Interface_Type" ;
+
+import { get_ServiceOrder_NotComplete_Paid  } from "fp/services/read/get_ServiceOrder"
+
 
 
 
@@ -53,7 +57,7 @@ export const useFetch_Services_By_PaymentDate = ( account_id : string , payment_
   
 }
 
-// 取得 _ 特定 [ 付款日期 ] : 所有加價單
+// 取得 _ 特定 [ 付款日期 ] : 所有加價單 < T >
 export const useFetch_ExtraFees_By_PaymentDate = ( account_id : string , payment_date : string ) => {
 
   // 預設值
@@ -68,9 +72,6 @@ export const useFetch_ExtraFees_By_PaymentDate = ( account_id : string , payment
 
 
 }
-
-
-
 
 
 // 取得 _ 今天 : 所有服務 ( 輪詢 )
@@ -215,3 +216,22 @@ export const useFetch_Shop_Services_With_Error = ( account_id : string  ) => {
 
 
 } ; 
+
+
+// 取得 _ 特定店家，特定服務日期，到店狀態 ( shop_status ) : 已回家( 房 ) < T >
+export const useFetch_Shop_Services_GoneHome_By_ServiceDate  = ( account_id : string , service_date : string  ) => {
+
+  // 預設值
+  const fallback = [] as any[] ;  
+
+  const { data = fallback } = useQuery( 
+                                        serviceKeys.shop_services_gonehome_by_servicedate( account_id , service_date ) , 
+                                        () => fetch_Shop_Services_GoneHome_By_ServiceDate( account_id , service_date ) ,
+                                        { enabled : !!account_id && !!service_date }  
+                                      ) ;
+
+  return data    
+
+} ;
+
+
