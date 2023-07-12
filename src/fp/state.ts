@@ -2,12 +2,23 @@
 import cookie from 'react-cookies' ;
 
 
-// 判斷 _ 刪除狀態 ( 各類服務單 )
-export const is_Delete = ( x : any ) => x?.is_delete === 1 ; 
+// 判斷 _ 刪除狀態 ( 各類服務單 ) < T >
+export const is_Delete = ( x : any ) : boolean => x?.is_delete === 1 ; 
+
+
+// 判斷 _ 異常狀態 ( 各類服務單 ) < T >
+export const is_Error  = ( x : any ) : boolean => x?.is_error === 1 ;
+
+
+// 判斷 _ 服務單的 service_date 屬性值，為所輸入的 serviceDate 參數 < T >
+export const is_ServiceDate = ( serviceOrder : any , serviceDate : string ) => serviceOrder.service_date === serviceDate ;
+
 
 
 // 判斷 _ 是否物件 ( Ex. 用以決定是否執行 _ 遞迴 )
 export const is_Object = ( x : any ) => typeof x === "object" && x !== null ;
+
+export const is_Service_Date  = ( x : any) => ( service_Date : string ) => x?.sevice_date === service_Date ;
 
 
 // Cookie 登入使用者資訊
@@ -51,6 +62,10 @@ export const is_ShopStatus_DoneHome   = ( x : any ) : boolean => is_ShopStatus_D
 // * 付款狀態
 
 // 服務單 : 尚未 _ 完成付款
-export const is_ServiceOrder_NotComplete_Paid = ( x : any ) : boolean => x?.amount_payable > x?.amount_paid ;
+export const is_NotComplete_Paid = ( x : any ) : boolean => x?.amount_payable > x?.amount_paid ;
 
+
+//  服務單 : 為 _ 加價單
+export const is_Extra_ServiceOrder = ( x : any ) => x?.extra_fee_id
+ 
 

@@ -1,8 +1,8 @@
-
 import { append_Obj } from "fp/tool" ;
-
-import { is_ServiceOrder_NotComplete_Paid } from 'fp/state' ;
-
+import { 
+         is_ServiceDate , 
+         is_NotComplete_Paid 
+        } from 'fp/state' ;
 
 
 
@@ -25,7 +25,6 @@ export const get_ServiceOrderId_By_PlanUsedRecord = ( record : PlanUsedRecord ) 
            "" ;
 
 } ;
-
 
 
 // 取得 _ 服務單 : API Url < T >
@@ -70,11 +69,10 @@ export const get_ServiceOrder_DeleteInfo_Obj = ( delete_Obj : Delete_Obj ) => ( 
                                                        get_ServiceOrderId( serviceData ) 
                                                      ) ; 
     
-   return append_Obj( "serviceOrder_DeleteObj" , delete_Obj )( basicObj ) ;    
+    return append_Obj( "serviceOrder_DeleteObj" , delete_Obj )( basicObj ) ;    
                 
                   
 } ;
-
 
 
 // 取得 _ 服務單銷單 ( 資料表 : basic / bath / beauty ) --> 藉由方案使用記錄 : 所有資訊物件 < T >
@@ -93,7 +91,14 @@ export const get_ServiceOrder_DeleteInfo_Obj_By_PlanUsedRecord = ( delete_Obj : 
 } ;
 
 
-// # 篩選 ( filter )
+// # 篩選 ( filter )  ==================
+
 
 // 取得 _ 服務單 : 尚未完成付款 ( 實付金額為 0 或 僅付 _ 部分實付金額 ) < T >
-export const get_ServiceOrder_NotComplete_Paid = ( serviceOrders : any[] ) : any[] => serviceOrders.filter( is_ServiceOrder_NotComplete_Paid ) ;
+export const get_ServiceOrder_NotComplete_Paid = ( serviceOrders : any[] ) : any[] => serviceOrders.filter( is_NotComplete_Paid ) ;
+
+
+// 取得 _ 特定 : 服務日期 ( service_date ) 的服務單 < T >
+export const get_ServiceOrder_ServiceDate =  ( serviceDate : string ) => ( serviceOrders : any[] ) : any[] => serviceOrders.filter( x => is_ServiceDate( x , serviceDate ) ) ;
+
+

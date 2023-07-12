@@ -174,8 +174,6 @@ export const useFetch_Shop_Reservations_From_ServiceDate  = ( account_id : strin
                                          { enabled : !!account_id && !!service_date }  
                                       ) ;
 
-
-
   return data    
 
 

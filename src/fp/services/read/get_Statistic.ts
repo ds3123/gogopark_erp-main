@@ -284,7 +284,6 @@ export const get_ShopStatus_ServiceOrderNum_Bath = ( data : any[] , shopStatus :
 } ;
 
 
-
 // 取得 _ 特定到店狀態下，美容單 : 數量 < T >
 export const get_ShopStatus_ServiceOrderNum_Beauty = ( data : any[] , shopStatus : Shop_Status )  => {
 
@@ -297,3 +296,5 @@ export const get_ShopStatus_ServiceOrderNum_Beauty = ( data : any[] , shopStatus
     return result.length
 
 } ;
+
+

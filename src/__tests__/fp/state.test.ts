@@ -2,6 +2,8 @@
 
 import { 
         is_Delete ,
+        is_Error ,
+        is_ServiceDate ,
 
         is_ServiceType_Basic ,
         is_ServiceType_Bath ,
@@ -22,7 +24,8 @@ import {
         is_ShopStatus_Home ,
         is_ShopStatus_DoneHome ,
 
-        is_ServiceOrder_NotComplete_Paid
+        is_NotComplete_Paid ,
+        is_Extra_ServiceOrder
 
        }  from 'fp/state' ;
 
@@ -38,7 +41,22 @@ describe( "狀態測試" , () => {
             expect( is_Delete( { is_delete : 0 } ) ).not.toBeTruthy() ;   
 
         }) ;
+
+        test( "為 _ 異常狀態 : is_Error()" , () => {
+
+            expect( is_Error( { is_error : 1 } ) ).toBeTruthy() ;   
+            expect( is_Error( { is_error : 0 } ) ).not.toBeTruthy() ;   
+        
+        }) ;
     
+        test( "服務單的 service_date 屬性值，為所輸入的 serviceDate 參數 : is_ServiceDate" , () => {
+         
+           const data = { service_date : "2023-07-12" }
+
+           expect( is_ServiceDate( data , "2023-07-12" ) ).toBeTruthy() ;
+
+        }) ;
+
     }) ; 
     
     describe( "為特定 _ 服務單類型( service_type ) : Ex. 基礎、洗澡、美容、安親、住宿" , () => { 
@@ -234,17 +252,39 @@ describe( "狀態測試" , () => {
 
     describe( "服務單 _ 付款 ( payment ) 相關" , () => {
         
-        describe( "is_ServiceOrder_NotComplete_Paid : 尚未 _ 完成付款" , () => { 
+        describe( "is_NotComplete_Paid : 尚未 _ 完成付款" , () => { 
         
               const data_1 = { amount_payable : 400 ,  amount_paid : 0 } ;    // 未付款  -> 尚未 _ 完成付款
               const data_2 = { amount_payable : 400 ,  amount_paid : 200 } ;  // 部分付款 -> 尚未 _ 完成付款 
               const data_3 = { amount_payable : 400 ,  amount_paid : 400 } ;  // 完成付款
 
-              expect( is_ServiceOrder_NotComplete_Paid( data_1 ) ).toBeTruthy() ;
-              expect( is_ServiceOrder_NotComplete_Paid( data_2 ) ).toBeTruthy() ;
-              expect( is_ServiceOrder_NotComplete_Paid( data_3 ) ).not.toBeTruthy() ;
+              expect( is_NotComplete_Paid( data_1 ) ).toBeTruthy() ;
+              expect( is_NotComplete_Paid( data_2 ) ).toBeTruthy() ;
+              expect( is_NotComplete_Paid( data_3 ) ).not.toBeTruthy() ;
         
         }) ; 
+        
+        describe( "is_Extra_ServiceOrder : 為 _ 加價單" , () => { 
+
+            test( "為 _ 加價單" , () => {
+            
+                expect( is_Extra_ServiceOrder( { extra_fee_id : 4 } ) ).toBeTruthy();
+            
+            }) ;
+
+            test( "不為 _ 加價單( 一般洗澡、美容單 )" , () => {
+            
+                expect( is_Extra_ServiceOrder( { bath_id : 4 } ) ).not.toBeTruthy();
+                expect( is_Extra_ServiceOrder( { beauty_id : 3 } ) ).not.toBeTruthy();
+            
+            }) ;
+
+        
+        }) ; 
+        
+        
+        
+        
         
     
     }) ; 

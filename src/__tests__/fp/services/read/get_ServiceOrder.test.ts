@@ -1,14 +1,15 @@
 /* eslint-disable jest/valid-title */
 
 import { 
-    get_ServiceOrderId  , 
+         get_ServiceOrderId  , 
          get_ServiceOrderId_By_PlanUsedRecord ,
          get_ServiceOrderUrl , 
          get_ServiceOrder_Url_Id , 
          get_ServiceOrder_BasicUpdate_Obj ,
          get_ServiceOrder_DeleteInfo_Obj ,
          get_ServiceOrder_DeleteInfo_Obj_By_PlanUsedRecord ,
-         get_ServiceOrder_NotComplete_Paid
+         get_ServiceOrder_NotComplete_Paid ,
+         get_ServiceOrder_ServiceDate
         } from "fp/services/read/get_ServiceOrder" ;
 
 
@@ -362,6 +363,25 @@ describe( "測試 _ 篩選 : 服務單 )" , () => {
                             
             expect( get_ServiceOrder_NotComplete_Paid( data ) ).toEqual( result ) ;               
       
+
+      }) ;
+
+
+      test( "get_ServiceOrder_ServiceDate : 取得 _ 特定 : 服務日期 ( service_date ) 的服務單" , () => {
+      
+               const data = [
+                              { service_date : "2023-02-03" } , 
+                              { service_date : "2023-04-14" } , 
+                              { service_date : "2023-05-11" } , 
+                              { service_date : "2023-05-11" } , 
+                              { service_date : "2023-06-24" } , 
+                             ] ;
+
+
+         expect( get_ServiceOrder_ServiceDate( "2023-05-11" )( data ) ).toEqual([
+                                                                                 { service_date : "2023-05-11" } , 
+                                                                                 { service_date : "2023-05-11" } , 
+                                                                                ]) ;                  
 
       }) ;
 

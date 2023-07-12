@@ -1,0 +1,111 @@
+/* eslint-disable jest/valid-title */
+import {
+          get_ServiceOrder_Error_ServiceType ,
+          get_ServiceOrder_Error_Note ,
+          get_ServiceOrder_Error_PetInfo
+       } from "fp/services/read/get_Error" ;
+
+/*
+   
+     # 服務單 : 一般基礎單、洗澡單、美容單
+     # 加價單 : 建立服務單之後，追加的單據
+
+*/       
+
+
+describe( "取得 _ 服務異常表 : 欄位值" , () => { 
+
+    describe( "get_ServiceOrder_Error_ServiceType() : 服務類別" , () => { 
+    
+        test( "一般服務單" , () => {
+
+            const data = { bath_id : 44 , service_type : '洗澡' , q_code : '03'  } ;
+
+            expect( get_ServiceOrder_Error_ServiceType( data ) ).toBe( "洗澡 Q03 ( 44 )" ) ; 
+        
+        }) ;
+
+        test( "加價單" , () => {
+
+            const data = { extra_fee_id : 6 , service_type : '基礎' , basic : { basic_id : 4 , q_code : "07" }   } ;
+
+            expect( get_ServiceOrder_Error_ServiceType( data ) ).toBe( "基礎 Q07 ( 4 )" ) ; 
+        
+        
+        }) ;
+
+    }) ; 
+
+    describe( "get_ServiceOrder_Error_Note() : 異常說明" , () => {
+
+        test( "為 < 銷單 > ( is_delete === 1 ) 時，回傳 _ '銷 單'" , () => {
+        
+            expect( get_ServiceOrder_Error_Note( { is_delete : 1 } ) ).toBe( "銷 單" ) ;
+        
+        }) ;
+
+        test( "為 < 轉異常 > ( is_error === 1 ) 時，回傳 _ 異常原因" , () => {
+        
+            expect( get_ServiceOrder_Error_Note( { is_error : 1 , error_cause : "狗很兇" } ) ).toBe( "狗很兇" ) ;
+        
+        }) ;
+
+        test( "為 < 尚未完全付款 > : 尚未付款 ( 實付金額為 0 )，回傳 _ '尚未付款'" , () => {
+        
+            const data = { amount_payable : 400 , amount_paid : 0 } ;
+
+            expect( get_ServiceOrder_Error_Note( data ) ).toBe( '尚未付款' ) ;
+
+        }) ;
+
+        test( "為 < 尚未完全付款 > : 付部分款 ( 實付金額為部分應付金額 )，回傳 _ '僅付部分金額'" , () => {
+        
+            const data = { amount_payable : 400 , amount_paid : 200 } ;
+
+            expect( get_ServiceOrder_Error_Note( data ) ).toBe( '僅付部分金額' ) ;
+    
+        }) ;
+
+        test( "為 < 刪除 _ 加價單 > ，回傳 _ '刪除 _ 加價單 ( id : 3 )'" , () => {
+        
+            const data = { extra_fee_id : 3   } ;
+
+            expect( get_ServiceOrder_Error_Note( data ) ).toBe( '刪除 _ 加價單 ( id : 3 )' ) ;
+
+        }) ;
+
+    }) ; 
+
+
+    describe( "get_ServiceOrder_Error_PetInfo() : 寵物資訊" , () => { 
+
+        test( "一般服務單" , () => {
+        
+           const data = { pet : { name : '小胖' , species : '柴犬' } } ;
+
+           expect( get_ServiceOrder_Error_PetInfo( data ) ).toBe( "小胖 ( 柴犬 )" )
+        
+        }) ;
+
+        test( "加價單" , () => {
+
+            const data = { extra_fee_id : 4 , pet_name : "富貴" , pet_species : "狼狗" } ;
+
+            expect( get_ServiceOrder_Error_PetInfo( data ) ).toBe( "富貴 ( 狼狗 )" )
+         
+        }) ;
+
+    }) ; 
+
+}) ; 
+
+
+
+
+
+
+
+
+
+
+

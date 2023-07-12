@@ -1,8 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-pascal-case */
 import { useDispatch } from "react-redux";
 import { set_Side_Panel } from "store/actions/action_Global_Layout";
 import Update_Service from "components/services/edit/Update_Service";
 import { useState , useEffect } from 'react' ;
+import { get_ServiceOrder_ServiceDate } from "fp/services/read/get_ServiceOrder" ;
+import { sort_ObjAttr , compose } from 'fp/tool' ;
+
 
 
 
@@ -17,29 +21,41 @@ export const useEffect_Handle_Today_Reservation = ( data : any[] , service_Date 
     // 篩選、處理資料
     const handle_Data = ( data : any , service_Date : string ) => {
 
-        // 篩選 : 僅基礎、洗澡、美容 ( 不包含安親、住宿 )  
-        const data_Today = data.filter( ( x : any ) => x['service_date'] === service_Date ) ;
- 
-        // 排序
-        data_Today.sort( ( a : any , b : any ) : any => a['created_at'] < b['created_at'] ? 1 : -1 ) ;
- 
-        set_Reservation_Today( data_Today ) ;
+        const result = compose(
+                                get_ServiceOrder_ServiceDate( service_Date ) , // 篩選 : 僅基礎、洗澡、美容 ( 不包含安親、住宿 )  
+                                sort_ObjAttr( 'created_at' , 'desc' )          // 排序 ( 新 -> 舊 )
+                              )( data ) ; 
+
+        // 有內容，才 setState --> 避免更新過於頻繁，出現問題 : Maximum update depth exceeded
+        if( result.length > 0 ) set_Reservation_Today( result ) ;
      
     } ;
 
 
-    // 依據 _ 特定查詢日期，篩選預約資料
+    // 變更 _ 服務資料 ( data )
     useEffect( () => {
        
         handle_Data( data , service_Date ) ;
   
-    } , [ data , service_Date ] ) ;
+    } , [ data ] ) ;
+
+
+    // 變更 _ 服務日期 ( service_Date ) 時，若沒有資料，回復狀態 -> 設定狀態為 [] ( 以清空畫面 )
+    useEffect( () => {
+      
+        if( data.length === 0 ) set_Reservation_Today( [] ) ;
+       
+    } , [ service_Date ] ) ;
+
 
 
     return reservation_Today
 
-
 } ;
+
+
+
+
 
 
 

@@ -55,12 +55,11 @@ import {
 
 /*
 
-       NOTE : 
+   NOTE : 
      1. 已完成   -> shop_status    : 洗完等候中 + 已回家( 房 ) 
      2. 預約狀態 -> service_status : 預約今天 + 預約未來
      3. 現場狀態 -> service_status : 已到店 ( WARN ! : 若以 shop_status 的 "到店等候中" ， 由於到店處理狀態會變化，因此加總數會 _ 僅計算 : "到店等候中" )
 
- 
 */
 
 
