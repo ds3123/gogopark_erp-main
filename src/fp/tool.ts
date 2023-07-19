@@ -1,6 +1,5 @@
 
 import { is_Object } from "fp/state" ;
-import { s } from "msw/lib/glossary-c690f512";
 
 
 
@@ -46,11 +45,11 @@ export const sort_ObjAttr = ( objAttr : string , sortDirection : 'asc' | 'desc' 
 
                                     if( sortDirection === 'desc' ){
 
-                                        return data.sort( ( a : any , b : any ) => a[ objAttr ] < b[ objAttr ] ? 1 : -1  )
+                                        return data.sort( ( a : any , b : any ) => a[ objAttr ] < b[ objAttr ] ? 1 : -1 )
 
                                     }else{
 
-                                        return data.sort( ( a : any , b : any ) => a[ objAttr ] > b[ objAttr ] ? 1 : -1  )  
+                                        return data.sort( ( a : any , b : any ) => a[ objAttr ] > b[ objAttr ] ? 1 : -1 )  
 
                                     }
 

@@ -33,6 +33,9 @@ import { CreateServiceProvider } from "containers/contexts/createServiceContext"
 import { useEffect_Submit_Create } from "./hooks/useEffect_Submit_Create" ;
 import { useAccount_Shop_Id } from "hooks/data/useAccount";
 import { useState } from "react";
+import { useFetch_Services_By_ServiceDate } from "hooks/react-query/service/useFetchServices" ;
+import { get_ServiceOrder_By_PetId } from "fp/pets/read/get_Pet" ;
+import moment from "moment" ;
 
 
 
@@ -43,12 +46,17 @@ const Create_Data_Container = () => {
     // 是否點選 _ 提交鈕
     const [ is_Submit_Clicked , set_Is_Submit_Clicked ] = useState( false ) ;
 
+    // 今日
+    const today    = moment( new Date() ).format( 'YYYY-MM-DD' ) ;  // 今日   
 
     // 目前登入者所屬店家 id
     const shop_Id = useAccount_Shop_Id() ; 
     
     // 目前點選 _ 新增項目 : 頁籤 ( Ex. 基礎、洗澡、美容 )
     const current = useSelector( ( state : any ) => state.Service.current_Create_Tab ) ;    
+
+    // 目前點選 _ 客戶寵物 ( 過去新增 )
+    const current_Pet = useSelector( ( state : any ) => state.Pet.current_Pet ) ; 
    
     // # 依照目前所點選 : 頁籤 ( current )，判斷 _ 是否顯示/符合條件
     const is_Obj  = useMatch_Obj( current ) ;
@@ -89,14 +97,37 @@ const Create_Data_Container = () => {
     const create_Data = useEffect_Submit_Create() ;
 
 
+
+     // 今日 _ 所有服務
+     const today_All_Serivces    = useFetch_Services_By_ServiceDate( shop_Id , today ) ;
+
+     // 以特定寵物 id，篩選今日所有服務
+     const today_petId_Services = get_ServiceOrder_By_PetId( current_Pet?.pet_id )( today_All_Serivces ) ;
+     
+     
+     const execute_Create = ( data : any ) => {
+
+         // 設定 _ 已經點選提交
+         set_Is_Submit_Clicked( !is_Submit_Clicked ) ; // 顯示 _ 下載圖示 ( 防止再次點選 )
+    
+         // 新增資料 
+         create_Data( data ) ;
+     
+     } ;
+ 
+
+
     // # 提交表單 ( IService 再確認 2021.07.23 )
     const onSubmit : SubmitHandler< IService > = ( data ) => {
 
-        // 設定 _ 已經點選提交
-        set_Is_Submit_Clicked( !is_Submit_Clicked ) ; // 顯示 _ 下載圖示 ( 防止再次點選 )
- 
-        // 新增資料 
-        create_Data( data ) ;
+        
+        if( today_petId_Services.length > 0 && window.confirm( `${ current_Pet?.name }( ${ current_Pet?.species } ) 今日已有服務訂單，請確認是否要新增 ?` )  ){
+                
+            execute_Create( data ) ;
+            
+        } ;
+
+        if( today_petId_Services.length === 0 )  create_Data( data ) ;
 
     } 
 

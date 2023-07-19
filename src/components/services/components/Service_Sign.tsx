@@ -1,4 +1,3 @@
-import { spawn } from "child_process";
 
 
 type Sign = {
@@ -26,7 +25,7 @@ const Service_Sign = ( { is_error , is_delete , amount_paid , amount_payable , i
 
 
    // 篩選出 _ 未被刪除的加價單
-   const extraFee_Not_Deleted = extra_fee.filter( x => x?.is_delete === 0 ) ;
+   const extraFee_Not_Deleted = extra_fee?.filter( x => x?.is_delete === 0 ) ;
 
 
    return <>
@@ -53,9 +52,13 @@ const Service_Sign = ( { is_error , is_delete , amount_paid , amount_payable , i
 
 
                  { /* 申請退費標示  */ }
-                 {/* <b className="absolute f_9" style={{top:"-10px", left:"-25px" , color:"red"}}>
-                     { ( is_return === 1 && return_status ) && <span> { return_status }  </span> }
-                 </b> */}
+                 {/* 
+                 
+                    <b className="absolute f_9" style={{top:"-10px", left:"-25px" , color:"red"}}>
+                        { ( is_return === 1 && return_status ) && <span> { return_status }  </span> }
+                    </b> 
+                 
+                 */}
   
           </>
 

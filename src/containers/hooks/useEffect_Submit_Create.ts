@@ -8,9 +8,8 @@ import { extra_Validator } from "utils/validator/extra_validator" ;
 
 
 
-
 // 事件處理 : 點選 _ 新增資料
-export const useEffect_Submit_Create = (  ) => {
+export const useEffect_Submit_Create = () => {
 
 
     // 目前登入者，所屬店別 id
@@ -22,9 +21,7 @@ export const useEffect_Submit_Create = (  ) => {
     // 目前點選 _ 客戶寵物 ( 過去新增 )
     const current_Pet = useSelector( ( state : any ) => state.Pet.current_Pet ) ; 
 
-
     // -----------
-
 
     // # 依照目前所點選 : 頁籤 ( current )，判斷 _ 是否顯示/符合條件
     const is_Obj                   = useMatch_Obj( current ) ;
@@ -39,13 +36,14 @@ export const useEffect_Submit_Create = (  ) => {
     // 僅針對 _ 客戶關係人 ( 再確認 2021.07.05 / 改為若有 "新增客戶" 情況下，即新增關係人 --> 寫在 useAjax_Create 中，目前以下條件判斷，容易漏掉  )
     const create_Cus_Relatives     = useCreate_Customer_Relatives() ; 
 
+
+
     
     // -----------
 
 
     // # 新增資料函式
     const create_Data = ( data : any ) => {
-    
 
         // Yup schema 以外，額外新增的欄位驗證 : 寵物 ( 是否咬人 )、住宿、價格、員工
         if( !extra_Validator( current , data , is_Obj , current_Pet ) ) return false ;

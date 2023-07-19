@@ -53,10 +53,10 @@ const Plans_Rows = ( props : any ) => {
     const click_Delete_Button = ( id : string , plan_Used : [] ) => {
 
         // 方案已有使用紀錄 --> 無法刪除
-        if( plan_Used.length > 0 ){
-            alert( "此方案已有使用紀錄，無法刪除．" ) ;
-            return false ; 
-        }
+        // if( plan_Used.length > 0 ){
+        //     alert( "此方案已有使用紀錄，無法刪除．" ) ;
+        //     return false ; 
+        // }
 
         // 刪除方案
         delete_Plan( id );

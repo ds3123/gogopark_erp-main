@@ -23,7 +23,8 @@ export const useEffect_Handle_Today_Reservation = ( data : any[] , service_Date 
 
         const result = compose(
                                 get_ServiceOrder_ServiceDate( service_Date ) , // 篩選 : 僅基礎、洗澡、美容 ( 不包含安親、住宿 )  
-                                sort_ObjAttr( 'created_at' , 'desc' )          // 排序 ( 新 -> 舊 )
+                                // sort_ObjAttr( 'created_at' , 'desc' )        // 排序 ( 欄位 : created_at / 新 -> 舊 )
+                                sort_ObjAttr( 'q_code' , 'asc' )               // 排序 ( 欄位 : q_code      )
                               )( data ) ; 
 
         // 有內容，才 setState --> 避免更新過於頻繁，出現問題 : Maximum update depth exceeded
@@ -52,12 +53,6 @@ export const useEffect_Handle_Today_Reservation = ( data : any[] , service_Date 
     return reservation_Today
 
 } ;
-
-
-
-
-
-
 
 
 

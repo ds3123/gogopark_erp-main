@@ -398,14 +398,13 @@ const Update_Service = ( ) => {
                 { ( service_Type === "基礎" || service_Type === "洗澡" || service_Type === "美容" || service_Type === "住宿" || service_Type === "安親" ) && 
 
                     <ServiceSummaryFeeProvider> 
-                       <Summary_Fee  /> 
+                        <Summary_Fee  /> 
                     </ServiceSummaryFeeProvider>
                 
                 }
                             
                 { /* 提交按鈕 */ }
                 <Update_Submit_Button  name = "提交表單" isValid = { true } />
-
 
              </form>
 

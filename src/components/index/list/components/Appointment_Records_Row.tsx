@@ -96,9 +96,9 @@ export const Appointment_Records_Row : FC< Record >  = ( { record } ) => {
                 <td className="td_Left">
                     { string_Short( pet_Name , 3 ) } ( { string_Short( pet_Species , 3 ) } ) 
                 </td>
-                <td> { customer_Name }                                                </td>
-                <td> { customer_Mobile }                                              </td>
-                <td> { admin_User === '測試員' ? '店長' : admin_User }  { /* 再確認 */ } </td>
+                <td> { customer_Name }                                                 </td>
+                <td> { customer_Mobile }                                               </td>
+                <td> { admin_User === '測試員' ? '店長' : admin_User }  { /* 再確認 */ }  </td>
                 <td> { created_At ? created_At.slice( 5 , 16 ) : '' }                  </td>
 
             </tr>

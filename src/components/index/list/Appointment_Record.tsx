@@ -13,7 +13,7 @@ import { Appointment_Records_Row } from "./components/Appointment_Records_Row"
 
 
 // @ 預約紀錄 
-const Appointment_Records = ( ) => {
+const Appointment_Records = () => {
 
 
     // 登入者所屬商店 id

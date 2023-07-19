@@ -100,9 +100,9 @@ const Pets_Rows = ( props : any ) => {
                         
                      { /* 拒接標示 */ }
                      {  customer?.is_rejected === 1  && 
-                         <b className="fRed absolute" style={{ left : "-8px" , top : "5px" }}> 
-                            <i className="fas fa-ban"></i> 
-                         </b>
+                            <b className = "fRed absolute" style = {{ left : "-8px" , top : "5px" }} > 
+                                <i className = "fas fa-ban" ></i> 
+                            </b>
                      }
 
                      { customer ? customer['name'] : <b className="fRed"> 未指定 </b> }

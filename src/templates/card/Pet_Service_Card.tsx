@@ -54,6 +54,10 @@ const Pet_Service_Card = ( { data , pet , type } : Card ) => {
       // dispatch( set_Modal( true , <Componet /> , { data : data , modal_Style : { width:"90%" , left : "5%" } } ) ) ;
          
     } 
+
+
+    const service_Date = data?.service_date ;  // 服務日期
+    const created_Date = data?.created_at ;    // 服務日期
       
     
 
@@ -99,7 +103,16 @@ const Pet_Service_Card = ( { data , pet , type } : Card ) => {
                         </div>
 
                         <div style={ row }> <b className="fDred"> ${ data['amount_paid'] } </b> </div>
-                        <div style={ row }> { data['created_at'] }                              </div>
+                        <div style={ row }> 
+                        
+                              { 
+                                  service_Date ?  
+                                       <> 到店日期 : { service_Date.slice( 5 , 10 ) } </> : 
+                                       <> 建檔日期 : { created_Date.slice( 5 , 10 ) } </> 
+                               }                           
+                        
+                        
+                        </div>
                         <div style={ row }>
                             <b className="tag is-medium hover pointer w-full"  onClick={ ( ) => click_View_Detail( data ) }>
                                 <i className="fas fa-search"></i> &nbsp; 檢 視
@@ -126,7 +139,15 @@ const Pet_Service_Card = ( { data , pet , type } : Card ) => {
                      
                       <div style={ row }>  付款方式 : <b className="fGreen"> { data['payment_method'] } </b> </div>
 
-                      <div style={ row }>  建檔日期 : { data['created_at'].slice( 5 , 10 ) }  </div>
+                      <div style={ row }>  
+
+                               { 
+                                  service_Date ?  
+                                       <> 到店日期 : { service_Date.slice( 5 , 10 ) } </> : 
+                                       <> 建檔日期 : { created_Date.slice( 5 , 10 ) } </> 
+                               }
+                                 
+                      </div>
 
                       <div style={ row }>
                             <b className="tag is-medium hover pointer w-full" onClick={ ( ) => click_View_Detail( data ) }>

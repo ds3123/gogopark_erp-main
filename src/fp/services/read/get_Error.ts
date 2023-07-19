@@ -2,10 +2,10 @@ import {
          is_Delete , 
          is_Error ,
          is_NotComplete_Paid ,
-         is_Extra_ServiceOrder
+         is_Extra_ServiceOrder ,
+         is_ShopStatus_Home ,
        } from 'fp/state' ;
 import { get_ServiceOrderId } from "fp/services/read/get_ServiceOrder" ;
-
 
 
 /*
@@ -17,7 +17,6 @@ import { get_ServiceOrderId } from "fp/services/read/get_ServiceOrder" ;
      4. 刪除 _ 加價單
 
 */
-
 
 
 // #  取得 _ 服務異常表欄位值
@@ -83,5 +82,22 @@ export const get_ServiceOrder_Error_PetInfo = ( serviceOrder : any ) => {
            "" ;
 
 }
+
+
+// 經手人
+export const get_ServiceOrder_Error_User = ( serviceOrder : any ) : string => { 
+
+    const adminUser    = serviceOrder?.admin_user ;       // 櫃檯人員
+    const delSubmitter = serviceOrder?.delete_submitter ; // 銷單 _ 提交人
+    const errSubmitter = serviceOrder?.error_submitter ;  // 轉異常 _ 提交人
+
+    return ( is_Delete( serviceOrder ) && !is_Error( serviceOrder ) && delSubmitter ) ? delSubmitter : // 銷單
+           ( !is_Delete( serviceOrder ) && is_Error( serviceOrder ) && errSubmitter ) ? errSubmitter : // 轉異常
+           ( is_NotComplete_Paid( serviceOrder ) && is_ShopStatus_Home( serviceOrder ) && !is_Delete( serviceOrder ) && !is_Error( serviceOrder ) && adminUser ) ? adminUser : // 未完全付款
+           ( is_Extra_ServiceOrder( serviceOrder ) && is_Delete( serviceOrder ) && delSubmitter ) ? delSubmitter : // 刪 _ 加價單
+            "測試員"
+
+}
+
 
 

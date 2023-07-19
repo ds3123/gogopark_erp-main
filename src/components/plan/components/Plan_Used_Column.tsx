@@ -177,7 +177,7 @@ const Plan_Used_Column = ( { data } : { data : any } ) => {
     // 點選 _ 右側顯示使用情形 
     const click_Check_Used_List = () => dispatch( set_Side_Panel( true , <Plan_Used_Records /> , { data : data } ) ) ;
  
-
+    
 
   return <>
 

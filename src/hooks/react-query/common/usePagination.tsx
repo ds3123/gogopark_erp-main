@@ -45,7 +45,6 @@ export const usePagination_List = ( page : number = 1  , api : string , search :
                                                      // 快取時間 ( cacheTime ) 要比 不新鮮時間 ( staleTime ) 長  ( default cacheTime is 5 minutes; doesn't make sense for staleTime to exceed cacheTime ）
                                                      cacheTime            : 900000 , 
                                      
-                                                      
 
                                                    }  
 

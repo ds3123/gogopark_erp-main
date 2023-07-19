@@ -12,7 +12,7 @@ import { useEffect_Service_Error } from "../hooks/useEffect_Service_Error" ;
 import { Service_Error_Row } from "./components/Service_Error_Row" ;
 
 
-const note_Str = `此區塊列舉 :「轉異常」、「銷單」、「刪除加價單」、「已回家( 房 ) 情況下，應收金額與實收金額不符合」資料` ;
+const note_Str = `此區塊列舉 :「 銷單 」、「 轉異常 」、「 刪除_加價單 」、「 已回家( 房 ) 情況下，應收金額與實收金額不符合 」資料` ;
 
 
 // @ 服務異常
@@ -70,6 +70,7 @@ const Service_Error = () => {
                           <th> 主人手機 </th>
                           <th> 寵物資訊 </th>
                           <th> 經手人   </th>
+                          <th> 異常時間   </th>
                         </tr>
                     </thead>
 

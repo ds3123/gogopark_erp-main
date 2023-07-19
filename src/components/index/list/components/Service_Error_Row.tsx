@@ -3,7 +3,8 @@ import { FC } from 'react' ;
 import { 
          get_ServiceOrder_Error_ServiceType , 
          get_ServiceOrder_Error_Note , 
-         get_ServiceOrder_Error_PetInfo 
+         get_ServiceOrder_Error_PetInfo ,
+         get_ServiceOrder_Error_User
         } from "fp/services/read/get_Error" ;
 
 type Service = {
@@ -17,13 +18,6 @@ type Service = {
 // # 異常記錄 _ 列
 export const Service_Error_Row : FC< Service > = ( { service } ) => {
 
-        console.log( service ) ;
-
-
-    
-        // * 作業人員
-        const admin_User      = service['admin_user'] === '測試員' ? '店長' : service['admin_user'] ;
-        const error_Submitter = service['error_submitter'] ;
 
 
         // * 加價單 ( 被刪除 )
@@ -62,10 +56,16 @@ export const Service_Error_Row : FC< Service > = ( { service } ) => {
 
                 </td>
 
-                { /* 錯誤提交人 */ }
+                { /* 經手人 */ }
                 <td> 
 
-                   { ( error_Submitter === '測試員'  ) ? '店長' : admin_User } 
+                   { get_ServiceOrder_Error_User( service ) } 
+
+                </td>
+
+                <td>
+
+                   { ( service?.updated_at ).slice( 0 , 16 ) }
 
                 </td>
              

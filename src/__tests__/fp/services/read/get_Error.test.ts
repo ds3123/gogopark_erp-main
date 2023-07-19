@@ -2,7 +2,8 @@
 import {
           get_ServiceOrder_Error_ServiceType ,
           get_ServiceOrder_Error_Note ,
-          get_ServiceOrder_Error_PetInfo
+          get_ServiceOrder_Error_PetInfo ,
+          get_ServiceOrder_Error_User
        } from "fp/services/read/get_Error" ;
 
 /*
@@ -19,7 +20,7 @@ describe( "取得 _ 服務異常表 : 欄位值" , () => {
     
         test( "一般服務單" , () => {
 
-            const data = { bath_id : 44 , service_type : '洗澡' , q_code : '03'  } ;
+            const data = { bath_id : 44 , service_type : '洗澡' , q_code : '03' } ;
 
             expect( get_ServiceOrder_Error_ServiceType( data ) ).toBe( "洗澡 Q03 ( 44 )" ) ; 
         
@@ -76,14 +77,13 @@ describe( "取得 _ 服務異常表 : 欄位值" , () => {
 
     }) ; 
 
-
     describe( "get_ServiceOrder_Error_PetInfo() : 寵物資訊" , () => { 
 
         test( "一般服務單" , () => {
         
-           const data = { pet : { name : '小胖' , species : '柴犬' } } ;
+            const data = { pet : { name : '小胖' , species : '柴犬' } } ;
 
-           expect( get_ServiceOrder_Error_PetInfo( data ) ).toBe( "小胖 ( 柴犬 )" )
+            expect( get_ServiceOrder_Error_PetInfo( data ) ).toBe( "小胖 ( 柴犬 )" )
         
         }) ;
 
@@ -96,7 +96,52 @@ describe( "取得 _ 服務異常表 : 欄位值" , () => {
         }) ;
 
     }) ; 
+    
+    describe( "get_ServiceOrder_Error_User() : 經手人" , () => { 
 
+        test( "銷單，回傳 _ delete_submitter" , () => {
+
+            const data = { is_delete : 1 , is_error : 0  , admin_user : "王思茹" , delete_submitter : "王思茹" , error_submitter : null } ;
+        
+            expect( get_ServiceOrder_Error_User( data ) ).toBe( "王思茹" ) ;
+
+        }) ;
+
+        test( "轉異常，回傳 _ error_submitter" , () => {
+
+            const data = {  is_delete : 0 , is_error : 1  , admin_user : "周宇茜" , delete_submitter : null , error_submitter : "周宇茜" } ;
+        
+            expect( get_ServiceOrder_Error_User( data ) ).toBe( "周宇茜" ) ;
+        
+        }) ;
+
+        test( "尚未完全付款，回傳 _  admin_user" , () => {
+
+            const data = { amount_payable : 600 , amount_paid : 400 , shop_status : "已回家( 房 )" , is_delete : 0 , is_error : 0 , admin_user : "金郁佳" , delete_submitter : null , error_submitter : null } ;
+        
+            expect( get_ServiceOrder_Error_User( data ) ).toBe( "金郁佳" ) ;
+        
+        }) ;
+
+        test( "刪 _ 加價單，回傳 _ delete_submitter" , () => {
+        
+            const data = {  extra_fee_id : 7 , is_delete : 1 , admin_user : "王思茹" , delete_submitter : "王思茹" } ;
+
+            expect( get_ServiceOrder_Error_User( data ) ).toBe( "王思茹" ) ;
+        
+        
+        }) ;
+
+        test( "預設情況，回傳 _ 測試員" , () => {
+
+            const data = {  } ;
+
+            expect( get_ServiceOrder_Error_User( data ) ).toBe( "測試員" ) ;
+        
+        }) ;
+
+    }) ; 
+    
 }) ; 
 
 

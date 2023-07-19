@@ -32,7 +32,7 @@ const Amount_Paid = ( { receivable } : Paid ) => {
 
     
     // [ 新增 ] 服務 ，實收金額 : 相關 effect
-    const handle_ActualPayment = useEffect_Amount_Paid_Create( setValue , receivable , editType ) ; 
+    const handle_ActualPayment = useEffect_Amount_Paid_Create( setValue , receivable , editType , data ) ; 
          
 
 

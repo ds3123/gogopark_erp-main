@@ -45,7 +45,7 @@ const Payment_Method = ( ) => {
     useEffect_Payment_Method_Create( current_Create_Tab , setValue , set_Current_Payment_Method ) ;
 
   
-    
+
    return <div className="column is-4-desktop" >
 
               <span className="tag is-large is-white relative" >
@@ -84,7 +84,13 @@ const Payment_Method = ( ) => {
                 }
 
                 { /*  for 編輯  */ }
-                { editType && <b className="fDblue"> { data?.payment_method } </b>  }
+                { editType && <b className="fDblue"> 
+                
+                    { data?.payment_method } 
+                    
+                       { data?.plan && <span className = "f_12" > ( id : { data?.plan?.plan_id } ) </span>   }
+                    
+                    </b>  }
 
               </span>
 

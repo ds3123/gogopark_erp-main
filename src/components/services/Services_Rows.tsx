@@ -240,7 +240,7 @@ const Services_Rows = ( { data } : any ) => {
     const line = data?.is_delete === 1 ? { textDecoration : "line-through red" } : { textDecoration : "none" } ;
 
 
-    return <tr style = { ( data?.service_date && data?.service_date?.slice(0,10) === today ) ? { background:"rgb(160,160,160,.2)" }  : { lineHeight : "40px" } } >
+    return <tr style = { ( data?.service_date && data?.service_date?.slice( 0 , 10 ) === today ) ? { background:"rgb(160,160,160,.2)" } : { lineHeight : "40px" } } >
 
              { /* 服務類別 */ } 
              <td className="relative td_Left">
@@ -249,11 +249,9 @@ const Services_Rows = ( { data } : any ) => {
                  <Service_Sign { ...data } />
 
                  <b className = { color+" pointer" } onClick = { click_Service } >
-
                    <i className = { icon } ></i> &nbsp; { data[ 'service_type' ] }       &nbsp;
                    <b className="f_9"> ( { switch_Service_Id( data ) } )            </b> &nbsp;
                    <b className="tag is-white is-rounded f_9">  Q{ data['q_code'] } </b>
-                    
                  </b>
 
              </td>
@@ -371,7 +369,7 @@ const Services_Rows = ( { data } : any ) => {
                         
                       }
                     
-                      {  data['payment_method'] === '方案' ? '包月' :  price['payable']  }
+                      { data['payment_method'] === '方案' ? '包月' : price['payable'] }
 
                   </span> 
 
@@ -387,7 +385,7 @@ const Services_Rows = ( { data } : any ) => {
              { /* @ ---------- 價格欄位 _ END ---------- */ }
 
              { /* 付款日期 */ }
-             <td>  { data?.payment_date?.slice(5,10) }  </td>
+             <td>  { data['payment_method'] === '方案' ? <span className="fDred"> 包月 </span> : data?.payment_date?.slice(5,10) }  </td>
 
              { /* 來店日期 */ }
              <td>  { data?.service_date?.slice(5,10) }  </td>
@@ -403,16 +401,19 @@ const Services_Rows = ( { data } : any ) => {
              { url === '/management' &&
 
                 <>
+
                     <td>
-                        <b className="tag is-medium pointer pointer" onClick={ () => click_Undo_Archive( data ) } >
-                            <i className="fas fa-undo-alt"></i>
+                        <b className="tag is-medium pointer pointer" onClick = { () => click_Undo_Archive( data ) } >
+                            <i className = "fas fa-undo-alt" ></i>
                         </b>
                     </td>
+
                     <td>
-                        <b className="tag is-medium pointer pointer" onClick={ () => { if( window.confirm('確認要刪除此筆資料') ) click_Delete( data )  }  }>
-                            <i className="fas fa-trash-alt"></i>
+                        <b className="tag is-medium pointer pointer" onClick = { () => { if( window.confirm( '確認要刪除此筆資料' ) ) click_Delete( data )  }  }>
+                            <i className = "fas fa-trash-alt" ></i>
                         </b>
                     </td>
+
                 </>
 
              }
