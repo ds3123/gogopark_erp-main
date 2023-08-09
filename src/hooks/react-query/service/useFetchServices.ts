@@ -172,7 +172,6 @@ export const useFetch_Shop_Reservations_From_ServiceDate  = ( account_id : strin
 
   return data    
 
-
 } ;
 
 
@@ -213,7 +212,7 @@ export const useFetch_Shop_Services_With_Error = ( account_id : string  ) => {
 
 
 // 取得 _ 特定店家，特定服務日期，到店狀態 ( shop_status ) : 已回家( 房 ) < T >
-export const useFetch_Shop_Services_GoneHome_By_ServiceDate  = ( account_id : string , service_date : string  ) => {
+export const useFetch_Shop_Services_GoneHome_By_ServiceDate = ( account_id : string , service_date : string  ) => {
 
   // 預設值
   const fallback = [] as any[] ;  

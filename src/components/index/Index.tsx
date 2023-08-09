@@ -37,11 +37,11 @@ const Index = () => {
 
               
                 {/* 今日服務 _ 各階段狀態  */}
-                <div className="columns is-mobile is-multiline relative m_Top_150 m_Bottom_50" style={{ width:"110%" , left:"-4%" }} >
+                <div className = "columns is-mobile is-multiline relative m_Top_150 m_Bottom_50" style = {{ width:"110%" , left:"-4%" }} >
 
                     {/* 到店等候中 */}
                     <div className="column is-3-desktop" style={ card }>
-                        <Status_Cards  pet_Arr = { pet_Arr }  shop_Status = "到店等候中"  />
+                        <Status_Cards  pet_Arr = { pet_Arr }  shop_Status = "到店等候中" />
                     </div>
 
                     {/* 到店美容中 */}

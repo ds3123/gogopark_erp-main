@@ -61,9 +61,11 @@ const fill_Pet_Columns = ( pet : any , setValue : any ,  petSpecies : any[] ) =>
     setValue( "ownerProvide" , pet['ownerProvide'] ? pet['ownerProvide'].split(',') : [] , config ) ;
 
     // 備註
-    setValue( "pet_Note" , pet['note'] , config ) ;
+    setValue( "pet_Note"     , pet['note']         , config ) ;  // 洗澡美容備註
+    setValue( "lodge_Note"   , pet['lodge_note']   , config ) ;  // 住宿備註  
+    setValue( "private_Note" , pet['private_note'] , config ) ;  // 客訴及其他備註 ( 私有備註 )
 
-
+    
 } ;  
 
 

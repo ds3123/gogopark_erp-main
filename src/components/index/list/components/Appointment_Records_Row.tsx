@@ -77,8 +77,8 @@ export const Appointment_Records_Row : FC< Record >  = ( { record } ) => {
                 
                 </td>
                 <td> 
-                    { shop_Status === '尚未到店' && <b className = "fDred f_11">  { shop_Status } </b> }
-                    { shop_Status === '尚未到店' || <b className = "fDblue f_11"> { shop_Status } </b> }
+                    { shop_Status === '尚未到店' && <b className = "fDred f_11" >  { shop_Status } </b> }
+                    { shop_Status === '尚未到店' || <b className = "fDblue f_11" > { shop_Status } </b> }
                 </td>
                 <td> 
                     { /* 應付金額 */ }   

@@ -20,7 +20,6 @@ import Pet_Prices_Status from "components/pets/edit/info/Pet_Prices_Status" ;
 import Pet_Owner from 'components/pets/edit/info/Pet_Owner' ;
 import Pet_Is_Dead from 'components/pets/edit/info/Pet_Is_Dead' ;
 import Reject_Service from 'templates/note/Reject_Service' ;
-
 import { useAccount_Shop_Id } from "hooks/data/useAccount" ;
 import { useFetch_Shop_Species_By_SpeciesName } from "hooks/react-query/pet/useFetchPets" ;
 import { 
@@ -28,11 +27,15 @@ import {
          useEffect_Change_Select_Option , 
          useEffect_Change_Set_PetSerial_Column  
        } from "../hooks/useEffect_Pet_Form" ;
-
 import useCreate_Service_Context from "containers/contexts/createServiceContext" ;
+import { sort_ObjAttr } from 'fp/tool' ;
 
 
-const note = { color: "rgb(0,0,180)" , fontWeight: "bold" } ;
+const note       = { color: "rgb(0,0,180)" , fontWeight: "bold" } ;
+const note_Input = { color: "rgb(0,0,180)" , fontWeight: "bold" , border : "none"  } ;
+
+
+
 
 
 
@@ -41,10 +44,10 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
 
     
     // 收折區塊
-    const { is_folding , Folding_Bt }   = useSection_Folding( false ) ;
+    const { is_folding , Folding_Bt } = useSection_Folding( false ) ;
 
     // ( 設定 ) 寵物體型 
-    const { set_Pet_Size }              = useCreate_Service_Context() ; 
+    const { set_Pet_Size } = useCreate_Service_Context() ; 
 
     // 是否顯示 : 詳細選項
     const [ is_Detial , set_Is_Detial ] = useState( false ) ;
@@ -60,29 +63,23 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
     // 取得 _ 所有寵物品種資料
     const petSpecies            = useFetch_Species() ;
 
-
     // -----------------
-
     
     // 品種代號、品種名稱、變動處理 : "品種" 下拉選單 
     const { species_Num , pet_Species_Name , get_Species_Id } = useEffect_Change_Select_Option( petSpecies ) ;
 
-
     // 目前登入者所屬店家，資料表中( pet ) 已有某 "寵物品種" 數量
     const current_Species_Sum = useFetch_Shop_Species_By_SpeciesName( useAccount_Shop_Id() , pet_Species_Name ).length ;
-
 
     // 點選 _ 寵物按鈕
     const click_Pet_Button = useEffect_Click_Set_Pet_Data( setValue , petSpecies ) ;
 
-
     // 變動 _ 品種下拉選單，預先設定 _ 寵物序號
     useEffect_Change_Set_PetSerial_Column( species_Num , current_Species_Sum , setValue ) ;
 
-
     // 目前為新增或編輯狀態
     const is_Create = current ? true : false ;
-
+   
     
    return <>
             
@@ -134,7 +131,8 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                                            <option value="請選擇"> 請選擇 </option>
 
                                            {
-                                               petSpecies.map( ( x , y ) => <option value = { x['id'] } key = { y } >
+                                               
+                                               sort_ObjAttr( 'serial' , 'asc' )( petSpecies )?.map( ( x , y ) => <option value = { x['id'] } key = { y } >
                                                                                { x['serial'] } _ { x['name'] }  { x['character'] ? `( ${ x['character'] } )` : '' }
                                                                             </option> 
 
@@ -152,9 +150,11 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                             </div>
 
                             { /* 編號 */ }
-                            <div className=  'column is-4-desktop required'  >
+                            <div className=  'column is-4-desktop required relative'  >
 
-                               <p className="relative"> 編號 ( 由左側 <b>品種</b> 下拉選項自動產生 )  </p>
+                               <div className = "absolute" style = {{ width : "335px" , height : "40px" , top : "37px" , borderRadius : "5px" , zIndex : 100 , background : "rgba(0,0,0,.1)" }} ></div>
+
+                               <p className = "relative"> 編號 ( 由左側 <b>品種</b> 下拉選項自動產生 )  </p>
 
                                { current &&
 
@@ -242,22 +242,21 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                                </div>
 
                             </div>
-
                             
-                            <Input type="text"   name="pet_Chip"  label="晶片號碼"  register={register} error={errors.pet_Chip}
+                            <Input type="text" name="pet_Chip" label="晶片號碼"  register={register} error={errors.pet_Chip}
                                     icon="fas fa-sort-numeric-down" asterisk={false} columns="3" />    
 
                         </div>
 
                         <div className="columns is-multiline is-mobile m_Bottom_30">
 
-                             <Input type="text"   name="pet_Hospital_Name"  label="往來醫院"            register={register} error={errors.pet_Hospital}
+                             <Input type="text"   name="pet_Hospital_Name"  label="往來醫院"          register={register} error={errors.pet_Hospital}
                                     icon="fas fa-clinic-medical" asterisk={false} columns="3" />
                              
-                             <Input type="text"   name="pet_Hospital_Telephone"  label="往來醫院電話"   register={register} error={errors.pet_Hospital_Phone}
+                             <Input type="text"   name="pet_Hospital_Telephone"  label="往來醫院電話"  register={register} error={errors.pet_Hospital_Phone}
                                     icon="fas fa-phone-alt" asterisk={false} columns="3" />
                              
-                             <Input type="text"   name="pet_Hospital_Address"  label="往來醫院住址" register={register} error={errors.pet_Hospital_Address}
+                             <Input type="text"   name="pet_Hospital_Address"  label="往來醫院住址"    register={register} error={errors.pet_Hospital_Address}
                                     icon="fas fa-map-marked-alt" asterisk={false} columns="6" />
 
                         </div>
@@ -417,8 +416,6 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                                             <input type="checkbox" value="其他" {...register("ownerProvide")} /> 其他 &nbsp; &nbsp;
                                         </div>
 
-                                    
-
                                     </div>
 
                             </>  
@@ -431,27 +428,35 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                           <b className="m_Left_15"> 洗澡美容備註 </b>
                           <div className="column is-12-desktop m_Bottom_30">
 
-                               <textarea rows="8" className="textarea" {...register("pet_Note")} placeholder="請輸入備註..."
-                                        style={ note }/>
+                             { /* 新增 */ }
+                             { is_Create && <textarea rows="6" className="textarea" {...register("pet_Note")} placeholder="尚未填寫" style={ note_Input } readOnly={true} /> }
 
+                             { /* 編輯 */ } 
+                             { is_Create || <textarea rows="8" className="textarea" {...register("pet_Note")} placeholder="請輸入備註..." style={ note } /> }
+                               
                           </div>
 
                           { /* 住宿備註 */ }   
                           <b className="m_Left_15"> 住宿備註 </b>
                           <div className="column is-12-desktop m_Bottom_30">
 
-                               <textarea rows="5" className="textarea" {...register("lodge_Note")} placeholder="請輸入備註..."
-                                        style={ note }/>
+                             { /* 新增 */ }
+                             { is_Create && <textarea rows="6" className="textarea" {...register("lodge_Note")} placeholder="尚未填寫" style={ note_Input } readOnly={true} /> }
+
+                             { /* 編輯 */ } 
+                             { is_Create || <textarea rows="5" className="textarea" {...register("lodge_Note")} placeholder="請輸入備註..." style={ note } /> }
 
                           </div>
-
 
                           { /* 客訴及其他備註 */ } 
                           <b className="m_Left_15"> 客訴及其他備註 ( 私有備註 ) </b>
                           <div className="column is-12-desktop m_Bottom_30">
 
-                            <textarea rows="5" className="textarea" {...register("private_Note")} placeholder="請輸入備註..."
-                                    style={ note }/>
+                             { /* 新增 */ }
+                             { is_Create && <textarea rows="6" className="textarea" {...register("private_Note")} placeholder="尚未填寫" style={ note_Input } readOnly={true}/> }
+
+                             { /* 編輯 */ } 
+                             { is_Create || <textarea rows="5" className="textarea" {...register("private_Note")} placeholder="請輸入備註..." style={ note }/> }
 
                           </div>   
 
@@ -459,8 +464,6 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                        </div>    
 
                        <br/> 
-
-                     
 
                    </>
 

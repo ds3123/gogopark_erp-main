@@ -9,7 +9,9 @@ import {
          get_ServiceOrder_DeleteInfo_Obj ,
          get_ServiceOrder_DeleteInfo_Obj_By_PlanUsedRecord ,
          get_ServiceOrder_NotComplete_Paid ,
-         get_ServiceOrder_ServiceDate
+         get_ServiceOrder_ServiceDate ,
+         get_ServiceOrder_LeaveTime ,
+         get_ServiceOrder_ArrivedTime
         } from "fp/services/read/get_ServiceOrder" ;
 
 
@@ -386,6 +388,110 @@ describe( "測試 _ 篩選 : 服務單 )" , () => {
       }) ;
 
 
+      describe( "get_ServiceOrder_ArrivedTime : : 取得 _ 服務單 : '實際到店' " , () => { 
+
+           test( "為新增模式或其他情境，沒有資料狀況下" , () => {
+
+                const data_1   = null ;
+                const data_2   = undefined ;
+                const data_3   = "" ;
+
+                expect( get_ServiceOrder_ArrivedTime( data_1 ) ).toBe( "" ) ;
+                expect( get_ServiceOrder_ArrivedTime( data_2 ) ).toBe( "" ) ;
+                expect( get_ServiceOrder_ArrivedTime( data_3 ) ).toBe( "" ) ;
+         
+           }) ;
+
+           test( "預約單 ( 今天、未來 )" , () => {
+
+                const data_1 = { service_status : "預約_未來" , shop_status : "尚未到店" ,     actual_arrive : "00:00" } ;
+                const data_2 = { service_status : "預約_今天" , shop_status : "尚未到店" ,     actual_arrive : "00:00" } ;
+
+                const data_3 = { service_status : "預約_未來" , shop_status : "到店等候中" ,   actual_arrive : "14:23" } ;
+                const data_4 = { service_status : "預約_未來" , shop_status : "到店美容中" ,   actual_arrive : "14:23" } ;
+                const data_5 = { service_status : "預約_未來" , shop_status : "洗完等候中" ,   actual_arrive : "14:23" } ;
+                const data_6 = { service_status : "預約_未來" , shop_status : "已回家( 房 )" , actual_arrive : "14:23" } ;
+           
+
+                expect( get_ServiceOrder_ArrivedTime( data_1 ) ).toBe( "尚未到店" ) ;
+                expect( get_ServiceOrder_ArrivedTime( data_2 ) ).toBe( "尚未到店" ) ;
+               
+                expect( get_ServiceOrder_ArrivedTime( data_3 ) ).toBe( "14:23" ) ;
+                expect( get_ServiceOrder_ArrivedTime( data_4 ) ).toBe( "14:23" ) ;
+                expect( get_ServiceOrder_ArrivedTime( data_5 ) ).toBe( "14:23" ) ;
+                expect( get_ServiceOrder_ArrivedTime( data_6 ) ).toBe( "14:23" ) ;
+           
+           }) ;
+
+           test( "現場單 ( 已到店 )" , () => {
+           
+                const data_1 = { service_status : "已到店"  ,  shop_status : "到店等候中" ,   actual_arrive : "14 : 40" } ;
+                const data_2 = { service_status : "已到店"  ,  shop_status : "到店美容中" ,   actual_arrive : "14 : 40" } ;
+                const data_3 = { service_status : "已到店"  ,  shop_status : "洗完等候中" ,   actual_arrive : "14 : 40" } ;
+                const data_4 = { service_status : "已到店"  ,  shop_status : "已回家( 房 )" , actual_arrive : "14 : 40" } ;
+                
+                expect( get_ServiceOrder_ArrivedTime( data_1 ) ).toBe( "14 : 40" ) ;
+                expect( get_ServiceOrder_ArrivedTime( data_2 ) ).toBe( "14 : 40" ) ;
+                expect( get_ServiceOrder_ArrivedTime( data_3 ) ).toBe( "14 : 40" ) ;
+                expect( get_ServiceOrder_ArrivedTime( data_4 ) ).toBe( "14 : 40" ) ;
+           
+           }) ;
+      
+      }) ; 
+
+      describe( "get_ServiceOrder_LeaveTime : 取得 _ 服務單 : '離店時間'" , () => { 
+         
+           test( "為新增模式或其他情境，沒有資料狀況下" , () => {
+
+                const data_1   = null ;
+                const data_2   = undefined ;
+                const data_3   = "" ;
+
+                expect( get_ServiceOrder_LeaveTime( data_1 ) ).toBe( "" ) ;
+                expect( get_ServiceOrder_LeaveTime( data_2 ) ).toBe( "" ) ;
+                expect( get_ServiceOrder_LeaveTime( data_3 ) ).toBe( "" ) ;
+           
+           }) ;
+      
+
+           test( "預約單 ( 今天、未來 )" , () => {
+
+               const data_1 = { service_status : "預約_未來" , shop_status : "尚未到店" , actual_leave : null } ;
+               const data_2 = { service_status : "預約_今天" , shop_status : "尚未到店" , actual_leave : null } ;
+
+               const data_3 = { service_status : "預約_未來" , shop_status : "到店等候中" , actual_leave : null } ;
+               const data_4 = { service_status : "預約_未來" , shop_status : "到店美容中" , actual_leave : null } ;
+               const data_5 = { service_status : "預約_未來" , shop_status : "洗完等候中" , actual_leave : null } ;
+               const data_6 = { service_status : "預約_未來" , shop_status : "已回家( 房 )" , actual_leave : "15:30" } ;
+           
+
+               expect( get_ServiceOrder_LeaveTime( data_1 ) ).toBe( "尚未到店" ) ;
+               expect( get_ServiceOrder_LeaveTime( data_2 ) ).toBe( "尚未到店" ) ;
+              
+               expect( get_ServiceOrder_LeaveTime( data_3 ) ).toBe( "尚未離店" ) ;
+               expect( get_ServiceOrder_LeaveTime( data_4 ) ).toBe( "尚未離店" ) ;
+               expect( get_ServiceOrder_LeaveTime( data_5 ) ).toBe( "尚未離店" ) ;
+               expect( get_ServiceOrder_LeaveTime( data_6 ) ).toBe( "15:30" ) ;
+           
+           }) ;
+
+           test( "現場單 ( 已到店 )" , () => {
+
+                const data_1 = { service_status : "已到店"  ,  shop_status : "到店等候中" ,   actual_leave : null } ;
+                const data_2 = { service_status : "已到店"  ,  shop_status : "到店美容中" ,   actual_leave : null } ;
+                const data_3 = { service_status : "已到店"  ,  shop_status : "洗完等候中" ,   actual_leave : null } ;
+                const data_4 = { service_status : "已到店"  ,  shop_status : "已回家( 房 )" , actual_leave : "14 : 40" } ;
+
+                expect( get_ServiceOrder_LeaveTime( data_1 ) ).toBe( "尚未離店" ) ;
+                expect( get_ServiceOrder_LeaveTime( data_2 ) ).toBe( "尚未離店" ) ;
+                expect( get_ServiceOrder_LeaveTime( data_3 ) ).toBe( "尚未離店" ) ;
+                expect( get_ServiceOrder_LeaveTime( data_4 ) ).toBe( "14 : 40" ) ;
+           
+           }) ;
+      
+      }) ; 
+      
+    
 }) ; 
 
 

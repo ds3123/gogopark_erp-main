@@ -72,7 +72,7 @@ const Service_Rows = ( { data } : IService ) => {
     
 
     return <div className="title is-6 relative" style={{ marginBottom : "20px" }} >
-
+        
                { /* 服務相關標示 ( 異常、銷單、是否付費 )  */ }
                <Service_Sign is_error = { data['is_error'] } is_delete = { data['is_delete'] } amount_paid = { data['amount_paid'] } amount_payable = { data['amount_payable'] }   />
 

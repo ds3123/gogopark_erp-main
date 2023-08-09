@@ -4,8 +4,8 @@ import { TimePicker } from 'antd' ;
 // import 'antd/dist/antd.css' ;  // 會造成 JEST 匯入元件錯誤，先注解 2022.08.10
 import moment from "moment" ;
 
-import { get_H_M } from "utils/time/time"
-
+import { get_H_M } from "utils/time/time" ;
+import { useState , useEffect } from 'react' ;
 
 
 
@@ -21,12 +21,13 @@ type DType = {
 // 配合 React-Hook-Form，製作可重複使用 _ 時間套件
 const Time_Picker = ( { control , name , default_Time , handle_OnChange } : DType ) => {
 
+
     const { field : { onChange , value } } = useController({
 
         name ,
         control ,
         rules        : { required : true } ,
-        defaultValue : default_Time ? default_Time : get_H_M() ,            // 目前時間 ( 格式 Ex. 14:40 )
+        defaultValue : default_Time ? default_Time : get_H_M() ,   // 目前時間 ( 格式 Ex. 14:40 )
 
     });
 
@@ -40,6 +41,7 @@ const Time_Picker = ( { control , name , default_Time , handle_OnChange } : DTyp
 
 
     return <TimePicker defaultValue = { moment( value , 'HH:mm') }
+                       value        = { moment( value , 'HH:mm') }
                        onChange     = {
                                         ( e : any ) => {
                                                          onChange( moment( e['_d'] ).format('HH:mm') ) ;                  // useController 內建 _傳送所擷取到的值

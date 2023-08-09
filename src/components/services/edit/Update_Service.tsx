@@ -15,7 +15,7 @@ import { useForm , SubmitHandler } from "react-hook-form"
 
 // 各表單驗證條件
 import { schema_Customer } from "utils/validator/form_validator"
-import { IService  } from "utils/Interface_Type"
+import { IService, Shop_Status  } from "utils/Interface_Type"
 import { yupResolver } from "@hookform/resolvers/yup"
 
 // useContext
@@ -63,6 +63,10 @@ import { ServiceSummaryFeeProvider } from "components/services/edit_components/s
 import { setTimeout } from "timers" ; 
 
 import Side_Extra_Fee_List from '../components/Side_Extra_Fee_List';
+
+import { execute_Update_ServiceOrder_LeaveTime } from "fp/services/update/update_ServiceOrder" ;
+import { get_H_M } from "utils/time/time" ;
+
 
 
 
@@ -207,10 +211,17 @@ const Update_Service = ( ) => {
 
     
     // 提交表單
-    const onSubmit : SubmitHandler<IService> = submit_Data => {
+    const onSubmit : SubmitHandler< IService > = submit_Data => {
 
+       // 到店狀態
+       const shopStatus = submit_Data?.appointment_Status as Shop_Status ;  
 
-       let updateObj : any = null ;  // 欲更改欄位
+       // 更新 _ 實際離店 
+       execute_Update_ServiceOrder_LeaveTime( shopStatus , get_H_M() )( data ) ;
+
+    
+       // 欲更改欄位       
+       let updateObj : any = null ;  
        
        if( service_Type === '基礎' ) updateObj = colCovert_Basic_UPDATE( submit_Data ) ;
        if( service_Type === '洗澡' ) updateObj = colCovert_Bath_UPDATE( submit_Data ) ;
@@ -229,22 +240,11 @@ const Update_Service = ( ) => {
        }
 
 
-       // 提醒 _ 行政 : 若服務 “已進行處理” ( Ex. 到店美容中、洗完等候中、已回家( 房 ) ) --> 需提醒美容師或相關工作人員 : 重新點選
-       if( shop_Status && ( shop_Status === '到店美容中' || shop_Status === '洗完等候中' || shop_Status === '已回家( 房 )' ) ){
+       // 更新資料 
+       update_Data( service_Url , service_Id , updateObj , '/index' , `${ service_Type }單` ) ; 
 
-          // 需點選 _ 確認視窗的 "確認" 鈕，才能進行修改        
-          if( window.confirm( `目前此服務處於 : < ${ shop_Status } > 階段，若修改服務內容，請通知美容師或相關工作人員，再次點選、刷新資料．` ) ) 
-                update_Data( service_Url , service_Id , updateObj , '/index' , `${ service_Type }單` ) ; 
 
-       }else{
-
-          // 若尚 "未進行處理" ( Ex. 尚未到店、到店等候中 )，預設上，可直接修改 
-          update_Data( service_Url , service_Id , updateObj , '/index' , `${ service_Type }單` ) ; 
-
-       }
-
-       
-
+    
     } ;
 
 
@@ -268,7 +268,6 @@ const Update_Service = ( ) => {
        setTimeout( ()=>  setValue( "amount_Paid" , data.amount_paid  )  , 1000 )  
         
     } , [] ) ;
-
 
 
     // 篩選出 _ 未被刪除的加價單

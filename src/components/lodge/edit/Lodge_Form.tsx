@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-pascal-case */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-lone-blocks */
 
 import { FC , useEffect , useState } from "react"
 import { Edit_Form_Type , ILodge_Data , room_Type } from "utils/Interface_Type";
@@ -203,7 +206,7 @@ const Lodge_Form : FC< ILodge > = ( { register  , control , setValue , errors , 
     // 設回 _ 預設值
     useEffect( () => { 
     
-      const today = moment( new Date ).format( 'YYYY-MM-DD' ) ; // 今日      
+      const today = moment( new Date() ).format( 'YYYY-MM-DD' ) ; // 今日      
 
       dispatch( set_Lodge_Reservation_Data( [] ) ) ;            // 已經住宿資料 ( 再確認 2022.01.04 )
       dispatch( set_Current_Lodge_Type( '' ) ) ;                // 房型

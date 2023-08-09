@@ -16,8 +16,8 @@ export const get_PlanUsedRecord_Id = ( data : any ) : string  => {
 export const get_PlanUsedRecord_DeleteInfo_Obj =  ( delete_Obj : Delete_Obj ) => ( planUsedRecord_Id : string ) : Delete_PlanUsedRecord_Info_Obj => {
 
     return compose(
-                    append_Obj( "planId"                   , planUsedRecord_Id  ) ,    // 方案 id
-                    append_Obj( "planUsedRecord_DeleteObj" , delete_Obj )  // 方案刪除物件 
+                    append_Obj( "planId"                   , planUsedRecord_Id ) , // 方案 id
+                    append_Obj( "planUsedRecord_DeleteObj" , delete_Obj )          // 方案刪除物件 
                   )( {} ) ; 
                   
 } ;

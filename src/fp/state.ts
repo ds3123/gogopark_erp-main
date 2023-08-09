@@ -1,6 +1,35 @@
 
 import cookie from 'react-cookies' ;
+import moment from "moment" ;
 
+
+
+// 判斷 ( 藉由 editType )  _ 為 : "新增" 模式 ( 基礎、洗澡、美容單 ) < T >
+export const is_Service_Create = ( editType : string | undefined | null ) : boolean => !editType ;
+
+// 判斷 ( 藉由 editType ) _ 為 : "編輯" 模式 ( 基礎、洗澡、美容單 ) < T >
+export const is_Service_Update = ( editType : string | undefined ) : boolean => editType === "編輯" ; 
+
+// 判斷 ( 藉由 serviceData ) _ 為 : "編輯" 模式 ( 基礎、洗澡、美容單 ) < T >
+export const is_ServiceOrder_Update = ( serviceOrder : any ) => serviceOrder ;
+
+// 判斷 _ 選到 "過去" 的 : 到店 ( 服務 ) 日期 ( 基礎、洗澡、美容單 ) < T >
+export const is_Past_ServiceDate = ( serviceDate : string ) : boolean => {
+
+    const today = moment( new Date() ).format( 'YYYY-MM-DD' ) ; // 今日
+
+    return today > serviceDate
+
+} ;  
+
+//  判斷 _ 選到 "未來" 的 : 到店 ( 服務 ) 日期 ( 基礎、洗澡、美容單 ) < T >
+export const is_Future_ServiceDate = ( serviceDate : string ) : boolean => {
+
+    const today = moment( new Date() ).format( 'YYYY-MM-DD' ) ; // 今日
+
+    return today < serviceDate
+
+}
 
 // 判斷 _ 刪除狀態 ( 各類服務單 ) < T >
 export const is_Delete = ( x : any ) : boolean => x?.is_delete === 1 ; 
@@ -15,11 +44,9 @@ export const is_ServiceDate = ( serviceOrder : any , serviceDate : string ) => s
 
 
 
-
 // 判斷 _ 是否物件 ( Ex. 用以決定是否執行 _ 遞迴 )
 export const is_Object = ( x : any ) => typeof x === "object" && x !== null ;
 
-export const is_Service_Date  = ( x : any) => ( service_Date : string ) => x?.sevice_date === service_Date ;
 
 
 // Cookie 登入使用者資訊
@@ -68,5 +95,9 @@ export const is_NotComplete_Paid = ( x : any ) : boolean => x?.amount_payable > 
 
 //  服務單 : 為 _ 加價單
 export const is_Extra_ServiceOrder = ( x : any ) => x?.extra_fee_id
+
+
+
+
  
 

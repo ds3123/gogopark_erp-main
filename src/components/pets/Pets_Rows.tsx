@@ -87,7 +87,7 @@ const Pets_Rows = ( props : any ) => {
 
              <td className="relative"> 
 
-                 { ( data['serial'] && data['serial'].slice( 16 ,22 ) ) ? data['serial'].slice( 16 ,22 ) : data['serial'] } 
+                 { ( data['serial'] && data['serial'].slice( 15 ,22 ) ) ? data['serial'].slice( 15 ,22 ) : data['serial'] } 
 
              </td>
 

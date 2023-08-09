@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles' ;
 import Container from '@material-ui/core/Container' ;
 
 import logo from 'imgs/logo.png' ;
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom" ;
 
 // React Hook Form
 import { useForm , SubmitHandler , Controller } from "react-hook-form" ;
@@ -153,22 +153,22 @@ const Sign_In = () => {
                                                                type     = "password"
                                                                autoComplete = "current-password"
                                                                onChange = { ( e ) => field.onChange( e ) } />
-                                              )}  />
+                                              )}    />
 
 
-                    {/*<FormControlLabel control= {<Checkbox value="remember" color="primary" />}*/}
-                    {/*                  label  ="記住我" style={{ float:"right" }} />*/}
+                    {/*<FormControlLabel control = {<Checkbox value="remember" color="primary" />}*/}
+                    {/*                  label   = "記住我" style={{ float:"right" }} />*/}
 
 
                     <br/> <br/>
 
-                    <button disabled={ !isValid  } type="submit" className="button is-primary relative is-medium"  style={{ width:'100%', height:"60px" }}>
+                    <button disabled = { !isValid } type="submit" className="button is-primary relative is-medium"  style={{ width:'100%', height:"60px" }}>
                         登 入 系 統
                     </button>
 
-                    <div className="has-text-centered m_Top_30" > 
-                       更新時間 : 2023.07.15
-                     </div>
+                    <div className = "has-text-centered m_Top_30" > 
+                       更新時間 : 2023.08.03
+                    </div>
 
                 </form>
 

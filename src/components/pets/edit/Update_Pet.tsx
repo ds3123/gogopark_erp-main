@@ -12,18 +12,20 @@ import { IPet } from "utils/Interface_Type"
 import { yupResolver } from "@hookform/resolvers/yup"
 
 // useContext
-import { useContext, useMemo } from "react"
-import { SidePanelContext } from "templates/panel/Side_Panel"
+import { useContext } from "react" ;
+import { SidePanelContext } from "templates/panel/Side_Panel" ;
 
-import Pet_Form from "components/pets/edit/Pet_Form"
+import Pet_Form from "components/pets/edit/Pet_Form" ;
 
 // Hook
-import { useUpdate_Data } from "hooks/ajax_crud/useAjax_Update"
-import{ useLocation } from "react-router" 
+import { useUpdate_Data } from "hooks/ajax_crud/useAjax_Update" ;
+import{ useLocation } from "react-router" ;
 
-import Data_Table_Id from 'templates/note/Data_Table_Id'
-import Update_Submit_Button from 'templates/button/Update_Submit_Button'
+import Data_Table_Id from 'templates/note/Data_Table_Id' ;
+import Update_Submit_Button from 'templates/button/Update_Submit_Button' ;
 import { useFetch_Species } from "hooks/react-query/species/useFetchSpecies" ;
+import { CreateServiceProvider } from "containers/contexts/createServiceContext" ;
+
 
 
 { /*  編輯寵物  */ }
@@ -122,7 +124,6 @@ const Update_Pet = () => {
         const mPet       = petSpecies.filter( x => x['id'] === parseInt( data.pet_Species ) )[0] as any ;  // 篩選出該寵物
         data.pet_Species = mPet.name ;    // 將品種資料表 id ， 改為 : "寵物品種名稱"  
 
-
         // 更新 _ 寵物
         update_Data( "/pets" , data.pet_Serial , data , current_Url , "寵物" ) ;
         
@@ -136,7 +137,9 @@ const Update_Pet = () => {
               </div>   
                                  
               { /* 寵物表單欄位  */ }
-              <Pet_Form  { ...props }  />
+              <CreateServiceProvider>
+                 <Pet_Form  { ...props }  />
+              </CreateServiceProvider>
 
               { /* 提交按鈕 */ }
               <Update_Submit_Button  name = "提交表單" isValid = { true } />

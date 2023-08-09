@@ -2,7 +2,7 @@ import { useAdd_Data_Obj_Extra_Props } from "containers/data_components/Data_Obj
 import { useMatch_Obj } from "containers/data_components/Condition_for_Currnet_Tab" ;
 import { useSelector } from "react-redux" ;
 import { useMap_Create_Hooks } from "./useMap_Create_Hooks" ;
-import { useAccount_Shop_Id } from "hooks/data/useAccount";
+import { useAccount_Shop_Id } from "hooks/data/useAccount" ;
 import { useCreate_Customer_Relatives } from "hooks/crud/create/useCreate_Customer_Relatives" ;
 import { extra_Validator } from "utils/validator/extra_validator" ;
 
@@ -32,11 +32,8 @@ export const useEffect_Submit_Create = () => {
     // # 新增函式 _ 依目前所處資料類型 ( Ex. 客戶、寵物.. )，取得相對應的資料新增函式 ( Ex. create_Customer , create_Pet ... ) 
     const create_Fucntion          = useMap_Create_Hooks( current ) ; 
 
-
-    // 僅針對 _ 客戶關係人 ( 再確認 2021.07.05 / 改為若有 "新增客戶" 情況下，即新增關係人 --> 寫在 useAjax_Create 中，目前以下條件判斷，容易漏掉  )
+    // 僅針對 _ 客戶關係人 ( 再確認 2021.07.05 / 改為若有 "新增客戶" 情況下，即新增關係人 --> 寫在 useAjax_Create 中，目前以下條件判斷，容易漏掉 )
     const create_Cus_Relatives     = useCreate_Customer_Relatives() ; 
-
-
 
     
     // -----------
@@ -48,7 +45,6 @@ export const useEffect_Submit_Create = () => {
         // Yup schema 以外，額外新增的欄位驗證 : 寵物 ( 是否咬人 )、住宿、價格、員工
         if( !extra_Validator( current , data , is_Obj , current_Pet ) ) return false ;
 
-
         // 經處理後 ( 某些區塊，Ex. 基礎、洗澡... ，需額外附加 data 物件的屬性、屬性值 ) 提交新增的資料物件
         const submit_Data = add_Data_Obj_Extra_Props( current , data ) ;
 
@@ -57,7 +53,6 @@ export const useEffect_Submit_Create = () => {
 
         // 新增 _ 客戶關係人 ( 再確認 2021.07.05 / 改為若有 "新增客戶" 情況下，即新增關係人 --> 寫在 useAjax_Create 中，目前以下條件判斷，容易漏掉 )
         if( is_Obj.is_Customer_Relatives ) create_Cus_Relatives( "/customers/store_relation" , data ) ;
-    
 
     } ;
 

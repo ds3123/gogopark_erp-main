@@ -1,17 +1,23 @@
 import { append_Obj } from "fp/tool" ;
 import { 
+         is_Object , 
          is_ServiceDate , 
-         is_NotComplete_Paid 
+         is_NotComplete_Paid ,
+         is_ServiceStatus_Appointment_TodayFuture ,
+         is_ShopStatus_NotArrived ,
+         is_ShopStatus_Wait ,
+         is_ShopStatus_Process ,
+         is_ShopStatus_Done ,
+         is_ShopStatus_Home ,
         } from 'fp/state' ;
-
 
 
 // 取得 _ 服務單 : 資料表 id ( 藉由 _ 服務單本身資料  )  < T >
 export const get_ServiceOrderId = ( serviceData : ServiceOrder ) : string  => {
 
-    return serviceData.service_type === "基礎" && serviceData.basic_id  ? serviceData.basic_id  :
-           serviceData.service_type === "洗澡" && serviceData.bath_id   ? serviceData.bath_id   : 
-           serviceData.service_type === "美容" && serviceData.beauty_id ? serviceData.beauty_id : 
+    return serviceData?.service_type === "基礎" && serviceData?.basic_id  ? serviceData.basic_id  :
+           serviceData?.service_type === "洗澡" && serviceData?.bath_id   ? serviceData.bath_id   : 
+           serviceData?.service_type === "美容" && serviceData?.beauty_id ? serviceData.beauty_id : 
            "" ;
 
 } ;
@@ -100,5 +106,74 @@ export const get_ServiceOrder_NotComplete_Paid = ( serviceOrders : any[] ) : any
 
 // 取得 _ 特定 : 服務日期 ( service_date ) 的服務單 < T >
 export const get_ServiceOrder_ServiceDate =  ( serviceDate : string ) => ( serviceOrders : any[] ) : any[] => serviceOrders.filter( x => is_ServiceDate( x , serviceDate ) ) ;
+
+
+// 取得 _ 服務單 : "實際到店" 時間 < T >
+export const get_ServiceOrder_ArrivedTime = ( serviceOrders : any  ) => {
+
+    // 到店時間
+    const arrivedTime = serviceOrders?.actual_arrive ;
+
+    const is_Update             = is_Object( serviceOrders ) ;             
+    const is_Appointment        = is_ServiceStatus_Appointment_TodayFuture( serviceOrders ) ; 
+    const is_Update_Appointment = is_Update && is_Appointment ;   // 更新 _ 預約
+    const is_Update_Onsite      = is_Update && !is_Appointment ;  // 更新 _ 現場
+
+    // 到店狀態
+    const is_NotArrived  = is_ShopStatus_NotArrived( serviceOrders ) ;
+    const is_Wait        = is_ShopStatus_Wait( serviceOrders ) ;
+    const is_Process     = is_ShopStatus_Process( serviceOrders ) ;
+    const is_Done        = is_ShopStatus_Done( serviceOrders ) ;
+    const is_Home        = is_ShopStatus_Home( serviceOrders ) ;
+
+
+    return ( is_Update_Appointment && is_NotArrived ) ? "尚未到店" : 
+           ( is_Update_Appointment && is_Wait ) ? arrivedTime : 
+           ( is_Update_Appointment && is_Process ) ? arrivedTime : 
+           ( is_Update_Appointment && is_Done ) ? arrivedTime : 
+           ( is_Update_Appointment && is_Home ) ? arrivedTime : 
+           ( is_Update_Onsite && is_Wait ) ? arrivedTime :
+           ( is_Update_Onsite && is_Process ) ? arrivedTime :
+           ( is_Update_Onsite && is_Done ) ? arrivedTime :
+           ( is_Update_Onsite && is_Home ) ? arrivedTime :
+           "" ;
+           
+
+} ;
+
+
+// 取得 _ 服務單 : "離店時間" < T >
+export const get_ServiceOrder_LeaveTime = ( serviceOrders : any ) : string => {
+
+    // 實際離店時間
+     const leaveTime = serviceOrders?.actual_leave ; 
+
+     const is_Update             = is_Object( serviceOrders ) ;             
+     const is_Appointment        = is_ServiceStatus_Appointment_TodayFuture( serviceOrders ) ; 
+     const is_Update_Appointment = is_Update && is_Appointment ;   // 更新 _ 預約
+     const is_Update_Onsite      = is_Update && !is_Appointment ;  // 更新 _ 現場
+     
+     // 到店狀態
+     const is_NotArrived  = is_ShopStatus_NotArrived( serviceOrders ) ;
+     const is_Wait        = is_ShopStatus_Wait( serviceOrders ) ;
+     const is_Process     = is_ShopStatus_Process( serviceOrders ) ;
+     const is_Done        = is_ShopStatus_Done( serviceOrders ) ;
+     const is_Home        = is_ShopStatus_Home( serviceOrders ) ;
+
+     return ( is_Update_Appointment && is_NotArrived ) ? "尚未到店" : 
+            ( is_Update_Appointment && is_Wait ) ? "尚未離店" : 
+            ( is_Update_Appointment && is_Process ) ? "尚未離店" : 
+            ( is_Update_Appointment && is_Done ) ? "尚未離店" : 
+            ( is_Update_Appointment && is_Home ) ? leaveTime : 
+            ( is_Update_Onsite && is_Wait ) ? "尚未離店" :
+            ( is_Update_Onsite && is_Process ) ? "尚未離店" :
+            ( is_Update_Onsite && is_Done ) ? "尚未離店" :
+            ( is_Update_Onsite && is_Home ) ? leaveTime :
+             ""    
+
+             
+} ;
+
+
 
 

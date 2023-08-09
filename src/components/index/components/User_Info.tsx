@@ -9,7 +9,7 @@ import { useEffect_Click_Shop_Quota ,
 
 
 const info = {
-                width         : "400px" ,
+                width         : "430px" ,
                 top           : "15px" ,
                 right         : "-12%" ,
                 padding       : "18px",

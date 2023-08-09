@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-pascal-case */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-lone-blocks */
 
 import { useState , useEffect } from  "react" ;
 import { useForm , SubmitHandler } from "react-hook-form";
@@ -68,7 +71,9 @@ const Inform_Customer_Options = () => {
     const click_Is_All_Good = ( bool : boolean ) => set_Is_All_Good( !bool ) ;
 
     // 點選 _ 時間
-    const click_Time = () => set_Time(time === '00 : 00' ? get_H_M() : '00 : 00'  ) ;
+    const click_Time = () => set_Time( time === '00 : 00' ? get_H_M() : '00 : 00' ) ;
+
+    
 
     // 提交 _ 表單 ( 有問題 2016.06.16  )
     const onSubmit : SubmitHandler<Inputs> = ( data : any ) => {

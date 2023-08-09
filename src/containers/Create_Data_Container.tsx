@@ -57,6 +57,9 @@ const Create_Data_Container = () => {
 
     // 目前點選 _ 客戶寵物 ( 過去新增 )
     const current_Pet = useSelector( ( state : any ) => state.Pet.current_Pet ) ; 
+
+    // 服務性質 : 已到店、預約_今天、預約_未來
+    const service_Status = useSelector(( state : any ) => state.Info.service_Status ) ;
    
     // # 依照目前所點選 : 頁籤 ( current )，判斷 _ 是否顯示/符合條件
     const is_Obj  = useMatch_Obj( current ) ;
@@ -87,24 +90,23 @@ const Create_Data_Container = () => {
                     current  : current ,
                     
                     editType    : undefined ,
-                    
                     serviceData : null
                    }  ;
 
     
 
-    // 新增函式
-    const create_Data = useEffect_Submit_Create() ;
-
+     // 新增函式
+     const create_Data = useEffect_Submit_Create() ;
 
 
      // 今日 _ 所有服務
-     const today_All_Serivces    = useFetch_Services_By_ServiceDate( shop_Id , today ) ;
+     const today_All_Serivces   = useFetch_Services_By_ServiceDate( shop_Id , today ) ;
 
      // 以特定寵物 id，篩選今日所有服務
      const today_petId_Services = get_ServiceOrder_By_PetId( current_Pet?.pet_id )( today_All_Serivces ) ;
      
      
+     // 執行提交動作
      const execute_Create = ( data : any ) => {
 
          // 設定 _ 已經點選提交
@@ -116,18 +118,30 @@ const Create_Data_Container = () => {
      } ;
  
 
-
     // # 提交表單 ( IService 再確認 2021.07.23 )
     const onSubmit : SubmitHandler< IService > = ( data ) => {
 
         
-        if( today_petId_Services.length > 0 && window.confirm( `${ current_Pet?.name }( ${ current_Pet?.species } ) 今日已有服務訂單，請確認是否要新增 ?` )  ){
-                
+        // 已到店 ( 現場單 ) && 未點選 : 實際到店時間
+        if( service_Status === '已到店' && data?.actual_Arrive === '00:00' && ( current === '基礎' || current === '洗澡' || current === '美容' )  ){
+            alert( '尚未設定或點選 : 實際到店欄位' ) ;
+            return false ;
+        }
+
+        // 預約_今天、預約_未來 ( 預約單 ) && 未點選 : 預計到店時間
+        if( ( service_Status === '預約_今天' || service_Status === '預約_未來' ) && data?.expected_Arrive === '00:00' ){
+            alert( '尚未設定或點選 : 預計到店欄位 ' ) ;
+            return false ;
+        }
+
+        // 今日 _ 已有服務訂單 ( 同一隻寵物 )
+        if( today_petId_Services.length > 0 && window.confirm( `${ current_Pet?.name }( ${ current_Pet?.species } ) 今日已有服務訂單，請確認是否要新增 ?` ) ){
             execute_Create( data ) ;
-            
         } ;
 
-        if( today_petId_Services.length === 0 )  create_Data( data ) ;
+        
+        if( today_petId_Services.length === 0 ) execute_Create( data ) ;
+
 
     } 
 

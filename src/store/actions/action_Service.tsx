@@ -7,7 +7,9 @@ import { toast } from "react-toastify"
 import { set_Side_Panel } from "store/actions/action_Global_Layout"
 
 import { switch_Service_Type_Id } from "utils/data/switch"
-import Appointment_Record from "components/index/list/Appointment_Record"
+import Appointment_Record from "components/index/list/Appointment_Record" 
+import { get_H_M } from "utils/time/time" ;
+
 
 
 
@@ -194,7 +196,10 @@ export const switch_Appointment_Status = ( data : any , status : '到店等候�
                 // 更新 _ 異常狀態
                 if( service_Id && service_Url ){
         
-                    const obj = { shop_status : status } ;
+                    const obj = { 
+                                   shop_status   : status ,   // 到店狀態
+                                   actual_arrive : get_H_M()  // 實際到店時間
+                                } ;
         
                     axios.put( `${ service_Url }/${ service_Id }` , obj ).then( res => {
         

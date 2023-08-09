@@ -4,7 +4,12 @@ import {
         is_Delete ,
         is_Error ,
         is_ServiceDate ,
-
+        is_Service_Create ,
+        is_Service_Update ,
+        is_ServiceOrder_Update ,
+        
+        is_Past_ServiceDate ,
+        is_Future_ServiceDate ,
         is_ServiceType_Basic ,
         is_ServiceType_Bath ,
         is_ServiceType_Beauty ,
@@ -26,15 +31,82 @@ import {
 
         is_NotComplete_Paid ,
         is_Extra_ServiceOrder
-
        }  from 'fp/state' ;
 
 
 describe( "狀態測試" , () => { 
 
+    beforeAll(() => {
+
+        // 利用 JEST 設定 _ 假時間
+        jest.useFakeTimers( 'modern' );
+        jest.setSystemTime( new Date( 2023 , 6 , 20 ) ); // 須比實際少 1 個月
+
+    });
+    
+    afterAll(() => {
+
+        // 回復 _ 使用真實時間
+        jest.useRealTimers();
+
+    });
+
 
     describe( "一般編輯" , () => { 
+
+        test( "判斷 ( 藉由 editType ) _ 服務單 ( 基礎、洗澡、美容單 ) 編輯為 _ 新增 : is_Service_Create()" , () => {
+
+            // 在服務單 _ 新增下，editType 為 undefiend
     
+            expect( is_Service_Create( undefined ) ).toBeTruthy() ; 
+            expect( is_Service_Create( null ) ).toBeTruthy() ; 
+            expect( is_Service_Create( "" ) ).toBeTruthy() ; 
+        
+        }) ;
+
+        test( "判斷 ( 藉由 editType ) _ 服務單 ( 基礎、洗澡、美容單 ) 編輯為 _ 更新 : is_Service_Update()" , () => {
+        
+        
+            // 在服務單 _ 新增下，editType 為 "編輯"
+
+            expect( is_Service_Update( "編輯" ) ).toBeTruthy() ; 
+
+            expect( is_Service_Update( "其他字串" ) ).not.toBeTruthy() ; 
+            expect( is_Service_Update( "" ) ).not.toBeTruthy() ; 
+
+        }) ;
+
+        test( "判斷 ( 藉由 serviceData ) _ 服務單 ( 基礎、洗澡、美容單 ) 編輯為 _ 更新 : is_ServiceOrder_Update()" , () => {
+        
+             const data = { bath_id : 23 , shop_status : '到店等候中' } ;
+        
+             expect( is_ServiceOrder_Update( null ) ).not.toBeTruthy() ;
+             expect( is_ServiceOrder_Update( undefined ) ).not.toBeTruthy() ;
+             
+             expect( is_ServiceOrder_Update( data ) ).toBeTruthy() ;
+
+        }) ;
+
+        test( "選到 '過去' 的 : 到店 ( 服務 ) 日期 ( 基礎、洗澡、美容單 ) : is_Past_ServiceDate()" , () => {
+        
+            // 目前設定 mock 設定的 _ 今日日期 ( new Date ) 為 : 2023-07-20
+
+            expect( is_Past_ServiceDate( "2023-07-19" ) ).toBeTruthy();     // 昨天 -> 過去
+            expect( is_Past_ServiceDate( "2023-07-20" ) ).not.toBeTruthy(); // 今天
+            expect( is_Past_ServiceDate( "2023-07-21" ) ).not.toBeTruthy(); // 明天
+
+        }) ;
+
+        test( "選到 '未來' 的 : 到店 ( 服務 ) 日期 ( 基礎、洗澡、美容單 ) : is_Future_ServiceDate()" , () => {
+        
+            // 目前設定 mock 設定的 _ 今日日期 ( new Date ) 為 : 2023-07-20
+
+            expect( is_Future_ServiceDate( "2023-07-19" ) ).not.toBeTruthy(); // 昨天  
+            expect( is_Future_ServiceDate( "2023-07-20" ) ).not.toBeTruthy(); // 今天
+            expect( is_Future_ServiceDate( "2023-07-21" ) ).toBeTruthy();     // 明天 -> 未來
+        
+        }) ;
+
         test( "為 _ 刪除狀態 : is_Delete()" , () => {
 
             expect( is_Delete( { is_delete : 1 } ) ).toBeTruthy() ;   
@@ -249,7 +321,6 @@ describe( "狀態測試" , () => {
 
     }) ; 
 
-
     describe( "服務單 _ 付款 ( payment ) 相關" , () => {
         
         describe( "is_NotComplete_Paid : 尚未 _ 完成付款" , () => { 
@@ -282,13 +353,7 @@ describe( "狀態測試" , () => {
         
         }) ; 
         
-        
-        
-        
-        
-    
     }) ; 
-    
 
 
 }) ; 
