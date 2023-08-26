@@ -150,8 +150,6 @@ const Nav_Options = () => {
    return  <div id="navbarExampleTransparentExample" className="is-hidden-mobile">
 
 
-  
-
                <div className="navbar-start relative" style={{ top:"34%" , left:"30px" }} >
 
                    {

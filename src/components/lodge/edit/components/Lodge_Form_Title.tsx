@@ -1,15 +1,29 @@
+/* eslint-disable react/jsx-pascal-case */
 
-import { useState } from "react" ;
+import { FC , useState } from "react" ;
 import { useSelector } from "react-redux";
 import Lodge_Form_Function from "./Lodge_Form_Function";
 
 
 
+type Lodge_Plan = {
+
+    editType   :  string | undefined ;
+    
+
+}
+
+
 // @ 住宿表單 _ 標題 
-const Lodge_Form_Title = ( { editType } : { editType : string | undefined } ) => {
+const Lodge_Form_Title : FC< Lodge_Plan >  = ( { editType  }  ) => {
+
+   // 房型 
+   const room_Type      = useSelector( ( state : any ) => state.Lodge.current_Lodge_Type ) ;   
 
    // 住宿價格小計
    const current_Lodge_Price_Sum = useSelector( (state : any ) => state.Lodge.current_Lodge_Price_Sum ) 
+
+
 
    // 是否顯示 : 住宿情形
    const [ show_LodgeCalendar , set_Show_LodgeCalendar ] = useState( false ) ;
@@ -33,7 +47,8 @@ const Lodge_Form_Title = ( { editType } : { editType : string | undefined } ) =>
    const function_Props = {
                             show_LodgePrice    : show_LodgePrice ,
                             show_LodgeQuery    : show_LodgeQuery ,
-                            show_LodgeCalendar : show_LodgeCalendar 
+                            show_LodgeCalendar : show_LodgeCalendar ,
+
                           }
 
 
@@ -42,7 +57,7 @@ const Lodge_Form_Title = ( { editType } : { editType : string | undefined } ) =>
 
    return <>    
 
-             <label className="label " style={{ fontSize : "1.3em" }} >
+             <label className="label m_Bottom_30" >
 
                 <b className="tag is-large is-link m_Right_30" > <i className="fas fa-home"></i> &nbsp; 住 宿
 
@@ -57,9 +72,13 @@ const Lodge_Form_Title = ( { editType } : { editType : string | undefined } ) =>
                     <> 
 
                         { /* 計算 _ 住房價格 */ }
-                        <b className = { `${ tag } m_Right_30  ${ show_LodgePrice ? 'is-black' : '' }` }  onClick = { click_Show_LodgePrice } >
-                            <b className="relative" style={ icon }> <i className="fas fa-calculator"></i> </b> &nbsp; 試算
-                        </b> 
+                        { room_Type &&  
+                        
+                           <b className = { `${ tag } m_Right_30  ${ show_LodgePrice ? 'is-black' : '' }` }  onClick = { click_Show_LodgePrice } >
+                              <b className="relative" style={ icon }> <i className="fas fa-calculator"></i> </b> &nbsp; 試算
+                           </b>  
+                        
+                        }
 
                         { /* 查詢 _ 住房資料 */ }
                         {/* <b className = { `${ tag } m_Right_30  ${ show_LodgeQuery ? 'is-black' : '' }` }  onClick = { click_Show_LodgeQuery } >
@@ -75,7 +94,7 @@ const Lodge_Form_Title = ( { editType } : { editType : string | undefined } ) =>
 
                 }    
 
-             </label>   <br/>
+             </label>   
 
 
              { /* 功能 : 試算、查詢、檢視 */ } 

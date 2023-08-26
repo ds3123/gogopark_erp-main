@@ -114,7 +114,7 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                         <div className="columns is-multiline is-mobile m_Bottom_30">
 
                             { /* 名字 */ }
-                            <Input type="text" name="pet_Name" label="名 字" register={register} error={errors.pet_Name}
+                            <Input type="text" name="pet_Name" label="名 字" register = { register } error = { errors.pet_Name }
                                    icon="fas fa-paw" asterisk={true} columns="3" />
 
                             { /* 品種 */ }
@@ -154,12 +154,12 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
 
                                <div className = "absolute" style = {{ width : "335px" , height : "40px" , top : "37px" , borderRadius : "5px" , zIndex : 100 , background : "rgba(0,0,0,.1)" }} ></div>
 
-                               <p className = "relative"> 編號 ( 由左側 <b>品種</b> 下拉選項自動產生 )  </p>
+                               <p className = "relative" > 編號 ( 由左側 <b>品種</b> 下拉選項自動產生 )  </p>
 
                                { current &&
 
                                     <div className="control has-icons-left" >
-                                        <span className="icon is-small is-left"> <i className="fas fa-list-ol"></i> </span>
+                                        <span className="icon is-small is-left"> <i className="fas fa-list-ol" ></i> </span>
                                         <input className="input" type='text' { ...register( 'pet_Serial' ) } />
                                     </div>
 
@@ -167,7 +167,7 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
 
                                 { !current &&
 
-                                      <b className="fDblue f_13 relative" style={{ top:"3px" }}> { pet_Serial } </b>
+                                    <b className="fDblue f_13 relative" style={{ top:"3px" }}> { pet_Serial } </b>
 
                                 }
 
@@ -176,16 +176,16 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                             { /* 性別  */ }
                             <div className="column is-2-desktop">
 
-                               <p> 性 別 &nbsp; <b className="fRed"> {errors.pet_Sex?.message} </b></p>
+                               <p> 性 別 &nbsp; <b className="fRed"> { errors.pet_Sex?.message } </b> </p>
 
                                <div className="control has-icons-left">
 
-                                   <div className="select">
+                                   <div className="select" >
                                        <select {...register("pet_Sex")}  >
-                                           <option value="請選擇">請選擇</option>
-                                           <option value="公">公</option>
-                                           <option value="母">母</option>
-                                           <option value="不確定">不確定</option>
+                                           <option value = "請選擇" > 請選擇 </option>
+                                           <option value = "公" > 公 </option>
+                                           <option value = "母" > 母 </option>
+                                           <option value = "不確定" > 不確定 </option>
                                        </select>
                                    </div>
 
@@ -213,7 +213,6 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                                 <Pet_Birthday control = { control } setValue = { setValue } pet_Serial = { pet_Serial } current = { current } />
 
                             </div>
-
                            
                             <Input type="number" name="pet_Weight" label="體 重 (kg)"    register={register} error={errors.pet_Weight}
                                                                    icon="fas fa-weight" asterisk={false}    columns="2" />

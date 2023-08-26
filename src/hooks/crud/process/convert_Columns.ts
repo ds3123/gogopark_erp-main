@@ -676,6 +676,9 @@ export const columns_Covert_Lodge = ( data : any ) => {
                                 // * 住宿資料欄位 (  個 ) --------------------------------------------------------
 
                                 contract_serial       : data['lodge_Serial'] ,      // 合約編號
+    
+                                lodge_plan            : data['lodge_Plan'] ,        // 住宿價格方案 ( 可退款 / 不退款 )   
+
                                 service_title         : service_title ,             // for Calendar 住宿標題說明 ( Ex. A01 大黃(秋田犬)
                                 service_status        : service_status ,            // 住宿狀態 ( Ex. 當日住宿、預約住宿 )
 

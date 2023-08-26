@@ -1,26 +1,36 @@
+/* eslint-disable react/jsx-pascal-case */
 
 
 import { FC , useState } from "react" ;
-import Date_Picker from "templates/form/Date_Picker";
-import Time_Picker from "templates/form/Time_Picker";
-import moment from "moment";
-import { set_Lodge_Check_In_Date , set_Lodge_Check_Out_Date } from "store/actions/action_Lodge"
-import { useDispatch } from "react-redux";
+import Date_Picker from "templates/form/Date_Picker" ;
+import Time_Picker from "templates/form/Time_Picker" ;
+import moment from "moment" ;
+import { set_Lodge_Check_In_Date , set_Lodge_Check_Out_Date } from "store/actions/action_Lodge" ;
+import { useDispatch } from "react-redux" ;
+
+import { is_Early_CheckIn , is_Late_CheckOut } from "fp/lodges/read/get_Lodge" ;
+
+import Lodge_Early_CheckIn from "./Lodge_Early_CheckIn";
+
 
 
 type lForm = {
+
+    register    : any ;
     control     : any ;
     setValue    : any;
+    watch       : any ;
+
     editType    : string | undefined ;
     serviceData : any ;
 }
 
 
 // @ 住宿期間 : 日期、時間 
-const Lodge_Form_Period : FC< lForm > = ( { control  , setValue , editType , serviceData } ) => {
+const Lodge_Form_Period : FC< lForm > = ( { register , control  , watch , setValue , editType , serviceData } ) => {
 
     const dispatch = useDispatch() ;
-    const today    = moment( new Date ).format('YYYY-MM-DD') ;           // 今日
+    const today    = moment( new Date() ).format('YYYY-MM-DD') ;           // 今日
 
     const [ check_In_Date , set_Check_In_Date ]   = useState( today ) ;  // 住房日期
     const [ check_Out_Date , set_Check_Out_Date ] = useState( today ) ;  // 退房日期
@@ -33,7 +43,7 @@ const Lodge_Form_Period : FC< lForm > = ( { control  , setValue , editType , ser
         // 所選擇日期( 轉換格式 )
         if( _date < today ){
             alert( '住房日期，不能早於今日' ) ;
-            setValue( 'lodge_CheckIn_Date' , new Date ) ; // 設回今天
+            setValue( 'lodge_CheckIn_Date' , new Date() ) ; // 設回今天
             return false ;
         }
 
@@ -73,6 +83,11 @@ const Lodge_Form_Period : FC< lForm > = ( { control  , setValue , editType , ser
 
     } ;
 
+
+    // 監控 _ 住房時間
+    const checkIn_Time = watch( 'lodge_CheckIn_Time' ) ;
+
+
     // # 資料狀態
     const is_Create = editType !== '編輯' ;  // 新增
     const is_Update = editType === '編輯' ;  // 編輯
@@ -84,10 +99,9 @@ const Lodge_Form_Period : FC< lForm > = ( { control  , setValue , editType , ser
 
   return    <>
 
-                {/* 住 ( S ) : { check_In_Date } / 退 ( S ) : { check_Out_Date } */}
-                   
-                
-                <div className="columns is-multiline is-mobile">
+
+                { /* */ }
+                <div className = "columns is-multiline is-mobile" >
 
                     <div className="column is-1-desktop relative required">
                         <b className="absolute" style={{top:"20px"}} > 住房時間 : </b>
@@ -98,7 +112,7 @@ const Lodge_Form_Period : FC< lForm > = ( { control  , setValue , editType , ser
 
                         { is_Create && <Date_Picker control         = { control }
                                                     name            = "lodge_CheckIn_Date"
-                                                    default_Date    = { new Date }
+                                                    default_Date    = { new Date() }
                                                     handle_OnChange = { ( value : any ) => handle_CheckIn_Date( value ) }  />
                         }  
 
@@ -128,7 +142,7 @@ const Lodge_Form_Period : FC< lForm > = ( { control  , setValue , editType , ser
         
                         { is_Create && <Date_Picker control         = { control }
                                                     name            = "lodge_CheckOut_Date"
-                                                    default_Date    = { new Date }
+                                                    default_Date    = { new Date() }
                                                     handle_OnChange = { ( value : any ) => handle_CheckOut_Date( value ) } /> 
                         }         
 
@@ -148,6 +162,9 @@ const Lodge_Form_Period : FC< lForm > = ( { control  , setValue , editType , ser
                     </div>
 
                 </div>
+
+                { /* 安親費用 ( 早於 15 : 00 Check In ) */ }
+                { ( is_Create && is_Early_CheckIn( checkIn_Time ) ) && <Lodge_Early_CheckIn register = { register } /> }
 
             </>
 

@@ -62,7 +62,12 @@ const useLodge_Care_Data = () => {
     // 住宿價格
     const current_Lodge_Price_Sum = useSelector(( state : any ) => state.Lodge.current_Lodge_Price_Sum )  ;
 
-    return { expect_Care_End_Time , current_Lodge_Price_Sum }
+
+    // 目前選擇住宿 : 價格方案 ( 可退款 / 不可退款 )
+    const current_Lodge_Plan      = useSelector( ( state : any ) => state.Lodge.current_Lodge_Price_Plan ) ; 
+
+
+    return { expect_Care_End_Time , current_Lodge_Price_Sum , current_Lodge_Plan }
 
 } ;
 
@@ -99,7 +104,7 @@ export const useAdd_Data_Obj_Extra_Props = ( ) => {
     // # 取得 _ 欲附加屬性的值
     const { month_Bath_Price , month_Beauty_Price , current_Plan_Id , current_Plan_Type , current_Plan_Note , custom_Plan_Basic_Price } = usePlan_Data();
 
-    const { expect_Care_End_Time , current_Lodge_Price_Sum } = useLodge_Care_Data() ;
+    const { expect_Care_End_Time , current_Lodge_Price_Sum , current_Lodge_Plan } = useLodge_Care_Data() ;
 
     const { service_Status , current_Q_Code } = useInfo_Data() ;
 
@@ -154,7 +159,12 @@ export const useAdd_Data_Obj_Extra_Props = ( ) => {
             data.expect_Care_End_Time = expect_Care_End_Time ; // 預計結束時間 ( for 一般安親 )
         }
 
-        if( current === "住宿" ) data.lodge_Price = current_Lodge_Price_Sum ; // 住宿費用
+        if( current === "住宿" ) {
+
+            data.lodge_Price = current_Lodge_Price_Sum ; // 住宿費用
+            data.lodge_Plan  = current_Lodge_Plan ;      // 住宿價格方案 ( 可退款 / 不可退款 )
+
+        }  
 
         if( current === "方案" ){
             data.month_Bath_Price   = month_Bath_Price ;        // 包月洗澡 費用

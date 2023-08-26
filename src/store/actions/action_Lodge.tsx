@@ -49,6 +49,21 @@ export const set_Lodge_Reservation_Data = ( data : any[] ) => {
 
 } ;
 
+// # 設定 _ 目前住宿 : 價格方案 ( 不退款 / 可退款 )
+export const set_Current_Lodge_Plan = ( lodgePlan : LodgePlan ) => { 
+
+    return ( dispatch : Dispatch ) => {
+
+        dispatch({
+                    type                     : "SET_CURRENT_LODGE_PLAN" ,
+                    current_Lodge_Price_Plan : lodgePlan
+                }) ;
+
+  } ;
+
+
+}
+
 
 // # 設定 _ 目前房型 ( Ex. 大、中、小房 )
 export const set_Current_Lodge_Type = ( type : string ) => {

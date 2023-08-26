@@ -32,7 +32,6 @@ describe( "取得 _ 服務異常表 : 欄位值" , () => {
 
             expect( get_ServiceOrder_Error_ServiceType( data ) ).toBe( "基礎 Q07 ( 4 )" ) ; 
         
-        
         }) ;
 
     }) ; 

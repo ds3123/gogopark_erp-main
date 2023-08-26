@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 /*  @ 日期處理   */
 
 import moment from  "moment" 
-import { national_Holidays_Setting } from "components/lodge/edit/Lodge_Price" 
+
 
 
 // 取得 : 昨天、今天、明天、後天 的西元日期 ( num 數字參數 -1、0、1、2 )
@@ -33,13 +34,6 @@ export const get_Date_Cal = ( date : string , num : number )=>{
     dat.setDate(dat.getDate() + num );
 
     return dat
-
-} ;
-
-// 取得 : 距離特定日期，還有幾日
-export const get_Rest_of_Date = ( date : string ) => {
-
-
 
 } ;
 
@@ -79,84 +73,29 @@ export const get_Week_Day = ( date : string ) => {
 };
 
 
-// 取得 : 兩個日期之間，所有的日期 (  再檢查 get_Interval_Dates ，須先減 1 天  2021.06.28  )
-export const get_Interval_Dates = (  start : string , end : string ) =>{
-
-    let arr = [];
-
-    // 驗證
-    if( !start ) return [] ;
-    if( !end ) return [] ;
+// 產生 _ 日期陣列
+const generateDateArray = ( currentDate : any , lastDate : any , dateArray : string[] ) : string[] => {
 
 
-    // 設為 any[] --> 2021.05.27 再確認是否可確定型別
-    let ab = start.split("-") as any[] ;
-    let ae = end.split("-") as any[] ;
-
-    let db = new Date();
-
-    db.setUTCFullYear( ab[0] , ab[1] - 1, ab[2]);
-
-    let de = new Date();
-    de.setUTCFullYear( ae[0] , ae[1] - 1, ae[2]);
-
-    let unixDb = db.getTime();
-    let unixDe = de.getTime();
-
-    for ( let k = unixDb ; k <= unixDe ; ) {
-
-       // arr.push(  moment( new Date( parseInt( k ) ) ).format( "YYYY-MM-DD" ) ) ;
-       arr.push( moment( new Date( k ) ).format( "YYYY-MM-DD" ) ) ;
-        k = k + 24 * 60 * 60 * 1000;
-
-    }
-
-    return arr ;
-
-
-};
-
-
-// 取得日期區間內，國定假日、假日( 五 ~ 日 )、平日( 一 ~ 四 )，所包含日期
-export const get_Type_Dates = (  interval : string[] , holiday : any[]  ) =>{
-
-    let holiday_Arr = [] as string[] ;       // 國定假日
-    let M_T_Arr     = [] as string[] ;       // 平日( 一 ~ 四 )
-    let F_S_Arr     = [] as string[] ;       // 假日( 五 ~ 日 )
+    return currentDate > lastDate ? dateArray : generateDateArray(
+                                                                    new Date( currentDate.getTime() + 24 * 60 * 60 * 1000 ) ,
+                                                                    lastDate ,
+                                                                    [ ...dateArray , currentDate.toISOString().split('T')[0] ] 
+                                                                 ) ;
+} ;
 
 
 
-    // 先取得國定假日，並從 interval 中刪除
-    interval.forEach(function(x){
+// 取得 : 兩個日期之間，所有的日期 < T > ( get_Lodge.test.ts )
+export const get_Interval_Dates = ( start : string , end : string ) : any[] => {
 
-        holiday.forEach(function (y:any) {
+    const currentDate = new Date( start ) ;
+    const lastDate    = new Date( end ) ;
 
-            if( y['date'] === x ){
+    return generateDateArray( currentDate , lastDate , [] ) ;
 
-                const n_H = interval.splice( interval.indexOf( y['date'] ) , 1 ) ;
-                holiday_Arr.push( n_H[0] );
+} ;
 
-            }
-
-        });
-
-    });
-
-    // 取得 : 一 ~ 四 & 五~六
-    interval.forEach(function(x){
-
-        var week = new Date(x).getDay();  // 日期 -> 星期
-
-        if(  x && ( week === 1 || week === 2 || week === 3 || week === 4  ) )  M_T_Arr.push( x ) ;
-
-        if( x && ( week === 5 || week === 6 || week === 0  ) ) F_S_Arr.push( x ) ;
-
-    });
-
-    return { "國定假日" : holiday_Arr , "假日" : F_S_Arr , "平日" : M_T_Arr } ;
-
-
-};
 
 
 // 取得 : 某日期，所屬型態( 平日、假日、國定假日 )
@@ -222,20 +161,15 @@ export const get_Dates_STR = ( holiday_Arr : string[] , F_S_Arr : string[] , M_T
 // 計算 _ 寵物歲數( 依照 : 出生日期 )
 export const get_Pet_Age = ( birthday : string ) : string => {
 
-
      const now_Timestamp      = new Date().getTime();             // 現在
      const birthday_Timestamp = new Date( birthday ).getTime() ;  // 生日  
  
-
      // 年齡天數
-     const age_Days           =  Math.round(  ( now_Timestamp - birthday_Timestamp ) / ( 60 * 60 * 24 * 1000 ) ) ;
- 
+     const age_Days           = Math.round( ( now_Timestamp - birthday_Timestamp ) / ( 60 * 60 * 24 * 1000 ) ) ;
 
      if( age_Days < 360 ) return '未滿週歲'
 
-
      return `${ Math.round( ( age_Days / 360 ) ) } 歲`
-    
 
 } ;
 

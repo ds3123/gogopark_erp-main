@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 
 import { FC , useEffect , useState } from "react"
 import { get_Interval_Dates, get_Week_Day , get_InUse_Days ,  get_Date_Type , get_Date_Cal } from "utils/time/date";
@@ -5,6 +6,9 @@ import { ILodge , room_Type } from 'utils/Interface_Type'
 import { ILodge_Data } from "utils/Interface_Type";
 import moment from  "moment";
 import { useSelector } from "react-redux"
+
+import { national_Holidays } from "components/lodge/lodge_config"
+
 
 
 // 房間 ( 房型 / 房號 )
@@ -49,11 +53,6 @@ const lodge_Price : ILodge_Price[] = [
 
 ];
 
-
-// 國定假日
-const national_Holidays_Setting = [
-    { title : '端午節' , date : '2021-06-14' }
-] ;
 
 
 
@@ -185,7 +184,7 @@ const Lodge_Query : FC<ILodge> = () => {
     const get_LodgeType_Price = ( date : string , room_Type : room_Type , lodge_Price : ILodge_Price[]  ) => {
 
         let room_Price  = 0 ;
-        const date_Type = get_Date_Type( date , national_Holidays_Setting ) ; // 日期屬於何種類型( 平日、假日、國定假日 )
+        const date_Type = get_Date_Type( date , national_Holidays ) ; // 日期屬於何種類型( 平日、假日、國定假日 )
 
         lodge_Price.forEach( x => {
 
@@ -250,12 +249,12 @@ const Lodge_Query : FC<ILodge> = () => {
                     const days_InUse = get_InUse_Days( x['startDate'] , x['endDate'] ) ;
 
                     // 篩選 :
-                    const days_Selected_InUse    = selected_Days.filter( x => ( days_InUse.indexOf( x ) !== -1 ) ) ; // 已使用天數
-                    const days_Selected_Avaiable = selected_Days.filter( x => ( days_InUse.indexOf( x ) === -1 ) ) ; // 可使用天數
+                    const days_Selected_InUse    = selected_Days.filter( ( x : any ) => ( days_InUse.indexOf( x ) !== -1 ) ) ; // 已使用天數
+                    const days_Selected_Avaiable = selected_Days.filter( ( x : any ) => ( days_InUse.indexOf( x ) === -1 ) ) ; // 可使用天數
 
                     // 轉換 : 物件陣列
-                    const arr_InUse    = days_Selected_InUse.map( x => ( { date : x , number : lodgeNumber , price : get_LodgeType_Price( x , lodgeType as room_Type , lodge_Price ) , isAvaiable : false } ) ) ;
-                    const arr_Avaiable = days_Selected_Avaiable.map( x => ( { date : x , number : lodgeNumber , price : get_LodgeType_Price( x , lodgeType as room_Type , lodge_Price )} ) ) ;
+                    const arr_InUse    = days_Selected_InUse.map( ( x : any ) => ( { date : x , number : lodgeNumber , price : get_LodgeType_Price( x , lodgeType as room_Type , lodge_Price ) , isAvaiable : false } ) ) ;
+                    const arr_Avaiable = days_Selected_Avaiable.map( ( x : any ) => ( { date : x , number : lodgeNumber , price : get_LodgeType_Price( x , lodgeType as room_Type , lodge_Price )} ) ) ;
 
                     // * 設定 _ 所選擇的房號
                     set_CurrentNumber_InUse( arr_InUse ) ;   // 已使用天數
@@ -267,7 +266,7 @@ const Lodge_Query : FC<ILodge> = () => {
 
             // 所選擇房號，沒有被使用紀錄 ( 全部可以 )
             if( num === 0 ){
-                const arr_Avaiable = selected_Days.map( x => ( { date : x , number : lodgeNumber , price : get_LodgeType_Price( x , lodgeType as room_Type , lodge_Price )} ) ) ;
+                const arr_Avaiable = selected_Days.map( ( x : any ) => ( { date : x , number : lodgeNumber , price : get_LodgeType_Price( x , lodgeType as room_Type , lodge_Price )} ) ) ;
                 set_Current_Available( arr_Avaiable ) ;  // 可使用天數
             }
 

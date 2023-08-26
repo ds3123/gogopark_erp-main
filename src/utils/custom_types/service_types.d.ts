@@ -1,9 +1,6 @@
 
 
-
-
 type ServiceTypes_ZH = "基礎" | "洗澡" | "美容" | "安親" | "住宿" | "方案" ;
-
 
 
 // 服務單資料
@@ -18,8 +15,6 @@ interface ServiceOrder {
     beauty_id?      : string ;
  
  }
-
-
 
 
 // 刪除 _ 所需資訊物件

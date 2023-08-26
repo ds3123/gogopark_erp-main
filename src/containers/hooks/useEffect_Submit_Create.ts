@@ -54,6 +54,8 @@ export const useEffect_Submit_Create = () => {
         // 新增 _ 客戶關係人 ( 再確認 2021.07.05 / 改為若有 "新增客戶" 情況下，即新增關係人 --> 寫在 useAjax_Create 中，目前以下條件判斷，容易漏掉 )
         if( is_Obj.is_Customer_Relatives ) create_Cus_Relatives( "/customers/store_relation" , data ) ;
 
+        return true
+
     } ;
 
 

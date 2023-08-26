@@ -167,7 +167,7 @@ const Sign_In = () => {
                     </button>
 
                     <div className = "has-text-centered m_Top_30" > 
-                       更新時間 : 2023.08.03
+                       更新時間 : 2023.08.17
                     </div>
 
                 </form>

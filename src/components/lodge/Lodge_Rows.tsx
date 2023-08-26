@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import {useEffect, useState} from "react"
 import {set_Side_Panel} from "store/actions/action_Global_Layout";
 import {useDispatch} from "react-redux";
@@ -148,6 +149,8 @@ const Lodge_Rows = ( props : any ) => {
                    { data['room_number'] } ( { data['room_type'] } )
                 </b>
             </td>
+
+            <td> { data['lodge_plan'] ? data['lodge_plan'] : '無' } </td>
 
             <td> { data['start_date'] }&nbsp; &nbsp;{ data['start_time'] } </td>
             <td> { data['end_date'] }&nbsp; &nbsp;{ data['end_time'] } </td>

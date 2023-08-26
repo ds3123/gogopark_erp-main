@@ -22,11 +22,11 @@ export const delete_ServiceOrder = ( data : any ) => ( queryClient : any , dispa
 // 銷單 : 刪除 _ 服務單 & 方案使用記錄 ( 藉由 _ "方案使用紀錄" 資料 ) :
 export const delete_ServiceOrder_By_PlanUsedRecord = ( record : PlanUsedRecord ) => async( queryClient : any , dispatch : any , history : any )  => {
 
-         // 設定 _ 銷單 ( is_delete : 1 )
-         const is_Delete_Obj = get_Delete_Obj( get_Cookie_EmployeeName() , 1 ) ;  
+        // 設定 _ 銷單 ( is_delete : 1 )
+        const is_Delete_Obj = get_Delete_Obj( get_Cookie_EmployeeName() , 1 ) ;  
 
-         // 執行 _ 銷單 
-         common_Update_ServiceOrder_By_PlanUsedRecord( record , is_Delete_Obj )( queryClient , dispatch , history ) ;  
+        // 執行 _ 銷單 
+        common_Update_ServiceOrder_By_PlanUsedRecord( record , is_Delete_Obj )( queryClient , dispatch , history ) ;  
 
 } ;
 

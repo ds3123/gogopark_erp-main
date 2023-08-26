@@ -333,14 +333,14 @@ const Update_Service = ( ) => {
                 <hr/>
 
                 { /* 服務單基本資訊 : 服務性質、到店日期、處理碼 ... */ }
-                { <Service_Info { ...props } /> }
+                { ( service_Type === "基礎" || service_Type === "洗澡" || service_Type === "美容" ) && <Service_Info { ...props } /> }
 
 
                 { /* 自備物品、主人交代、櫃台備註  */ }
                 <Customer_Note { ...props } />
 
                 { /* 基礎單項目 */ }
-                <Basic_Form { ...props } /> 
+                { ( service_Type === "基礎" || service_Type === "洗澡" || service_Type === "美容" ) && <Basic_Form { ...props } /> }
 
                 { /* 洗澡單項目 */ }
                 { ( service_Type === "洗澡" || service_Type === "美容" ) && <Bath_Form { ...props } /> }

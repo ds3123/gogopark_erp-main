@@ -108,12 +108,14 @@ const Create_Data_Container = () => {
      
      // 執行提交動作
      const execute_Create = ( data : any ) => {
-
-         // 設定 _ 已經點選提交
-         set_Is_Submit_Clicked( !is_Submit_Clicked ) ; // 顯示 _ 下載圖示 ( 防止再次點選 )
     
          // 新增資料 
-         create_Data( data ) ;
+         const res = create_Data( data ) ;
+
+
+         // 設定 _ 已經點選提交
+         if( res ) set_Is_Submit_Clicked( !is_Submit_Clicked ) ; // 顯示 _ 下載圖示 ( 防止再次點選 )
+
      
      } ;
  

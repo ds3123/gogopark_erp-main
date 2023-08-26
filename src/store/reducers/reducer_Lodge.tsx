@@ -1,7 +1,7 @@
 import moment from "moment";
 
 
-const today = moment( new Date ).format('YYYY-MM-DD') ; // 今日
+const today = moment( new Date() ).format('YYYY-MM-DD') ; // 今日
 
 
 /* @ 住宿  */
@@ -15,6 +15,8 @@ interface ILodge {
    current_Lodge_Number      : string ;  // 目前 : 房號 ( Ex. A01、A02、A03)
 
    current_Lodge_Price_Sum   : number ;  // 所選擇房型、日期區間 : 住宿價格總計
+
+   current_Lodge_Price_Plan  : string ;  // 住宿價格方案
 
    lodge_Check_In_Date       : string ;  // 住房日期     
    lodge_Check_Out_Date      : string ;  // 退房日期     
@@ -31,6 +33,8 @@ const initState = {
 
    current_Lodge_Type        : '' ,  
    current_Lodge_Number      : '' ,  
+
+   current_Lodge_Price_Plan  : "不退款" ,
 
    current_Lodge_Price_Sum   : 0 ,
 
@@ -54,6 +58,9 @@ const reducer_Lodge = ( state : ILodge = initState , action : any ) => {
 
         // 設定 _ 已經住宿資料
         case  "SET_LODGE_RESERVATION_DATA" : return { ...state , lodge_Reservation_Data : action.lodge_Reservation_Data } ;
+
+        // 設定 _ 目前住宿 : 價格方案 ( 可退款 / 不退款 ) 
+        case  "SET_CURRENT_LODGE_PLAN" : return { ...state , current_Lodge_Price_Plan : action.current_Lodge_Price_Plan } ;
 
         // 設定 _ 目前房型( Ex. 大、中、小房 )
         case  "SET_CURRENT_LODGE_TYPE" : return { ...state , current_Lodge_Type : action.current_Lodge_Type } ;
