@@ -53,6 +53,19 @@ export const is_Late_CheckOut = ( checkOut : string ) : boolean => {
 } 
 
 
+
+// 判斷 _ 所輸入日期，是否與資料庫日期重複
+export const is_Lodge_Duplicate_Date = ( intervalDates : string[] , shopHolidays : any[] ) : boolean => {
+
+    const duplicateDaties = intervalDates.filter( x => shopHolidays.includes( x ) ) ; 
+
+    return duplicateDaties.length > 0 ? true : false
+
+} ;
+
+
+
+
 // -----------------------------
 
 
@@ -186,4 +199,65 @@ export const get_Lodge_Interval_Prices_Total = ( intervalDays : string[] , natio
 
 }
 
+
+
+// 取得 _ 相同時段名稱下，所有日期
+export const get_Lodge_Title_Dates = ( allDates : any[] ) : any[] => {
+
+    // 取出所有名稱
+    const allTitles    = allDates.map( x => x.title ) ;
+
+    // 篩選不重複名稱
+    const uniqueTitles = allTitles.filter( ( x , i , a ) => a.indexOf( x ) === i ) ;
+
+    // 重組資料
+    const result = uniqueTitles.map( x => {
+
+                        // 篩選出名稱相同的物件
+                        const arr : any = allDates.filter( y => y.title === x ) ;
+
+                        // 再抽取出日期
+                        return { title : x , date : arr.map( ( z : any ) => z.date ) }
+
+                   })   
+
+
+    return result
+
+}
+
+// 取得 _ 所有熱門時段日期 < T >
+export const get_Lodge_All_Dates = ( shopHolidays : any[] ) : NationalHoliday[] => {
+
+    return  shopHolidays.reduce( ( acc , cur ) => {
+
+                return acc.concat( cur.date )
+
+            } , [] ) ;
+
+}
+
+
+// 取得 _ 將時段物件，拆解為多個個別日期 < T >
+export const get_Lodge_Split_Dates = ( dateObj : { title : string , date : string[] } ) : NationalHoliday[] => { 
+
+   return dateObj.date.map( x => { return { title : dateObj.title , date : x } }) ;
+
+} ;
+
+
+// 取得 _ 拆解、轉換後的 ( 單個 ) 熱門日期 < T >
+export const get_Lodge_Convert_Single_Date = ( shopHolidays : any[] ) : NationalHoliday[] => {
+    
+    return shopHolidays.reduce( ( acc , cur ) => {
+
+                                  // 先將時段物件，拆解為多個個別日期陣列
+                                  const arr = get_Lodge_Split_Dates( cur ) ;
+
+                                  // 合併所有陣列 
+                                  return acc.concat( arr ) ;
+        
+                               } , [] ) ;
+
+} ;
 

@@ -25,7 +25,7 @@ const Second_Nav : ISecond_Nav[] = [
     { title : "資料管理" , icon : "fas fa-database" , third_nav : [ '拒接客戶' , '拒接寵物' ,  '服務異常' , '銷單資料' , '封存資料' , '方案資料' ] } , // 原始版本
 
     // { title : "系統設定" , icon : "fas fa-cog" , third_nav : ["寵物品種","權限管理","品牌分店"] } , // 原始版本
-    { title : "系統設定" , icon : "fas fa-cog" , third_nav : [ '寵物品種' ] } ,
+    { title : "系統設定" , icon : "fas fa-cog" , third_nav : [ '寵物品種' , '熱門時段' ] } ,
 
     // { title : "操作日誌" , icon : "fas fa-calendar-alt" , third_nav : [] } ,
 

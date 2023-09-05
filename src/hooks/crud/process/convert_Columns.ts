@@ -640,11 +640,14 @@ export const columns_Covert_Lodge = ( data : any ) => {
 
         const lodge_price        = data['lodge_Price'] ;        // 住宿費用
 
-        const self_adjust_amount = data['self_Adjust_Amount'] ? data['self_Adjust_Amount'] : 0 ; // 個體自行調整費用 ( input --> 需驗證 )
-        const pickup_fee         = data['pickup_Fee'] ? data['pickup_Fee'] : 0  ;                // 接送費          ( input --> 需驗證 )
+         // input --> 需驗證 
+        const care_price         = data['lodge_Care_Fee']     ? data['lodge_Care_Fee'] : 0 ;     // 安親費用 ( 提早 15 : 00 入住 )   
+        const self_adjust_amount = data['self_Adjust_Amount'] ? data['self_Adjust_Amount'] : 0 ; // 個體自行調整費用 
+        const pickup_fee         = data['pickup_Fee'] ? data['pickup_Fee'] : 0  ;                // 接送費         
 
         // 應收金額小計
         const amount_payable     = parseInt( lodge_price ) +
+                                   parseInt( care_price ) +
                                    parseInt( self_adjust_amount ) +
                                    parseInt( pickup_fee ) ;
 
@@ -675,7 +678,8 @@ export const columns_Covert_Lodge = ( data : any ) => {
 
                                 // * 住宿資料欄位 (  個 ) --------------------------------------------------------
 
-                                contract_serial       : data['lodge_Serial'] ,      // 合約編號
+                                contract_serial       : data['lodge_Serial'] ,        // 系統編號
+                                custom_serial         : data['lodge_Custom_Serial'] , // 自訂編號
     
                                 lodge_plan            : data['lodge_Plan'] ,        // 住宿價格方案 ( 可退款 / 不退款 )   
 
@@ -696,6 +700,8 @@ export const columns_Covert_Lodge = ( data : any ) => {
 
                                 // # 費用
                                 lodge_price            : lodge_price ,                                                       // 住宿費用
+                                care_price             : data['lodge_Care_Fee'] ,                                            // 安親費用 ( 提早入住 ) 
+
                                 self_adjust_amount     : self_adjust_amount ,                                                // 個體自行調整費用
                                 // lodge_bath_price    : 0 ,                                                                 // 洗澡費用
                                 // lodge_beauty_price  : 0 ,                                                                 // 美容費用

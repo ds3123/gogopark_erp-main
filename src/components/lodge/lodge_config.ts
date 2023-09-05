@@ -6,6 +6,7 @@
 // 自訂 : 國定假日 / 熱門時段 ( 原價 )
 export const national_Holidays : NationalHoliday[] = [
 
+   { title : '熱門' , date : '2023-08-31' }
   
 
 ] ;

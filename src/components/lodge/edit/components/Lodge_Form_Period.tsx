@@ -8,15 +8,12 @@ import moment from "moment" ;
 import { set_Lodge_Check_In_Date , set_Lodge_Check_Out_Date } from "store/actions/action_Lodge" ;
 import { useDispatch } from "react-redux" ;
 
-import { is_Early_CheckIn , is_Late_CheckOut } from "fp/lodges/read/get_Lodge" ;
-
-import Lodge_Early_CheckIn from "./Lodge_Early_CheckIn";
+import { is_Early_CheckIn } from "fp/lodges/read/get_Lodge" ;
 
 
 
 type lForm = {
 
-    register    : any ;
     control     : any ;
     setValue    : any;
     watch       : any ;
@@ -27,7 +24,7 @@ type lForm = {
 
 
 // @ 住宿期間 : 日期、時間 
-const Lodge_Form_Period : FC< lForm > = ( { register , control  , watch , setValue , editType , serviceData } ) => {
+const Lodge_Form_Period : FC< lForm > = ( { control  , watch , setValue , editType , serviceData } ) => {
 
     const dispatch = useDispatch() ;
     const today    = moment( new Date() ).format('YYYY-MM-DD') ;           // 今日
@@ -72,9 +69,10 @@ const Lodge_Form_Period : FC< lForm > = ( { register , control  , watch , setVal
             alert('退房日期，不能早於住房日期') ;
             dispatch( set_Lodge_Check_Out_Date( _date ) )  ;  // Redux
             set_Check_Out_Date( _date ) ;                     // State    
-            setValue( 'lodge_CheckOut_Date' , date ) ;        // 設為住房日期
+            setValue( 'lodge_CheckOut_Date' , new Date( check_In_Date ) ) ;        // 設為住房日期
           
             return false ;
+            
         }
 
         // 設定 _ 退房日期 
@@ -99,8 +97,6 @@ const Lodge_Form_Period : FC< lForm > = ( { register , control  , watch , setVal
 
   return    <>
 
-
-                { /* */ }
                 <div className = "columns is-multiline is-mobile" >
 
                     <div className="column is-1-desktop relative required">
@@ -121,13 +117,14 @@ const Lodge_Form_Period : FC< lForm > = ( { register , control  , watch , setVal
                     </div>
 
                     { /* 住房時間 */ }
-                    <div className="column is-2-desktop">
+                    <div className = "column is-2-desktop relative" >
 
-                        { is_Create && <Time_Picker name    = "lodge_CheckIn_Time"
-                                                    control = { control } />
-                        }      
+                        { is_Create && <Time_Picker name = "lodge_CheckIn_Time" control = { control } />  }      
 
                         { is_Update && <b className={ green } style={ time_t_6 }> { serviceData.start_time } </b> }
+
+                        { /* 安親費用 ( 早於 15 : 00 Check In ) */ }
+                        { ( is_Create && is_Early_CheckIn( checkIn_Time ) ) && <b className = "f_10 fGray absolute is-light is-rounded" style = {{ left : "10px" , top : "-10px" }} > 提早入住 </b> } 
 
                     </div>
 
@@ -143,8 +140,7 @@ const Lodge_Form_Period : FC< lForm > = ( { register , control  , watch , setVal
                         { is_Create && <Date_Picker control         = { control }
                                                     name            = "lodge_CheckOut_Date"
                                                     default_Date    = { new Date() }
-                                                    handle_OnChange = { ( value : any ) => handle_CheckOut_Date( value ) } /> 
-                        }         
+                                                    handle_OnChange = { ( value : any ) => handle_CheckOut_Date( value ) } />  }         
 
                         { is_Update && <b className={ green } style={ t_6 }> { serviceData.end_date } </b> }                    
 
@@ -153,18 +149,12 @@ const Lodge_Form_Period : FC< lForm > = ( { register , control  , watch , setVal
                     { /* 退房時間  */ }
                     <div className="column is-2-desktop">
                     
-                        { is_Create && <Time_Picker name    = "lodge_CheckOut_Time"
-                                                    control = { control }  />
-                        }     
-
-                        { is_Update && <b className={ green } style={ time_t_6 } > { serviceData.end_time } </b> }    
+                        { is_Create && <Time_Picker name = "lodge_CheckOut_Time" control = { control }  /> }     
+                        { is_Update && <b className={ green } style = { time_t_6 } > { serviceData.end_time } </b> }    
 
                     </div>
 
                 </div>
-
-                { /* 安親費用 ( 早於 15 : 00 Check In ) */ }
-                { ( is_Create && is_Early_CheckIn( checkIn_Time ) ) && <Lodge_Early_CheckIn register = { register } /> }
 
             </>
 

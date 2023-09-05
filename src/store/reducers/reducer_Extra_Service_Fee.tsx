@@ -5,6 +5,8 @@ interface ILayout {
 
     Self_Adjust_Amount : number ; // 各項服務自行增減費用
 
+    Lodge_Care_Amount  : number ;
+
     Extra_Item_Fee     : number ; // 加價項目
     Extra_Beauty_Fee   : number ; // 加價美容
 
@@ -16,6 +18,8 @@ const initState = {
 
 
     Self_Adjust_Amount : 0 ,
+
+    Lodge_Care_Amount  : 0 ,
 
     Extra_Item_Fee     : 0 ,
     Extra_Beauty_Fee   : 0 ,
@@ -31,6 +35,9 @@ const reducer_Extra_Service_Fee = ( state : ILayout = initState , action : any )
 
         // # 設定 _ 各項服務自行增減費用
         case  "SET_SELF_ADJUST_AMOUNT" :  return { ...state , Self_Adjust_Amount : action.amount } ;
+
+        // # 設定 _ 住宿 : 安親費用 ( 提早 15 : 00 入住 )
+        case  "SET_LODGE_CARE_AMOUNT" :  return { ...state , Lodge_Care_Amount : action.amount } ;
 
         // # 設定 _ 接送費
         case  "SET_PICKUP_FEE" :  return { ...state , Pickup_Fee : action.price } ;

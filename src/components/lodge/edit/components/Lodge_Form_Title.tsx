@@ -5,11 +5,9 @@ import { useSelector } from "react-redux";
 import Lodge_Form_Function from "./Lodge_Form_Function";
 
 
-
 type Lodge_Plan = {
 
     editType   :  string | undefined ;
-    
 
 }
 
@@ -51,7 +49,6 @@ const Lodge_Form_Title : FC< Lodge_Plan >  = ( { editType  }  ) => {
 
                           }
 
-
    const icon = { fontSize:"10pt",top:"3px" } as const ;
    const tag  = 'tag is-medium pointer is-rounded' ;
 
@@ -81,9 +78,11 @@ const Lodge_Form_Title : FC< Lodge_Plan >  = ( { editType  }  ) => {
                         }
 
                         { /* 查詢 _ 住房資料 */ }
-                        {/* <b className = { `${ tag } m_Right_30  ${ show_LodgeQuery ? 'is-black' : '' }` }  onClick = { click_Show_LodgeQuery } >
-                            <b className="relative" style={ icon }> <i className="fas fa-search"></i></b> &nbsp; 查詢
-                        </b>  */}
+                        {/* 
+                            <b className = { `${ tag } m_Right_30  ${ show_LodgeQuery ? 'is-black' : '' }` }  onClick = { click_Show_LodgeQuery } >
+                               <b className="relative" style={ icon }> <i className="fas fa-search"></i></b> &nbsp; 查詢
+                            </b>  
+                        */}
 
                         { /* 檢視 _ 住房情形 */ }
                         <b className = { `${ tag } ${ show_LodgeCalendar ? 'is-black' : '' }` }  onClick = { click_Show_LodgeClendar } >
@@ -96,10 +95,8 @@ const Lodge_Form_Title : FC< Lodge_Plan >  = ( { editType  }  ) => {
 
              </label>   
 
-
              { /* 功能 : 試算、查詢、檢視 */ } 
              <Lodge_Form_Function { ...function_Props } />          
-
    
           </>   
 } ;

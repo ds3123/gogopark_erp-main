@@ -98,8 +98,16 @@ export const get_Interval_Dates = ( start : string , end : string ) : any[] => {
 
 
 
+// 取得 : 兩個日期之間，所有的日期後，再剔除最後一個日期 ( for 計算 _ 每晚價格 Ex. 兩個日期，但只計算一晚價格 ) < T > ( get_Lodge.test.ts )
+export const get_Interval_Dates_Without_LastDate = ( intervalDates : string[] ) : string[] => {
+
+    return intervalDates.filter( ( element , index ) => index < intervalDates.length - 1 )
+
+} ;
+
+
 // 取得 : 某日期，所屬型態( 平日、假日、國定假日 )
-export const get_Date_Type = ( date : string , holiday : { title : string , date : string }[]  ) =>{
+export const get_Date_Type = ( date : string , holiday : { title : string , date : string }[] ) =>{
 
     // 國定假日
     let h_Days = holiday.map( ( x) => { return x['date'] ; });  // 國定假日所包含日期

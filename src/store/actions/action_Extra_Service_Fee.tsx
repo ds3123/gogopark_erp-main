@@ -1,5 +1,4 @@
 
-import React from "react" ;
 import { Dispatch } from "redux";
 
 
@@ -16,6 +15,22 @@ export const set_Self_Adjust_Amount = ( amount : number | string ) => {
             } ;
 
 } ;
+
+
+// # 設定 _ 住宿 : 安親費用 ( 提早 15 : 00 入住 )
+export const set_Lodge_Care_Amount = ( amount : number | string ) => {
+
+    return ( dispatch : Dispatch ) => {
+
+                dispatch({
+                            type   : "SET_LODGE_CARE_AMOUNT" ,
+                            amount : amount
+                         }) ;
+
+            } ;
+
+} ;
+
 
 
 // # 設定 _ 加價項目費用

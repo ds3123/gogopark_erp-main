@@ -6,7 +6,7 @@
 const Data_Table_Id = ( { id } : { id : string } ) => {
 
 
-    return  <span className="tag is-medium f_10" style={{ float:"right" }}> 
+    return  <span className="tag is-medium f_10 m_Left_20" style={{ float:"right" }}> 
                   資料表 id :&nbsp;<b>{  id  }</b> 
             </span> 
 

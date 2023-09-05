@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-pascal-case */
 
-import { FC , useState } from "react" ;
+import { FC } from "react" ;
 import Lodge_Query  from 'components/lodge/edit/Lodge_Query' ;
 import Lodge_Calendar from "components/lodge/edit/Lodge_Calendar" ;
 import Lodge_Price from "components/lodge/edit/Lodge_Price" ;
@@ -13,8 +13,6 @@ type lForm = {
    show_LodgeQuery    : boolean ;
    show_LodgeCalendar : boolean ;
 
-  
-
 }
 
 
@@ -26,12 +24,10 @@ const Lodge_Form_Function : FC< lForm > = ( {  show_LodgePrice , show_LodgeQuery
    // 房型
    const room_Type = useSelector( ( state : any ) => state.Lodge.current_Lodge_Type ) ;  
 
-
    const lodgeInfo = {} as any ;
 
 
    return <>    
-
             
              { /* 住宿價格試算 */ }  
              { ( show_LodgePrice && room_Type )&&

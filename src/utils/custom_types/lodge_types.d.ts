@@ -33,6 +33,15 @@ type RoomType_Prices = {
 
 }
 
+type LodgeDateSetting = {
+
+    title      : string ;
+    start_date : string ;
+    end_date   : string ;
+
+}
+
+
 // 房型、房號
 type Room_Type_Number = {
 

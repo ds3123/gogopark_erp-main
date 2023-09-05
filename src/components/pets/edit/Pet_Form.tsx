@@ -30,12 +30,8 @@ import {
 import useCreate_Service_Context from "containers/contexts/createServiceContext" ;
 import { sort_ObjAttr } from 'fp/tool' ;
 
-
 const note       = { color: "rgb(0,0,180)" , fontWeight: "bold" } ;
 const note_Input = { color: "rgb(0,0,180)" , fontWeight: "bold" , border : "none"  } ;
-
-
-
 
 
 

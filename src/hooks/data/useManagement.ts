@@ -43,6 +43,7 @@ const obj_Tag : any = {
 
                          // # 系統設定
                          "系統設定_寵物品種" : { second : "系統設定"  , third : "寵物品種" } , // 寵物品種
+                         "系統設定_熱門時段" : { second : "系統設定"  , third : "熱門時段" } , // 熱門時段
 
 
                       } ;    
@@ -73,6 +74,7 @@ export const useEffect_Management_After_Edit = ( click_Second : any , click_Thir
         // 預設點選
         let c_Second = "財務管理" ;
         let c_Third  = "綜合報表" ;
+        
 
         // 篩選出目前建立的 cookie
         const cookie_Arr = [ cookie_Create , update_Price , update_Data , undo_Archive , delete_Archive , delete_CustomPlan ] ;

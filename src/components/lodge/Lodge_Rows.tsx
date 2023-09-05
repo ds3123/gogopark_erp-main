@@ -117,6 +117,8 @@ const Lodge_Rows = ( props : any ) => {
 
    return <tr style = { ( data[ 'start_date' ] && data[ 'start_date' ].slice(0,10) === today ) ? { background:"rgb(160,160,160,.2)" }  : { lineHeight : "40px" } }>
 
+            <td>  <b className = "relative" style = {{top:"5px"}} >  { data['custom_serial'] ? data['custom_serial'] : "未填寫" } </b> </td> 
+
             <td style={ t_L } className="relative" > 
 
               { /* 異常標示 */ }
@@ -153,15 +155,14 @@ const Lodge_Rows = ( props : any ) => {
             <td> { data['lodge_plan'] ? data['lodge_plan'] : '無' } </td>
 
             <td> { data['start_date'] }&nbsp; &nbsp;{ data['start_time'] } </td>
-            <td> { data['end_date'] }&nbsp; &nbsp;{ data['end_time'] } </td>
-            <td> { dates_Sum } </td>
+            <td> { data['end_date'] } </td>
             <td> <b className="fDblue"> { data['lodge_price'] } </b> </td>
+            <td> { data['care_price'] } </td>
             <td> { data['self_adjust_amount'] } </td>
-            <td>  { data['pickup_fee'] }  </td>
-
+            <td> { data['pickup_fee'] }  </td>
             <td>
                   <b className="fDred">
-                      { data['lodge_price'] + data['self_adjust_amount'] + data['pickup_fee'] }
+                      { data['lodge_price'] + data['care_price'] + data['self_adjust_amount'] + data['pickup_fee'] }
                   </b>
             </td>
             <td>

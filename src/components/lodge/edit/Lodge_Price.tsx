@@ -2,23 +2,18 @@
 /* eslint-disable no-lone-blocks */
 
 import { FC } from "react" ;
-import { get_Interval_Dates , get_Week_Day } from "utils/time/date" ;
+import { get_Interval_Dates , get_Interval_Dates_Without_LastDate , get_Week_Day } from "utils/time/date" ;
 import { useSelector } from "react-redux" ;
-
-
-
 import { 
-
         get_Lodge_RegularDays ,
         get_Lodge_Holidays ,
         get_Lodge_NationalHolidays ,
         get_Lodge_RoomType_Prices ,
         get_Lodge_Non_NationalHolidays ,
-
        } from "fp/lodges/read/get_Lodge" ;
 
-import { national_Holidays , lodge_PricePlan_1  , lodge_PricePlan_2 } from "components/lodge/lodge_config" ;
-
+import { lodge_PricePlan_1  , lodge_PricePlan_2 } from "components/lodge/lodge_config" ;
+import { useEffect_Shop_Lodge_Holidays } from "../hooks/useEffect_Lodge_Holidays" ;
 
 
 
@@ -29,8 +24,6 @@ export interface ILodge_Price{
     ordinary_Holiday : number ; // 假日
     national_Holiday : number ; // 國定假日
 }
-
-
 
 
 // 各種房型 ( 大、中、小 房 / 籠 )，於不同時段( 平日、假日、國定假日 ) : 價格
@@ -47,19 +40,19 @@ export const lodge_Price : ILodge_Price[] = [
 ] ;
 
 
-
-
-
-
-
 { /* @ 住宿價格計算 */ }
-const Lodge_Price : FC = ( ) => {
+const Lodge_Price : FC = () => {
+
+
+    // 取得 _ 特定店家，所有熱門時段日期
+    const national_Holidays = useEffect_Shop_Lodge_Holidays() ;
 
 
     // 房型 / 住、退房日期
     const room_Type      = useSelector( ( state : any ) => state.Lodge.current_Lodge_Type ) ;   // 房型
     const check_In_Date  = useSelector( ( state : any ) => state.Lodge.lodge_Check_In_Date ) ;  // 住房日期
     const check_Out_Date = useSelector( ( state : any ) => state.Lodge.lodge_Check_Out_Date ) ; // 退房日期
+
 
     // 目前選擇住宿 : 價格方案 ( 可退款 / 不可退款 )
     const current_Lodge_Plan = useSelector( ( state : any ) => state.Lodge.current_Lodge_Price_Plan ) ; 
@@ -80,16 +73,21 @@ const Lodge_Price : FC = ( ) => {
 
         
     // 取得 _ 起、迄日期之間 : 所有日期                                                     
-    const intervalDays         = get_Interval_Dates( check_In_Date , check_Out_Date ) ;  
+    const intervalDays             = get_Interval_Dates( check_In_Date , check_Out_Date ) ;  
     
+    // 去除最後一個日期
+    const intervalDays_No_LastDate = get_Interval_Dates_Without_LastDate( intervalDays ) ;
+ 
+
+
     // 國定假日以外 ( 平日 + 假日 -> 排除 _ 國定假日 ) 的所有日期
-    const non_NationalHolidays = get_Lodge_Non_NationalHolidays( intervalDays , national_Holidays ) ;
+    const non_NationalHolidays = get_Lodge_Non_NationalHolidays( intervalDays_No_LastDate , national_Holidays ) ;
     
 
     // 取得 _ 平日、假日、國定假日
-    const regularDays      = get_Lodge_RegularDays( non_NationalHolidays ) ;                          // 平日
-    const holidays         = get_Lodge_Holidays( non_NationalHolidays ) ;                             // 假日
-    const nationalHolidays = get_Lodge_NationalHolidays( intervalDays , national_Holidays ) ; // 國定假日
+    const regularDays      = get_Lodge_RegularDays( non_NationalHolidays ) ;                              // 平日
+    const holidays         = get_Lodge_Holidays( non_NationalHolidays ) ;                                 // 假日
+    const nationalHolidays = get_Lodge_NationalHolidays( intervalDays_No_LastDate , national_Holidays ) ; // 國定假日
 
     // 取得 _ 各類型日期：數量
     const regularDays_Num      = regularDays.length ;
@@ -141,7 +139,7 @@ const Lodge_Price : FC = ( ) => {
                         { room_Type &&
 
                             <span style={{float:"right"}}>
-                                平日 _ 共 <b className = "fDblue" > { regularDays_Num } </b> 天 ，
+                                平日 _ 共 <b className = "fDblue" > { regularDays_Num } </b> 晚 ，
                                 小計 : <b className = "fRed" > { current_RegularDays_Price_Total }</b> 元
                             </span>
 
@@ -169,7 +167,7 @@ const Lodge_Price : FC = ( ) => {
 
                         { room_Type &&
                             <span style = {{ float: "right" }} >
-                                假日 _ 共 <b className = "fDblue" > { holidays_Num } </b> 天 ，
+                                假日 _ 共 <b className = "fDblue" > { holidays_Num } </b> 晚 ，
                                 小計 : <b className = "fRed" > { current_Holidays_Price_Total } </b> 元
                             </span>
                         }
@@ -195,7 +193,7 @@ const Lodge_Price : FC = ( ) => {
 
                         { room_Type &&
                             <span style={{float: "right"}}>
-                               原價 _ 共 <b className = "fDblue"> { nationalHolidays_Num } </b> 天 ，
+                               原價 _ 共 <b className = "fDblue"> { nationalHolidays_Num } </b> 晚 ，
                                 小計 : <b className = "fRed" >{ current_NationalHolidays_Price_Total }</b> 元
                             </span>
                         }
@@ -218,7 +216,7 @@ const Lodge_Price : FC = ( ) => {
                                                   <span className = "tag is-white is-rounded f_10">
                                                      { regularDays_Num + holidays_Num + nationalHolidays_Num }
                                                   </span>
-                                               </b> &nbsp; 天，
+                                               </b> &nbsp; 晚，
 
                         金額共計 &nbsp; <b className = "fRed" >
                                          <b className = "tag is-white is-rounded fRed">

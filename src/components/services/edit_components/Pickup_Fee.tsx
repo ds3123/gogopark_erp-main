@@ -3,7 +3,6 @@ import React, {FC, useEffect} from "react" ;
 import { Edit_Form_Type } from "utils/Interface_Type"
 import { set_PickupFee } from "store/actions/action_Extra_Service_Fee"
 import { useDispatch } from "react-redux";
-import {Input} from "templates/form/Input";
 
 
 interface IPickup extends Edit_Form_Type {

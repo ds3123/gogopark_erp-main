@@ -51,22 +51,17 @@ import Self_Adjust_Amount from "components/services/edit_components/Self_Adjust_
 import Beautician_Process from "components/index/components/Beautician_Process"  
 import Submit_Error from "components/index/components/Submit_Error"
 import cookie from 'react-cookies'
-
 import { colCovert_Basic_UPDATE , colCovert_Bath_UPDATE , colCovert_Beauty_UPDATE } from "hooks/crud/process/convert_Columns_Update" 
 import { useMatch_Obj } from "containers/data_components/Condition_for_Currnet_Tab" ;
 import To_Previous_Page from "templates/note/To_Previous_Page" ;
 import Data_Table_Id from 'templates/note/Data_Table_Id' ;
-
 import Update_Submit_Button from 'templates/button/Update_Submit_Button' ;
-
 import { ServiceSummaryFeeProvider } from "components/services/edit_components/summary_fee/contexts/serviceSummaryFeeContext"
 import { setTimeout } from "timers" ; 
-
 import Side_Extra_Fee_List from '../components/Side_Extra_Fee_List';
-
 import { execute_Update_ServiceOrder_LeaveTime } from "fp/services/update/update_ServiceOrder" ;
 import { get_H_M } from "utils/time/time" ;
-
+import { Service_Tag } from "../components/Service_Tag"
 
 
 
@@ -243,7 +238,6 @@ const Update_Service = ( ) => {
        // 更新資料 
        update_Data( service_Url , service_Id , updateObj , '/index' , `${ service_Type }單` ) ; 
 
-
     
     } ;
 
@@ -282,7 +276,6 @@ const Update_Service = ( ) => {
                 { /* 資料表 id */ }   
                 <Data_Table_Id id = { service_Id } />
 
-
                 { /*  標題  */ }
                 <b className = { "m_Bottom_30 " + color } >
 
@@ -301,11 +294,12 @@ const Update_Service = ( ) => {
                     { pet.sex   && <> <b className="tag is-white is-rounded f_12"> { pet.sex }    </b> &nbsp; &nbsp; </> }
                     { pet.age   && <> <b className="tag is-white is-rounded f_12"> { pet.age } 歲 </b> &nbsp; &nbsp; </> }
                     { pet.color && <> <b className="tag is-white is-rounded f_12"> { pet.color }  </b>               </> } 
+ 
 
                     { /* 加價單 */ }
                     { extraFee_Not_Deleted?.length > 0 &&
 
-                        <b className = "tag is-medium is-rounded pointer" 
+                        <b className = "tag is-medium is-rounded pointer m_Left_20" 
                            style     = {{ 'background' : "rgba(80,80,220,.9)" , "color" : "white" }}
                            onClick   = { () => dispatch( set_Modal( true , <Side_Extra_Fee_List /> , { data : data , modal_Style : { width : "110%" , left : "-5%" , top : "30px" } } )) } >
 
@@ -315,13 +309,22 @@ const Update_Service = ( ) => {
                         
                      }    
 
+                     { /* 列印 */ }
+                     <b className  = "tag is-medium is-rounded pointer m_Left_20" 
+                           style   = {{ 'background' : "rgba(80,80,220,.9)" , "color" : "white" }}
+                           onClick = { () => dispatch( set_Modal( true , <Service_Tag /> , { data : data , modal_Style : { width : "40%" , left : "30%" , top : "-20px" } } )) } >
+
+                        <i className = "fas fa-file-medical f_14" ></i> &nbsp; 列印單 
+
+                     </b> 
+
                 </b> 
                 
                 { /*  回上一頁  */ }
                 { source_Page && <To_Previous_Page action = { () => back_To_Prev_Page( source_Page , data?.customer?.id , data?.pet ) } />  }
 
                 { /* 提交：轉異常 ＆ 銷單 */ }
-                <Submit_Error current_User_Name = { current_User['name'] } data = { data } /> 
+                <Submit_Error current_User_Name = { current_User['name'] } data = { data } service_Type = { service_Type } /> 
     
                 
                 { /* 顯示提示 ( 異常案件、銷單 ） */ }

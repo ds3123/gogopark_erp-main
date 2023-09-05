@@ -130,12 +130,6 @@ const Create_Data_Container = () => {
             return false ;
         }
 
-        // 預約_今天、預約_未來 ( 預約單 ) && 未點選 : 預計到店時間
-        if( ( service_Status === '預約_今天' || service_Status === '預約_未來' ) && data?.expected_Arrive === '00:00' ){
-            alert( '尚未設定或點選 : 預計到店欄位 ' ) ;
-            return false ;
-        }
-
         // 今日 _ 已有服務訂單 ( 同一隻寵物 )
         if( today_petId_Services.length > 0 && window.confirm( `${ current_Pet?.name }( ${ current_Pet?.species } ) 今日已有服務訂單，請確認是否要新增 ?` ) ){
             execute_Create( data ) ;

@@ -21,6 +21,7 @@ import Employees_List from "components/management/employee/Employees_List" ;
 import Auth_Member_List from "./auth/shop_member/Auth_Member_List" ;
 import Auth_Shop_List from "./auth/single_shop/Auth_Shop_List" ;
 import Species_List from "components/management/setting/species/Species_List" ;
+import Holidays_List from "components/management/setting/holidays/Holidays_List" ;
 import Archive_List from "components/management/data/archive/Archive_List" ;
 import Error_List from "components/management/data/error/Error_List" ;
 import Plan_Data_List from "./data/plan_data/Plan_Data_List" ;
@@ -99,13 +100,12 @@ const Management = () => {
             // case '方案逾期' : return <Plan_Expire_List /> ;
             case '方案逾期' : return <Plans /> ;
           
-
             // # 系統設定
             case '寵物品種' : return <Species_List />  ;
+            case '熱門時段' : return <Holidays_List />  ;
 
             // # 操作日誌
             case '操作日誌' : return <Log_List />  ;
-
 
             default : return null ;
 
@@ -135,16 +135,15 @@ const Management = () => {
                  {
                     Second_Nav.map( ( item , index ) => {
 
-
                         /*
 
                            # 只有狗狗公園帳號 ( shop_Id === 1 )，才顯示 :
                                     
                              * [ 帳號管理 ] 標籤
                              * [ 系統設定 ] 標籤 ( 寵物品種 )
-                             
                                   
                         */ 
+                       
                         if( shop_Id !== 1 && item.title === "帳號管理"  ) return false ;
                         if( shop_Id !== 1 && item.title === "系統設定"  ) return false ;
                         

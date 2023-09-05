@@ -62,15 +62,25 @@ const Lodge_Form_Info : FC< lodgeForm > = ( { editType , register , serviceData 
 
   return  <div className="columns is-multiline is-mobile relative">
 
-                { /* 合約編號 */ }
+                { /* 系統編號 */ }
                 <div className={ column }>
 
                     { is_Create && <div className = "absolute" style = {{ width : "158px" , height : "40px" , top : "37px" , borderRadius : "5px" , zIndex : 100 , background : "rgba(0,0,0,.1)" }} ></div>  }
 
-                    <p> <b>合約編號</b> </p>
+                    <p> <b>系統編號</b> </p>
 
                     { is_Create && <input className="input" type="text" { ...register( "lodge_Serial" ) }  /> }
                     { is_Update && <b style={ blue } > { serviceData.contract_serial } </b> }
+
+                </div>
+
+                <div className={ column }>
+
+
+                    <p> <b>自訂編號</b> </p>
+                    { is_Create && <input className="input" type="text" { ...register( "lodge_Custom_Serial" ) }  /> }
+                    { is_Update && <b style={ blue } > { serviceData.custom_serial } </b> }
+                     
 
                 </div>
 

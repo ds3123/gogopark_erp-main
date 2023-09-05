@@ -5,7 +5,7 @@
 import { FC , useEffect , useState } from "react"
 import { Edit_Form_Type , ILodge_Data  } from "utils/Interface_Type";
 import moment from "moment";
-import { get_Date_Cal , get_Interval_Dates , get_InUse_Days , get_Today } from "utils/time/date";
+import { get_Date_Cal , get_Interval_Dates , get_Interval_Dates_Without_LastDate , get_InUse_Days , get_Today } from "utils/time/date";
 import { set_Current_Lodge_Price_Sum } from 'store/actions/action_Lodge'
 import { useDispatch , useSelector } from "react-redux";
 import { get_RandomInt } from "../../../utils/number/number";
@@ -14,10 +14,14 @@ import { set_Lodge_Check_In_Date , set_Lodge_Check_Out_Date } from "store/action
 import Lodge_Form_Title from "./components/Lodge_Form_Title";
 import Lodge_Form_Info from "./components/Lodge_Form_Info";
 import Lodge_Form_Period from "./components/Lodge_Form_Period" ;
-
 import { get_Lodge_Interval_Prices_Total } from "fp/lodges/read/get_Lodge" ;
-import { national_Holidays , lodge_PricePlan_1 , lodge_PricePlan_2 } from "components/lodge/lodge_config" ;
+import { lodge_PricePlan_1 , lodge_PricePlan_2 } from "components/lodge/lodge_config";
 import { set_Current_Lodge_Plan } from "store/actions/action_Lodge" ;
+import Lodge_Care_Fee from "./components/Lodge_Care_Fee";
+import Lodge_Bath_Fee from "./components/Lodge_Bath_Fee";
+import Lodge_Beauty_Fee from "./components/Lodge_Beauty_Fee";
+import Lodge_Custom_Fee from "./components/Lodge_Custom_Fee";
+import { useEffect_Shop_Lodge_Holidays } from "../hooks/useEffect_Lodge_Holidays";
 
 
 
@@ -56,10 +60,15 @@ interface ILodge extends Edit_Form_Type {
 
 
 { /* @ 住宿表單欄位  */}
-const Lodge_Form : FC< ILodge > = ( { register  , control  , watch , setValue , errors , current, editType, serviceData } ) => {
+const Lodge_Form : FC< ILodge > = ( { register  , control  , watch , setValue , errors , current , editType , serviceData } ) => {
 
 
-    const dispatch       = useDispatch() ;
+    const dispatch = useDispatch() 
+    
+    // 取得 _ 特定店家，所有熱門時段日期
+    const nationalHolidays = useEffect_Shop_Lodge_Holidays() ;
+
+
     
     // # 目前欄位所選擇 :
     const lodgeType      = useSelector( ( state : any ) => state.Lodge.current_Lodge_Type ) ;   // 房型 ( 下拉 )
@@ -152,8 +161,15 @@ const Lodge_Form : FC< ILodge > = ( { register  , control  , watch , setValue , 
       
         if( lodgeType && !editType ){
 
-          const intervalDays    = get_Interval_Dates( check_In_Date , check_Out_Date ) ;
-          const lodge_Price_Sum = get_Lodge_Interval_Prices_Total( intervalDays , national_Holidays , lodgeType , lodge_PlanType  ) ;
+
+          // 起、迄日期之間，所有日期   
+          const intervalDays             = get_Interval_Dates( check_In_Date , check_Out_Date ) ;
+
+          // 去除最後一個日期 ( 計算住幾 "晚" )
+          const intervalDays_No_LastDate = get_Interval_Dates_Without_LastDate( intervalDays ) ;  
+
+          // 計算 _ 總計金額
+          const lodge_Price_Sum = get_Lodge_Interval_Prices_Total( intervalDays_No_LastDate , nationalHolidays , lodgeType , lodge_PlanType  ) ;
          
           dispatch( set_Current_Lodge_Price_Sum( lodge_Price_Sum ) ) ;                                
 
@@ -197,6 +213,7 @@ const Lodge_Form : FC< ILodge > = ( { register  , control  , watch , setValue , 
         serviceData : serviceData ,
     }
 
+
    return <>
 
             { /* 住 ( R ) : { check_In_Date }  /  退( R) : { check_Out_Date } */ }
@@ -209,18 +226,33 @@ const Lodge_Form : FC< ILodge > = ( { register  , control  , watch , setValue , 
                   
                 <div className = "column is-10-desktop relative" > 
 
-                   <b className = "f_12 m_Right_10" > 價格方案 : </b> 
+                   <b className = "m_Right_10 f_13" > 價格方案 : </b> 
 
                    { /* 新增 */ } 
                    { !editType && <>
 
-                                     <span onClick = { () => click_LodgeType( "不退款" ) } className = { `pointer tag is-danger ${ current_Lodge_Plan !== "不退款" ? 'is-light' : '' } is-large is-rounded m_Right_20` } >         不退款 </span>
-                                     <span onClick = { () => click_LodgeType( "可退款" ) } className = { `pointer tag is-danger ${ current_Lodge_Plan !== "可退款" ? 'is-light' : '' } is-large is-rounded` } > 可退款 </span>
+                                     <span onClick = { () => click_LodgeType( "不退款" ) } className = { `tag is-medium is-danger pointer ${ current_Lodge_Plan !== "不退款" ? 'is-light' : '' } is-rounded m_Right_20` } > 
+                                     
+                                       不退款 
+
+                                     </span>
+
+                                     <span onClick = { () => click_LodgeType( "可退款" ) } className = { `tag is-medium is-danger pointer ${ current_Lodge_Plan !== "可退款" ? 'is-light' : '' } is-rounded` } >
+                                        
+                                       可退款 
+                                        
+                                     </span>
                                 
                                   </> }
                      
                     { /* 編輯 */ }
-                    { ( editType ) && <span className = " tag is-danger is-medium is-rounded" >  { serviceData?.lodge_plan ? serviceData?.lodge_plan : '無' } </span> }
+                    { ( editType ) && <span className = " tag is-danger is-large is-rounded" > 
+                     
+                            { serviceData?.lodge_plan ? serviceData?.lodge_plan : '無' }
+
+                            <span className = "tag is-white m_Left_10 m_Right_10 fRed f_12 is-rounded" > { serviceData?.lodge_price }  </span> 元
+                            
+                       </span>  }
                    
                 </div>
 
@@ -241,6 +273,33 @@ const Lodge_Form : FC< ILodge > = ( { register  , control  , watch , setValue , 
                </div>
 
             }
+
+            <div className = "columns is-multiline is-mobile m_Bottom_50 m_Top_20" >
+
+                {/* 安親費用 */}
+                { !editType &&  <Lodge_Care_Fee register = { register } setValue = { setValue } /> }
+                {  editType &&  <>  
+                                  
+                                  <b className = "tag is-primary is-large m_Top_30 m_Left_10">
+                                      <i className = 'fas fa-baby-carriage m_Right_10'></i>
+                                       安親費用  
+                                      <span className = "tag is-white m_Left_10 m_Right_10 fRed f_12 is-rounded" > { serviceData?.care_price }  </span> 元
+                                  </b> 
+                               </> 
+                               }
+
+
+                { /* 洗澡費用 */ }
+                <Lodge_Bath_Fee register = { register } setValue = { setValue } /> 
+
+                { /* 美容費用 */ }
+                <Lodge_Beauty_Fee register = { register } setValue = { setValue } /> 
+
+            </div>
+            
+            
+            {/* 自訂費用 */}
+            <Lodge_Custom_Fee register = { register } setValue = { setValue } /> 
 
             <hr/><br/>
 

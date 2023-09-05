@@ -12,10 +12,12 @@ type Error = {
     current_User_Name : string ;
     data              : any 
 
+    service_Type      : string ; //基礎、洗澡、美容、安親、住宿
+
 }
 
 // @ 提交 _ 銷單 / 轉異常
-const Submit_Error = ( { current_User_Name , data } : Error ) => {
+const Submit_Error = ( { current_User_Name , data , service_Type } : Error ) => {
 
 
  
@@ -64,7 +66,7 @@ const Submit_Error = ( { current_User_Name , data } : Error ) => {
                </div>
 
                { /* 銷單 */ }    
-               { ( data['is_delete'] === 0 && data['is_error'] !== 1 ) && 
+               { ( data['is_delete'] === 0 && data['is_error'] !== 1 && service_Type !== "住宿" && service_Type !== "安親" ) && 
                
                     <div className="column is-2-desktop">
 

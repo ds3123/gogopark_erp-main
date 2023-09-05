@@ -176,6 +176,9 @@ export const FeeDetail_Lodge = () => {
     // 住宿金額
     const current_Lodge_Price = useSelector(( state : any ) => state.Lodge.current_Lodge_Price_Sum ) ;  
 
+    // 安親費用 ( 提早 15 : 00 入住 )
+    const care_Amount         = useSelector(( state : any ) => state.Extra_Fee.Lodge_Care_Amount )  ;
+
     // 自行調整、增減金額
     const self_Adjust_Amount  = useSelector(( state : any ) => state.Extra_Fee.Self_Adjust_Amount )  ;
 
@@ -185,6 +188,7 @@ export const FeeDetail_Lodge = () => {
 
     return  <>
                { current_Lodge_Price !== 0 && <b className="tag is-medium is-rounded" style={ margin }> 住宿費 : { current_Lodge_Price } 元  </b> }
+               { care_Amount         > 0 && <b className="tag is-medium is-rounded" style={ margin }> 安親費 : { care_Amount } 元  </b> }
                { self_Adjust_Amount  !== 0 && <b className="tag is-medium is-rounded" style={ margin }> 個體調整金額 : { self_Adjust_Amount } 元  </b> }
                { pickupFee           !== 0 && <b className="tag is-medium is-rounded" style={ margin }> 接送費 : { pickupFee } 元  </b> }
             </>

@@ -7,6 +7,7 @@ import {
          is_Lodge_NationalHoliday ,
          is_Early_CheckIn ,
          is_Late_CheckOut ,
+         is_Lodge_Duplicate_Date ,
          
          get_Lodge_RegularDays ,
          get_Lodge_Holidays ,
@@ -18,16 +19,28 @@ import {
          get_LodgeDate_RoomType_NationalHoliday_Price ,
 
          get_Lodge_Prices_Total ,
-
          get_Lodge_RegualrDays_Price_Total , 
          get_Lodge_Holidays_Price_Total , 
          get_Lodge_NationalHolidays_Price_Total ,
         
-         get_Lodge_Interval_Prices_Total 
+         get_Lodge_Interval_Prices_Total ,
+
+         get_Lodge_Title_Dates ,
+         get_Lodge_All_Dates ,
+
+         get_Lodge_Split_Dates ,
+         get_Lodge_Convert_Single_Date
+         
+         
 
        } from "fp/lodges/read/get_Lodge" ;
 
-import { get_Interval_Dates } from "utils/time/date"
+
+import { 
+          get_Interval_Dates , 
+          get_Interval_Dates_Without_LastDate
+        } from "utils/time/date" ;
+import { kStringMaxLength } from 'buffer';
 
 
 
@@ -42,6 +55,23 @@ test( "get_Lodge_Prices_Total() : 取得 _ 價格 : 總計金額" , () => {
 }) ;
 
 
+test( "is_Lodge_Duplicate_Date() : 判斷 _ 所輸入日期，是否與資料庫日期重複" , () => {
+
+       // 資料庫日期
+       const shopDates       = [ '2023-08-28' , '2023-08-29' , '2023-09-10' , '2023-09-11' , '2023-09-12' ] ;
+
+       // 所輸入日期
+       const intervalDates_1 = [ '2023-08-28' , '2023-08-29' , '2023-08-30' ] ;  // 重複
+       const intervalDates_2 = [ '2023-09-11' , '2023-09-12' , '2023-09-13' ] ;  // 重複
+       const intervalDates_3 = [ '2023-12-11' , '2023-12-12' ] ;                 // 沒有重複
+
+       expect( is_Lodge_Duplicate_Date( intervalDates_1 , shopDates ) ).toBeTruthy() ;
+       expect( is_Lodge_Duplicate_Date( intervalDates_2 , shopDates ) ).toBeTruthy() ;
+       expect( is_Lodge_Duplicate_Date( intervalDates_3 , shopDates ) ).not.toBeTruthy() ;
+
+
+}) ;
+
 
 describe( "判斷 _ Check In 、 Check Out 時間" , () => { 
 
@@ -55,7 +85,7 @@ describe( "判斷 _ Check In 、 Check Out 時間" , () => {
        expect( is_Early_CheckIn( '15 : 01' ) ).not.toBeTruthy() ;
        expect( is_Early_CheckIn( '16 : 10' ) ).not.toBeTruthy() ;
 
-    }) ;
+    }) ; 
 
     test( "is_Late_CheckOut() : 延遲 Check Out" , () => {
     
@@ -232,6 +262,39 @@ describe( "get_Interval_Dates() : 取得 _ 起、迄日期之間 : 所有日期�
 
     }) ;
 
+    test( "get_Interval_Dates_Without_LastDate() : 去除 _ 最後一個日期" , () => {
+    
+
+        const data_1 = [ 
+                         '2023-08-26' ,  
+                         '2023-08-27' ,  
+                         '2023-08-28' ,  
+                         '2023-08-29' ,  
+                       ] ;
+
+
+        const data_2 = [ 
+                         '2023-08-30' ,  
+                         '2023-08-31' ,  
+                         '2023-09-01' ,  
+                         '2023-09-02' ,  
+                        ] ;
+
+        expect( get_Interval_Dates_Without_LastDate( data_1 ) ).toEqual( [ 
+                                                                            '2023-08-26' ,  
+                                                                            '2023-08-27' ,  
+                                                                            '2023-08-28' 
+                                                                          ] ) ;
+
+        expect( get_Interval_Dates_Without_LastDate( data_2 ) ).toEqual( [ 
+                                                                            '2023-08-30' ,  
+                                                                            '2023-08-31' ,  
+                                                                            '2023-09-01' 
+                                                                          ] ) ; 
+
+    
+    }) ;
+
 }) ; 
 
 
@@ -314,6 +377,74 @@ describe( "從一段時間中( 多個日期字串 )，篩選 _ 平日、假日�
 
     }) ;
 
+    test( "get_Lodge_Title_Dates() : 取得 _ 相同時段名稱下，所有日期" , () => {
+    
+          const data = [
+                          { title : "中元節連假" , date : "2023-08-27" } ,
+                          { title : "中元節連假" , date : "2023-08-28" } ,
+                          { title : "中元節連假" , date : "2023-08-29" } ,
+                          { title : "中元節連假" , date : "2023-08-30" } ,
+
+                          { title : "中秋節連假" , date : "2023-09-10" } ,
+                          { title : "中秋節連假" , date : "2023-09-11" } ,
+                          { title : "中秋節連假" , date : "2023-09-12" } ,
+                        ] ;
+
+          const result  = [
+                            { title :  "中元節連假" , date : [ "2023-08-27" , "2023-08-28" , "2023-08-29" , "2023-08-30" ] } ,
+                            { title :  "中秋節連假" , date : [ "2023-09-10" , "2023-09-11" , "2023-09-12" ] } ,
+                          ] ;   
+
+          expect( get_Lodge_Title_Dates( data ) ).toEqual( result ) ;                                  
+
+    }) ;
+
+    test( "get_Lodge_All_Dates() : 取得 _ 所有熱門時段日期" , () => {
+    
+         const data = [ 
+                         { title : "中元節連假" , date : [ "2023-08-29" , "2023-08-30" ] } ,
+                         { title : "國慶日連假" , date : [ "2023-10-10" , "2023-10-11" ] } ,
+                         { title : "平安夜"    , date : [ "2023-12-24" ] } ,
+                      ] ;
+
+         expect( get_Lodge_All_Dates( data ) ).toEqual( [ "2023-08-29" , "2023-08-30" ,  "2023-10-10" , "2023-10-11" , "2023-12-24" ] )  ;
+
+    }) ;
+
+    test( "get_Lodge_Split_Dates() : 取得 _ 將時段物件，拆解為多個個別日期" , () => {
+    
+         const obj = { title : "中元節" , date : [ "2023-08-29" , "2023-08-30" ] } ;
+         const exp = [
+                       { title : "中元節" , date : "2023-08-29" } ,
+                       { title : "中元節" , date : "2023-08-30" } ,
+                     ] ;
+
+         expect( get_Lodge_Split_Dates( obj ) ).toEqual( exp ) ;
+    
+    }) ;
+
+
+    test( "get_Lodge_Convert_Single_Date() : 取得 _ 拆解、轉換後的 ( 單個 ) 熱門日期" , () => {
+    
+          const data = [
+                         { title : "中元節" , date : [ "2023-08-29" , "2023-08-30" ] } ,
+                         { title : "中秋節" , date : [ "2023-09-10" , "2023-09-11" , "2023-09-12" ] }
+                       ] ;
+
+          const res = [
+                         { title : "中元節" , date : "2023-08-29" } ,
+                         { title : "中元節" , date : "2023-08-30" } ,
+                         { title : "中秋節" , date : "2023-09-10" } ,
+                         { title : "中秋節" , date : "2023-09-11" } ,
+                         { title : "中秋節" , date : "2023-09-12" } ,
+                      ] ;
+
+          expect( get_Lodge_Convert_Single_Date( data ) ).toEqual( res )
+
+    
+    }) ;
+
+
 }) ; 
 
 
@@ -370,7 +501,6 @@ describe( "取得 _ 房型、時段 : 價格" , () => {
                                                                                        holiday_Price    : 1260  , 
                                                                                        regularDay_Price : 1120 
                                                                                      }) ;
-
 
     }) ;
 
@@ -453,7 +583,6 @@ describe( "取得 _ 房型、時段 : 價格" , () => {
              
     
     }) ;
-
 
     test( "get_Lodge_Interval_Prices_Total() : 取得 _ 住宿期間，價格：總計金額" , () => {
 
