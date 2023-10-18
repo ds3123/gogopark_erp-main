@@ -6,7 +6,6 @@ import cookie from 'react-cookies' ;    // 匯入 cookie
 
 
 
-
 // cookie 值所相對應要點選的第 2 , 3 層頁籤
 const obj_Tag : any = {
 
@@ -71,9 +70,9 @@ export const useEffect_Management_After_Edit = ( click_Second : any , click_Thir
 
         // --------------
 
-        // 預設點選
+        // 預設點選 
         let c_Second = "財務管理" ;
-        let c_Third  = "綜合報表" ;
+        let c_Third  = "現金績效" ;
         
 
         // 篩選出目前建立的 cookie

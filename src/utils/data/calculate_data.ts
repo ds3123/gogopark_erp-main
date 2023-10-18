@@ -43,7 +43,6 @@ export const cal_Use_Plan_Amount_Total = ( data : any[] | undefined ) : number =
 
     let total_Amount = 0 ; 
 
-
     if( data && data.length > 0 ){
 
         data.forEach( ( x : any ) => {
@@ -52,16 +51,14 @@ export const cal_Use_Plan_Amount_Total = ( data : any[] | undefined ) : number =
             const service_Type = x?.service_type ;     // 服務類型 ( Ex. 洗澡 / 美容 )      
         
             // 預設方案
-            if( plan_Type === '包月洗澡' ) total_Amount = x['bath_month_fee'] ;
-            if( plan_Type === '包月美容' && service_Type === '洗澡' ) total_Amount = x['bath_month_fee'] ;
-            if( plan_Type === '包月美容' && service_Type === '美容' ) total_Amount = x['beauty_month_fee'] ;
-          
+            if( plan_Type === '包月洗澡' ) total_Amount += x['bath_month_fee'] ;
+            if( plan_Type === '包月美容' && service_Type === '洗澡' ) total_Amount += x['bath_month_fee'] ;
+            if( plan_Type === '包月美容' && service_Type === '美容' ) total_Amount += x['beauty_month_fee'] ;
         
             // 自訂方案
-            if( plan_Type !== '包月洗澡' && plan_Type !== '包月美容' ) total_Amount = x?.plan?.service_price;   
+            if( plan_Type !== '包月洗澡' && plan_Type !== '包月美容' ) total_Amount += x?.plan?.service_price ;   
 
-        } ) ;
-
+        }) ;
        
     } 
 

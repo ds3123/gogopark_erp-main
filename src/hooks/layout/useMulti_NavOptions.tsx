@@ -11,7 +11,8 @@ interface ISecond_Nav {
 
 const Second_Nav : ISecond_Nav[] = [
 
-    { title : "財務管理" , icon : "fas fa-dollar-sign" , third_nav : [ '綜合報表' , '現金帳' , '信用卡' , '第三方支付' ] } ,
+    //{ title : "財務管理" , icon : "fas fa-dollar-sign" , third_nav : [ '現金績效' , '綜合報表'  , '信用卡' , '第三方支付' ] } ,
+    { title : "財務管理" , icon : "fas fa-dollar-sign" , third_nav : [ '現金績效' ] } ,
 
     // { title : "價格管理" , icon : "fas fa-ruble-sign" , third_nav : [ '品種價格' , '基礎' , '洗澡' , '美容' , '安親' , '住宿' , '加價項目' , '加價美容' ] } ,
     { title : "價格管理" , icon : "fas fa-ruble-sign" , third_nav : [ '品種價格' , '基礎' , '加價項目' , '加價美容' ] } ,
@@ -25,7 +26,7 @@ const Second_Nav : ISecond_Nav[] = [
     { title : "資料管理" , icon : "fas fa-database" , third_nav : [ '拒接客戶' , '拒接寵物' ,  '服務異常' , '銷單資料' , '封存資料' , '方案資料' ] } , // 原始版本
 
     // { title : "系統設定" , icon : "fas fa-cog" , third_nav : ["寵物品種","權限管理","品牌分店"] } , // 原始版本
-    { title : "系統設定" , icon : "fas fa-cog" , third_nav : [ '寵物品種' , '熱門時段' ] } ,
+    { title : "系統設定" , icon : "fas fa-cog" , third_nav : [ '寵物品種' , '熱門時段' , '洗美備註' ] } ,
 
     // { title : "操作日誌" , icon : "fas fa-calendar-alt" , third_nav : [] } ,
 
@@ -61,8 +62,6 @@ const useMulti_NavOptions = () => {
         set_CurrentThird( title ) ;  // 設定 _ 所點選第 3層選項
 
     } ;
-
-
 
     return { Second_Nav , Third_Nav , currentSecond , currentThird , click_Second , click_Third }
 

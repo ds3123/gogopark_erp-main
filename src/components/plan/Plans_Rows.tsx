@@ -59,10 +59,9 @@ const Plans_Rows = ( props : any ) => {
         // }
 
         // 刪除方案
-        delete_Plan( id );
+        delete_Plan( id ) ;
 
     }
-                                     
 
 
 

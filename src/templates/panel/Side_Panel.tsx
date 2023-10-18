@@ -46,16 +46,18 @@ const Panel_Wrapper = styled.div<WrapperProps>`
       width:70rem;
       overflow:auto;
       overflow-x:hidden;
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      right:0em;
       background: #fff; 
       box-shadow: -3px 0 3px rgba(0, 0, 0, 0.04);
-      transform: translateX( ${ props => props.active ? '0em' : '70em'} ) ;
-      transition: all 0.3s ease-in-out;
       padding: 3rem 2rem;
       z-index:1001;
+
+      position   : fixed ;
+      top        : 0 ;
+      bottom     : 0 ;
+      right      : 0em ;
+
+      transform  : translateX( ${ props => props.active ? '0em' : '70em'} ) ;
+      transition : all 0.3s ease-in-out ;
 
 `;
 

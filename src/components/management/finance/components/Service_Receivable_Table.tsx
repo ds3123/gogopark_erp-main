@@ -4,12 +4,10 @@ import { useState , useEffect } from 'react' ;
 import { useDispatch } from "react-redux";
 import { set_Side_Panel } from "store/actions/action_Global_Layout";
 import Update_Service from "components/services/edit/Update_Service";
-
 import Extra_Fee_Detail from "./sub_components/Extra_Fee_Detail";
 import Extra_Fee_Info from './sub_components/Extra_Fee_Info';
 
 import { set_Modal } from "store/actions/action_Global_Layout" ;
-import axios from 'utils/axios';
 
 
 type Table = {
@@ -17,48 +15,6 @@ type Table = {
   data : any[] ;
 
 }
-
-const process = async( url : string , serviceID : string ) => {
-
-  const { data } = await axios.get( `/${ url }/show_with_cus_pet/${ serviceID }` ) ;
-
-  return data
-
-} ;
-
-
-const get_Pet_Data = async( data : any[] ) => {
-     
-   const _data = await data.map( x => {
-
-        let url = null ;
-
-        const serviceID   = x?.service_id ;
-        const serviceType = x?.service_type as '基礎' | '洗澡' | '美容' ;
-
-        if( serviceID && serviceType === '基礎' ) url = 'basics' ;
-        if( serviceID && serviceType === '洗澡' ) url = 'bathes' ;
-        if( serviceID && serviceType === '美容' ) url = 'beauties' ;
-
-        // ＊加價單
-        if( url && serviceID ){
-
-           const r = process( url , serviceID ).then( data => data ) ;
-
-           return r
-
-        }
-
-        // ＊一般服務單
-        return x ;
-
-   }) ;
-
-
-   return _data
-
-}
-
 
 
 
@@ -69,8 +25,6 @@ const Service_Receivable_Table = ( { data } : Table ) => {
     const dispatch = useDispatch() ;
 
   
-
-    
     // 點選 _ 服務單
     const click_Service = ( service : any ) => dispatch( set_Side_Panel( 
                                                                          true ,

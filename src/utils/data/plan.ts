@@ -28,7 +28,7 @@ export const get_Plan_Used_Num = ( current : string , plan_Records : any[] ) => 
 
  // 取得 _ 使用此次方案，所花費 ( 佔有 ) 金額
  export const get_Use_Plan_Amount = ( current : string , plan : any , used_Amount : number ) => {
-            
+
     const plan_Total_price = plan['plan_fee_total'] ;  // 方案總計價格
  
     // # 計算 _ 此次所花費的金額 ( 四捨五入 ) 
@@ -55,8 +55,12 @@ export const get_Plan_Used_Num = ( current : string , plan_Records : any[] ) => 
 
     // ------------------------------------------------     
     
-    const balance      = plan_Total_price - used_Amount ;    // 計算 _ 剩餘金額         
-    if( current_Amount > balance ) return balance ;          // 要設定的此次金額，比剩餘金額大 --> 設定剩餘金額
+    // console.log( 'ccc' , current_Amount  ) ;
+
+    //const balance      = plan_Total_price - used_Amount ;    // 計算 _ 剩餘金額         
+    //if( current_Amount > balance ) return balance ;          // 要設定的此次金額，比剩餘金額大 --> 設定剩餘金額
+
+    //console.log( 'ddd' , current_Amount  ) ;
 
     return current_Amount ;
 

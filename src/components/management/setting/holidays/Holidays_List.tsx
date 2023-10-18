@@ -6,7 +6,8 @@ import Date_Tags from './components/Date_Tags' ;
 import { useFetch_Shop_All_Holidays } from "hooks/react-query/lodge/useFetchHoliday" ;
 import { useAccount_Shop_Id } from "hooks/data/useAccount" ;
 import { delete_Holiday_RowDates } from "utils/api/api_Lodge" ; 
-import { useEffect_Edit_Redirect } from "./hooks/useEffect_Holidays_List"
+import { useEffect_Edit_Redirect } from "./hooks/useEffect_Holidays_List" ;
+import { sort_ObjAttr } from 'fp/tool';
 
 
 // 熱門時段 / 國定假日
@@ -33,6 +34,9 @@ const Holidays_List : FC = () => {
     
     } ;
 
+    // 依照 id 反向排序 ( 新 -> 舊 )
+    const _shopAllHolidays = sort_ObjAttr( 'id' , 'desc' )( shopAllHolidays ) ;
+
 
     return <>
 
@@ -41,14 +45,14 @@ const Holidays_List : FC = () => {
               <hr/>
               
               {
-                 shopAllHolidays.map( ( item : any , index : number ) => {
+                 _shopAllHolidays?.map( ( item : any , index : number ) => {
 
 
                       return <div key = { index } className = "columns is-multiline is-mobile m_Top_30 m_Bottom_50" >
 
                                  <div className = "column is-3-desktop relative" >
 
-                                     <b className = "delete relative m_Right_15" 
+                                     <b className = "delete relative" 
                                         style     = {{ top : "7px" , background : "rgba(200,0,0,.7)" }} onClick = { () => { 
 
                                                        if( window.confirm( `確認要刪除此時段所有日期?` ) )  click_Delete_Row( shop_Id , item.title ) ;

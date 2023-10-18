@@ -2,7 +2,6 @@
 
 import { Shop_Status  } from 'utils/Interface_Type'
 import Service_Rows from "components/index/Service_Rows";
-import { useSelector } from "react-redux";
 import { get_ShopStatus_ServiceOrderNum_Basic , get_ShopStatus_ServiceOrderNum_Bath , get_ShopStatus_ServiceOrderNum_Beauty  } from "fp/services/read/get_Statistic" ;
 
 

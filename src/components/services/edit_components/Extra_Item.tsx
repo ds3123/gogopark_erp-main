@@ -1,6 +1,7 @@
 /* eslint-disable no-lone-blocks */
 /* eslint-disable react-hooks/exhaustive-deps */
 
+import { string_Format_Slash } from 'utils/string/edit_string';
 import { Edit_Form_Type } from "utils/Interface_Type" ;
 import useSection_Folding from "hooks/layout/useSection_Folding" ;
 import { useFetch_Shop_Service_Type_Prices } from "hooks/react-query/price/useFetchPrices" ;
@@ -49,9 +50,9 @@ const Extra_Item = ( { register , editType, serviceData } : IExtra_Item ) => {
     // # 編輯 -------
 
     // 所點選的服務名稱 ( for 編輯 )  
-    const services_Data = useEffect_Edit_Picked_Items( editType , serviceData  ) ;
-
+    const services_Data = useEffect_Edit_Picked_Items( editType , serviceData ) ;
     
+
 
    
   return <>
@@ -137,7 +138,7 @@ const Extra_Item = ( { register , editType, serviceData } : IExtra_Item ) => {
 
                         &nbsp;&nbsp; 點選項目 :  
                         <span className="fDblue"> &nbsp;
-                            {  services_Data.join(',') ?  services_Data.join(',') : '無' }
+                            {  services_Data.join(',') ?  string_Format_Slash( services_Data.join(',') ) : '無' }
                         </span>   
 
                     </b>    

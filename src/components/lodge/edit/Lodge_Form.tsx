@@ -17,11 +17,11 @@ import Lodge_Form_Period from "./components/Lodge_Form_Period" ;
 import { get_Lodge_Interval_Prices_Total } from "fp/lodges/read/get_Lodge" ;
 import { lodge_PricePlan_1 , lodge_PricePlan_2 } from "components/lodge/lodge_config";
 import { set_Current_Lodge_Plan } from "store/actions/action_Lodge" ;
-import Lodge_Care_Fee from "./components/Lodge_Care_Fee";
-import Lodge_Bath_Fee from "./components/Lodge_Bath_Fee";
-import Lodge_Beauty_Fee from "./components/Lodge_Beauty_Fee";
-import Lodge_Custom_Fee from "./components/Lodge_Custom_Fee";
-import { useEffect_Shop_Lodge_Holidays } from "../hooks/useEffect_Lodge_Holidays";
+import Lodge_Care_Fee from "./components/service_fee/Lodge_Care_Fee";
+import { useEffect_Shop_Lodge_Holidays } from "../hooks/useEffect_Lodge_Holidays" ;
+import Lodge_Service from "./Lodge_Service";
+import Lodge_Pet from "./Lodge_Pet" ;
+import Lodge_Care from "./Lodge_Care";
 
 
 
@@ -142,7 +142,6 @@ const Lodge_Form : FC< ILodge > = ( { register  , control  , watch , setValue , 
     } , [ lodgeNumber , check_In_Date , check_Out_Date , appointments ] ) ;
 
 
-
     // 設定 _ 隨機住宿合約編號 ( '新增'時，才設定 )
     useEffect( () => {
 
@@ -176,6 +175,7 @@ const Lodge_Form : FC< ILodge > = ( { register  , control  , watch , setValue , 
         } 
 
     } , [ check_In_Date , check_Out_Date , lodgeType , lodge_PlanType ] ) ;
+
 
 
     // 設回 _ 預設值
@@ -216,7 +216,7 @@ const Lodge_Form : FC< ILodge > = ( { register  , control  , watch , setValue , 
 
    return <>
 
-            { /* 住 ( R ) : { check_In_Date }  /  退( R) : { check_Out_Date } */ }
+            { /* 住 ( R ) : { check_In_Date }  /  退( R ) : { check_Out_Date } */ }
 
             { /* 標題列  */ }
             <Lodge_Form_Title editType = { editType } /> 
@@ -269,37 +269,23 @@ const Lodge_Form : FC< ILodge > = ( { register  , control  , watch , setValue , 
             { is_Room_InUse  &&
 
                <div className = 'has-text-centered' >
-                 <br/> <b className = "tag is-medium is-danger" > <i className="fas fa-exclamation"></i> &nbsp; 所選擇房間，在目前時段下，已被使用 ( 詳細資訊，請點選 : 查詢 ) </b> <br/>
+                  <br/> <b className = "tag is-medium is-danger" > <i className="fas fa-exclamation"></i> &nbsp; 所選擇房間，在目前時段下，已被使用 ( 詳細資訊，請點選 : 查詢 ) </b> <br/>
                </div>
 
             }
 
-            <div className = "columns is-multiline is-mobile m_Bottom_50 m_Top_20" >
+             { /* 同住寵物 */ }
+             <Lodge_Pet editType = { editType } register = { register } setValue = { setValue } serviceData = { serviceData } />
+            
+             <div className = "columns is-multiline is-mobile m_Bottom_50 m_Top_20" >
 
                 {/* 安親費用 */}
-                { !editType &&  <Lodge_Care_Fee register = { register } setValue = { setValue } /> }
-                {  editType &&  <>  
-                                  
-                                  <b className = "tag is-primary is-large m_Top_30 m_Left_10">
-                                      <i className = 'fas fa-baby-carriage m_Right_10'></i>
-                                       安親費用  
-                                      <span className = "tag is-white m_Left_10 m_Right_10 fRed f_12 is-rounded" > { serviceData?.care_price }  </span> 元
-                                  </b> 
-                               </> 
-                               }
+                <Lodge_Care editType = { editType } register = { register } setValue = { setValue } carePrice = { serviceData?.care_price } />
+                    
+                { /* 住宿期間：洗澡、美容、自訂費用 */ }
+                <Lodge_Service  { ...period_Props } /> 
 
-
-                { /* 洗澡費用 */ }
-                <Lodge_Bath_Fee register = { register } setValue = { setValue } /> 
-
-                { /* 美容費用 */ }
-                <Lodge_Beauty_Fee register = { register } setValue = { setValue } /> 
-
-            </div>
-            
-            
-            {/* 自訂費用 */}
-            <Lodge_Custom_Fee register = { register } setValue = { setValue } /> 
+             </div>
 
             <hr/><br/>
 

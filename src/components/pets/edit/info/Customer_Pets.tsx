@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-pascal-case */
 
-import { useSelector } from "react-redux" 
-import Pet_Buttom_Sign from 'components/pets/edit/info/components/Pet_Button_Sign' 
-import { get_Pet_Age } from 'utils/time/date'
+import { useSelector } from "react-redux" ; 
+import Pet_Buttom_Sign from 'components/pets/edit/info/components/Pet_Button_Sign' ; 
+import { get_Pet_AgeDescription } from 'utils/time/date' ;
 
 
 
@@ -28,21 +28,16 @@ const Customer_Pets = ( { current , current_Customer_Pets , click_Pet_Button } :
 
                  current_Customer_Pets.map( ( x : any , y : any ) => {
 
-
-                     // 寵物生日敘述
-                     const petAge_Str     = x?.birthday ? get_Pet_Age( x?.birthday ) : '' ;   
-
-                     // 須小心、有風險寵物 ( 老狗 / 未滿週歲 )
-                     const is_Careful_Pet = petAge_Str && ( parseInt( petAge_Str.slice( 0 , 2 ) ) > 12 || petAge_Str === '未滿週歲' ) ;
+                     // 取得 _ 寵物年齡描述
+                     const { is_Careful_Pet , petAge_Str } = get_Pet_AgeDescription( x ) ;
 
                      
                     return  <b key       = { y } 
                                onClick   = { () => click_Pet_Button( x ) }  
                                className = { `tag relative is-medium pointer is-rounded m_Bottom_30 m_Right_20 ${ current_Pet?.serial === x?.serial ? 'is-primary' : '' }` }  > 
-                                      
                                 
                                { /* 標示 ( 拒接、已死亡、有方案 ) */ }
-                                <Pet_Buttom_Sign pet = { x } />
+                               <Pet_Buttom_Sign pet = { x } />
 
                                { /* 名字 ( 品種 )  */ }       
                                { x['name'] } ( { x['species'] } ) &nbsp;

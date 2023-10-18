@@ -22,7 +22,7 @@ import { queryClient } from './react-query/queryClient' ; // 自訂 queryClient
 
 
 // Redux Store
-const store = createStore( root_Reducer , applyMiddleware( thunk ) ) ;
+export const store = createStore( root_Reducer , applyMiddleware( thunk ) ) ;
 
 // React-Query Client
 // const queryClient = new QueryClient() ;

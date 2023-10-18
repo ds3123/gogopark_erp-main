@@ -240,6 +240,8 @@ const Services_Rows = ( { data } : any ) => {
     const line = data?.is_delete === 1 ? { textDecoration : "line-through red" } : { textDecoration : "none" } ;
 
 
+    
+
     return <tr style = { ( data?.service_date && data?.service_date?.slice( 0 , 10 ) === today ) ? { background:"rgb(160,160,160,.2)" } : { lineHeight : "40px" } } >
 
              { /* 服務類別 */ } 

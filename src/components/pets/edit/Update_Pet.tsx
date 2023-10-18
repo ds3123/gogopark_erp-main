@@ -86,9 +86,10 @@ const Update_Pet = () => {
                                         toilet       : pet.toilet ? pet.toilet.split(',') : [] ,
                                         ownerProvide : pet.ownerProvide ? pet.ownerProvide.split(',') : [] ,
 
-                                        pet_Note     : pet.note ,         // 洗澡美容備註
-                                        lodge_Note   : pet.lodge_note ,   // 住宿備註
-                                        private_Note : pet.private_note , // 客訴及其他備註 ( 私有備註 )
+                                        checkNote_BathBeauty : pet.check_note ? pet.check_note.split(',') : [] , // 洗澡美容備註 ( checkbox )
+                                        pet_Note             : pet.note ,                                        // 洗澡美容備註
+                                        lodge_Note           : pet.lodge_note ,                                  // 住宿備註
+                                        private_Note         : pet.private_note ,                                // 客訴及其他備註 ( 私有備註 )
 
                                         // 價格 ( 針對寵物自行調整價格 )
                                         price_Single_Bath   : pet?.single_bath_price ? pet.single_bath_price : '' ,     // 單次洗澡

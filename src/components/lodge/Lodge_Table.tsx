@@ -11,7 +11,7 @@ const Lodge_Table = ( { data } : Admin_Table ) => {
 
 
 
-    return   <table className="table is-fullwidth is-hoverable relative" style={{ width:"116%" , left:"-8%" }}>
+    return   <table className="table is-fullwidth is-hoverable relative" style={{ width:"124%" , left:"-12%" }}>
 
                     <thead>
 
@@ -26,12 +26,16 @@ const Lodge_Table = ( { data } : Admin_Table ) => {
                             <th> <span className="fDblue" >入住</span> : 日期 / 時間 </th>
                             <th> <span className="fDblue" >退房</span> : 日期  </th>
                             <th> 住宿價 </th>
-                            <th> 安親費 </th>
+                            <th> 同住  </th>
+                            <th> 安親 </th>
+                            <th> 洗澡 </th>
+                            <th> 美容 </th>
+                            <th> 自訂 </th>
                             <th> 個體調整 </th>
-                            <th> 接送費   </th>
-                            <th> 應 收    </th>
-                            <th> 實 收    </th>
-                            <th> 封 存    </th>
+                            <th> 接送    </th>
+                            <th> 應 收 </th>
+                            <th> 實 收 </th>
+                            <th> 封 存 </th>
 
                         </tr>
 

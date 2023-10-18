@@ -8,7 +8,7 @@ type Title_Bar = {
     tag_Color        : string ; 
     service_Type     : string ;
     amount_Type      : string ;
-    amount_Total     : number  | string  ;
+    amount_Total     : number ;
     Folding_Bt_Type  : any    ;
 }
 
@@ -19,17 +19,6 @@ type Title_Bar = {
 const Section_Title_Bar = ( { tag_Color , service_Type , amount_Type , amount_Total , Folding_Bt_Type  } : Title_Bar ) => {
 
 
-     // 所點選 _ 日期類型 ( 付款日期 / 到店日期 )
-     const date_Type : '付款日期' | '到店日期' =  useSelector( ( state : any ) => state.Finance.finance_Query_Date_Type ) ; 
-
-
-    const col_Mul = 'columns is-multiline is-mobile' ;
-    const col_9   = 'column is-9-desktop' ;
-    const col_3   = 'column is-3-desktop' ;
-    const w_Tag   = 'tag is-large is-white' ;
-    const l_Tag   = 'tag is-large is-light ' ;
-
-
     let amount_Color = '' ;
     if( amount_Type === '扣 _ 預收款' ) amount_Color = 'fGreen' ;
     if( amount_Type === '支 出' ) amount_Color = 'fBlue' ;
@@ -37,19 +26,19 @@ const Section_Title_Bar = ( { tag_Color , service_Type , amount_Type , amount_To
 
 
 
-    return <div className={ col_Mul }>
+    return <div className = 'columns is-multiline is-mobile' >
 
-                <div className={ col_9 }>
+                <div className = 'column is-9-desktop' >
                     
-                    <b className={ l_Tag+tag_Color }> { service_Type } :&nbsp;<span className="fBlue"> { amount_Type } </span>  </b>
+                    <b className={ 'tag is-large is-light ' + tag_Color }> { service_Type } :&nbsp;<span className="fBlue"> { amount_Type } </span>  </b>
                 
                 </div>
 
-                <div className={ col_3 }>
+                <div className = 'column is-3-desktop' >
 
                     { /* 先隱藏扣_預收款的小計 */ }
-                    { ( ( amount_Total === 0 || amount_Total > 0  ) && amount_Type !== '扣 _ 預收款' ) &&
-                        <b className={ w_Tag }> 小計 :&nbsp;<span className= { amount_Color } > { amount_Total } </span>&nbsp;元  </b>
+                    { ( (  amount_Total >= 0  ) && amount_Type !== '扣 _ 預收款' ) &&
+                        <b className = 'tag is-large is-white' > 小計 :&nbsp;<span className= { amount_Color } > { amount_Total } </span>&nbsp;元  </b>
                     } 
                         
                     { Folding_Bt_Type }

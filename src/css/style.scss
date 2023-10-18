@@ -3,12 +3,27 @@
 
 body{
 
+  font-family : "微軟正黑體" ;
 
+  .pointer{ cursor : pointer ;  }
 
-  font-family:"微軟正黑體";
+  .inline{ display : inline-block !important ;  }
 
-  .pointer{ cursor:pointer; }
+  .border{ border : 1px solid gray ; }
 
+  .float_Left { float : left !important ;  }
+
+  .cell_50{
+ 
+    display        : inline-block !important; 
+    width          : 50% !important;
+    display        : flex !important;
+    justifyContent : left !important;
+    float          : left !important;
+    height         : 35px;
+    line-height    : 35px;
+      
+  }
 
 
   /* 標示 */
@@ -142,7 +157,18 @@ body{
   .p_10{ padding:10px !important; }
   .p_15{ padding:15px !important; }
   .p_20{ padding:20px !important; }
-  .p_Bottom_10{ padding-bottom:20px !important; }
+  
+  .p_Top_10{ padding-top:10px !important; }
+  .p_Top_20{ padding-top:20px !important; }
+  .p_Top_30{ padding-top:30px !important; }
+  .p_Top_40{ padding-top:40px !important; }
+  .p_Top_50{ padding-top:50px !important; }
+
+  .p_Bottom_10{ padding-bottom:10px !important; }
+  .p_Bottom_20{ padding-bottom:20px !important; }
+  .p_Bottom_30{ padding-bottom:30px !important; }
+  .p_Bottom_40{ padding-bottom:40px !important; }
+  .p_Bottom_50{ padding-bottom:50px !important; }
 
 
   /* --- 字體大小 --- */
@@ -161,8 +187,6 @@ body{
 
   // <Link/>
   .linkColor{ color:black; }
-
-
 
   
   .fWhite{

@@ -17,6 +17,7 @@ import {
          fetch_Shop_Services_GoneHome_By_ServiceDate
         } from "utils/api/api_Service" ; 
 
+import { fetch_Shop_Service_Tags } from "utils/api/api_Service_Tag" ;
 import { Service_Type_Api , Primary_Services } from "utils/Interface_Type" ;
 
 
@@ -228,3 +229,18 @@ export const useFetch_Shop_Services_GoneHome_By_ServiceDate = ( account_id : str
 } ;
 
 
+// 取得 _ 特定店家，所有洗澡美容備註標籤 ( for checkbox )
+export const useFetch_Shop_BathBeauty_CheckNotes = ( account_id : string ) => {
+
+  // 預設值
+  const fallback = [] as any[] ;  
+
+  const { data = fallback } = useQuery( 
+                                         "fetch_Shop_Service_Tags" , 
+                                         () => fetch_Shop_Service_Tags( account_id ) ,
+                                         { enabled : !!account_id  }  
+                                     ) ;
+
+  return data    
+
+} ;

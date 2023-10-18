@@ -3,6 +3,7 @@ import moment from "moment" ;
 import { set_Current_Lodge_Type , set_Current_Lodge_Number } from "store/actions/action_Lodge" ;
 import { useDispatch, useSelector } from "react-redux" ; 
 import { lodge_Rooms } from "components/lodge/lodge_config" ;
+import { filter_Cat_RoomType , filter_Dog_RoomType } from "fp/lodges/read/get_Lodge";
 
 
 type lodgeForm = {
@@ -16,17 +17,38 @@ type lodgeForm = {
 
 
 
-            
+// 篩選 _ 貓、狗 各自房型
+const filter_CatDog_RoomType = ( species : string , lodge_Rooms : Room_Type_Number[] ) => {
+
+    if( !species ) return [] ;
+
+    // 貓
+    if( species.includes( '貓' ) ) return filter_Cat_RoomType( lodge_Rooms ) ;
+
+    // 狗
+    return filter_Dog_RoomType( lodge_Rooms ) ;
+
+} ;
+
+
+
 // @ 住宿基本資訊欄位 : 合約編號、房型、房號  
 const Lodge_Form_Info : FC< lodgeForm > = ( { editType , register , serviceData } ) => {
 
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch() ;
     const today    = moment( new Date() ).format('YYYY-MM-DD') ;                              // 今日 
     
     const [ currentNumbers , set_CurrentNumbers ] = useState<any[]>([]) ;                     // 目前房型下，相對應的房號     
     const check_In_Date = useSelector( ( state : any ) => state.Lodge.lodge_Check_In_Date ) ; // 住房日期
-    
+
+
+    // 目前所點選寵物
+    const current_Pet = useSelector( ( state : any ) => state.Pet.current_Pet ) ; 
+
+    // 篩選 _ 貓、狗 各自房型
+    const filter_Lodge_Rooms = filter_CatDog_RoomType( current_Pet?.species , lodge_Rooms )
+
 
     // 下拉變動 : 房型
     const handle_Lodge_Type = ( type : string ) => {
@@ -76,18 +98,15 @@ const Lodge_Form_Info : FC< lodgeForm > = ( { editType , register , serviceData 
 
                 <div className={ column }>
 
-
                     <p> <b>自訂編號</b> </p>
                     { is_Create && <input className="input" type="text" { ...register( "lodge_Custom_Serial" ) }  /> }
-                    { is_Update && <b style={ blue } > { serviceData.custom_serial } </b> }
-                     
+                    { is_Update && <b style={ blue } > { serviceData.custom_serial ? serviceData.custom_serial : "未填寫" } </b> }
 
                 </div>
 
                 <div className={ column }>
 
                     <p> <b>性 質</b> </p>
-
                     { is_Create && <b className={ green }> { check_In_Date === today ? '當日住宿' : '預約住宿' } </b> }
                     { is_Update && <b className={ green }> { serviceData.service_status } </b> }
 
@@ -99,11 +118,10 @@ const Lodge_Form_Info : FC< lodgeForm > = ( { editType , register , serviceData 
                     <p> <b>房 型</b> </p>
 
                     { is_Create && 
-
                         <div className = "select" >
                             <select { ...register( "lodge_Room_Type" ) } onChange={ e => handle_Lodge_Type( e.target.value ) } >
                                 <option value="請選擇"> 請選擇 </option>
-                                { lodge_Rooms.map( ( x : any , y : number ) => <option key={ y } value={ x['type'] }> { x['type'] } </option> ) }
+                                { filter_Lodge_Rooms.map( ( x : any , y : number ) => <option key={ y } value={ x['type'] }> { x['type'] } </option> ) }
                             </select>
                         </div>
                         
@@ -117,7 +135,6 @@ const Lodge_Form_Info : FC< lodgeForm > = ( { editType , register , serviceData 
                 <div className={ `${ column } required` }>
 
                     <p> <b>房 號</b> </p>
-                    
                     { is_Create && 
                         <div className="select">
                             <select { ...register( "lodge_Room_Number" ) } onChange={ e => handle_Lodge_Number( e.target.value ) }  >

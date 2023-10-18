@@ -36,7 +36,7 @@ const Customer_Note = ( { register , editType } : ICustomer_Note ) => {
 
                   <>
 
-                    <div className="columns is-multiline  is-mobile">
+                    <div className="columns is-multiline is-mobile">
 
                        { /* 自備物品 */}
                        <div className="column is-2-desktop" style={{textAlign:'right'}}>

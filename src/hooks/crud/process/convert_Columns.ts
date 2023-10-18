@@ -116,9 +116,10 @@ export const columns_Covert_Pet = ( data : any ) => {
                     toilet       : data['toilet'] ? data['toilet'].join(',') : "" ,
                     ownerProvide : data['ownerProvide'] ? data['ownerProvide'].join(',') : "" ,
 
-                    note         : data['pet_Note'] ,     // 洗澡美容備註
-                    lodge_note   : data['lodge_Note'] ,   // 住宿備註
-                    private_note : data['private_Note'] , // 客訴及其他備註 ( 私有備註 )
+                    check_note   : data['checkNote_BathBeauty'] ? data['checkNote_BathBeauty'].join(',') : "" , // 洗澡美容備註 ( checkbox )
+                    note         : data['pet_Note'] ,                                                           // 洗澡美容備註
+                    lodge_note   : data['lodge_Note'] ,                                                         // 住宿備註
+                    private_note : data['private_Note'] ,                                                       // 客訴及其他備註 ( 私有備註 )
 
                     // 該寵物品種價格   
                     single_bath_price   : data['price_Single_Bath'] ,
@@ -641,13 +642,24 @@ export const columns_Covert_Lodge = ( data : any ) => {
         const lodge_price        = data['lodge_Price'] ;        // 住宿費用
 
          // input --> 需驗證 
-        const care_price         = data['lodge_Care_Fee']     ? data['lodge_Care_Fee'] : 0 ;     // 安親費用 ( 提早 15 : 00 入住 )   
+        const care_price         = data['lodge_Care_Fee']     ? data['lodge_Care_Fee'] : 0 ;      // 安親費用 ( 提早 15 : 00 入住 )   
+        const together_price     = data['lodge_Together_Fee'] ? data['lodge_Together_Fee'] : 0 ;  // 同住費用
+
+        const bath_price         = data['lodge_Bath_Price'] ? data['lodge_Bath_Price'] : 0 ;      // 洗澡費用
+        const beauty_price       = data['lodge_Beauty_Price'] ? data['lodge_Beauty_Price'] : 0 ;  // 美容費用
+        const custom_price       = data['lodge_Custom_Price'] ? data['lodge_Custom_Price'] : 0 ;  // 自訂費用
+        
+
         const self_adjust_amount = data['self_Adjust_Amount'] ? data['self_Adjust_Amount'] : 0 ; // 個體自行調整費用 
         const pickup_fee         = data['pickup_Fee'] ? data['pickup_Fee'] : 0  ;                // 接送費         
 
         // 應收金額小計
         const amount_payable     = parseInt( lodge_price ) +
                                    parseInt( care_price ) +
+                                   parseInt( together_price ) +
+                                   parseInt( bath_price ) +
+                                   parseInt( beauty_price ) +
+                                   parseInt( custom_price ) +
                                    parseInt( self_adjust_amount ) +
                                    parseInt( pickup_fee ) ;
 
@@ -700,11 +712,21 @@ export const columns_Covert_Lodge = ( data : any ) => {
 
                                 // # 費用
                                 lodge_price            : lodge_price ,                                                       // 住宿費用
-                                care_price             : data['lodge_Care_Fee'] ,                                            // 安親費用 ( 提早入住 ) 
+                                care_price             : care_price ,                                                        // 安親費用 ( 提早入住 ) 
+
+                                together_price         : together_price ,                                                    // 同住費用
+                                together_pets          : data['lodge_Together_Pets'] ,                                       // 同住寵物
 
                                 self_adjust_amount     : self_adjust_amount ,                                                // 個體自行調整費用
-                                // lodge_bath_price    : 0 ,                                                                 // 洗澡費用
-                                // lodge_beauty_price  : 0 ,                                                                 // 美容費用
+                                
+                                lodge_bath_price        : bath_price ,                                                       // 洗澡費用
+                                lodge_bath_items        : data['lodge_Bath_Items'] ,                                         // 洗澡項目
+                                
+                                lodge_beauty_price      : beauty_price ,                                                     // 美容費用
+                                lodge_beauty_items      : data['lodge_Beauty_Items'] ,                                       // 美容項目 
+
+                                custom_price            : custom_price ,                                                     // 自訂費用
+                                custom_items            : data['lodge_Custom_Items'] ,                                       // 自訂項目
 
                                 pickup_fee             : pickup_fee ,                                                        // 接送費
 

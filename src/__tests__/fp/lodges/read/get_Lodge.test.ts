@@ -8,7 +8,12 @@ import {
          is_Early_CheckIn ,
          is_Late_CheckOut ,
          is_Lodge_Duplicate_Date ,
-         
+         is_Cat_RoomType ,
+         is_Dog_RoomType ,
+
+         filter_Cat_RoomType ,
+         filter_Dog_RoomType ,
+
          get_Lodge_RegularDays ,
          get_Lodge_Holidays ,
          get_Lodge_NationalHolidays ,
@@ -40,8 +45,8 @@ import {
           get_Interval_Dates , 
           get_Interval_Dates_Without_LastDate
         } from "utils/time/date" ;
-import { kStringMaxLength } from 'buffer';
 
+import { lodge_Rooms } from 'components/lodge/lodge_config';
 
 
 test( "get_Lodge_Prices_Total() : 取得 _ 價格 : 總計金額" , () => {
@@ -71,6 +76,95 @@ test( "is_Lodge_Duplicate_Date() : 判斷 _ 所輸入日期，是否與資料庫
 
 
 }) ;
+
+
+describe( "判斷 _ 房型：貓、狗" , () => { 
+
+    test( "is_Cat_RoomType() : 判斷 _ 為 貓 的房型" , () => {
+
+        // for 貓
+        const r_1 : Room_Type_Number = { type : '中房'      , number : [ '' ] } 
+        const r_2 : Room_Type_Number = { type : '豪華樓中樓' , number : [ '' ] } 
+        const r_3 : Room_Type_Number = { type : '溫馨房'    , number : [ '' ] } 
+        const r_4 : Room_Type_Number = { type : '挑高房'    , number : [ '' ] } 
+      
+        // for 狗
+        const r_5 : Room_Type_Number = { type : '大房'     , number : [ '' ] } 
+    
+        expect( is_Cat_RoomType( r_1 ) ).toBeTruthy() ;
+        expect( is_Cat_RoomType( r_2 ) ).toBeTruthy() ;
+        expect( is_Cat_RoomType( r_3 ) ).toBeTruthy() ;
+        expect( is_Cat_RoomType( r_4 ) ).toBeTruthy() ;
+        
+        expect( is_Cat_RoomType( r_5 ) ).not.toBeTruthy() ;
+    
+    }) ;
+
+    test( "is_Dog_RoomType() : 判斷 _ 為 狗 的房型" , () => {
+
+        // for 狗
+        const r_1 : Room_Type_Number = { type : '大房' , number : [ '' ] } 
+        const r_2 : Room_Type_Number = { type : '中房' , number : [ '' ] } 
+        const r_3 : Room_Type_Number = { type : '大籠' , number : [ '' ] } 
+        const r_4 : Room_Type_Number = { type : '中籠' , number : [ '' ] } 
+        const r_5 : Room_Type_Number = { type : '小籠' , number : [ '' ] } 
+        
+        // for 貓
+        const r_6 : Room_Type_Number = { type : '豪華樓中樓' , number : [ '' ] } 
+    
+        expect( is_Dog_RoomType( r_1 ) ).toBeTruthy() ;
+        expect( is_Dog_RoomType( r_2 ) ).toBeTruthy() ;
+        expect( is_Dog_RoomType( r_3 ) ).toBeTruthy() ;
+        expect( is_Dog_RoomType( r_4 ) ).toBeTruthy() ;
+        expect( is_Dog_RoomType( r_5 ) ).toBeTruthy() ;
+        
+        expect( is_Dog_RoomType( r_6 ) ).not.toBeTruthy() ;
+    
+    }) ;
+
+}) ; 
+
+
+describe( "篩選 _ 房型：貓、狗" , () => { 
+
+
+
+    test( "filter_Cat_RoomType() : 篩選 _ 房型 : 貓" , () => {
+
+        expect( filter_Cat_RoomType( lodge_Rooms ) ).toEqual([
+            
+            { type : '中房'      , number : [ 'B01' , 'B02' , 'B03' , 'B05' , 'B06' , 'B07' , 'B08' , 'B09' , 'B10' , 'B11' ] } ,
+            { type : '豪華樓中樓' , number : [ 'C113' , 'C123' , 'C133' , 'C213' , 'C223' , 'C233' , 'C313' , 'C323' , 'C333' ] } ,
+            { type : '溫馨房'    , number : [
+                                             // 上 
+                                            'C111' , 'C121' , 'C131' , 'C211' , 'C221' , 'C231' , 'C311' , 'C321' , 'C331' ,
+                                             // 下
+                                            'C112' , 'C122' , 'C132' , 'C212' , 'C222' , 'C232' , 'C312' , 'C322' , 'C332'
+                                        ]} ,
+            { type : '挑高房'     , number : [ 'E151' , 'E161' , 'E171' ] } 
+
+                                                            ]) ;
+
+    }) ;
+
+    test( "filter_Dog_RoomType() : 篩選 _ 房型 : 狗" , () => {
+
+        expect( filter_Dog_RoomType( lodge_Rooms ) ).toEqual([
+
+            { type : '大房' , number : [ 'A01' , 'A02' , 'A03' , 'A05' , 'A06' ] } ,
+            { type : '中房' , number : [ 'B01' , 'B02' , 'B03' , 'B05' , 'B06' , 'B07' , 'B08' , 'B09' , 'B10' , 'B11' ] } ,
+             
+            { type : '大籠' , number : [ 'G01' , 'G02' , 'G03' , 'G04' , 'G05' ] } ,
+            { type : '中籠' , number : [ 'H01' , 'H02' , 'H03' , 'H04' , 'H05' , 'H06' , 'H07' , 'H08' , 'H09' ] } ,
+            { type : '小籠' , number : [ 'I01' , 'I02' , 'I03' , 'I04' , 'I05' , 'I06' , 'I07' , 'I08' , 'I09' , 'I10' ] } 
+
+                                                            ]) ;
+
+    
+    }) ;
+
+}) ; 
+
 
 
 describe( "判斷 _ Check In 、 Check Out 時間" , () => { 
@@ -439,7 +533,7 @@ describe( "從一段時間中( 多個日期字串 )，篩選 _ 平日、假日�
                          { title : "中秋節" , date : "2023-09-12" } ,
                       ] ;
 
-          expect( get_Lodge_Convert_Single_Date( data ) ).toEqual( res )
+          expect( get_Lodge_Convert_Single_Date( data ) ).toEqual( res ) ;
 
     
     }) ;

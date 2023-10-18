@@ -1,6 +1,10 @@
 import  { useEffect, useState} from "react" ;
-import { Edit_Form_Type } from "utils/Interface_Type"
-import { useDispatch } from "react-redux";
+import { Edit_Form_Type } from "utils/Interface_Type" ;
+import { useDispatch } from "react-redux" ;
+import { string_Format_Slash } from 'utils/string/edit_string';
+
+                
+
 
 // Redux
 import { set_BasicSumPrice } from "store/actions/action_Basic"
@@ -211,7 +215,7 @@ const Basic_Form = ( { register , current , editType , serviceData } : IBasic ) 
                 <b className="tag is-large is-white" >
                     &nbsp;&nbsp; 基礎項目 :  
                      <span className="fDblue"> 
-                          &nbsp; { serviceData.basic_data ? serviceData.basic_data : "無" } 
+                          &nbsp; { serviceData.basic_data ? string_Format_Slash( serviceData.basic_data ) : "無" } 
                      </span>    
                 </b>    
 

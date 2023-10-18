@@ -332,9 +332,10 @@ export interface IPet {
     ownerProvide       : string [] ;
 
     // * 備註 ( 3 )
-    pet_Note            : string ;
-    lodge_Note          : string ;
-    private_Note        : string ;
+    checkNote_BathBeauty : string[] ;
+    pet_Note             : string ;
+    lodge_Note           : string ;
+    private_Note         : string ;
 
 
 

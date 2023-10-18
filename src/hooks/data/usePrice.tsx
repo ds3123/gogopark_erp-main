@@ -99,6 +99,20 @@ const usePrice_Lodge = () => {
     // 安親費用 ( 提早 15 : 00 入住 )
     const care_Amount             = parseInt( useSelector(( state : any ) => state.Extra_Fee.Lodge_Care_Amount ) ) ;
 
+    // 同住費用
+    const together_Amount         = parseInt( useSelector(( state : any ) => state.Extra_Fee.Lodge_Together_Amount ) ) ;
+
+
+    // 洗澡費用
+    const bath_Amount             = parseInt( useSelector(( state : any ) => state.Extra_Fee.Lodge_Bath_Amount ) ) ;
+
+    // 美容費用
+    const beauty_Amount           = parseInt( useSelector(( state : any ) => state.Extra_Fee.Lodge_Beauty_Amount ) ) ;
+
+    // 美容費用
+    const custom_Amount           = parseInt( useSelector(( state : any ) => state.Extra_Fee.Lodge_Custom_Amount ) ) ;
+
+
     // 此次服務，自行調整、增減金額
     const Self_Adjust_Amount      = parseInt( useSelector( ( state : any ) => state.Extra_Fee.Self_Adjust_Amount ) ) ;
 
@@ -113,9 +127,9 @@ const usePrice_Lodge = () => {
     // 設定 _ 應收金額  ( receivable )
     useEffect( ( ) => {
 
-        set_Receivable( current_Lodge_Price_Sum + care_Amount + Self_Adjust_Amount + pickupFee ) ;
+        set_Receivable( current_Lodge_Price_Sum + care_Amount + bath_Amount + beauty_Amount + custom_Amount + together_Amount + Self_Adjust_Amount + pickupFee ) ;
 
-    } ,[ current_Lodge_Price_Sum , care_Amount , Self_Adjust_Amount , pickupFee ] ) ;
+    } ,[ current_Lodge_Price_Sum , care_Amount , bath_Amount , beauty_Amount , custom_Amount , together_Amount , Self_Adjust_Amount , pickupFee ] ) ;
 
 
     return receivable ;

@@ -177,18 +177,36 @@ export const FeeDetail_Lodge = () => {
     const current_Lodge_Price = useSelector(( state : any ) => state.Lodge.current_Lodge_Price_Sum ) ;  
 
     // 安親費用 ( 提早 15 : 00 入住 )
-    const care_Amount         = useSelector(( state : any ) => state.Extra_Fee.Lodge_Care_Amount )  ;
+    const care_Amount         = useSelector(( state : any ) => state.Extra_Fee.Lodge_Care_Amount ) ;
+
+    // 同住費用
+    const together_Amount     = useSelector(( state : any ) => state.Extra_Fee.Lodge_Together_Amount ) ;
+
+    // 洗澡費用 
+    const bath_Amount         = useSelector(( state : any ) => state.Extra_Fee.Lodge_Bath_Amount ) ;
+
+    // 美容費用 
+    const beauty_Amount       = useSelector(( state : any ) => state.Extra_Fee.Lodge_Beauty_Amount ) ;
+
+    // 自訂費用 
+    const custom_Amount       = useSelector(( state : any ) => state.Extra_Fee.Lodge_Custom_Amount ) ;
 
     // 自行調整、增減金額
-    const self_Adjust_Amount  = useSelector(( state : any ) => state.Extra_Fee.Self_Adjust_Amount )  ;
+    const self_Adjust_Amount  = useSelector(( state : any ) => state.Extra_Fee.Self_Adjust_Amount ) ;
 
     // 接送費
-    const pickupFee           = useSelector(( state : any ) => state.Extra_Fee.Pickup_Fee )  ;
+    const pickupFee           = useSelector(( state : any ) => state.Extra_Fee.Pickup_Fee ) ;
 
 
     return  <>
                { current_Lodge_Price !== 0 && <b className="tag is-medium is-rounded" style={ margin }> 住宿費 : { current_Lodge_Price } 元  </b> }
-               { care_Amount         > 0 && <b className="tag is-medium is-rounded" style={ margin }> 安親費 : { care_Amount } 元  </b> }
+               { care_Amount         > 0   && <b className="tag is-medium is-rounded" style={ margin }> 安親費 : { care_Amount } 元  </b> }
+              
+               { bath_Amount         > 0   && <b className="tag is-medium is-rounded" style={ margin }> 洗澡費 : { bath_Amount } 元  </b> }
+               { beauty_Amount       > 0   && <b className="tag is-medium is-rounded" style={ margin }> 美容費 : { beauty_Amount } 元  </b> }
+               { custom_Amount       > 0   && <b className="tag is-medium is-rounded" style={ margin }> 自訂費 : { custom_Amount } 元  </b> }
+
+               { together_Amount     > 0   && <b className="tag is-medium is-rounded" style={ margin }> 同住費 : { together_Amount } 元  </b> }
                { self_Adjust_Amount  !== 0 && <b className="tag is-medium is-rounded" style={ margin }> 個體調整金額 : { self_Adjust_Amount } 元  </b> }
                { pickupFee           !== 0 && <b className="tag is-medium is-rounded" style={ margin }> 接送費 : { pickupFee } 元  </b> }
             </>

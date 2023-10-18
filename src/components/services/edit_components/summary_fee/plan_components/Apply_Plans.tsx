@@ -26,8 +26,7 @@ const Apply_Plans = ( ) => {
    
      // 使用本次方案的 _ 價格 ( 點選 _ 標籤 "使用此方案" 後設定 )
      const current_Plan_Service_Price = useSelector( ( state : any ) => state.Plan.current_Plan_Service_Price ) ;
-     
-
+  
      // 付款方式
      const { current_Payment_Method } = useCreate_Service_Summay_Fee_Context() ;
 

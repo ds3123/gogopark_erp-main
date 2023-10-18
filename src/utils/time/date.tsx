@@ -98,6 +98,7 @@ export const get_Interval_Dates = ( start : string , end : string ) : any[] => {
 
 
 
+
 // 取得 : 兩個日期之間，所有的日期後，再剔除最後一個日期 ( for 計算 _ 每晚價格 Ex. 兩個日期，但只計算一晚價格 ) < T > ( get_Lodge.test.ts )
 export const get_Interval_Dates_Without_LastDate = ( intervalDates : string[] ) : string[] => {
 
@@ -178,6 +179,22 @@ export const get_Pet_Age = ( birthday : string ) : string => {
      if( age_Days < 360 ) return '未滿週歲'
 
      return `${ Math.round( ( age_Days / 360 ) ) } 歲`
+
+} ;
+
+
+
+// 取得 _ 寵物年齡描述
+export const get_Pet_AgeDescription = ( pet : any )  => {
+
+
+    // 寵物生日敘述
+    const petAge_Str     = pet?.birthday ? get_Pet_Age( pet?.birthday ) : '' ;   
+
+    // 須小心、有風險寵物 ( 老狗 / 未滿週歲 )
+    const is_Careful_Pet = petAge_Str && ( parseInt( petAge_Str.slice( 0 , 2 ) ) > 12 || petAge_Str === '未滿週歲' ) ;
+
+    return { is_Careful_Pet , petAge_Str } ;
 
 } ;
 

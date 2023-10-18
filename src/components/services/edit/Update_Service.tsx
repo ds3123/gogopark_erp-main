@@ -5,10 +5,7 @@ import { useState , useEffect , useContext } from "react"
 
 // Context
 import { ReachHookFormContext } from "contexts/reactHookFormContext" ;
-
-
 import { set_Modal } from "store/actions/action_Global_Layout" ;
-
 
 // React Hook Form
 import { useForm , SubmitHandler } from "react-hook-form"
@@ -20,6 +17,8 @@ import { yupResolver } from "@hookform/resolvers/yup"
 
 // useContext
 import { SidePanelContext } from "templates/panel/Side_Panel"
+import { get_Pet_Age } from 'utils/time/date'
+
 
 // 各區塊表單元件
 import Service_Info from "components/services/edit_components/Service_Info"
@@ -38,7 +37,6 @@ import Nav_Qcode_List from "components/services/Nav_Qcode_List"
 import Appointment_Records from "components/index/list/Appointment_Record"
 import Customer_Consumption_Records from "components/customers/edit/info/Customer_Consumption_Records"
 import Pet_Consumption_Records from "components/pets/edit/info/Pet_Consumption_Records"
-
 import Is_Info_Sign from "../edit_components/info_sign/Is_Info_Sign"
 
 // Hook
@@ -61,7 +59,7 @@ import { setTimeout } from "timers" ;
 import Side_Extra_Fee_List from '../components/Side_Extra_Fee_List';
 import { execute_Update_ServiceOrder_LeaveTime } from "fp/services/update/update_ServiceOrder" ;
 import { get_H_M } from "utils/time/time" ;
-import { Service_Tag } from "../components/Service_Tag"
+import { Service_Tag } from "../components/service_tags/Service_Tag"
 
 
 
@@ -267,6 +265,9 @@ const Update_Service = ( ) => {
     // 篩選出 _ 未被刪除的加價單
     const extraFee_Not_Deleted = data?.extra_fee?.filter( ( x : any ) => x?.is_delete === 0 ) ;
 
+
+     // 寵物年齡
+     const pet_Age = pet?.birthday ? get_Pet_Age( pet?.birthday ) : '' ;
     
 
     return <ReachHookFormContext.Provider value = { props } >
@@ -292,7 +293,7 @@ const Update_Service = ( ) => {
                     { pet?.name ? <> { pet.name } ( { pet.species } ) &nbsp; &nbsp; </> : <p className="fRed"> 寵物已刪除 </p> }
 
                     { pet.sex   && <> <b className="tag is-white is-rounded f_12"> { pet.sex }    </b> &nbsp; &nbsp; </> }
-                    { pet.age   && <> <b className="tag is-white is-rounded f_12"> { pet.age } 歲 </b> &nbsp; &nbsp; </> }
+                    { pet_Age  && <> <b className="tag is-white is-rounded f_12"> { pet_Age }  </b> &nbsp; &nbsp; </> }
                     { pet.color && <> <b className="tag is-white is-rounded f_12"> { pet.color }  </b>               </> } 
  
 
@@ -310,11 +311,10 @@ const Update_Service = ( ) => {
                      }    
 
                      { /* 列印 */ }
-                     <b className  = "tag is-medium is-rounded pointer m_Left_20" 
-                           style   = {{ 'background' : "rgba(80,80,220,.9)" , "color" : "white" }}
-                           onClick = { () => dispatch( set_Modal( true , <Service_Tag /> , { data : data , modal_Style : { width : "40%" , left : "30%" , top : "-20px" } } )) } >
+                     <b className  = "tag is-warning is-medium is-rounded pointer m_Left_20" 
+                           onClick = { () => dispatch( set_Modal( true , <Service_Tag /> , { data : data , modal_Style : { width : "40%" , left : "30%" , top : "-70px" } } )) } >
 
-                        <i className = "fas fa-file-medical f_14" ></i> &nbsp; 列印單 
+                        <i className = "fas fa-print m_Right_10 f_14" ></i> 列印
 
                      </b> 
 
@@ -388,9 +388,8 @@ const Update_Service = ( ) => {
 
                 </div>
 
-                
-                { /*  美容師處理結果 ()  */ }
-                { ( service_Type === "安親" || service_Type === "住宿"  ) || 
+                { /*  美容師處理結果   */ }
+                { ( service_Type === "安親" || service_Type === "住宿" ) || 
                     <Beautician_Process  data = { data } register = { register } />
                 }
 

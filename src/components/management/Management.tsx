@@ -1,10 +1,13 @@
 /* eslint-disable react/jsx-pascal-case */
 
+import { useEffect } from 'react' ;
+
+
 import useMulti_NavOptions from "hooks/layout/useMulti_NavOptions";
 
 // 各頁面元件
+import CashPerformance_Report from "components/management/finance/CashPerformance_Report" ;
 import Unity_Report from "components/management/finance/Unity_Report" ;
-import Cash_Report from "components/management/finance/Cash_Report" ;
 import CreditCard_Report from "components/management/finance/CreditCard_Report" ;
 import ThirdParty_Report from "components/management/finance/ThirdParty_Report" ;
 import Species_Price_List from "components/management/price/Species_Price_List" ;
@@ -26,6 +29,8 @@ import Archive_List from "components/management/data/archive/Archive_List" ;
 import Error_List from "components/management/data/error/Error_List" ;
 import Plan_Data_List from "./data/plan_data/Plan_Data_List" ;
 import Plan_Expire_List from "./data/plan_expire/Plan_Expire_List" ;
+import BathBeauty_List from "./data/bathbeauty_note/BathBeauty_List" ;
+
 import Plans from "components/plan/Plans" ;
 import Delete_Service_List from "components/management/data/delete/Delete_Service_List";
 import Reject_Customer_List from "./data/reject_customer/Reject_Customer_List"
@@ -60,8 +65,8 @@ const Management = () => {
         switch( title ) {
 
             // # 財務管理
+            case '現金績效'  : return <CashPerformance_Report/> ;
             case '綜合報表'  : return <Unity_Report/> ;
-            case '現金帳'    : return <Cash_Report/> ;
             case '信用卡'    : return <CreditCard_Report/> ;
             case '第三方支付' : return <ThirdParty_Report/> ;
           
@@ -89,6 +94,7 @@ const Management = () => {
             case '店家成員' : return <Auth_Member_List /> ;
 
             // # 資料管理
+            case '洗美備註' : return <BathBeauty_List /> ;
             case '拒接客戶' : return <Reject_Customer_List /> ;
             case '拒接寵物' : return <Reject_Pet_List /> ;
             case '服務異常' : return <Error_List /> ;
@@ -117,7 +123,6 @@ const Management = () => {
     // 目前登入者所屬店家 id
     const shop_Id = useAccount_Shop_Id() ;
 
-
     // # 紅點顯示待處理數量
     const customer_Reject_Process_Num  = useEffect_Shop_Customer_Reject_Process_Num( shop_Id ) ; // 客戶 ( 拒接 "審核中" : 數量 )   
     const pet_Reject_Process_Num       = useEffect_Shop_Pet_Reject_Process_Num( shop_Id ) ;      // 寵物 ( 拒接 "審核中" : 數量 )    
@@ -125,6 +130,15 @@ const Management = () => {
   
     // 資料管理( 第二層 )顯示待處理數量
     const dataManagement_Note_Num      = useEffect_Shop_Alert_Total_Num( shop_Id ) ;      
+
+
+
+    // 預設點選
+    useEffect( () => {
+
+       click_Second( "財務管理" ) ;
+       
+    } , [] ) ;
 
 
     return <>

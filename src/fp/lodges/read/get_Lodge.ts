@@ -1,6 +1,7 @@
 /* eslint-disable no-unreachable */
 
 import { get_Trim_Time } from "fp/common/read/get_Date"
+import { boolean } from "yup";
 
 
 
@@ -17,7 +18,7 @@ export const is_Lodge_RegularDay = ( lodgeDate : string ) : boolean => {
 
 }
 
-
+  
 // 判斷 _ 住宿日期為 : 假日 ( 五 ~ 日 ) < T >
 export const is_Lodge_Holiday = ( lodgeDate : string ) : boolean => {
 
@@ -52,8 +53,6 @@ export const is_Late_CheckOut = ( checkOut : string ) : boolean => {
     
 } 
 
-
-
 // 判斷 _ 所輸入日期，是否與資料庫日期重複
 export const is_Lodge_Duplicate_Date = ( intervalDates : string[] , shopHolidays : any[] ) : boolean => {
 
@@ -64,9 +63,26 @@ export const is_Lodge_Duplicate_Date = ( intervalDates : string[] , shopHolidays
 } ;
 
 
+// 判斷 _ 房型 : 貓 < T >
+export const is_Cat_RoomType = ( room : Room_Type_Number ) : boolean =>
+       room.type === '中房' || room.type === '挑高房' || room.type === '溫馨房' || room.type === '豪華樓中樓'  ; 
+
+
+// 判斷 _ 房型 : 狗 < T >
+export const is_Dog_RoomType = ( room : Room_Type_Number ) : boolean => 
+       room.type === '大房' || room.type === '中房' || room.type === '大籠' || room.type === '中籠' || room.type === '小籠' ; 
 
 
 // -----------------------------
+
+
+// 篩選 _ 房型 : 貓 < T/ >
+export const filter_Cat_RoomType = ( room_Type : Room_Type_Number[] ) => room_Type.filter( is_Cat_RoomType ) ;
+
+
+// 篩選 _ 房型 : 狗 < T >
+export const filter_Dog_RoomType = ( room_Type : Room_Type_Number[] ) => room_Type.filter( is_Dog_RoomType ) ;
+
 
 
 // 取得 _ 住宿日期為 : 平日 的所有日期 < T >
@@ -200,7 +216,6 @@ export const get_Lodge_Interval_Prices_Total = ( intervalDays : string[] , natio
 }
 
 
-
 // 取得 _ 相同時段名稱下，所有日期
 export const get_Lodge_Title_Dates = ( allDates : any[] ) : any[] => {
 
@@ -225,6 +240,7 @@ export const get_Lodge_Title_Dates = ( allDates : any[] ) : any[] => {
     return result
 
 }
+
 
 // 取得 _ 所有熱門時段日期 < T >
 export const get_Lodge_All_Dates = ( shopHolidays : any[] ) : NationalHoliday[] => {

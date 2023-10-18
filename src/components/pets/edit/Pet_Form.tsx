@@ -29,6 +29,7 @@ import {
        } from "../hooks/useEffect_Pet_Form" ;
 import useCreate_Service_Context from "containers/contexts/createServiceContext" ;
 import { sort_ObjAttr } from 'fp/tool' ;
+import BathBeauty_CheckNote from "./components/BathBeauty_CheckNote";
 
 const note       = { color: "rgb(0,0,180)" , fontWeight: "bold" } ;
 const note_Input = { color: "rgb(0,0,180)" , fontWeight: "bold" , border : "none"  } ;
@@ -163,7 +164,7 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
 
                                 { !current &&
 
-                                    <b className="fDblue f_13 relative" style={{ top:"3px" }}> { pet_Serial } </b>
+                                    <b className="fDblue f_13 relative" style={{ top:"8px" , left : "10px" }}> { pet_Serial } </b>
 
                                 }
 
@@ -421,6 +422,18 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                        <div className="columns is-multiline is-mobile m_Top_20">
 
                           <b className="m_Left_15"> 洗澡美容備註 </b>
+
+                          { /* checkbox 欄位 */ }
+                          { is_Create ||
+
+                            <div className="column is-12-desktop m_Top_10">
+
+                                    <BathBeauty_CheckNote register = { register } />
+
+                            </div>
+
+                          }
+
                           <div className="column is-12-desktop m_Bottom_30">
 
                              { /* 新增 */ }

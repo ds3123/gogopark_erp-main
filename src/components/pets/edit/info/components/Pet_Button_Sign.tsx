@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 
 import is_Dead_Pic from 'imgs/is_dead_red.png' ;
 import { useState , useEffect } from 'react' ;
@@ -62,10 +63,10 @@ const Pet_Button_Sign = ( { pet } : Sign ) => {
             { ( is_Show_Plan && ( current_Tab === "洗澡" || current_Tab === "美容" ) ) && <i className = "fas fa-file-alt fBlue m_Right_10 f_13"></i> }  
 
             { /* 拒接 */ } 
-            { pet?.is_rejected === 1 && <i className="fas fa-ban fRed m_Right_10 f_13"></i>  }
+            { pet?.is_rejected === 1 && <i className = "fas fa-ban fRed m_Right_10 f_13"></i>  }
               
             { /* 已經過世 */ }
-            { pet?.is_dead === 1 && <img className="relative" src={ is_Dead_Pic } width='28px' style={{ top:'-3px' }} /> }
+            { pet?.is_dead === 1 && <img className = "relative" src={ is_Dead_Pic } width='28px' style={{ top:'-3px' }} /> }
 
           </div>  
 

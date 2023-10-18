@@ -1,14 +1,13 @@
 /* eslint-disable react/jsx-pascal-case */
 
-
 import { FC , useState } from "react" ;
 import Date_Picker from "templates/form/Date_Picker" ;
 import Time_Picker from "templates/form/Time_Picker" ;
 import moment from "moment" ;
 import { set_Lodge_Check_In_Date , set_Lodge_Check_Out_Date } from "store/actions/action_Lodge" ;
 import { useDispatch } from "react-redux" ;
-
 import { is_Early_CheckIn } from "fp/lodges/read/get_Lodge" ;
+import { get_Interval_Dates } from "utils/time/date" ;
 
 
 
@@ -26,11 +25,20 @@ type lForm = {
 // @ 住宿期間 : 日期、時間 
 const Lodge_Form_Period : FC< lForm > = ( { control  , watch , setValue , editType , serviceData } ) => {
 
+
     const dispatch = useDispatch() ;
-    const today    = moment( new Date() ).format('YYYY-MM-DD') ;           // 今日
+    const today    = moment( new Date() ).format('YYYY-MM-DD') ;         // 今日
 
     const [ check_In_Date , set_Check_In_Date ]   = useState( today ) ;  // 住房日期
     const [ check_Out_Date , set_Check_Out_Date ] = useState( today ) ;  // 退房日期
+
+    
+    // 間隔日期
+    const interval  = get_Interval_Dates( check_In_Date , check_Out_Date );
+    
+    // 期間共幾晚
+    const night_Num = ( interval.length ) - 1 ;
+
 
     // 變更 : 住房日期
     const handle_CheckIn_Date = ( date : any ) => {
@@ -99,8 +107,8 @@ const Lodge_Form_Period : FC< lForm > = ( { control  , watch , setValue , editTy
 
                 <div className = "columns is-multiline is-mobile" >
 
-                    <div className="column is-1-desktop relative required">
-                        <b className="absolute" style={{top:"20px"}} > 住房時間 : </b>
+                    <div className = "column is-1-desktop relative required">
+                        <b className = "absolute" style={{top:"20px"}} > 住房時間 : </b>
                     </div>
 
                     { /* 住房日期 */ }
@@ -135,7 +143,10 @@ const Lodge_Form_Period : FC< lForm > = ( { control  , watch , setValue , editTy
                     </div>
 
                     { /* 退房日期 */ }
-                    <div className="column is-2-desktop">
+                    <div className="column is-2-desktop relative" >
+
+
+                        { night_Num > 0 &&  <span className = "absolute f_11 fDred" style = {{ top:"-12px" }} > { night_Num } 晚 </span> } 
         
                         { is_Create && <Date_Picker control         = { control }
                                                     name            = "lodge_CheckOut_Date"

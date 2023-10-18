@@ -22,13 +22,11 @@ const Lodge_Rows = ( props : any ) => {
 
 
     // 今日
-    const today = moment( new Date() ).format('YYYY-MM-DD' ) ;
+    const today = moment( new Date() ).format( 'YYYY-MM-DD' ) ;
 
 
     const { data } = props ;
 
-    // 總天數
-    const [ dates_Sum , set_Dates_Sum] = useState( 0 ) ;
 
     // 寵物
     const [ pet , set_Pet ] = useState<any>( {} ) ;
@@ -97,17 +95,12 @@ const Lodge_Rows = ( props : any ) => {
    
 
 
-    // 設定 _ 寵物、總天數
+    // 設定 _ 寵物
     useEffect( () => {
 
         // 寵物
         if( data['pet'] ) set_Pet( data['pet'] ) ;
 
-        // 總天數
-        if( data['start_date'] && data['end_date'] ){
-            const interval = get_Interval_Dates( data['start_date'] , data['end_date'] ) ;
-            set_Dates_Sum( interval.length ) ;
-        }
 
     } , [ data ] ) ;
 
@@ -157,13 +150,15 @@ const Lodge_Rows = ( props : any ) => {
             <td> { data['start_date'] }&nbsp; &nbsp;{ data['start_time'] } </td>
             <td> { data['end_date'] } </td>
             <td> <b className="fDblue"> { data['lodge_price'] } </b> </td>
+            <td> { data['together_price'] }     </td>
             <td> { data['care_price'] } </td>
+            <td> { data['lodge_bath_price'] } </td>
+            <td> { data['lodge_beauty_price'] } </td>
+            <td> { data['custom_price'] } </td>
             <td> { data['self_adjust_amount'] } </td>
             <td> { data['pickup_fee'] }  </td>
             <td>
-                  <b className="fDred">
-                      { data['lodge_price'] + data['care_price'] + data['self_adjust_amount'] + data['pickup_fee'] }
-                  </b>
+                 <b className="fDred"> { data['amount_payable']} </b>
             </td>
             <td>
                   <b className="fDred">  { data['amount_paid'] } </b>

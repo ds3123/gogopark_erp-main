@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
+import { string_Format_Slash } from 'utils/string/edit_string';
 import { Edit_Form_Type } from "utils/Interface_Type"
 import useSection_Folding from "hooks/layout/useSection_Folding";
 import { useFetch_Shop_Service_Type_Prices } from "hooks/react-query/price/useFetchPrices" ;
@@ -188,7 +189,7 @@ const Extra_Beauty = ({ register , editType , serviceData } : IExtra_Beauty )=>{
 
                         &nbsp;&nbsp; 點選項目 :  
                         <span className="fDblue"> &nbsp;
-                          {  services_Data.join(',') ?  services_Data.join(',') : '無' }
+                          {  services_Data.join(',') ?  string_Format_Slash( services_Data.join(',') ) : '無' }
                         </span>   
 
                     </b>    

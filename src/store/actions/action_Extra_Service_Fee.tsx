@@ -32,6 +32,68 @@ export const set_Lodge_Care_Amount = ( amount : number | string ) => {
 } ;
 
 
+// # 設定 _ 住宿 : 同住寵物費用
+export const set_Lodge_Together_Amount = ( amount : number | string ) => {
+
+    return ( dispatch : Dispatch ) => {
+
+                dispatch({
+                            type   : "SET_LODGE_TOGETHER_AMOUNT" ,
+                            amount : amount
+                         }) ;
+
+            } ;
+
+} ;
+
+// # 設定 _ 住宿 : 洗澡費用
+export const set_Lodge_Bath_Amount = ( amount : number | string ) => {
+
+    return ( dispatch : Dispatch ) => {
+
+                dispatch({
+                            type   : "SET_LODGE_BATH_AMOUNT" ,
+                            amount : amount
+                         }) ;
+
+            } ;
+
+} ;
+
+// # 設定 _ 住宿 : 美容費用
+export const set_Lodge_Beauty_Amount = ( amount : number | string ) => {
+
+    return ( dispatch : Dispatch ) => {
+
+                dispatch({
+                            type   : "SET_LODGE_BEAUTY_AMOUNT" ,
+                            amount : amount
+                         }) ;
+
+            } ;
+
+} ;
+
+
+// # 設定 _ 住宿 : 自訂費用
+export const set_Lodge_Custom_Amount = ( amount : number | string ) => {
+
+    return ( dispatch : Dispatch ) => {
+
+                dispatch({
+                            type   : "SET_LODGE_CUSTOM_AMOUNT" ,
+                            amount : amount
+                         }) ;
+
+            } ;
+
+} ;
+
+
+
+
+
+
 
 // # 設定 _ 加價項目費用
 export const set_Extra_Item_Fee = ( price : number | string ) => {
