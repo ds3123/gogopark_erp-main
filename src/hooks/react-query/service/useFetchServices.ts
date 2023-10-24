@@ -31,7 +31,8 @@ export const useFetch_Services_By_ServiceDate = ( account_id : string , service_
 
     const { data = fallback } = useQuery( 
                                            serviceKeys.service_date( account_id , service_date ) , 
-                                           () => fetch_Services_By_ServiceDate( account_id , service_date ) 
+                                           () => fetch_Services_By_ServiceDate( account_id , service_date ) ,
+                                           { enabled : !!service_date  } 
                                          ) ;
 
     return data                                        
@@ -47,7 +48,8 @@ export const useFetch_Services_By_PaymentDate = ( account_id : string , payment_
 
     const { data = fallback } = useQuery( 
                                            serviceKeys.payment_date( account_id , payment_date ) , 
-                                           () => fetch_Services_By_PaymentDate( account_id , payment_date ) 
+                                           () => fetch_Services_By_PaymentDate( account_id , payment_date ) ,
+                                           { enabled : !!payment_date  } 
                                          ) ;
 
     return data        

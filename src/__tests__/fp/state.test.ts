@@ -4,8 +4,10 @@ import {
         is_Delete ,
         is_Error ,
         is_ServiceDate ,
-        is_Service_Create ,
-        is_Service_Update ,
+
+        is_PaymentMethod_Cash , 
+        is_PaymentMethod_Plan , 
+
         is_ServiceOrder_Update ,
         
         is_Past_ServiceDate ,
@@ -52,30 +54,40 @@ describe( "狀態測試" , () => {
     });
 
 
-    describe( "一般編輯" , () => { 
+    describe( "服務單一般屬性" , () => { 
 
-        test( "判斷 ( 藉由 editType ) _ 服務單 ( 基礎、洗澡、美容單 ) 編輯為 _ 新增 : is_Service_Create()" , () => {
+        test( "is_Delete() : 刪除狀態 ( 屬性 : is_delete )" , () => {
 
-            // 在服務單 _ 新增下，editType 為 undefiend
+            expect( is_Delete( { is_delete : 1 } ) ).toBeTruthy() ;   
+            expect( is_Delete( { is_delete : 0 } ) ).not.toBeTruthy() ;   
+
+        }) ;
+
+        test( "is_Error() : 異常狀態 ( 屬性 : is_error )" , () => {
+
+            expect( is_Error( { is_error : 1 } ) ).toBeTruthy() ;   
+            expect( is_Error( { is_error : 0 } ) ).not.toBeTruthy() ;   
+        
+        }) ;
+
+        test( "is_PaymentMethod_Cash() : 付款方式 _ 現金 ( 屬性 : payment_method )" , () => {
+             
+            expect( is_PaymentMethod_Cash( { payment_method : '現金' } ) ).toBeTruthy() ;
+        
+        }) ;
+
+        test( "is_PaymentMethod_Plan() : 付款方式 _ 方案 ( 屬性 : payment_method )" , () => {
+        
+            expect( is_PaymentMethod_Plan( { payment_method : '方案' } ) ).toBeTruthy() ;
+        
+        }) ;
     
-            expect( is_Service_Create( undefined ) ).toBeTruthy() ; 
-            expect( is_Service_Create( null ) ).toBeTruthy() ; 
-            expect( is_Service_Create( "" ) ).toBeTruthy() ; 
-        
-        }) ;
+    
+    }) ; 
+    
 
-        test( "判斷 ( 藉由 editType ) _ 服務單 ( 基礎、洗澡、美容單 ) 編輯為 _ 更新 : is_Service_Update()" , () => {
-        
-        
-            // 在服務單 _ 新增下，editType 為 "編輯"
-
-            expect( is_Service_Update( "編輯" ) ).toBeTruthy() ; 
-
-            expect( is_Service_Update( "其他字串" ) ).not.toBeTruthy() ; 
-            expect( is_Service_Update( "" ) ).not.toBeTruthy() ; 
-
-        }) ;
-
+    describe( "一般編輯" , () => { 
+       
         test( "判斷 ( 藉由 serviceData ) _ 服務單 ( 基礎、洗澡、美容單 ) 編輯為 _ 更新 : is_ServiceOrder_Update()" , () => {
         
              const data = { bath_id : 23 , shop_status : '到店等候中' } ;
@@ -104,20 +116,6 @@ describe( "狀態測試" , () => {
             expect( is_Future_ServiceDate( "2023-07-19" ) ).not.toBeTruthy(); // 昨天  
             expect( is_Future_ServiceDate( "2023-07-20" ) ).not.toBeTruthy(); // 今天
             expect( is_Future_ServiceDate( "2023-07-21" ) ).toBeTruthy();     // 明天 -> 未來
-        
-        }) ;
-
-        test( "為 _ 刪除狀態 : is_Delete()" , () => {
-
-            expect( is_Delete( { is_delete : 1 } ) ).toBeTruthy() ;   
-            expect( is_Delete( { is_delete : 0 } ) ).not.toBeTruthy() ;   
-
-        }) ;
-
-        test( "為 _ 異常狀態 : is_Error()" , () => {
-
-            expect( is_Error( { is_error : 1 } ) ).toBeTruthy() ;   
-            expect( is_Error( { is_error : 0 } ) ).not.toBeTruthy() ;   
         
         }) ;
     

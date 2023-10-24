@@ -1,3 +1,4 @@
+import { EditType } from "./custom_types/form";
 
 
 
@@ -83,7 +84,7 @@ export interface IReachHookFormContext {
 
     current     : string ;              // 目前所點選 _ 新增標籤類型 ( Ex. 基礎、洗澡、美容... )
 
-    editType    : string | undefined ;  // 狀態 : 新增 / 編輯 ( undefined  代表 "新增" ) ;
+    editType    : EditType | string ;  // 狀態 : 新增 / 編輯 ( undefined  代表 "新增" ) ;
    
     serviceData : any ;                 // 該筆服務資料 ( for 編輯狀態 )
    

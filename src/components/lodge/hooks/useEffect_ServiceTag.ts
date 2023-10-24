@@ -245,7 +245,6 @@ export const useEffect_Insert_ServicePrices = ( setValue : any , feeObj : { num 
         const method = x?.method === '現金' ? `[ ${ x?.method } ]` :
                        x?.method === '方案' ? `[ ${ x?.method } ] 使用 1 次` :
                       `[ ${ x?.method } ] 贈送 1 次` ;
-                       
 
         const amount = x?.amount ? `/ 金額 : ${ x?.amount } 元` : '' ;  
         const date   = x?.date !== 'Invalid date' ? ' / 日期 : ' + x?.date : '' ;

@@ -1,12 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-pascal-case */
 import { useEffect , useState } from "react" ;
-import useServiceType from "hooks/layout/useServiceType" ;
 import usePet_Button from "hooks/layout/usePet_Button" ;
-import { set_Side_Panel , set_Side_Extra_Fee } from "store/actions/action_Global_Layout" ;
-
 import { useDispatch } from "react-redux" ;
-import Update_Service from "components/services/edit/Update_Service" ;
 import { useLocation } from "react-router" ;
 import { useHistory } from "react-router-dom" ;
 import axios from "utils/axios" ;
@@ -16,9 +12,9 @@ import moment from "moment" ;
 import { click_Show_Edit_Customer } from "store/actions/action_Customer" ;
 import { switch_Service_Url_Id } from "utils/data/switch" ;
 import Service_Sign from "./components/Service_Sign" ;
-
-import { switch_Service_Id } from "utils/data/switch" ;
 import { Toast } from 'templates/note/Toast' ;
+
+import Service_Detail_Button from "templates/button/Service_Detail_Button";
 
 
 const Services_Rows = ( { data } : any ) => {
@@ -52,22 +48,11 @@ const Services_Rows = ( { data } : any ) => {
     
 
                                            
-    // 服務單欄位 _ 顏色、Icon
-    const { color , icon } = useServiceType( data[ 'service_type' ] , false , 'medium' ) ;
+   
 
     // * 寵物按鈕
     const petButton        = usePet_Button( [ pet ] ) ;
 
-    // 點選 _ 服務單
-    const click_Service    = () => {
-
-      // 開啟 _ 左側 : 服務加價面板  
-      dispatch( set_Side_Extra_Fee( true , data ) ) ;
-
-      // 開啟 _ 右側 : 服務單面板  
-      dispatch( set_Side_Panel( true , <Update_Service /> , { service_Type : data['service_type'] , preLoadData : data } as { service_Type : string } ) ) ;
-
-    } 
     
     // 點選 _ 客戶
     const click_Customer   = ( cus_Id : string ) => dispatch( click_Show_Edit_Customer( cus_Id , customer ) ) ;
@@ -142,22 +127,6 @@ const Services_Rows = ( { data } : any ) => {
 
 
     } ;
-
-    // 取得 _ 洗澡：服務價格 ( 初次、是否有自訂 )
-    const get_Bath_Service_Price = ( data : any ) => {
-
-        const pet = data['pet'] ;
-
-        // 初次洗澡價格
-        if( data['"初次洗澡優惠"'] ) return data['bath_fee'] ;
-
-        // 單次洗澡下，有 _ 自訂洗澡價格
-        if( data['payment_type'] === '單次洗澡' && pet?.single_bath_price ) return pet?.single_bath_price
-
-        // 單次洗澡下，沒有 _ 自訂洗澡價格
-        return data['bath_fee']
-
-    }
 
 
     useEffect( () => {
@@ -239,7 +208,6 @@ const Services_Rows = ( { data } : any ) => {
     const t_L  = { textAlign : "left" } as const ;
     const line = data?.is_delete === 1 ? { textDecoration : "line-through red" } : { textDecoration : "none" } ;
 
-
     
 
     return <tr style = { ( data?.service_date && data?.service_date?.slice( 0 , 10 ) === today ) ? { background:"rgb(160,160,160,.2)" } : { lineHeight : "40px" } } >
@@ -250,12 +218,9 @@ const Services_Rows = ( { data } : any ) => {
                  { /* 服務相關標示 : 異常、銷單、是否付費、申請退費 */ } 
                  <Service_Sign { ...data } />
 
-                 <b className = { color+" pointer" } onClick = { click_Service } >
-                   <i className = { icon } ></i> &nbsp; { data[ 'service_type' ] }       &nbsp;
-                   <b className="f_9"> ( { switch_Service_Id( data ) } )            </b> &nbsp;
-                   <b className="tag is-white is-rounded f_9">  Q{ data['q_code'] } </b>
-                 </b>
-
+                 { /* 服務檢視按鈕  */ } 
+                 <Service_Detail_Button data = { data } />
+            
              </td>
              
              { /* 寵物資訊 */ }

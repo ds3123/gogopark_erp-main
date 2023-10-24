@@ -1,9 +1,5 @@
 
-
 // @ 計算金額
-
-
-
 // 計算 _ 小計金額 : "應付"金額加總
 export const cal_Paid_Amount_Total = ( data : any[] ) : number => {
 
@@ -12,6 +8,7 @@ export const cal_Paid_Amount_Total = ( data : any[] ) : number => {
     if( data.length > 0 ) data.forEach( ( x : any ) => total_Amount += x?.amount_paid ) ;
 
     return total_Amount
+
 
 } ;
 

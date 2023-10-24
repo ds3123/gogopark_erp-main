@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-redeclare */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-pascal-case */
 import { useState , useEffect } from 'react' ;
@@ -15,16 +16,15 @@ import {
 import cookie from 'react-cookies' ;
 import { get_Service_Type_Color } from 'utils/data/switch' ;
 
-
 // React Hook Form
-import { useForm , useWatch , SubmitHandler , Controller } from "react-hook-form" ;
+import { useForm , SubmitHandler } from "react-hook-form" ;
 import { yupResolver } from "@hookform/resolvers/yup" ;
 import Date_Picker from "templates/form/Date_Picker" ;
 import { schema_Side_Extra_Fee } from "utils/validator/form_validator" ;
 import { useEffect_Edit_Picked_Items } from "components/services/hooks/useEffect_Extra_Item" ;
 import { useCreateExtraFee } from "hooks/react-query/service/useCreateExtraFee" ;
 import { useAccount_Shop_Id } from 'hooks/data/useAccount';
-
+import { I_Side_Extra_Fee } from 'utils/custom_types/form';
 
 
 // @ 服務單建立後，加價面板
@@ -35,7 +35,7 @@ const Side_Extra_Fee = () => {
     const shop_Id = useAccount_Shop_Id() ;
 
     // 今日
-    const today   = moment( new Date() ).format('YYYY-MM-DD' ) ; 
+    const today   = moment( new Date() ).format( 'YYYY-MM-DD' ) ; 
 
     // 設定 _ 使用者類別
     const _cookie = cookie.load( 'userInfo' ) ;
@@ -64,16 +64,14 @@ const Side_Extra_Fee = () => {
     // 目前服務單 _ 寵物
     const pet        = current_Service?.pet ;
 
-
      
     // React Hook Form
     const { register , handleSubmit , control , formState : { errors , isValid } } =
-         useForm< Side_Extra_Fee >({
+         useForm< I_Side_Extra_Fee >({
+        
                                        mode     : "all" ,
                                        //resolver : yupResolver( schema_Side_Extra_Fee ) ,
                                     }) ;      
-
-
 
 
 
@@ -104,7 +102,8 @@ const Side_Extra_Fee = () => {
 
 
     // 提交處理 : 新增加價單
-    const onSubmit : SubmitHandler< Side_Extra_Fee > = ( data : Side_Extra_Fee ) => {
+    const onSubmit : SubmitHandler< I_Side_Extra_Fee > = ( data : I_Side_Extra_Fee ) => {
+    
     
          // 付款日期
          const payment_Date = moment( data.payment_Date ).format( 'YYYY-MM-DD' ) ;  

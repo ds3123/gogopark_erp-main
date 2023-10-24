@@ -8,7 +8,7 @@ type Title = {
    tag_Color    : string ;
    service_Type : string ;
    amount_Type  : string ; 
-   amount_Total : number ;
+   amount_Total : number | undefined ;
 
 }
 
@@ -20,6 +20,9 @@ const Title_Folder : FC< Title > = ( { children ,  tag_Color , service_Type , am
     
   const [ is_folding , set_Is_Folding ] = useState< boolean >( false ) ;
 
+
+
+  const is_Expenditure = amount_Type === '支 出' || amount_Type === '扣 _ 預收款' ;
 
     
   return  <div className = 'columns is-multiline is-mobile' >
@@ -35,8 +38,8 @@ const Title_Folder : FC< Title > = ( { children ,  tag_Color , service_Type , am
                 <div className = 'column is-3-desktop relative' >
 
                     { /* 小計 */ }
-                    <b className = 'tag is-large is-white absolute' style = { amount_Type === '支 出' ? { left : "160px" , top : "15px" } : {}}> 
-                         <span className = { ( service_Type === '洗澡美容' && amount_Type === '扣 _ 預收款' ? 'fBlue' : 'fRed' ) }  > { amount_Total } </span>&nbsp;元  
+                    <b className = 'tag is-large is-white absolute' style = { is_Expenditure ? { left : "155px" , top : "10px" } : {}}> 
+                         <span className = { is_Expenditure ? 'fBlue' : 'fRed' }  > { ( amount_Total || amount_Total === 0 ) ? amount_Total + ' 元' : '尚未完成' } </span>&nbsp;  
                     </b>
                         
                     { /* 按鈕 */ }

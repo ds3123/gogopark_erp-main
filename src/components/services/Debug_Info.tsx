@@ -58,7 +58,6 @@ const Debug_Info = ( ) => {
   
     const current_Plan_Id            = useSelector(( state : any ) => state.Plan.current_Plan_Id  ) ;             // 目前 _ 方案資料表 ( plans ) id
     const current_Plan_Note          = useSelector(( state : any ) => state.Plan.current_Plan_Note  ) ;           // 目前 _ 方案備註 Ex. 包月洗澡第 1 次
-    const current_Plan_Service_Price = useSelector(( state : any ) => state.Plan.current_Plan_Service_Price  ) ;  // 目前 _ 使用的方案服務 _價格 ( 該次 )
 
     const is_Plan_Used               = useSelector(( state : any ) => state.Plan.is_Plan_Used  ) ;                // 是否已 _ 點選使用方案 : "包月洗澡" or "包月美容" 標籤 ( for 表單提交驗證邏輯 )
 
@@ -118,7 +117,6 @@ const Debug_Info = ( ) => {
                    
                     <div className="m_Bottom_30">  目前 _ 方案備註  <br/> ( current_Plan_Note ) : <br/> <b className="fRed"> {  current_Plan_Note } </b> </div>
                     
-                    <div className="m_Bottom_30">  目前 _ 使用此次方案價格  <br/> ( current_Plan_Service_Price ) : <br/> <b className="fRed"> {  current_Plan_Service_Price } </b> </div>
                                        
                     <div className="m_Bottom_30">  目前 _ 是否以點選使用  <br/> ( is_Plan_Used ) : <br/> <b className="fRed"> {  is_Plan_Used ? 'True' : 'False' } </b> </div>
                     

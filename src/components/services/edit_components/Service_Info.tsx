@@ -2,7 +2,6 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import { FC } from 'react' ;
-
 import { Edit_Form_Type } from "utils/Interface_Type" ;
 import { useSelector } from "react-redux" ;
 import Qcode_Select_Options from "components/services/edit_components/Qcode_Select_Options" ;
@@ -13,11 +12,11 @@ import "react-datepicker/dist/react-datepicker.css" ;
 import 'antd/dist/antd.css' ;
 import { useEffect_Set_ServiceStatus , useEffect_Set_Redux_ServiceStatus , useEffect_Set_CurrentTime } from "../hooks/useEffect_Service_Info" ;
 import { get_H_M } from "utils/time/time" ;
-
-import { is_Service_Update , is_ServiceStatus_Appointment_TodayFuture } from 'fp/state' ;
+import { is_ServiceStatus_Appointment_TodayFuture } from 'fp/state' ;
 import { get_ServiceOrder_LeaveTime , get_ServiceOrder_ArrivedTime } from 'fp/services/read/get_ServiceOrder' ;
 
-
+import { is_Update } from 'fp/common/condition/edit_mode';
+import { EditType } from 'utils/custom_types/form';
 
 
 // 各表單驗證條件
@@ -34,7 +33,7 @@ import { get_ServiceOrder_LeaveTime , get_ServiceOrder_ArrivedTime } from 'fp/se
 
 // for 編輯
 interface IInfo extends Edit_Form_Type {
-    editType?    : string ;
+    editType?    : EditType | string  ;
     serviceData? : any ;
 }
 
@@ -44,15 +43,12 @@ const green = { color : "rgb(30,180,30)" } ;
 const blue  = { color : "rgb(30,30,180)" } ;
 
 
-
-
 type C_Button = {
 
     is_CurrentTime_Column : string ;
 
-    columnName     : string ;
-    callBack       : ( columnName : string ) => void ;
-
+    columnName            : string ;
+    callBack              : ( columnName : string ) => void ;
 
 }
 
@@ -68,7 +64,6 @@ export const Set_CurrenTime_Button : FC< C_Button > = ( { is_CurrentTime_Column 
                 </b> ;
 
 
-
 /* 服務單( 基礎、洗澡、美容 ) _ 基本資訊 */
 const Service_Info = ( { register , setValue , control , editType , serviceData } : IInfo ) => { 
 
@@ -78,7 +73,7 @@ const Service_Info = ( { register , setValue , control , editType , serviceData 
 
 
     // 設定 _ 服務狀態 ( serviceStutus )
-    const { serviceStatus , click_Appoint_Today , click_Arrive_Shop } = useEffect_Set_ServiceStatus( editType , service_Date , setValue ) ;
+    const { serviceStatus , click_Appoint_Today , click_Arrive_Shop } = useEffect_Set_ServiceStatus( editType as EditType , service_Date , setValue ) ;
 
 
     // 設定 _ Redux Store : 服務狀態 ( serviceStutus ) --> 供 Data_Obj_Extra_Props.tsx 追加 data 物件新屬性 ( 判斷此服務單為 : 已到店 / 預約_今天 / 預約_未來 )
@@ -133,19 +128,19 @@ const Service_Info = ( { register , setValue , control , editType , serviceData 
 
                                     { is_Arrived_Today &&
                                         <>
-                                            <b style={green}> 已到店 &nbsp; </b>
+                                            <b style = { green } > 已到店 &nbsp; </b>
                                             <b className="tag is-medium pointer" onClick={click_Appoint_Today}> 預約 _ 今天 </b>
                                         </>
                                     }
 
                                     { is_Appointed_Today &&
                                         <>
-                                            <b style={green}> 預約 _ 今天 &nbsp; </b>
+                                            <b style = { green } > 預約 _ 今天 &nbsp; </b>
                                             <b className="tag is-medium pointer" onClick={click_Arrive_Shop}> 已到店 </b>
                                         </>
                                     }
 
-                                    { is_Appointed_Future && <b style={green}> 預約 _ 未來 &nbsp; </b> }
+                                    { is_Appointed_Future && <b style = { green } > 預約 _ 未來 &nbsp; </b> }
 
                                 </>
 
@@ -307,7 +302,7 @@ const Service_Info = ( { register , setValue , control , editType , serviceData 
 
 
                     { /* 實際離店時間 */ }
-                    { is_Service_Update( editType ) &&  
+                    { is_Update( editType as EditType ) &&  
 
                         <div className="column is-4-desktop relative">
 

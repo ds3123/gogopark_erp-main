@@ -7,9 +7,6 @@ import useMulti_NavOptions from "hooks/layout/useMulti_NavOptions";
 
 // 各頁面元件
 import CashPerformance_Report from "components/management/finance/CashPerformance_Report" ;
-import Unity_Report from "components/management/finance/Unity_Report" ;
-import CreditCard_Report from "components/management/finance/CreditCard_Report" ;
-import ThirdParty_Report from "components/management/finance/ThirdParty_Report" ;
 import Species_Price_List from "components/management/price/Species_Price_List" ;
 import Service_Price from "components/management/price/service_type/Service_Price" ;
 import Basic_Price from "components/management/price/service_type/Basic_Price" ;
@@ -66,10 +63,8 @@ const Management = () => {
 
             // # 財務管理
             case '現金績效'  : return <CashPerformance_Report/> ;
-            case '綜合報表'  : return <Unity_Report/> ;
-            case '信用卡'    : return <CreditCard_Report/> ;
-            case '第三方支付' : return <ThirdParty_Report/> ;
           
+         
             // # 價格管理
             case '品種價格' : return <Species_Price_List/> ;
             // case '服務價格' : return <Service_Price/>  ;   // 所有服務價格

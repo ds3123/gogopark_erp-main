@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useState , useEffect } from 'react' ;
-import { is_Past_ServiceDate , is_Future_ServiceDate , is_Service_Create } from "fp/state" ;
+import { is_Past_ServiceDate , is_Future_ServiceDate  } from "fp/state" ;
 import { set_Info_Column } from "store/actions/action_Info" ;
 import { useDispatch } from 'react-redux';
+import { is_Create  } from 'fp/common/condition/edit_mode';
+import { EditType } from 'utils/custom_types/form';
 
 
 type ServiceStatus = {
@@ -16,7 +18,7 @@ type ServiceStatus = {
 
 
 // 設定 _ 服務狀態 ( serviceStutus )
-export const useEffect_Set_ServiceStatus = ( editType : string | undefined , service_Date : string , setValue : any ) => {
+export const useEffect_Set_ServiceStatus = ( editType : EditType , service_Date : string , setValue : any ) => {
 
     // # 服務狀態
     const [ serviceStatus , set_serviceStatus ] = useState({
@@ -37,14 +39,14 @@ export const useEffect_Set_ServiceStatus = ( editType : string | undefined , ser
         //【 新增 】
 
         // 預約 _ 未來
-        if( is_Service_Create( editType ) && is_Future_ServiceDate( service_Date ) ){
+        if( is_Create( editType ) && is_Future_ServiceDate( service_Date ) ){
             set_serviceStatus({ ...serviceStatus , is_Arrived_Today : false , is_Appointed_Today : false , is_Appointed_Future : true }) ;
         }else{
             set_serviceStatus({ ...serviceStatus , is_Arrived_Today : true , is_Appointed_Today : false , is_Appointed_Future : false }) ;
         }
 
         // 是否選擇 : 過去日期 ( 缺 _ 強制設回今天 2021.06.13 )
-        if( is_Service_Create( editType ) && is_Past_ServiceDate( service_Date ) ){
+        if( is_Create( editType ) && is_Past_ServiceDate( service_Date ) ){
 
             setValue( 'service_Date' , new Date() ) ; // 設回今天
             alert('不能選擇 : 過去日期') ;

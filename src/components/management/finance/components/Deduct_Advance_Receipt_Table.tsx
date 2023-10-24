@@ -1,136 +1,59 @@
+/* eslint-disable react/jsx-pascal-case */
+import { FC , useState } from 'react' ;
+import { useSelector } from "react-redux";
+import { useAccount_Shop_Id } from "hooks/data/useAccount";
+import { useFetch_Services_By_ServiceDate } from "hooks/react-query/service/useFetchServices" 
+import { get_Finance_Plan_Services } from "fp/management/finance/plan/get_Plan_Services";
+import Deduct_Advance_Receipt_Table_Row from "./sub_components/Deduct_Advance_Receipt_Table_Row"; 
+import { sort_ObjAttr } from 'fp/tool';
 
-import { useDispatch } from "react-redux" 
-import { set_Side_Panel } from "store/actions/action_Global_Layout" 
-import Update_Service from "components/services/edit/Update_Service" 
 
 
-type Table = {
 
-    data : any[] ;
-  
-}
-  
 
 // @ 表單 : 扣 _ 預收款 ( 洗澡、美容 )
-const Deduct_Advance_Receipt_Table = ( { data } : any ) => {
+const Deduct_Advance_Receipt_Table : FC = () => {
 
-    const dispatch = useDispatch() ; 
-
-
-    // 點選 _ 服務單
-    const click_Service = ( service : any ) => dispatch( set_Side_Panel( true , <Update_Service /> , { service_Type : service['service_type'] ,  preLoadData : service } ) ) ;
+    
+    const shop_Id    = useAccount_Shop_Id() ;
 
 
-   return <table className="table is-fullwidth is-hoverable m_Bottom_100">
+    // 所查詢 _ 報表日期
+    const query_Date = useSelector( ( state : any ) => state.Info.service_Date ) ; 
+    
+    // 特定到店日期，所有服務 ( 基礎、洗澡、美容、安親、住宿 )
+    const services_By_ServiceDate = useFetch_Services_By_ServiceDate( shop_Id , query_Date ) ; 
+
+    // 取得 _ 付款方式為「 方案 」的 洗澡單 或 美容單 ( 排除 _ 銷單 )
+    const plan_Servcies  = get_Finance_Plan_Services( services_By_ServiceDate ) ;
+
+    // 依照 q_code 排序
+    const _plan_Servcies = sort_ObjAttr( 'q_code' , 'asc' )( plan_Servcies ) ;
+
+
+   return <table className = "table is-fullwidth is-hoverable m_Bottom_100" >
 
                 <thead>
 
                     <tr>
-                        <th> 項 目        </th>
-                        <th> 寵物資訊      </th> 
-                        <th> 金 額        </th>
-                        {/* <th> 折 扣    </th> */}
-                        <th> 應收帳款 </th>
-                        <th style={{ width:'210px' }}> 付款方式 </th>
-                        <th> 備 註    </th>
+                        <th> 項 目   </th>
+                        <th> 寵物資訊 </th> 
+                        <th> 到店日期 </th>
+                        <th> 付款方式 </th>
+                        <th> 方案價格 </th>
+                        <th> 調整金額 </th>
+                        <th> 接送費用 </th>
+                        <th> 實收金額 </th>
+                        {/* <th> 總計金額 </th> */}
+                        <th> <span className = "fDblue" > 此次方案使用金額 </span> </th>
                     </tr>
                     
                 </thead>
 
                 <tbody>
 
-                    { 
-                     
-                        data.map( ( x : any , y : any ) => {
-
-
-                            let service_Amount_1 = 0 ;
-                            let service_Amount_2 = 0 ;
-
-                            const plan_Type    = x?.plan?.plan_type ;  // 方案類型 ( Ex. 預設方案 : 包月洗澡 / 包月美容 ; 自訂方案 )
-                            const service_Type = x?.service_type ;     // 服務類型 ( Ex. 洗澡 / 美容 )      
-
-                            // 預設方案
-                            if( plan_Type === '包月洗澡' ){
-                                service_Amount_1 = x['bath_month_fee'] ;
-                                service_Amount_2 = x['bath_month_fee'] ;
-                            } 
-                            
-                            if( plan_Type === '包月美容' && service_Type === '洗澡' ){
-                                service_Amount_1 = x['bath_month_fee'] ;
-                                service_Amount_2 = x['bath_month_fee'] ;
-                            } 
-
-                            if( plan_Type === '包月美容' && service_Type === '美容' ){
-                                service_Amount_1 = x['beauty_month_fee'] ;
-                                service_Amount_2 = x['beauty_month_fee'] ;
-                            } 
-                          
-
-                            // 自訂方案
-                            if( plan_Type !== '包月洗澡' && plan_Type !== '包月美容' ){
-                                service_Amount_1 = x?.plan?.service_price ;
-                                service_Amount_2 = x?.plan?.service_price ;
-                            }    
-
-
-                            // 服務為 “預付” ( 非採用方案 )
-                            if( !plan_Type ){
-                                service_Amount_1 = x?.amount_payable ;
-                                service_Amount_2 = x?.amount_paid ;
-                            }
-
-                          
-                            
-
-                            return <tr key = { y } >
-
-                                      <td className="td_Left"> 
-                                          <b className="tag is-medium pointer" onClick = { () => click_Service( x ) }  >
-                                            { x['payment_type'] } &nbsp; <b className="tag is-white is-rounded">  Q{ x['q_code'] } </b>
-                                          </b> 
-                                      </td>
-
-                                      <td className="td_Left">  { x['pet']['name'] } ( { x['pet']['species'] } ) </td>
-                                      
-                                      <td> { service_Amount_1 }      </td>
-
-                                      { /* <td>  0                  </td> */ }
-
-                                      <td> { service_Amount_2 }      </td>
-
-                                      <td className="td_Left relative"> 
-
-                                         { x['payment_method'] } 
-                                        
-                                         <span className="absolute f_9" style={{ top:'4px' , right:'15px' }}>  
-                                              
-                                            付款日期 :&nbsp; 
-                                            {  x.payment_date ? x.payment_date?.slice(5,10) : <span className="fRed">未填寫</span>  } 
-                                         </span> 
-                                         
-                                         <span className="absolute f_9" style={{ top:'19px' , right:'15px' }}> 到店日期 : { x?.service_date.slice(5,10) } </span>
-                                         
-                                      </td>
-
-                                      <td className="td_Left"> 
-
-                                          &nbsp;&nbsp;&nbsp;    
-
-                                          { x?.plan &&
-                                            <>
-                                               { ( x?.plan?.plan_type === '包月洗澡' || x?.plan?.plan_type === '包月美容' ) ? '預設' : '自訂' }方案 : 
-                                                <b className="fDblue">  { x?.plan?.plan_type } </b> 
-                                            </>
-                                          }  
-
-                                      </td>
-
-                                  </tr>
-
-                        }) 
-                    
-                    }
+                  { _plan_Servcies.map( ( x : any , y : any ) =>
+                         <Deduct_Advance_Receipt_Table_Row key = { y } data = { x } /> ) }
 
                 </tbody>
 

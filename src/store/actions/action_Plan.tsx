@@ -1,7 +1,5 @@
 import { Dispatch } from "redux" ;
 import {
-         get_Use_Plan_Amount , 
-         get_Plan_Used_Amount , 
          get_Plan_Used_Num ,
          get_Plan_Used_Note ,
        } from "utils/data/plan" ;
@@ -64,41 +62,40 @@ export const set_Use_Plan = ( bool : boolean ) => {
 
 } ;
 
+
 // # 點選使用方案後，所設定 / 復原設定 _ 目前方案相關資訊
-export const set_Use_Plan_Info = ( clicked_Tag_Index : number | null,  // 所點選的方案索引
+export const set_Use_Plan_Info = ( 
+                                   clicked_Tag_Index : number | null,  // 所點選的方案索引
                                    plan_Id           : string ,        // 方案 id
                                    plan_Type         : string ,        // 方案類型( 名稱 ) 
-                                   this_Used_Amount  : number ,        // 此次使用 ( 佔有 ) 金額
                                    this_Used_Note    : string ,        // 此次使用備註 
                                    is_Using_Plan     : boolean         // 是否使用方案 ( for 提交鈕驗證 )
                                  ) => {
 
     return ( dispatch : any ) => {
 
-                // 設定 _ 目前點選使用方案標籤的索引號碼 
-                dispatch( { type : "SET_CURRENT_PLAN_TAG_INDEX" , current_Plan_Tag_Index : clicked_Tag_Index } ) ;   
+        // 設定 _ 目前點選使用方案標籤的索引號碼 
+        dispatch( { type : "SET_CURRENT_PLAN_TAG_INDEX" , current_Plan_Tag_Index : clicked_Tag_Index } ) ;   
 
-                // 設定 _ 目前所點選方案 : 資料表 ( plans ) id
-                dispatch( { type : "SET_CURRENT_PLAN_ID" , current_Plan_Id : plan_Id } ) ;
+        // 設定 _ 目前所點選方案 : 資料表 ( plans ) id
+        dispatch( { type : "SET_CURRENT_PLAN_ID" , current_Plan_Id : plan_Id } ) ;
 
-                // 設定 _ 目前所點選方案 : 類型 / 名稱
-                dispatch( set_current_plan_type( plan_Type ) ) ;
+        // 設定 _ 目前所點選方案 : 類型 / 名稱
+        dispatch( set_current_plan_type( plan_Type ) ) ;
 
-                // 設定 _ 使用此次方案的價格 ( for 預先寫入 "此次價格" 輸入框 )
-                dispatch( { type : "SET_CURRENT_PLAN_SERVICE_PRICE" , current_Plan_Service_Price : this_Used_Amount } )  ;
+        // 目前選擇 : 方案備註  Ex. 洗澡第 1 次
+        dispatch( { type : "SET_CURRENT_PLAN_NOTE" , current_Plan_Note : this_Used_Note } ) ;
 
-                // 目前選擇 : 方案備註  Ex. 洗澡第 1 次
-                dispatch( { type : "SET_CURRENT_PLAN_NOTE" , current_Plan_Note : this_Used_Note } ) ;
-
-                // 設定 _ 是否已點選方案標籤 ( for 表單提交驗證 )
-                dispatch( set_Use_Plan( is_Using_Plan ) ) ;
+        // 設定 _ 是否已點選方案標籤 ( for 表單提交驗證 )
+        dispatch( set_Use_Plan( is_Using_Plan ) ) ;
 
     }
 
 } ;
 
 // # 點選 _ 使用方案
-export const click_Cutomer_Use_Plan_Tag = ( current_Tag       : string ,        // 所處新增資料頁籤 ( Ex. 洗澡、美容 )
+export const click_Cutomer_Use_Plan_Tag = ( 
+                                            current_Tag       : string ,        // 所處新增資料頁籤 ( Ex. 洗澡、美容 )
                                             current_Tag_Index : number ,        // 目前   _ 方案標籤索引
                                             clicked_Tag_Index : number | null , // 所點選 _ 方案標籤索引 
                                             clicked_Plan      : any             // 所點選使用方案內容
@@ -108,32 +105,25 @@ export const click_Cutomer_Use_Plan_Tag = ( current_Tag       : string ,        
 
              // * 若已點選過，再次點選 : 復原 _ 方案相關資訊
              if( current_Tag_Index === clicked_Tag_Index ){
-                 dispatch( set_Use_Plan_Info( null , "" , "" , 0 ,"" , false ) ) ;
+                 dispatch( set_Use_Plan_Info( null , "" , ""  ,"" , false ) ) ;
                  return false 
              } 
              
              // * 若未選過，點選 : 設定 _ 方案相關資訊
         
              // 已使用次數
-             const used_Num          = get_Plan_Used_Num( current_Tag , clicked_Plan['plan_used_records'] ) ;   
-                
-             // 已使用金額
-             const total_Used_Amount = get_Plan_Used_Amount( clicked_Plan['plan_used_records'] ) ; 
-
-             // 此次使用金額
-             const this_Used_Amount  = get_Use_Plan_Amount( current_Tag , clicked_Plan , total_Used_Amount ) ;
-
+             const used_Num       = get_Plan_Used_Num( current_Tag , clicked_Plan['plan_used_records'] ) ;   
+    
              // 此次使用備註
-             const this_Used_Note    = get_Plan_Used_Note( current_Tag , clicked_Plan['plan_type'] , used_Num ) ;
+             const this_Used_Note = get_Plan_Used_Note( current_Tag , clicked_Plan['plan_type'] , used_Num ) ;
 
-             
              // 點選使用方案後，設定 _ 目前方案相關資訊 
-             dispatch( set_Use_Plan_Info( current_Tag_Index , 
-                                          clicked_Plan['id'] , 
-                                          clicked_Plan['plan_type'] , 
-                                          this_Used_Amount ,
-                                          this_Used_Note ,
-                                          true  
+             dispatch( set_Use_Plan_Info( 
+                                           current_Tag_Index , 
+                                           clicked_Plan['id'] , 
+                                           clicked_Plan['plan_type'] , 
+                                           this_Used_Note ,
+                                           true  
                                          )) ;
 
 

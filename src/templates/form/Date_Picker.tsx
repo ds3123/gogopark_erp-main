@@ -46,8 +46,6 @@ const Date_Picker = ( { control , name , default_Date , handle_OnChange } : DTyp
         
         // 服務日期( 到店日期 ) / 安親開始日期
         if( name === "service_Date" || name === "care_Start_Date" ) dispatch( set_Info_Column( "service_Date" , p_Date ) ) ;   
-        
-        
 
     } ,[ value ] ) ;
 

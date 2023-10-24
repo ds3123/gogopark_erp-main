@@ -50,9 +50,9 @@ const Nav_Info = ( { total_Amount } : Nav ) => {
 
    return  <div className="columns is-multiline is-mobile m_Bottom_100">
 
-                <div className="column is-5-desktop">
+                <div className = "column is-5-desktop">
 
-                    <div className="tag is-large is-white">
+                    <div className = "tag is-large is-white">
                         
                         <b className = { `tag is-medium is-rounded f_14 pointer  ${ date_Type === '付款日期' ? 'is-black' : 'hover' }` }
                            onClick   = { () => click_Date_Type( '付款日期' ) } > 
@@ -74,16 +74,16 @@ const Nav_Info = ( { total_Amount } : Nav ) => {
                     
                 </div>
 
-                {/* { date_Type === '付款日期' && */}
+               
 
                     <div className="column is-7-desktop relative">
 
                         { /* 績效 */ }
                         <div className="tag is-large is-white relative" >
 
-                            <b className = "m_Right_10" > 洗美績效 <span className = "f_13" > 總計 </span> : <span className = "fRed"> { total_Amount.Service_Receivable + total_Amount.Deduct_Advance } </span> 元 </b>
+                            {/* <b className = "m_Right_10" > 洗美績效 <span className = "f_13" > 總計 </span> : <span className = "fRed"> { total_Amount.Service_Receivable + total_Amount.Deduct_Advance } </span> 元 </b>
 
-                            <span className = "f_11" > { note_2() } </span>
+                            <span className = "f_11" > { note_2() } </span> */}
 
                         </div> 
 
@@ -98,7 +98,7 @@ const Nav_Info = ( { total_Amount } : Nav ) => {
                         
                     </div>
 
-                {/* } */}
+                
 
            </div>
 

@@ -94,7 +94,15 @@ export const useEffect_Create_Beauty = () => {
                             service_id    : beauty_Id ? beauty_Id : null ,                               // 新增洗澡單後，回傳的該筆 _ 資料表 id
                             service_type  : data['current_Tab'] ,                                        // 服務類型 ( 洗澡 or 美容 )
                             service_note  : data['current_Plan_Note'] ,                                  // 目前選擇 _ 方案備註     Ex. 包月洗澡第 1 次
-                            service_price : data['current_Plan_Used_Fee'] ? parseInt( data['current_Plan_Used_Fee'] ) : 0 // 目前選擇 _ 方案服務價錢 ( 基本價格 / 4 *再確認 2021.08.09 )
+                           
+                            /*
+
+                                 # 目前選擇 _ 方案服務價錢 ( 1 次美容，等同 2 次洗澡 )
+
+                                  * 目前應無作用 2023.10.21
+                            
+                            */  
+                            service_price : data['current_Plan_Used_Fee'] ? parseInt( data['current_Plan_Used_Fee'] ) : 0 
                             
                         } ;
 

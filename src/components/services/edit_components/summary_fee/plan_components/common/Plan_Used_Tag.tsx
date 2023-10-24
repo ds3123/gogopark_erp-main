@@ -1,13 +1,12 @@
 /* eslint-disable react/jsx-pascal-case */
 
-import { useDispatch , useSelector } from "react-redux";
-
+import { useDispatch , useSelector } from "react-redux" ;
 import { set_Modal } from "store/actions/action_Global_Layout" ;
 import Plan_Used_Records from "components/services/edit_components/summary_fee/plan_components/Plan_Used_Records" ;
 import { string_Short } from "utils/string/edit_string" ;
-
 import Plan_Used_ExtraItem_Sign from "./plan_used/Plan_Used_ExtraItem_Sign" ;
-import { Apply_Plan_Box } from "./plan_apply/Apply_Plan_Box" ; 
+import Create_Use_Plan_Box from "./plan_apply/Create_Use_Plan_Box" ;
+
 
 
 // 依照方案類型，回傳 _ 標籤樣式差異
@@ -40,45 +39,33 @@ type Tag = {
 const Plan_Used_Tag = ( { plan , index } : Tag ) => {
 
 
-    const dispatch                    = useDispatch() ; 
+    const dispatch      = useDispatch() ; 
 
-    const clicked_Tag_Index           = useSelector( ( state : any ) => state.Plan.current_Plan_Tag_Index ) ;  // 目前 _ 點選使用方案標籤的索引號碼 
-    const { tag_Style , title_Type  } = get_Tag_Style( plan ) ;                                                // 標籤樣式、title    
-
-
-
+    // 標籤樣式
+    const { tag_Style } = get_Tag_Style( plan ) ;  
 
     // 點選 _ 檢視 : 寵物資訊
     const click_Check_Used_Records = ( plan_Data : any ) => 
-            dispatch( set_Modal( true , <Plan_Used_Records /> , { data : plan_Data , modal_Style : { width : "80%" , left : "10%" , bottom : "0px" } } )) ;
-
-
+                                       dispatch( set_Modal( true , <Plan_Used_Records /> , { data : plan_Data , modal_Style : { width : "80%" , left : "10%" , bottom : "0px" } } )) ;
 
 
    return  <b className = { tag_Style } style = { { boxShadow : "0px 1px 2px 1px rgba( 0 , 0 , 0 , .2 )" , borderRadius : "20px" } } >
 
+                { /* 方案名稱、建立日期 */ }
+                { string_Short( plan['plan_type'] , 5 ) } &nbsp; 
+                <span className = "f_10 m_Right_15" > ( id : { plan['id'] } / 建檔 : { plan['created_at'] ? plan['created_at'].slice( 0 , 10 ) : "" } ) </span> 
+            
+                { /* 方案點選使用/ 復原點選使用、查無自訂方案、額度使用完畢  */ } 
+                <Create_Use_Plan_Box tag_Index = { index } clicked_Plan = { plan } />
+                
+                { /* 點選顯示 _ 已使用列表 ( Modal )  */ }
+                <span className = "tag is-rounded is-primary relative" onClick = { () => click_Check_Used_Records( plan ) } > 
+                    
+                    { /* 標示 : 方案是否有使用 "加價項目" */ }
+                    <Plan_Used_ExtraItem_Sign plan = { plan } /> 
+                    <i className = "fas fa-list" ></i>    
 
-             { /* 方案名稱、建立日期 */ }
-             { title_Type }方案 :&nbsp; 
-             {  string_Short( plan['plan_type'] , 5 ) } &nbsp; 
-             <span className="f_10 m_Right_15"> (  { plan['created_at'] ? plan['created_at'].slice( 0 , 10 ) : "" } ) </span> 
-
-          
-             { /* 方案點選使用/ 復原點選使用、查無自訂方案、額度使用完畢  */ } 
-             <Apply_Plan_Box tag_Index    = { index } 
-                             click_Index  = { clicked_Tag_Index } 
-                             clicked_Plan = { plan }  />   
-             
-             
-
-             { /* # 點選顯示 _ 已使用列表 ( Modal )  */ }
-             <span className="tag is-rounded is-primary relative" onClick = { () => click_Check_Used_Records( plan )  } > 
-                 
-                 { /* 標示 : 方案是否有使用 "加價項目" */ }
-                 <Plan_Used_ExtraItem_Sign plan = { plan } /> 
-                 <i className="fas fa-list"></i>    
-
-             </span>
+                </span>
                       
            </b> ;
 

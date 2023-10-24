@@ -3,62 +3,29 @@ import cookie from 'react-cookies' ;
 import moment from "moment" ;
 
 
+/*
 
-// 判斷 ( 藉由 editType )  _ 為 : "新增" 模式 ( 基礎、洗澡、美容單 ) < T >
-export const is_Service_Create = ( editType : string | undefined | null ) : boolean => !editType ;
+   # 服務單資料表 ( basic , bath , beauty ) 基本屬性
 
-// 判斷 ( 藉由 editType ) _ 為 : "編輯" 模式 ( 基礎、洗澡、美容單 ) < T >
-export const is_Service_Update = ( editType : string | undefined ) : boolean => editType === "編輯" ; 
 
-// 判斷 ( 藉由 serviceData ) _ 為 : "編輯" 模式 ( 基礎、洗澡、美容單 ) < T >
-export const is_ServiceOrder_Update = ( serviceOrder : any ) => serviceOrder ;
+*/
 
-// 判斷 _ 選到 "過去" 的 : 到店 ( 服務 ) 日期 ( 基礎、洗澡、美容單 ) < T >
-export const is_Past_ServiceDate = ( serviceDate : string ) : boolean => {
 
-    const today = moment( new Date() ).format( 'YYYY-MM-DD' ) ; // 今日
 
-    return today > serviceDate
 
-} ;  
-
-//  判斷 _ 選到 "未來" 的 : 到店 ( 服務 ) 日期 ( 基礎、洗澡、美容單 ) < T >
-export const is_Future_ServiceDate = ( serviceDate : string ) : boolean => {
-
-    const today = moment( new Date() ).format( 'YYYY-MM-DD' ) ; // 今日
-
-    return today < serviceDate
-
-}
-
-// 判斷 _ 刪除狀態 ( 各類服務單 ) < T >
+// 判斷 _ 刪除狀態 ( 屬性 : is_delete ) < T >
 export const is_Delete = ( x : any ) : boolean => x?.is_delete === 1 ; 
 
 
-// 判斷 _ 異常狀態 ( 各類服務單 ) < T >
+// 判斷 _ 異常狀態 ( 屬性 : is_error ) < T >
 export const is_Error  = ( x : any ) : boolean => x?.is_error === 1 ;
 
 
-// 判斷 _ 服務單的 service_date 屬性值，為所輸入的 serviceDate 參數 < T >
-export const is_ServiceDate = ( serviceOrder : any , serviceDate : string ) => serviceOrder.service_date === serviceDate ;
+// 判斷 _ 付款方式：現金 ( 屬性 : payment_method ) < T >
+export const is_PaymentMethod_Cash = ( x : any ) : boolean => x?.payment_method === '現金' ;
 
-
-
-// 判斷 _ 是否物件 ( Ex. 用以決定是否執行 _ 遞迴 )
-export const is_Object = ( x : any ) => typeof x === "object" && x !== null ;
-
-
-
-// Cookie 登入使用者資訊
-export const get_Cookie_UserInfo = () => cookie.load( 'userInfo' ) ;
-
-
-// Cookie 設定
-export const set_Cookie = ( name : string , value : string ) => () => cookie.save( name  , value , { path : '/' , maxAge : 5 } ) ;
-
-
-
-// # 首頁統計相關狀態
+// 判斷 _ 付款方式：方案 ( 屬性 : payment_method ) < T >
+export const is_PaymentMethod_Plan = ( x : any ) : boolean => x?.payment_method === '方案' ;
 
 
 // * 服務類型 ( 屬性 : service_type ) _ Ex. 基礎、洗澡、美容、安親、住宿
@@ -87,6 +54,49 @@ export const is_ShopStatus_DoneHome   = ( x : any ) : boolean => is_ShopStatus_D
 
 
 
+
+
+
+// 判斷 ( 藉由 serviceData ) _ 為 : "編輯" 模式 ( 基礎、洗澡、美容單 ) < T >
+export const is_ServiceOrder_Update = ( serviceOrder : any ) => serviceOrder ;
+
+// 判斷 _ 選到 "過去" 的 : 到店 ( 服務 ) 日期 ( 基礎、洗澡、美容單 ) < T >
+export const is_Past_ServiceDate = ( serviceDate : string ) : boolean => {
+
+    const today = moment( new Date() ).format( 'YYYY-MM-DD' ) ; // 今日
+
+    return today > serviceDate
+
+} ;  
+
+//  判斷 _ 選到 "未來" 的 : 到店 ( 服務 ) 日期 ( 基礎、洗澡、美容單 ) < T >
+export const is_Future_ServiceDate = ( serviceDate : string ) : boolean => {
+
+    const today = moment( new Date() ).format( 'YYYY-MM-DD' ) ; // 今日
+
+    return today < serviceDate
+
+}
+
+
+// 判斷 _ 服務單的 service_date 屬性值，為所輸入的 serviceDate 參數 < T >
+export const is_ServiceDate = ( serviceOrder : any , serviceDate : string ) => serviceOrder.service_date === serviceDate ;
+
+
+// 判斷 _ 是否物件 ( Ex. 用以決定是否執行 _ 遞迴 )
+export const is_Object = ( x : any ) => typeof x === "object" && x !== null ;
+
+
+// Cookie 登入使用者資訊
+export const get_Cookie_UserInfo = () => cookie.load( 'userInfo' ) ;
+
+
+// Cookie 設定
+export const set_Cookie = ( name : string , value : string ) => () => cookie.save( name  , value , { path : '/' , maxAge : 5 } ) ;
+
+
+
+
 // * 付款狀態
 
 // 服務單 : 尚未 _ 完成付款
@@ -97,8 +107,6 @@ export const is_NotComplete_Paid = ( x : any ) : boolean => x?.amount_payable > 
 export const is_Extra_ServiceOrder = ( x : any ) => x?.extra_fee_id
 
 
-
-//
 
 
 

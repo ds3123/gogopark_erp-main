@@ -1,12 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-pascal-case */
-import { useState , useEffect } from 'react' ;
 import { useDispatch } from "react-redux";
 import { set_Side_Panel } from "store/actions/action_Global_Layout";
 import Update_Service from "components/services/edit/Update_Service";
-import Extra_Fee_Detail from "./sub_components/Extra_Fee_Detail";
 import Extra_Fee_Info from './sub_components/Extra_Fee_Info';
-
+import { sort_ObjAttr } from 'fp/tool';
 import { set_Modal } from "store/actions/action_Global_Layout" ;
 
 
@@ -33,6 +31,12 @@ const Service_Receivable_Table = ( { data } : Table ) => {
                                                                        ) ) ;
 
 
+    
+    // 依照 q_code 排序
+    const _data = sort_ObjAttr( 'q_code' , 'asc' )( data ) ;
+    
+
+
    return  <table className="table is-fullwidth is-hoverable m_Bottom_100" >
 
                 <thead>
@@ -55,7 +59,7 @@ const Service_Receivable_Table = ( { data } : Table ) => {
 
                     { 
                       
-                       data.map( ( x : any , y : number ) => {
+                      _data.map( ( x : any , y : number ) => {
 
                             const extra_Fee_Id = x?.extra_fee_id ; // 加價單 id 
                             const is_Deleted   = x?.is_delete ;   // 加價單是否已經被刪除

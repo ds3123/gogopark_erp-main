@@ -20,7 +20,6 @@ type Return = {
 
 
 
-
 // 方案使用情形 ( 統計數字 ) < T >
 export const useEffect_Plan_Used_Status = ( plan : Status ) : Return => {
 
@@ -32,7 +31,7 @@ export const useEffect_Plan_Used_Status = ( plan : Status ) : Return => {
           } = plan ;
 
            
-    // 該方案 "有效" 使用紀錄 ( 扣除 _ 被銷單 is_delete === 1， )
+    // 該方案 "有效" 使用紀錄 ( 扣除 _ 被銷單 is_delete === 1 )
     const valid_Used_Records = plan_used_records?.filter( ( x : any ) => x[ "is_delete" ] === 0 ) ;
 
     // 有效 : 洗澡單數 / 美容單數 

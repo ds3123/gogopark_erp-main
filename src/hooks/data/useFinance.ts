@@ -10,14 +10,10 @@ import { useFetch_Plans_By_CreatedDate , useFetch_Plans_By_PaymentDate } from "h
 import { useFetch_Others_By_CreatedDate } from "hooks/react-query/other/useFetchOther" 
 
 
-
 // @ 處理 管理區 > 財務管理
 type Payment_Method = '綜合' | '現金' | '信用卡' | '第三方支付' ;
 type Date_Type      = '付款日期' | '到店日期' ; 
-
-
-
-type Finance_Data = {
+type Finance_Data   = {
 
    date_Type               : Date_Type , 
    payment_Method          : Payment_Method ,
@@ -29,9 +25,7 @@ type Finance_Data = {
    services_By_Date        : any[] ,
    plans_By_Date           : any[]
 
-}
-
-
+} ;
 
 
 const process_Finance_Data = ( data_Obj : Finance_Data ) => {
@@ -70,7 +64,6 @@ const process_Finance_Data = ( data_Obj : Finance_Data ) => {
 
    }
 
-
    // 篩選 _ 各區塊資料
    const s_Data = filter_Finance_Basic_Bath_Beauty( date_Services , payment_Method , date_Type ) ;  // 基礎、洗澡、美容 ( 現金支付 )
    const c_Data = filter_Finance_Care_Lodge( date_Services , payment_Method , date_Type ) ;         // 安親、住宿 
@@ -84,36 +77,28 @@ const process_Finance_Data = ( data_Obj : Finance_Data ) => {
 
 
 
-
-
 // 取得 _ 各區塊資料
 export const useFinance_Get_Section_Data = ( payment_Method : Payment_Method ) => {
 
 
-     // 所點選 _ 日期類型 ( 付款日期 / 到店日期 )
-     const date_Type : Date_Type = useSelector( ( state : any ) => state.Finance.finance_Query_Date_Type ) ; 
+        // 所點選 _ 日期類型 ( 付款日期 / 到店日期 )
+        const date_Type : Date_Type = useSelector( ( state : any ) => state.Finance.finance_Query_Date_Type ) ; 
 
-     // 所查詢 _ 報表日期
-     const query_Date = useSelector( ( state : any ) => state.Info.service_Date ) ; 
+        // 所查詢 _ 報表日期
+        const query_Date = useSelector( ( state : any ) => state.Info.service_Date ) ; 
 
-     
-     // -------------------------------------
-
-     // # 取得 _ 特定報表日期．對應所有購買資料
-
-        const shop_Id                 = useAccount_Shop_Id() ;                                       // 目前登入者，所屬商店 Id
+        // # 取得 _ 特定報表日期．對應所有購買資料
+        const shop_Id                  = useAccount_Shop_Id() ;                                       // 目前登入者，所屬商店 Id
   
         // * 依：付款日期 ( 欄位 : payment_date )
         const services_By_PaymentDate  = useFetch_Services_By_PaymentDate( shop_Id , query_Date ) ;   // 所有服務 ( 基礎、洗澡、美容、安親、住宿 )
         const plans_BY_PaymentDate     = useFetch_Plans_By_PaymentDate( shop_Id , query_Date ) ;      // 所有方案 
         const extraFees_By_PaymentDate = useFetch_ExtraFees_By_PaymentDate( shop_Id , query_Date ) ;  // 所有加價單 
-
     
         // * 依：到店日期 ( 欄位 : service_date / created_at )
-        const services_By_Date        = useFetch_Services_By_ServiceDate( shop_Id , query_Date , ) ; // 所有服務 ( 基礎、洗澡、美容、安親、住宿 )
-        const plans_By_Date           = useFetch_Plans_By_CreatedDate( shop_Id , query_Date ) ;      // 所有方案 
-        const others_By_Date          = useFetch_Others_By_CreatedDate( shop_Id , query_Date ) ;     // 所有其他( 收入 / 支出 ) 
-
+        const services_By_Date         = useFetch_Services_By_ServiceDate( shop_Id , query_Date ) ; // 所有服務 ( 基礎、洗澡、美容、安親、住宿 )
+        const plans_By_Date            = useFetch_Plans_By_CreatedDate( shop_Id , query_Date ) ;      // 所有方案 
+        const others_By_Date           = useFetch_Others_By_CreatedDate( shop_Id , query_Date ) ;     // 所有其他( 收入 / 支出 ) 
 
 
      // # 各區塊報表資料
@@ -124,13 +109,12 @@ export const useFinance_Get_Section_Data = ( payment_Method : Payment_Method ) =
                                                                            care_Lodge_Data          : [] ,  // 住宿安親 : 應收款
                                                                            others_By_Date           : [] ,  // 其他    : 收入、支出
                                                                            extra_Fee_By_PaymentDate : [] ,  // 洗澡美容 : 加價單     
-                                                                        }) ;
+                                                                         }) ;
 
                                                                           
 
      // 依照查詢日期類型( 付款日期 / 到店日期 )，切換資料查詢欄位、篩選 _ 服務資料                                    
      useEffect( () => {
-
 
         const data_Obj = {
                            date_Type               : date_Type , 
@@ -146,7 +130,6 @@ export const useFinance_Get_Section_Data = ( payment_Method : Payment_Method ) =
 
 
         const { s_Data , c_Data , p_Data , u_Data , date_ExtraFees } = process_Finance_Data( data_Obj ) ;
-
 
 
         // 設定 state

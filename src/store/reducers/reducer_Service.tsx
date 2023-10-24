@@ -12,9 +12,7 @@ interface IService {
 
     service_Error_Handle_Records    : any[] ;   // 服務異常處理紀錄  
 
-    service_Amount_Total            : number ;  // 洗澡、美容 : 小計金額 ( for 日報表 )
-    care_Lodge_Amount_Total         : number ;  // 安親、住宿 : 小計金額 ( for 日報表 )
-
+    
     
     is_Filtered_By_Service_Date     : boolean ;  // 是否加入篩選條件 : 來店日期
 
@@ -29,9 +27,6 @@ const initState = {
     current_Create_Tab              : "" ,
 
     service_Error_Handle_Records    : [] ,
-
-    service_Amount_Total            : 0 ,
-    care_Lodge_Amount_Total         : 0 ,
 
 
     is_Filtered_By_Service_Date     : false 
@@ -55,11 +50,6 @@ const reducer_Service = ( state : IService = initState , action : any ) => {
         // # 取得 _ 服務異常處理紀錄
         case "GET_SERVICEERROR_HANDLE_RECORD" : return { ...state , service_Error_Handle_Records : action.service_Error_Handle_Records } ;
 
-        // # 設定 _ 洗澡、美容 : 小計金額 ( for 日報表 )
-        case "SET_SERVICE_AMOUNT_TOTAL" : return { ...state , service_Amount_Total : action.service_Amount_Total } ;
-    
-        // # 設定 _ 安親、住宿 : 小計金額 ( for 日報表 )
-        case "SET_CARE_LODGE_AMOUNT_TOTAL" : return { ...state , care_Lodge_Amount_Total : action.care_Lodge_Amount_Total } ;
         
         // 設定 _ 是否加入篩選條件 : 來店日期
         case "SET_IS_FILTERED_BY_SERVICE_DATE" : return { ...state , is_Filtered_By_Service_Date : action.is_Filtered_By_Service_Date } ;

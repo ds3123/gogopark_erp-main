@@ -9,12 +9,12 @@ import { set_Customer_Columns_Empty } from "store/actions/action_Customer" ;
 import moment from "moment" ;
 import {set_Info_Column} from "store/actions/action_Info" ;
 import { useAccount_Shop_Id } from "hooks/data/useAccount";
-
+import { CreateTab } from "utils/custom_types/form";
 
 
 interface ITabs {
 
-    title : string ;
+    title : CreateTab ;
     style : string ;
     icon  : string ;
 

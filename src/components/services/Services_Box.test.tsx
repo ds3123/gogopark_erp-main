@@ -22,16 +22,12 @@ import { QueryClient , QueryClientProvider } from 'react-query' ;
 import { AppContainerProvider } from "containers/contexts/appContainerContext" ;
 
 
-
-
 // @ 洗美 / 方案 容器元件 <Services_Box />
 describe( "洗美區塊" , () => { 
-
 
    // # React-Query Client
    const queryClient = new QueryClient() ;
    
-
    // # Redux Store
    let store : any ;
 
@@ -66,6 +62,7 @@ describe( "洗美區塊" , () => {
             ) ;
 
    }) ;
+
 
 
    test( "" , () => {
