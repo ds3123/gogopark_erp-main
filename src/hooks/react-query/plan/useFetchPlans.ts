@@ -1,6 +1,7 @@
 
 import { useQuery } from "react-query" ;
 import { planKeys } from "react-query/query-key/planKeys" ;
+import { useDispatch } from "react-redux";
 import { fetch_Pet_Plans , 
          fetch_Custom_Plans , 
          fetch_Plans_By_CreatedDate  , 
@@ -9,6 +10,10 @@ import { fetch_Pet_Plans ,
          fetch_Shop_Plan_UsedRecord_By_Id ,
          fetch_Shop_Used_Records_By_PlanId
         } from "utils/api/api_Plan" ;
+
+import { 
+         set_Is_Fetching_Advance_Receipt_Done
+       } from 'store/actions/action_Finance'
 
 
 
@@ -63,12 +68,26 @@ export const useFetch_Plans_By_CreatedDate = ( account_id : string , created_dat
 // 取得 _ 特定 [ 付款日期 ] ( 欄位 : payment_date ) : 所有方案
 export const useFetch_Plans_By_PaymentDate = ( account_id : string , payment_date : string ) => {
 
+   const dispatch = useDispatch() ;
+
    // 預設值
    const fallback = [] as any[] ;  
 
    const { data = fallback } = useQuery( 
                                           planKeys.payment_date( account_id , payment_date ) , 
-                                          () => fetch_Plans_By_PaymentDate( account_id , payment_date ) 
+                                          () => fetch_Plans_By_PaymentDate( account_id , payment_date ) , 
+                                          { 
+
+                                             enabled   : !!payment_date ,
+                                             onSuccess : ( data ) => {
+
+                                                // 資料取得完成，關掉下載中圖示
+                                                dispatch( set_Is_Fetching_Advance_Receipt_Done( true ) ) ;
+
+                                             } 
+
+
+                                           }
                                         ) ;
 
    return data        

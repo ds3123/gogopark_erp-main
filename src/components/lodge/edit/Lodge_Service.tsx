@@ -102,10 +102,14 @@ const Edit_Tag : FC< EditTag > = ( { color , icon , title , price , items } ) =>
 
                 </b> 
 
-                { /* 費用項目 */ }
-                { _items?.length > 0 && _items?.map( ( x : any ,y : number ) => 
-                        <b key = { y } className = "tag is-medium m_Left_20 m_Bottom_15" > { x } </b> ) 
-                }
+                <div className = "m_Top_15 m_Left_30" >
+
+                        { /* 費用項目 */ }
+                        { _items?.length > 0 && _items?.map( ( x : any ,y : number ) => 
+                                <div key = { y } className = "tag is-white is-medium m_Left_20 m_Bottom_15 w-70 p_Top_5 p_Left_20" > <b>  { x } </b> </div> ) 
+                        }
+
+                </div>
 
             </div>
 

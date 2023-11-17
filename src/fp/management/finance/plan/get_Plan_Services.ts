@@ -5,7 +5,7 @@ import {
          is_ServiceType_Bath ,
          is_ServiceType_Beauty ,
          is_Delete
-       } from "fp/state";
+       } from "fp/state" ;
 
 
 // 取得 _ 付款方式為「 方案 」的 洗澡單 或 美容單 < T >
@@ -44,5 +44,20 @@ export const get_Finance_Plan_Services = ( data : any[] ) : any[] => {
 }
 
 
+// 取得 _ 寵物個別調整後：包月洗澡 或 包月美容價格
+export const get_Pet_Plan_Adjust_Price = ( petData : any , planType : '包月洗澡' | '包月美容' ) : number | null => {
+
+    // 該寵物方案調整價格
+    const pet_month_bath_price   = petData?.month_bath_price ;     
+    const pet_month_beauty_price = petData?.month_beauty_price ;
+
+    // 依照方案類型，決定 _ 該寵物方案調整價格
+    const pet_plan_adjust_price  = ( planType && planType === "包月洗澡" && pet_month_bath_price )   ? pet_month_bath_price :
+                                   ( planType && planType === "包月美容" && pet_month_beauty_price ) ? pet_month_beauty_price :
+                                   null ;
+
+    return pet_plan_adjust_price ;
+
+} ;
 
 

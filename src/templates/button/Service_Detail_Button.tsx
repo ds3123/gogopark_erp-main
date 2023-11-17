@@ -27,16 +27,15 @@ const Service_Detail_Button : FC< Button > = ( { data  } ) => {
 
  
     // 點選 _ 服務單
-    const click_Service    = ( data : any ) => {
+    const click_Service   = ( data : any ) => {
 
-      // 開啟 _ 左側 : 服務加價面板  
-      dispatch( set_Side_Extra_Fee( true , data ) ) ;
+       // 開啟 _ 左側 : 服務加價面板  
+       dispatch( set_Side_Extra_Fee( true , data ) ) ;
 
-      // 開啟 _ 右側 : 服務單面板  
-      dispatch( set_Side_Panel( true , <Update_Service /> , { service_Type : data['service_type'] , preLoadData : data } as { service_Type : string } ) ) ;
+       // 開啟 _ 右側 : 服務單面板  
+       dispatch( set_Side_Panel( true , <Update_Service /> , { service_Type : data['service_type'] , preLoadData : data } as { service_Type : string } ) ) ;
 
     } 
-
 
 
   return  <b className = { color + " pointer" } onClick = { () => click_Service( data ) } >

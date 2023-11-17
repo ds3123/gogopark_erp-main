@@ -1,5 +1,5 @@
 
-import { useQuery , QueryClient } from "react-query" ;
+import { useQuery } from "react-query" ;
 import moment from "moment" ;
 import { serviceKeys } from "react-query/query-key/serviceKeys" ;
 import { Service_Type } from "utils/Interface_Type" ;
@@ -19,6 +19,13 @@ import {
 
 import { fetch_Shop_Service_Tags } from "utils/api/api_Service_Tag" ;
 import { Service_Type_Api , Primary_Services } from "utils/Interface_Type" ;
+import { useDispatch } from "react-redux" ;
+import { 
+         set_Is_Fetching_Service_Receivable_Done ,
+         set_Is_Fetching_Lodge_Receivable_Done ,
+         set_Is_Fetching_Deduct_Advance_Receipt_Done
+} from 'store/actions/action_Finance'
+
 
 
 
@@ -26,13 +33,24 @@ import { Service_Type_Api , Primary_Services } from "utils/Interface_Type" ;
 // 取得 _ 特定 [ 到店日期 ] ( 欄位 : service_date ) : 所有服務
 export const useFetch_Services_By_ServiceDate = ( account_id : string , service_date : string ) => {
 
+    const dispatch = useDispatch();
+
     // 預設值
     const fallback = [] as any[] ;  
 
     const { data = fallback } = useQuery( 
                                            serviceKeys.service_date( account_id , service_date ) , 
                                            () => fetch_Services_By_ServiceDate( account_id , service_date ) ,
-                                           { enabled : !!service_date  } 
+                                           { enabled : !!service_date ,
+                                           
+                                              onSuccess : ( data ) => {
+
+                                                 // 資料取得完成，關掉下載中圖示
+                                                 dispatch( set_Is_Fetching_Deduct_Advance_Receipt_Done( true ) ) ;
+
+                                              } 
+                                          
+                                           } 
                                          ) ;
 
     return data                                        
@@ -43,13 +61,25 @@ export const useFetch_Services_By_ServiceDate = ( account_id : string , service_
 // 取得 _ 特定 [ 付款日期 ] ( 欄位 : payment_date ) : 所有服務
 export const useFetch_Services_By_PaymentDate = ( account_id : string , payment_date : string ) => {
 
+    const dispatch = useDispatch() ;
+
     // 預設值
     const fallback = [] as any[] ;  
 
     const { data = fallback } = useQuery( 
                                            serviceKeys.payment_date( account_id , payment_date ) , 
                                            () => fetch_Services_By_PaymentDate( account_id , payment_date ) ,
-                                           { enabled : !!payment_date  } 
+                                           { 
+                                              enabled : !!payment_date ,
+                                              onSuccess : ( data ) => {
+
+                                                 // 資料取得完成，關掉下載中圖示
+                                                 dispatch( set_Is_Fetching_Service_Receivable_Done( true ) ) ; // 洗澡美容：應收款
+                                                 dispatch( set_Is_Fetching_Lodge_Receivable_Done( true ) ) ;   // 住宿安親：應收款
+
+                                              } 
+                                            
+                                           } 
                                          ) ;
 
     return data        
@@ -67,8 +97,8 @@ export const useFetch_ExtraFees_By_PaymentDate = ( account_id : string , payment
                                          () => fetch_ExtraFees_By_PaymentDate( account_id , payment_date ) 
                                        ) ;
 
-  return data        
 
+  return data        
 
 }
 

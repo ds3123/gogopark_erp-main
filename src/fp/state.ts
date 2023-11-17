@@ -1,4 +1,3 @@
-
 import cookie from 'react-cookies' ;
 import moment from "moment" ;
 
@@ -7,10 +6,7 @@ import moment from "moment" ;
 
    # 服務單資料表 ( basic , bath , beauty ) 基本屬性
 
-
 */
-
-
 
 
 // 判斷 _ 刪除狀態 ( 屬性 : is_delete ) < T >
@@ -37,11 +33,18 @@ export const is_ServiceType_BathBeauty      = ( x : any ) : boolean => is_Servic
 export const is_ServiceType_BasicBathBeauty = ( x : any ) : boolean => is_ServiceType_Basic( x ) || is_ServiceType_Bath( x ) || is_ServiceType_Beauty( x ) ;  // <T> 
 
 
+// * 服務狀態 ( 屬性 : service_status for 住宿、安親 ) _ Ex. 當日安親、預約安親、當日住宿、預約住宿
+export const is_ServiceStatus_Today_Care        = ( x : any ) : boolean => x?.service_status === '當日安親' ; // <T>
+export const is_ServiceStatus_Appointment_Care  = ( x : any ) : boolean => x?.service_status === '預約安親' ; // <T>
+export const is_ServiceStatus_Today_Lodge       = ( x : any ) : boolean => x?.service_status === '當日住宿' ; // <T>
+export const is_ServiceStatus_Appointment_Lodge = ( x : any ) : boolean => x?.service_status === '預約住宿' ; // <T>
+
+
 // * 服務狀態 ( 屬性 : service_status ) _ Ex. 已到店、預約_今天、預約_未來
 export const is_ServiceStatus_Arrived            = ( x : any ) : boolean => x?.service_status === '已到店' ;    // <T> 
 export const is_ServiceStatus_Appointment_Today  = ( x : any ) : boolean => x?.service_status === '預約_今天' ; // <T> 
 export const is_ServiceStatus_Appointment_Future = ( x : any ) : boolean => x?.service_status === '預約_未來' ; // <T> 
-export const is_ServiceStatus_Appointment_TodayFuture = ( x : any ) : boolean  => is_ServiceStatus_Appointment_Today( x ) || is_ServiceStatus_Appointment_Future( x )  ; // <T> 
+export const is_ServiceStatus_Appointment_TodayFuture = ( x : any ) : boolean => is_ServiceStatus_Appointment_Today( x ) || is_ServiceStatus_Appointment_Future( x )  ; // <T> 
 
 
 // * 到店狀態 ( 屬性 : shop_status )
@@ -53,12 +56,9 @@ export const is_ShopStatus_Home       = ( x : any ) : boolean => x?.shop_status 
 export const is_ShopStatus_DoneHome   = ( x : any ) : boolean => is_ShopStatus_Done( x ) || is_ShopStatus_Home( x ) ; // <T>
 
 
-
-
-
-
 // 判斷 ( 藉由 serviceData ) _ 為 : "編輯" 模式 ( 基礎、洗澡、美容單 ) < T >
 export const is_ServiceOrder_Update = ( serviceOrder : any ) => serviceOrder ;
+
 
 // 判斷 _ 選到 "過去" 的 : 到店 ( 服務 ) 日期 ( 基礎、洗澡、美容單 ) < T >
 export const is_Past_ServiceDate = ( serviceDate : string ) : boolean => {

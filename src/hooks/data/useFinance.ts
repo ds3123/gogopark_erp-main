@@ -96,7 +96,7 @@ export const useFinance_Get_Section_Data = ( payment_Method : Payment_Method ) =
         const extraFees_By_PaymentDate = useFetch_ExtraFees_By_PaymentDate( shop_Id , query_Date ) ;  // 所有加價單 
     
         // * 依：到店日期 ( 欄位 : service_date / created_at )
-        const services_By_Date         = useFetch_Services_By_ServiceDate( shop_Id , query_Date ) ; // 所有服務 ( 基礎、洗澡、美容、安親、住宿 )
+        const services_By_Date         = useFetch_Services_By_ServiceDate( shop_Id , query_Date ) ;   // 所有服務 ( 基礎、洗澡、美容、安親、住宿 )
         const plans_By_Date            = useFetch_Plans_By_CreatedDate( shop_Id , query_Date ) ;      // 所有方案 
         const others_By_Date           = useFetch_Others_By_CreatedDate( shop_Id , query_Date ) ;     // 所有其他( 收入 / 支出 ) 
 
@@ -166,7 +166,7 @@ export const useFinance_Get_Section_Data = ( payment_Method : Payment_Method ) =
 
 
 // 取得 _ 各區塊小計金額
-export const useFinance_Section_Total = ( { service_Data , use_Plan_Data , plan_Data , care_Lodge_Data , others_By_Date , extra_Fee_By_PaymentDate } : I_Finance_Section_1 ) : I_Return_Finance_Section_Total => {
+export const useFinance_Section_Total = ( { service_Data , use_Plan_Data , plan_Data , care_Lodge_Data , others_By_Date , extra_Fee_By_PaymentDate } : I_Finance_Section_1 )  => {
 
    const s_Total  = cal_Paid_Amount_Total( service_Data ) ;        // 洗澡美容：應收款  
    const u_Total  = cal_Use_Plan_Amount_Total( use_Plan_Data ) ;   // 洗澡美容：扣 _ 預收款

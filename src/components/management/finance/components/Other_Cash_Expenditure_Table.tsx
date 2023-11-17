@@ -19,20 +19,10 @@ const Other_Cash_Expenditure_Table = ( { data } : any  ) => {
     const dispatch = useDispatch();
     const history  = useHistory();
 
-    const [ other_Data , set_Other_Data ] = useState< any[] >( [] ) ;
-
 
     // 點選 _ 刪除
     const click_Delete = ( id : string , history : any ) => dispatch( delete_Other_Item( id , history )  )
 
-
-    useEffect( () => { 
-    
-      // 篩選出 _ 支出
-      const f_Data = data.filter( ( x:any ) => x['type'] === "支出" ) ;
-      set_Other_Data( f_Data ) ;  
-
-    } , [ data ] ) ;
 
    return  <table className="table is-fullwidth is-hoverable m_Bottom_100">
 
@@ -51,7 +41,7 @@ const Other_Cash_Expenditure_Table = ( { data } : any  ) => {
 
                      { 
                         
-                        other_Data.map( ( x : any , y : number )=> {
+                        data.map( ( x : any , y : number )=> {
 
                             return <tr key = { y } >
                                       <td> { x['type'] } </td>   

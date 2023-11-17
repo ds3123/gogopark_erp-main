@@ -92,40 +92,52 @@ const Plan_Type_Columns = ( { register , errors  } : pType ) => {
                 { /* 自訂 : 加 / 減 金額 */ }
                 <div className="column is-2-desktop">
 
-                    <p> <b> 自訂 : 加 / 減 金額 </b> &nbsp; <b style={{color:"red"}}> { errors.plan_Adjust_Amount?.message } </b> </p>
+                    {/* <p> <b> 自訂 : 加 / 減 金額 </b> &nbsp; <b style={{color:"red"}}> { errors.plan_Adjust_Amount?.message } </b> </p>
                     <div className="control has-icons-left" >
                         <span className="icon is-small is-left"> <i className="fas fa-calculator"></i> </span>
                         <input className='input' type='number' { ...register("plan_Adjust_Amount") }   onChange = { e => get_Self_Adjust_Amount( parseInt( e.target.value ) )} />
-                    </div>
+                    </div> */}
 
                 </div>
 
-                <div className="column is-1-desktop "> <span className="relative" style={{top:"30px",left:"-10px"}}> 元 </span> </div>
+                <div className="column is-1-desktop "> 
+                
+                   {/* <span className="relative" style={{top:"30px",left:"-10px"}}> 元 </span>  */}
+                   
+                </div>
 
                 { /* 接送費 */ }
                 <div className="column is-2-desktop ">
 
-                    <p> <b> 接送費 </b> &nbsp; <b style={{color:"red"}}> { errors.plan_Pickup_Fee?.message } </b> </p>
+                    {/* <p> <b> 接送費 </b> &nbsp; <b style={{color:"red"}}> { errors.plan_Pickup_Fee?.message } </b> </p>
                     <div className="control has-icons-left" >
                         <span className="icon is-small is-left"> <i className="fas fa-truck-pickup"></i> </span>
                         <input className='input' type='number' { ...register("plan_Pickup_Fee") }  min='0' onChange = { e => get_Pickup_Fee( parseInt( e.target.value ) ) } />
-                    </div>
+                    </div> */}
 
                 </div>
 
-                <div className="column is-1-desktop "> <span className="relative" style={{top:"30px",left:"-10px"}}> 元 </span> </div>
+                <div className="column is-1-desktop "> 
+                
+                     {/* <span className="relative" style={{top:"30px",left:"-10px"}}> 元 </span>  */}
+                     
+                </div>
 
                 { /* 包月洗澡 _ 共計 */ }
-                <div className="column is-2-desktop ">
+                {/* 
+                
+                    <div className = "column is-2-desktop" >
 
-                    <span className="tag is-large relative" style={{ top:"20px" }}>
-                        <b> 共 計 </b> &nbsp;  :  &nbsp;
-                        <b className="tag is-white is-rounded fRed f_12">
-                            { total_Amount } 元
-                        </b>
-                    </span>
+                        <span className = "tag is-large relative" style={{ top:"20px" }} >
+                            <b> 共 計 </b> &nbsp; : &nbsp;
+                            <b className = "tag is-white is-rounded fRed f_12" >
+                                { total_Amount } 元
+                            </b>
+                        </span>
 
-                </div>
+                    </div>
+                
+                */}
 
             </> 
 

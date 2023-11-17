@@ -32,22 +32,6 @@ interface I_Finance_Section_2 {
 
 
 
-// 取得 _ 各區塊小計金額 ( return 回傳  )
-interface I_Return_Finance_Section_Total {
-
-  Sum_Total          : number ;  // 總計 ( 右上角 )
-   
-  Service_Receivable : number ;  // 洗澡美容：應收款
-  Deduct_Advance     : number ;  // 洗澡美容：扣 _ 預收款 --> 使用方案 
-  Advance_Receipt    : number ;  // 洗澡美容：預收款      --> 購買方案    
-  Lodge_Receivable   : number ;  // 住宿安親：應收款   
-  Cash_Income        : number ;  // 其他 : 收入
-  Cash_Expenditure   : number ;  // 其他 : 支出
-
-  Extra_Fee          : number ;  // 加價單
-
-}
-
 
 
 

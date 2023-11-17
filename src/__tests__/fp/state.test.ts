@@ -16,6 +16,11 @@ import {
         is_ServiceType_Bath ,
         is_ServiceType_Beauty ,
 
+        is_ServiceStatus_Today_Care ,
+        is_ServiceStatus_Appointment_Care ,
+        is_ServiceStatus_Today_Lodge , 
+        is_ServiceStatus_Appointment_Lodge ,
+
         is_ServiceStatus_Arrived ,
         is_ServiceStatus_Appointment_Today ,
         is_ServiceStatus_Appointment_Future ,
@@ -168,6 +173,35 @@ describe( "狀態測試" , () => {
         }) ;
 
     }) ; 
+
+    describe( "為特定 _ 服務狀態( service_status ) Ex. 當日安親、預約安親、當日住宿、預約住宿 " , () => { 
+    
+        test( "is_ServiceStatus_Today_Care() : 當日安親" , () => {
+        
+            expect( is_ServiceStatus_Today_Care( { service_status : "當日安親" } ) ).toBeTruthy() ;
+        
+        }) ;
+
+        test( "is_ServiceStatus_Appointment_Care() : 預約安親" , () => {
+        
+            expect( is_ServiceStatus_Appointment_Care( { service_status : "預約安親" } ) ).toBeTruthy() ;
+        
+        }) ;
+
+        test( "is_ServiceStatus_Today_Lodge() : 當日住宿" , () => {
+        
+            expect( is_ServiceStatus_Today_Lodge( { service_status : "當日住宿" } ) ).toBeTruthy() ;
+        
+        }) ;
+
+        test( "is_ServiceStatus_Appointment_Lodge() : 預約住宿" , () => {
+        
+            expect( is_ServiceStatus_Appointment_Lodge( { service_status : "預約住宿" } ) ).toBeTruthy() ;
+        
+        }) ;
+    
+    }) ; 
+    
 
     describe( "為特定 _ 服務狀態( service_status ) : Ex. 已到店、預約_今天、預約_未來" , () => { 
 
