@@ -188,7 +188,10 @@ export const get_Nav_Options = ( account : any ) => {
 
                 const filter_Manage = OptionArr ;
                 const filter_Test   = OptionArr ;
-                const filter_Admin  = OptionArr.filter( x => ( x['title'] !== '美容師' && x['title'] !== '管理區'  ) ) ;
+                // const filter_Admin  = OptionArr.filter( x => ( x['title'] !== '美容師' && x['title'] !== '管理區'  ) ) ;
+                // 開放櫃檯使用「 管理區 」2023.11.27
+                const filter_Admin  = OptionArr.filter( x => ( x['title'] !== '美容師'   ) ) ;
+                
                 const filter_Beauty = OptionArr.filter( x => ( x['title'] === '美容師' ) ) ;
                 const filter_Pickup = OptionArr.filter( x => ( x['title'] === '美容師' ) ) ;
 

@@ -25,7 +25,7 @@ const Service_Tag_1 : FC< Tag >= ( { data } ) => {
 
 
 
-    return <>
+    return <div style={{ color:"black" }}>
              
               <b className = "f_15"> [ 第一聯 : 寵物 ] </b> 
 
@@ -33,7 +33,6 @@ const Service_Tag_1 : FC< Tag >= ( { data } ) => {
 
               { /* 服務日期、Ｑ碼、類型、id */ }
               <Service_Tag_ServiceDate data = { data } />
-
 
               { /* 寵物資訊 */ }
               <Service_Tag_PetInfo pet = { pet } />
@@ -44,7 +43,7 @@ const Service_Tag_1 : FC< Tag >= ( { data } ) => {
               { /* 洗澡美容備註 */ } 
               <Service_Tag_Section icon = "fas fa-dog" title = "洗澡美容備註" content = { pet_Note } options = { pet?.check_note } />
 
-           </>
+           </div>
 
 } ;
 

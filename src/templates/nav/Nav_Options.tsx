@@ -171,8 +171,8 @@ const Nav_Options = () => {
                                                 <b className="redDot"> { care_Lodge_Num } </b>  
                                          }  
 
-{ 
-                                         ( option.title === '管理區' && dataManagement_Note_Num > 0 ) && 
+                                         { 
+                                           ( option.title === '管理區' && dataManagement_Note_Num > 0 ) && 
                                                 <b className="redDot"> { dataManagement_Note_Num }  </b>  
                                          }  
 
@@ -213,11 +213,12 @@ const Nav_Options = () => {
                         <i className="fas fa-sign-out-alt"></i>
                     </b>
 
-
                     { /* 切換帳號 再確認 _ 是否刪除 2023.01.17 */ }
-                    {/* <b className="tag is-medium is-rounded pointer relative" style={{ right : '-120px' }} onClick={ click_Select_Account } >
-                        <i className="fas fa-server"></i>     
-                    </b>       */}
+                    {/* 
+                        <b className="tag is-medium is-rounded pointer relative" style={{ right : '-120px' }} onClick={ click_Select_Account } >
+                            <i className="fas fa-server"></i>     
+                        </b>      
+                    */}
 
 
                </div>

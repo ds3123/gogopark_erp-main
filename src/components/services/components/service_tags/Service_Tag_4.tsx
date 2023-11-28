@@ -28,7 +28,7 @@ const Service_Tag_4 : FC< Tag > = ( { data } ) => {
     const customer     = data?.customer ;
 
 
-    return <>
+    return <div style={{ color:"black" }}>
             
                 <b className   = "f_15" > [ 第四聯：客戶收執 ] </b> 
 
@@ -49,7 +49,7 @@ const Service_Tag_4 : FC< Tag > = ( { data } ) => {
                 { /* 付款方式 */ }
                 <Service_Tag_Payment data = { data } />
 
-           </>
+           </div>
 
 } ;
 

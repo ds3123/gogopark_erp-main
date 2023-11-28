@@ -25,17 +25,14 @@ const Service_Tag_5 : FC< Tag > = ( { data } ) => {
     // 服務類型
     const service_Type = data?.service_type ;
 
-
-     // 主人資料
-     const customer     = data?.customer ;
-
-    
+    // 主人資料
+    const customer     = data?.customer ;
 
     // 簽收區塊
-    const sign_Zone = <div style = {{ height : "30px" }}></div> ;
+    const sign_Zone    = <div style = {{ height : "30px" }}></div> ;
 
 
-    return <>
+    return <div style={{ color:"black" }}>
 
                 <b className   = "f_15" > [ 第五聯：櫃檯留存 ] </b> 
 
@@ -84,7 +81,7 @@ const Service_Tag_5 : FC< Tag > = ( { data } ) => {
                    
                 </div> */}
                     
-           </>
+           </div>
 
 } ;
 

@@ -39,7 +39,7 @@ const Service_Tag_3 : FC< Tag > = ( { data } ) => {
                            </> ;
 
 
-    return <>
+    return <div style={{ color:"black" }}>
     
                 <b className   = "f_15" > [ 第三聯：服務記錄 ] </b> 
 
@@ -75,7 +75,7 @@ const Service_Tag_3 : FC< Tag > = ( { data } ) => {
 
                 </div>
                 
-          </>
+          </div>
 
 } ;
 

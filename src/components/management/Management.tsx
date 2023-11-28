@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import { useEffect } from 'react' ;
-
+import cookie from 'react-cookies' ;   
 
 import useMulti_NavOptions from "hooks/layout/useMulti_NavOptions";
 
@@ -45,8 +45,13 @@ import {
 
 
 
+
 /* @ 管理頁面  */
 const Management = () => {
+
+
+    const _cookie      = cookie.load( 'userInfo' ) ;
+    const positionType = _cookie['position_type']  ;  // 職位類型
 
 
     // 取得 : 第 2、3 層選項相關資訊
@@ -155,6 +160,10 @@ const Management = () => {
                        
                         if( shop_Id !== 1 && item.title === "帳號管理"  ) return false ;
                         if( shop_Id !== 1 && item.title === "系統設定"  ) return false ;
+
+
+                        // 櫃檯人員，僅顯示 _ 管理區 > 現金績效 2023.11.27
+                        if( positionType === '櫃台' || positionType === '計時櫃台' ) return ;
                         
                         
                         return <b key       = { index }

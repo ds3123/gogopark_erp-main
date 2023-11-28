@@ -29,7 +29,7 @@ const Service_Tag_2 : FC< Tag > = ( { data } ) => {
                                 </div>
                               </> ;
 
-    return <>
+    return <div style={{ color:"black" }}>
     
                 <b className = "f_15"> [ 第二聯：自備物品 ] </b> 
 
@@ -44,7 +44,7 @@ const Service_Tag_2 : FC< Tag > = ( { data } ) => {
                 { /* 自備物品 */ } 
                 <Service_Tag_Section icon = "fas fa-sign" title = "自備物品" content = { customer_Object } />
                     
-           </>
+           </div>
 
 } ;
 
