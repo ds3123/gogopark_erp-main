@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 
 import Plan_Data_Row from "./Plan_Data_Row" ;
 import { useDispatch  } from "react-redux";
@@ -9,13 +10,12 @@ import { useAccount_Shop_Id } from "hooks/data/useAccount";
 
 
 
-const blue = { color : "rgb(0,0,160)" } ; 
-
 
 // @ 所有方案資訊
 const Plan_Data_List = () => {
+   
 
-     const dispatch     = useDispatch() ;
+     const dispatch = useDispatch() ;
 
      
      // 取得 _ 所有 : 自訂方案
@@ -26,7 +26,7 @@ const Plan_Data_List = () => {
      const click_Create_Custom_Plan = () => dispatch( set_Modal( true ,   
                                                        <CreateCustomPlanProvider> <Create_Custom_Plan />  </CreateCustomPlanProvider>  , 
                                                        { data : null , modal_Style : { width : "110%" , height:"auto" , left : "-5%" } } )
-                                                    ) ;
+                                                     ) ;
     
    
    return <>
@@ -43,8 +43,8 @@ const Plan_Data_List = () => {
                   <thead>
                      <tr>
                         <th> 方案名稱                     </th>
-                        <th> <b style={blue}>洗澡</b>次數 </th>
-                        <th> <b style={blue}>美容</b>次數 </th>
+                        <th> <b style={{ color : "rgb(0,0,160)" }}>洗澡</b>次數 </th>
+                        <th> <b style={{ color : "rgb(0,0,160)" } }>美容</b>次數 </th>
                         <th> 使用期限 ( 天 )              </th>
                         <th> 預設價格 ( 元 )              </th>
                         <th> 建立日期                     </th>

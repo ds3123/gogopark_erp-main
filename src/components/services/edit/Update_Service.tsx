@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable no-lone-blocks */
 
@@ -65,7 +66,6 @@ import { Service_Tag } from "../components/service_tags/Service_Tag"
 
 { /* 編輯服務 */ }
 const Update_Service = ( ) => {
-
 
     const dispatch     = useDispatch();
     const value        = useContext( SidePanelContext ) ;                      // 取得 context 值
@@ -150,17 +150,14 @@ const Update_Service = ( ) => {
                                                                lodge_CheckOut_Date : new Date( data.end_date ) ,
                                                                lodge_CheckOut_Time : data.end_time ,
 
-
                                                                // # 接送費
                                                                pickup_Fee   : data.pickup_fee ,
 
                                                                // # 服務明細 ( Summary_Fee )
                                                                payment_Method : data.payment_method ,   // 付款方式
-
                                                                
-                                                               // # 洗美備註
+                                                               // # 美容師備註
                                                                beautician_Note : data.beautician_note ,
-
 
                                                          }
 
@@ -234,7 +231,7 @@ const Update_Service = ( ) => {
 
 
        // 更新資料 
-       update_Data( service_Url , service_Id , updateObj , '/index' , `${ service_Type }單` ) ; 
+       update_Data( service_Url , service_Id , updateObj , '/services' , `${ service_Type }單` ) ; 
 
     
     } ;
@@ -257,7 +254,7 @@ const Update_Service = ( ) => {
     // 設定 _ 欄位 amount_Paid ( React Hook Form 無法設定 )
     useEffect( () => {
 
-       setTimeout( ()=>  setValue( "amount_Paid" , data.amount_paid  )  , 1000 )  
+       setTimeout( () => setValue( "amount_Paid" , data.amount_paid  ) , 1000 ) ;
         
     } , [] ) ;
 
@@ -266,8 +263,8 @@ const Update_Service = ( ) => {
     const extraFee_Not_Deleted = data?.extra_fee?.filter( ( x : any ) => x?.is_delete === 0 ) ;
 
 
-     // 寵物年齡
-     const pet_Age = pet?.birthday ? get_Pet_Age( pet?.birthday ) : '' ;
+    // 寵物年齡
+    const pet_Age = pet?.birthday ? get_Pet_Age( pet?.birthday ) : '' ;
     
 
     return <ReachHookFormContext.Provider value = { props } >

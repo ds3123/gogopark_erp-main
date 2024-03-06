@@ -2,7 +2,7 @@
 
 import Employees_Nav from "./Employees_Nav" ;
 import Employees_Table from "./Employees_Table" ;
-import { useFetch_Shop_Employees , useFetch_Employees } from "hooks/react-query/employee/useFetchEmployees" ;
+import { useFetch_Shop_Employees } from "hooks/react-query/employee/useFetchEmployees" ;
 import { useAccount_Shop_Id } from "hooks/data/useAccount" ;
 import { useEffect_ZipCode_ShopNum } from "./hooks/useEffect_Employees_List" ;
 
@@ -19,7 +19,6 @@ const Employees_List = () => {
     const shop_Id = useAccount_Shop_Id() ;
 
 
-    //  useFetch_Employees()  // 所有員工資料 ( 再確認 2022.12.16 )
     // 取得 _ 特定商店，所有員工資料
     const data = useFetch_Shop_Employees( shop_Id ) ;
 
@@ -27,7 +26,7 @@ const Employees_List = () => {
    return <>
 
             { /* 導覽 ( Nav ) 區塊 */ } 
-            <Employees_Nav  />
+            <Employees_Nav />
 
             { /* 資料表格清單 */ }
             <Employees_Table data = { data } zipcode = { zipcode }  shopNum = { shopNum } />

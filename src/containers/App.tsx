@@ -14,10 +14,7 @@ import Beautician from 'components/beautician/Beautician';
 import Management from 'components/management/Management'
 import Sign_In from 'components/login/Sign_In';
 import Test from 'components/test/Test';
-
-
 import { AppContainerProvider } from "containers/contexts/appContainerContext" ;
-
 
 
 function App(){

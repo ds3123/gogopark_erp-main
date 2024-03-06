@@ -95,7 +95,7 @@ const Side_Extra_Fee = () => {
     const create_Extra_Fee = useCreateExtraFee() ;
 
     // 櫃檯人員
-    const admin_User  = _cookie['employee_name'] ? _cookie['employee_name'] : '店長' ;
+    const admin_User  = ( _cookie && _cookie['employee_name'] ) ? _cookie['employee_name'] : '店長' ;
 
     // 總計金額
     const amount_Paid = items_Prices_Total + beauties_Prices_Total + ( custom_Price ? custom_Price : 0 ) ;

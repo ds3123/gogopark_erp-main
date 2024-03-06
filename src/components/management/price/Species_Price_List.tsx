@@ -17,6 +17,7 @@ const table = { marginBottom:"150px" , width:"108%" , left:"-4%" } ;
 /* @ 各種務 【 品種 】 _ 價格清單範本 */
 const Species_Price_List = () => {
 
+
     // 登入使用者，所屬商店 id
     const shop_Id      = useAccount_Shop_Id() ;
 
@@ -37,11 +38,9 @@ const Species_Price_List = () => {
           Note :
         
           * 以下方法，< 僅取得 > 有設定 "服務價格" ( 在 service_prices 資料表有關聯 ）的 "寵物品種" ( pet_species )
-
-          * 先一率顯示 _ 狗狗公園品種價格 ( account_id = 1 ) -> useFetch_Species_With_Shop_Service_Prices() 參數固定為 "1"
+          * 先一率顯示 ( 所有店家，皆沿用狗狗公園品種價格 ) _ 狗狗公園品種價格 ( account_id = 1 ) -> useFetch_Species_With_Shop_Service_Prices() 參數固定為 "1"
             
     */
-
     const data = useFetch_Species_With_Shop_Service_Prices( "1" ) ;  
 
    

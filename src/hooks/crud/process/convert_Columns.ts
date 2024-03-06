@@ -44,9 +44,6 @@ const toString_Extra_Beauty_Options = ( data : any ) : string => {
 }
 
 
-
-
-
 // @  轉換欄位 ( 將提交表單欄位，轉為資料庫表單欄位 ) 
 
 // 客戶 ( 資料表 : customer )
@@ -80,7 +77,6 @@ export const columns_Covert_Pet = ( data : any ) => {
     const obj = {
 
                     account_id   : data['account_id'] ,   // 使用者 : 所屬商店 id
-
                     customer_id  : data['customer_Id'] ,
 
                     serial       : data['pet_Serial'] ,
@@ -151,7 +147,6 @@ export const columns_Covert_Basic = ( data : any ) => {
 
     // 寵物
     const obj_Pet      = columns_Covert_Pet( data ) ;
-
 
     // 基礎項目 
     const basic_item   = toString_Basic_Options( data ) ; 
@@ -759,9 +754,11 @@ export const columns_Covert_Other = ( data : any ) => {
     return { 
         
               account_id  : data['account_id'] ,  // 使用者 : 所屬商店 id
+
               type        : data['other_Type'] ,
               item        : data['other_Item'] ,
-              amount      : data['other_Amount']             
+              amount      : data['other_Amount']     
+                      
            }
 
 }

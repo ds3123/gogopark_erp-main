@@ -76,7 +76,7 @@ export const useEffect_Create_Price = () => {
                                                 Toast( "已新增 : 服務價格" ) ;
                                                 
                                                 // 關掉右側面板
-                                                dispatch( set_Side_Panel(false , null ,{} ) ) ;
+                                                dispatch( set_Side_Panel( false , null , {} ) ) ;
 
                                                 // 設定 cookie ( for 前往 : 價格管理 > ... / 5 秒後銷毀 )
                                                 let redirect = '' ;                                  // 依照新增服務類別，決定重導向後的位置

@@ -36,7 +36,7 @@ const tabsArr : ITabs[] = [
     { title : "品種" , style : "pointer tag is-large is-danger"   , icon : "fas fa-cat"  } ,
     { title : "帳號" , style : "pointer tag is-large is-primary"  , icon : "fas fa-server"  } ,
     { title : "員工" , style : "pointer tag is-large is-primary"  , icon : "fas fa-user-circle"  } ,
-    { title : "商品" , style : "pointer tag is-large is-warning"  , icon : "fas fa-gift"  } ,
+   // { title : "商品" , style : "pointer tag is-large is-warning"  , icon : "fas fa-gift"  } ,
    // { title : "權限" , style : "pointer tag is-large is-primary"  , icon : "fas fa-layer-group"  } ,
    
 

@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-redeclare */
 
 // React Hook Form
-import { useForm , useWatch , SubmitHandler , Controller } from "react-hook-form" ;
+import { useForm , useWatch , SubmitHandler } from "react-hook-form" ;
 
 // 各分類標籤元件
 import Create_Service from "components/services/edit/Create_Service" ;
@@ -47,7 +47,7 @@ const Create_Data_Container = () => {
     const [ is_Submit_Clicked , set_Is_Submit_Clicked ] = useState( false ) ;
 
     // 今日
-    const today    = moment( new Date() ).format( 'YYYY-MM-DD' ) ;  // 今日   
+    const today   = moment( new Date() ).format( 'YYYY-MM-DD' ) ;  // 今日   
 
     // 目前登入者所屬店家 id
     const shop_Id = useAccount_Shop_Id() ; 
@@ -75,9 +75,8 @@ const Create_Data_Container = () => {
                                          resolver : yupResolver( validator ) ,
                                       }) ;                                               
 
-
     // 欲傳遞屬性
-    const props  = {
+    const props = {
                     register : register ,
                     setValue : setValue ,
                     watch    : watch ,
@@ -112,10 +111,8 @@ const Create_Data_Container = () => {
          // 新增資料 
          const res = create_Data( data ) ;
 
-
          // 設定 _ 已經點選提交
          if( res ) set_Is_Submit_Clicked( !is_Submit_Clicked ) ; // 顯示 _ 下載圖示 ( 防止再次點選 )
-
      
      } ;
  
@@ -137,7 +134,6 @@ const Create_Data_Container = () => {
 
         
         if( today_petId_Services.length === 0 ) execute_Create( data ) ;
-
 
     } 
 

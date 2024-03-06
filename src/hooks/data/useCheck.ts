@@ -9,8 +9,8 @@ export const useCheck_IsExisting_Customer = () => {
     // 檢查 _ 客戶是否存在
     const check_Customer_Data = async( data : any , account_id? : string ) => {
 
-        const cusId        =  data['customer_Id'] ;        // 身分證字號
-        const cusCellphone =  data['customer_Cellphone'] ; // 手機號碼
+        const cusId        = data['customer_Id'] ;        // 身分證字號
+        const cusCellphone = data['customer_Cellphone'] ; // 手機號碼
 
         let reslut_Id    = [] ;
         let reslut_Phone = [] ;
@@ -31,9 +31,8 @@ export const useCheck_IsExisting_Customer = () => {
 // 檢查 _ 寵物在資料表 ( pet ) 中，是否已經存在
 export const useCheck_IsExisting_Pet = () => {
 
-
     // 檢查 _ 寵物是否存在
-    const check_Pet_Data = async( data : any , account_id? : string ,  ) => {
+    const check_Pet_Data = async( data : any , account_id? : string ) => {
 
         const pet_Serial = data['pet_Serial'] ;  // 寵物序號
 

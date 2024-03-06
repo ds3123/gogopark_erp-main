@@ -1,12 +1,9 @@
 
-
 import Care_Rows from "../../../../lodge/care/Care_Rows";
-
 import { is_Downloading } from "templates/note/Query_Info" ;
 import { usePagination_Query } from 'hooks/react-query/common/usePagination' ;
 import { fetch_Shop_Care_Archive_Page } from "utils/api/api_Care" ;
 import { careKeys } from "react-query/query-key/careKeys";
-
 
 
 

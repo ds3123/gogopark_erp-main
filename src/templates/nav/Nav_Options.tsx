@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-pascal-case */
 import { useEffect , useState } from "react" ;
 import { useDispatch , useSelector } from "react-redux" ;
@@ -66,7 +67,9 @@ const Nav_Options = () => {
 
         // 刪除 cookie
         cookie.remove( 'userInfo' , { path : '/' } ) ;
+        cookie.remove( 'manage' , { path : '/' } ) ;    // 最高 manage 帳號，作為顯示切換帳號下拉選單用
         cookie.remove( 'after_Created_Redirect' , { path : '/' } ) ;
+        
 
         Toast( "登出成功" ) ;
 
@@ -104,25 +107,27 @@ const Nav_Options = () => {
     } ;
 
 
-
     // 設定 _ 使用者類別
     useEffect( () : any => {
 
         const _cookie = cookie.load( 'userInfo' ) ;
 
-        if( _cookie  ){
+        if( _cookie ){
 
             set_Account( { ...account , employee_Type : _cookie['employee_type'] , position_Type : _cookie['position_type'] , } )
         
             // 取得登入者資訊，設定相對應的導覽列選項 
             dispatch( get_Nav_Options( { employee_Type : _cookie['employee_type'] , position_Type : _cookie['position_type']  } ) ) ;
-
         
             // "美容"、"計時美容"，前往 :【 美容頁面 ( ~ /beautician ) 】
             if( _cookie['position_type'] === '美容' || _cookie['position_type'] === '計時美容' ) history.push('/beautician') ;
 
-        }
+        }else{
 
+            alert( '請先登入系統' ) ;
+            history.push('/') ;
+
+        }
 
         // add_Data() ;
         // show_Qcode() ;
@@ -142,15 +147,13 @@ const Nav_Options = () => {
 
         set_Care_Lodge_Num( data.length ) ;
 
-
     } , [ pet_Arr ] ) ;
 
 
 
-   return  <div id="navbarExampleTransparentExample" className="is-hidden-mobile">
+   return  <div id = "navbarExampleTransparentExample" className = "is-hidden-mobile" >
 
-
-               <div className="navbar-start relative" style={{ top:"34%" , left:"30px" }} >
+               <div className = "navbar-start relative" style = {{ top:"34%" , left:"30px" }} >
 
                    {
 
@@ -159,17 +162,17 @@ const Nav_Options = () => {
 
                         const optionStyle = option.url === location.pathname ? { boxShadow : "1px 1px 5px 1px rgba(0,0,0,.6)" , borderRadius : "3px" } : {} ;
 
-                        return <span className="relative" key = { index }>
+                        return <span className = "relative" key = { index }>
 
                                  <Link to = { option.url }>
                                 
                                    <span style = { optionStyle } className = { "tag is-medium is-rounded relative pointer "+option.color } >
 
-                                         { /*  紅點顯示 ( 內有新增、待處理資料 ) */ }
-                                         { 
+                                         { /*  紅點顯示 ( 內有新增、待處理資料 ) 先隱藏 2024.01.08 因住宿銷單 */ }
+                                         {/* { 
                                             ( option.title === '住 宿' && care_Lodge_Num > 0 ) && 
                                                 <b className="redDot"> { care_Lodge_Num } </b>  
-                                         }  
+                                         }   */}
 
                                          { 
                                            ( option.title === '管理區' && dataManagement_Note_Num > 0 ) && 
@@ -196,11 +199,11 @@ const Nav_Options = () => {
 
                         <>
 
-                            <span className="pointer tag is-medium is-rounded" onClick={ () => show_Qcode() } style={{ background : "rgb(150,0,0)" , color : "white" }}>
-                                    <i className="fab fa-quora"></i> &nbsp; ( { get_Today().slice(4,8) } )
+                            <span className = "pointer tag is-medium is-rounded" onClick={ () => show_Qcode() } style={{ background : "rgb(150,0,0)" , color : "white" }}>
+                                    <i className = "fab fa-quora"></i> &nbsp; ( { get_Today().slice( 4 , 8 ) } )
                                 </span> &nbsp; &nbsp;
 
-                            <span className="pointer tag is-medium is-black is-rounded"  onClick={ () => add_Data() }> <i className="fas fa-plus"></i> &nbsp; 新增資料  </span>
+                            <span className = "pointer tag is-medium is-black is-rounded"  onClick={ () => add_Data() }> <i className="fas fa-plus"></i> &nbsp; 新增資料  </span>
 
                             &nbsp; &nbsp; &nbsp;
                             

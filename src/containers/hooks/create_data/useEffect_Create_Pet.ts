@@ -2,10 +2,8 @@
 import { columns_Covert_Customer ,
          columns_Covert_Pet 
        } from "hooks/crud/process/convert_Columns" ;
-
 import { useCreate_Customer } from "hooks/react-query/customer/useCreateCustomer" ;
 import { useCreate_Pet } from "hooks/react-query/pet/useCreatePet" ;
-
 import { useCheck_IsExisting_Customer , useCheck_IsExisting_Pet } from "hooks/data/useCheck" ;
 
 
@@ -30,8 +28,6 @@ export const useEffect_Create_Pet = () => {
         // 轉換為資料表欄位
         const obj_Customer = columns_Covert_Customer( data ) ;
         const obj_Pet      = columns_Covert_Pet( data ) ; 
-
-
 
 
         // 檢查 _ 客戶是否存在

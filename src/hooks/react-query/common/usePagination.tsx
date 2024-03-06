@@ -67,7 +67,6 @@ export const usePagination_List = ( page : number = 1  , api : string , search :
 
    # Return  : 查詢資料、狀態、分頁按鈕列
 
-
 */ 
 export const usePagination_Query = ( query_Key : Query , query_Func : Query ) => {
 

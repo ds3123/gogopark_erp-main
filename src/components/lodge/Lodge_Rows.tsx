@@ -105,8 +105,8 @@ const Lodge_Rows = ( props : any ) => {
     } , [ data ] ) ;
 
     const t_L = { textAlign : "left" } as const ;
-    const err = {top:"-7px", left:"1px" , color:"red" , zIndex : "344"} as any ;
-    
+    const err = { top:"-7px", left:"1px" , color:"red" , zIndex : "344" } as any ;
+    const del = { top:"-7px", left:"1px" , color:"red" , zIndex : "344" } as any ;
 
    return <tr style = { ( data[ 'start_date' ] && data[ 'start_date' ].slice(0,10) === today ) ? { background:"rgb(160,160,160,.2)" }  : { lineHeight : "40px" } }>
 
@@ -117,6 +117,11 @@ const Lodge_Rows = ( props : any ) => {
               { /* 異常標示 */ }
                <b className="absolute" style={ err }>
                   { data['is_error'] === 1 &&  <i className="fas fa-exclamation-triangle"></i> }
+               </b>
+
+               { /* 銷單 */ }
+               <b className="absolute" style={ del }>
+                     { data['is_delete'] === 1 &&  <i className="fas fa-trash-alt"></i> }
                </b>
 
               { 

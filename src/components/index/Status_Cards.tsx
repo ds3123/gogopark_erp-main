@@ -1,3 +1,6 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/jsx-pascal-case */
 
 
 import { Shop_Status  } from 'utils/Interface_Type'

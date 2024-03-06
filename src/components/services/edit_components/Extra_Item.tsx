@@ -53,8 +53,6 @@ const Extra_Item = ( { register , editType, serviceData } : IExtra_Item ) => {
     const services_Data = useEffect_Edit_Picked_Items( editType , serviceData ) ;
     
 
-
-   
   return <>
               <b className="tag is-large is-link is-light">
 

@@ -48,34 +48,47 @@ const Sign_In = () => {
     const accountData = useFetch_Employees() ;  // 取得 _ 所有員工資料
 
     const [ is_Account_Error , set_Is_Account_Error ] = useState( false ) ; // 帳號或密碼錯誤
-
     
+
     const schema = yup.object().shape({
-        signin_Account  : yup.string().required("必填欄位") ,
-        signin_Password : yup.string().required("必填欄位") ,
-    });
+                                        signin_Account  : yup.string().required("必填欄位") ,
+                                        signin_Password : yup.string().required("必填欄位") ,
+                                      });
 
     // React Hook Form
-    const { setValue , handleSubmit , control , formState: { errors , isDirty , isValid } } =
-            useForm<ISignin>({
-                mode     : "all" ,
-                resolver : yupResolver( schema ) ,
-            }) ;
+    const { handleSubmit , control , formState: { isValid } } =
+            useForm< ISignin >({
+                                 mode     : "all" ,
+                                 resolver : yupResolver( schema ) ,
+                               }) ;
 
 
     // 提交表單
     const onSubmit : SubmitHandler<ISignin> = ( data : any ) => {
 
-       const account  = data['signin_Account'] ;   // 帳號
-       const password = data['signin_Password'] ;  // 密碼
 
+       const account  = data['signin_Account'].trim() ;   // 帳號
+       const password = data['signin_Password'].trim() ;  // 密碼
+
+        // 若為最高管理帳號，額外設定一個 cookie ( 作為顯示 _ 切換帳號的下拉選項 ) 
+        if( data['signin_Account'] === 'manage'  && data['signin_Password'] === 'manage' ){
+
+            // 套用所有路徑 ＆ 10800 秒 / 3 小時
+            cookie.save( 'manage' , 'manage' , { path : '/' , maxAge : 10800 } ) ;
+
+        }else{
+
+            cookie.remove( 'manage' , { path : '/' } ) ;    
+
+        } 
+
+        // 比對帳號
         if( accountData.length > 0 ){
 
             accountData.forEach( x => {
 
                 // 帳號密碼 _ 正確
                 if( x['account'] === account && x['password'] === password ){
-
 
                     // 設定 _ Cookie
                     cookie.save( 'userInfo' , x , { path : '/'  } ) ;
@@ -107,6 +120,8 @@ const Sign_In = () => {
 
     const classes = useStyles();
     const lS      = { position : "relative" , top:"40px" , left:"15px" , width:"350px" , height : "120px"  } as const ;
+
+
 
     return <Container component="main" maxWidth="xs">
 
@@ -155,11 +170,7 @@ const Sign_In = () => {
                                                                onChange = { ( e ) => field.onChange( e ) } />
                                               )}    />
 
-
-                    {/*<FormControlLabel control = {<Checkbox value="remember" color="primary" />}*/}
-                    {/*                  label   = "記住我" style={{ float:"right" }} />*/}
-
-
+    
                     <br/> <br/>
 
                     <button disabled = { !isValid } type="submit" className="button is-primary relative is-medium"  style={{ width:'100%', height:"60px" }}>
@@ -167,7 +178,7 @@ const Sign_In = () => {
                     </button>
 
                     <div className = "has-text-centered m_Top_30" > 
-                       更新時間 : 2023.11.19
+                        更新時間 : 2024.02.04
                     </div>
 
                 </form>

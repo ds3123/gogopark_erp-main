@@ -22,12 +22,12 @@ import { useAccount_Shop_Id } from "hooks/data/useAccount" ;
 import { useSearch_Keyword } from "hooks/data/useSearch" ;
 
 
-
 type Admin_Data = {
     
    data_Type : Services ;  // 資料類型 ( Ex. customer , pet , service , lodge , care , plan )
 
 }
+
 
 
 
@@ -38,15 +38,16 @@ const Admin_Data_Render = ( { data_Type  } : Admin_Data ) => {
     // 目前資料分頁頁碼
     const[ current_Page , set_CurrentPage ] = useState( 1 ) ;
 
-    // ---------
+
+    // 目前登入者，所屬商店 id    
+    const shop_Id   = useAccount_Shop_Id() ; 
+
+    // API : 根據資料類型、登入者所屬商店 id，取得 _ 各類型資料 ( Ex. 客戶、寵物、洗美、安親、住宿 ... )
+    const query_API = get_Api_Obj( data_Type , shop_Id ) ;
 
 
     // 所輸入搜尋關鍵字 / 取得搜尋框中的關鍵字方法
     const { search_Keyword , get_SearchKeyword } = useSearch_Keyword() ;
-
-     
-    // API : 根據資料類型、登入者所屬商店 id，取得 _ 各類型資料 ( Ex. 客戶、寵物、洗美、安親、住宿 ... )
-    const query_API = get_Api_Obj( data_Type , useAccount_Shop_Id() ) ;
 
    
     // 取得 _ 額外篩選條件 : 來店日期 ( 洗美 ) / 住房期間 ( 住宿 ) 
@@ -55,7 +56,6 @@ const Admin_Data_Render = ( { data_Type  } : Admin_Data ) => {
 
     // # 主要查詢
     const { data , isLoading , isFetching , isPreviousData , refetch } = usePagination_List( current_Page , query_API , search_Keyword , filter_Date_1 , filter_Date_2 ) ; 
-
 
     
     return <div className = "relative" >

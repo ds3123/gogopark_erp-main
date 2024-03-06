@@ -32,6 +32,7 @@ const Summary_Fee = ( ) => {
 
     return <>
 
+            
               { editType ? "" : <><hr/><br/></> }
              
               { /* # 費用明細 */ }

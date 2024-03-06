@@ -1,5 +1,5 @@
 
-import { FC } from "react"
+import { FC } from "react" ;
 import { useDispatch } from "react-redux";
 import { set_Side_Panel } from "store/actions/action_Global_Layout";
 import Update_Price from "components/prices/edit/Update_Price" ;

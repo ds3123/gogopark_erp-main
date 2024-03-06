@@ -178,10 +178,8 @@ const Customer_Types_Query = ( { query , setValue } : IQuery ) => {
 
               { /* ----------------------------------------------------------------------- */ }
 
-
               { /* 顯示 : 新客戶 */ }
               { ( is_Querying && query_Result_Id.length === 0 && query_Result_CellPhone.length === 0 ) && <b className = "absolute" style = { red } > 新客戶 </b> }
-
 
          </>
 

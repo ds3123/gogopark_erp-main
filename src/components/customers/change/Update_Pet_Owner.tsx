@@ -219,7 +219,6 @@ const Update_Pet_Owner = () => {
 
                 </div> 
 
-
                 { selected_Owner.id  &&  
                 
                     <>  

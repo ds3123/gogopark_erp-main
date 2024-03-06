@@ -80,16 +80,16 @@ const Customer_Form = ( { register , watch , setValue , errors , current , custo
                 { is_Show_NumButton && num_Buttons }
 
                 { /* 標題 */ }
-                <label className="label relative m_Bottom_40" >
+                <label className = "label relative m_Bottom_40" >
 
-                    <i className="fas fa-user"></i> &nbsp; 客戶資料  &nbsp; 
+                    <i className = "fas fa-user" ></i> &nbsp; 客戶資料  &nbsp; 
                     
-                    { is_Create && Folding_Bt } { /* 收折鈕 */ }
+                    { is_Create && Folding_Bt }  { /* 收折鈕 */ }
 
                     { /* 過去服務紀錄、資料數 ( 基礎、洗澡、美容 )  */ }
                     {/* <Customer_Services_Records />  */}
                     
-                    { /*  顯示 _ 查詢客戶 : "身分證字號"、"手機號碼" 結果 ( 顯示 : 客戶姓名、新客戶 在標題列右上方 )  */ }
+                    { /*  顯示 _ 查詢客戶 : "身分證字號"、"手機號碼" 結果 ( 顯示 : 客戶姓名、新客戶 在標題列右上方 ) */ }
                     <Customer_Types_Query query = { query } setValue = { setValue } />
 
                 </label>
@@ -108,14 +108,14 @@ const Customer_Form = ( { register , watch , setValue , errors , current , custo
                         </b>
                      }
 
-                     <div className="columns is-multiline  is-mobile relative">
+                     <div className = "columns is-multiline is-mobile relative" >
 
                         { /* 編輯狀態 */ }
                         { is_Create || 
                         
                             <div className="column is-3-desktop relative"> 
-                                <p className="relative"> 身份證字號 / 客戶系統編號 </p>
-                                <b className="fDblue f_13 relative" style={{ top:"6px" }}>  { customer_Id } </b>
+                              <p className="relative"> 身份證字號 / 客戶系統編號 </p>
+                              <b className="fDblue f_13 relative" style = {{ top : "6px" }}>  { customer_Id } </b>
                             </div> 
                          
                         }
@@ -124,7 +124,7 @@ const Customer_Form = ( { register , watch , setValue , errors , current , custo
                         { is_Create &&
                         
                             <>    
-                                <b className="tag is-light is-success absolute f_10 pointer" style={{ top:"8px",left:"185px" , zIndex:222 }} onClick={ set_Random_Id }>
+                                <b className = "tag is-light is-success absolute f_10 pointer" style = {{ top:"8px",left:"185px" , zIndex:222 }} onClick = { set_Random_Id }>
                                     自動產生
                                 </b>
                                 <Input type="text" name="customer_Id" label="身分證字號 / 系統編號" register={register} error={errors.customer_Id} icon="fas fa-id-card-alt" asterisk={true} columns="3" onChange={ handle_Change } />

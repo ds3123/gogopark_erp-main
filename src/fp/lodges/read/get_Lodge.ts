@@ -1,7 +1,6 @@
 /* eslint-disable no-unreachable */
 
 import { get_Trim_Time } from "fp/common/read/get_Date"
-import { boolean } from "yup";
 
 
 
@@ -76,7 +75,7 @@ export const is_Dog_RoomType = ( room : Room_Type_Number ) : boolean =>
 // -----------------------------
 
 
-// 篩選 _ 房型 : 貓 < T/ >
+// 篩選 _ 房型 : 貓 < T >
 export const filter_Cat_RoomType = ( room_Type : Room_Type_Number[] ) => room_Type.filter( is_Cat_RoomType ) ;
 
 

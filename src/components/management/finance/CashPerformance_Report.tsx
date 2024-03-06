@@ -132,10 +132,7 @@ const CashPerformance_Report : FC = () => {
             <Title_Folder tag_Color    = "is-warning" 
                           service_Type = "洗澡美容" 
                           amount_Type  = "扣 _ 預收款"
-                          amount_Total = { 
-                                             !is_Fetching_Deduct_Advance_Receipt_Done ? downloadIcon : usePlan_Total 
-                                             
-                                         } >
+                          amount_Total = {  !is_Fetching_Deduct_Advance_Receipt_Done ? downloadIcon : usePlan_Total  } >
 
                 <Deduct_Advance_Receipt_Table data = { usePlan_Data } />
 

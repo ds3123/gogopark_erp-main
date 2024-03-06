@@ -7,13 +7,13 @@ import { useCheck_IsExisting_Customer } from "hooks/data/useCheck" ;
 
 
 
-
 // @ 新增 _ 客戶
 export const useEffect_Create_Customer = () => {
 
     
     // # 新增函式
-    const create_Customer_Fun = useCreate_Customer();
+    const create_Customer_Fun = useCreate_Customer() ;
+
 
     // # 檢查 _ 客戶在資料表 ( customer ) 中，是否已經存在
     const check_Customer_Data = useCheck_IsExisting_Customer() ;

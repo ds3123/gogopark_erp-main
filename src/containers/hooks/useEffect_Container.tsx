@@ -54,44 +54,36 @@ export const useEffect_User_Account_Select_Component = () => {
 
       // 切換帳號下拉元件 
       const Account_Select = () => <div className="control has-icons-left m_Bottom_70">
-
-              
-
-                                      { employee_Type === "管理帳號" &&   // 管理帳號，才能切換帳號
   
-                                          <>
+                                      <>
 
-                                                <div className="select">
+                                          <div className="select">
 
-                                                      <select value = { current_User_Id } onChange={ e => change_Account( e.target.value ) } >
+                                                <select value = { current_User_Id } onChange={ e => change_Account( e.target.value ) } >
 
-                                                            {
-                                                                admin_Employees.map( ( x , y ) => {
+                                                      {
+                                                            admin_Employees.map( ( x , y ) => {
 
-                                                                                                      const shop = x?.shop_account ; // 店家資訊
-                                                                                                      
-                                                                                                      return <option value = { x?.id } key = { y } >
+                                                                                                const shop = x?.shop_account ; // 店家資訊
+                                                                                                
+                                                                                                return <option value = { x?.id } key = { y } >
 
-                                                                                                                  { shop?.account_id } _ &nbsp; 
-                                                                                                                  { string_Short( shop?.shop_name , 8 ) } &nbsp; 
-                                                                                                                  ( { shop?.district } : { shop?.zipcode } - { shop?.shop_num } )
+                                                                                                            { shop?.account_id } _ &nbsp; 
+                                                                                                            { string_Short( shop?.shop_name , 8 ) } &nbsp; 
+                                                                                                            ( { shop?.district } : { shop?.zipcode } - { shop?.shop_num } )
 
-                                                                                                            </option> 
-                                                                        
-                                                                                                  } )
-                                                            }
+                                                                                                      </option> 
+                                                                  
+                                                                                                } )
+                                                      }
 
-                                                      </select>
+                                                </select>
 
-                                                </div>
+                                          </div>
 
-                                                <div className="icon is-small is-left"> <i className="fas fa-store-alt"></i> </div>
-
-                                              
-                                              
-                                          </>
-
-                                      }
+                                          <div className="icon is-small is-left"> <i className="fas fa-store-alt"></i> </div>
+                                          
+                                      </>
 
                                     </div>
 

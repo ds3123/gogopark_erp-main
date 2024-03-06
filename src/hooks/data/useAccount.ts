@@ -1,5 +1,5 @@
 
-import cookie from 'react-cookies';
+import cookie from 'react-cookies' ;
 
 
 
@@ -7,10 +7,8 @@ import cookie from 'react-cookies';
 // 回傳 _ 目前登入使用者，所屬 : 商店資訊
 export const useAccount_Shop = () => {
 
-
     const _cookie  = cookie.load( 'userInfo' ) ;
     const shopInfo = _cookie['shop_account'] ;
-
 
     const shopObj = {  
                        shop_id : shopInfo['account_id'].toString() , // 登入者所屬商店 ( 資料表 : accounts ) id   

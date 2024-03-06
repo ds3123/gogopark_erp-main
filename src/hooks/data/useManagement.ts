@@ -1,4 +1,4 @@
-import { useEffect } from 'react' ;
+import { useEffect } from 'react' 
 import cookie from 'react-cookies' ;    // 匯入 cookie
 
 
@@ -32,7 +32,7 @@ const obj_Tag : any = {
                          "資料管理_銷單資料" : { second : "資料管理"  , third : "銷單資料" } , // 銷單資料
                          "資料管理_方案資料" : { second : "資料管理"  , third : "方案資料" } , // 方案資料
                          
-                         // 再確認 2022.12.114
+                         // 再確認 2022.12.14
                          "客戶"            : { second : "資料管理"  , third : "封存資料" } , // 封存資料
                          "寵物"            : { second : "資料管理"  , third : "封存資料" } , // 封存資料
                          "洗美"            : { second : "資料管理"  , third : "封存資料" } , // 封存資料
@@ -79,12 +79,14 @@ export const useEffect_Management_After_Edit = ( click_Second : any , click_Thir
         const cookie_Arr = [ cookie_Create , update_Price , update_Data , undo_Archive , delete_Archive , delete_CustomPlan ] ;
         const tag_Index  = cookie_Arr.filter( x => x !== undefined )[0] ;
 
+
         // 若有 cookie，依其取得 _ 要點選的第 2 , 3 層標籤
         if( tag_Index ){
             c_Second = obj_Tag[ tag_Index ]?.second  ;
             c_Third  = obj_Tag[ tag_Index ]?.third  ;
         }
 
+    
         // 點選標籤
         click_Second( c_Second ) ;
         click_Third( c_Third ) ;

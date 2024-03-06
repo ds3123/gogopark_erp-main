@@ -1,7 +1,6 @@
 
 
 import Services_Rows from "components/services/Services_Rows";
-
 import { is_Downloading } from "templates/note/Query_Info" ;
 import { usePagination_Query } from 'hooks/react-query/common/usePagination' ;
 import { fetch_Shop_Service_Archive_Page } from "utils/api/api_Service" ;
@@ -10,7 +9,7 @@ import { serviceKeys } from "react-query/query-key/serviceKeys";
 
 
 // @ 洗美 _ 封存資料
-const Services = ( ) => {
+const Services = () => {
 
     
      // useQuery 查詢 Key

@@ -26,6 +26,7 @@ import reducer_Price from "store/reducers/reducer_Price";
 import reducer_Finance from "store/reducers/reducer_Finance";
 import reducer_Log from "store/reducers/reducer_Log" ;
 import reducer_Search from "store/reducers/reducer_Search" ;
+import reducer_Summary from "./reducer_Summary";
 
 
 // 測試練習
@@ -101,6 +102,9 @@ const all_Reducer = combineReducers({
 
                          // ＠ 搜尋 
                          "Search"     : reducer_Search ,
+
+                         // @ 服務單明細
+                         "Summary"    : reducer_Summary ,
 
                          // @ 測試練習 ( 2022.03.06 ) 
                          "Test"       : reducer_Test ,

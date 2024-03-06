@@ -9,7 +9,7 @@ import { petKeys } from "react-query/query-key/petKeys" ;
 
 
 // @ 寵物 _ 封存資料
-const Pets = ( ) => {
+const Pets = () => {
 
     
      // useQuery 查詢 Key

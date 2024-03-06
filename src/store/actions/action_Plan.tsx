@@ -74,6 +74,7 @@ export const set_Use_Plan_Info = (
 
     return ( dispatch : any ) => {
 
+        
         // 設定 _ 目前點選使用方案標籤的索引號碼 
         dispatch( { type : "SET_CURRENT_PLAN_TAG_INDEX" , current_Plan_Tag_Index : clicked_Tag_Index } ) ;   
 
@@ -88,6 +89,7 @@ export const set_Use_Plan_Info = (
 
         // 設定 _ 是否已點選方案標籤 ( for 表單提交驗證 )
         dispatch( set_Use_Plan( is_Using_Plan ) ) ;
+
 
     }
 
@@ -105,8 +107,10 @@ export const click_Cutomer_Use_Plan_Tag = (
 
              // * 若已點選過，再次點選 : 復原 _ 方案相關資訊
              if( current_Tag_Index === clicked_Tag_Index ){
-                 dispatch( set_Use_Plan_Info( null , "" , ""  ,"" , false ) ) ;
-                 return false 
+
+                 dispatch( set_Use_Plan_Info( null , "" , ""  , "" , false ) ) ;
+                 return false ;
+
              } 
              
              // * 若未選過，點選 : 設定 _ 方案相關資訊

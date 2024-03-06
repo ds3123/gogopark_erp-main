@@ -77,7 +77,8 @@ const Pet_Service_Card = ( { data , pet , type } : Card ) => {
                     overflow : "hidden"
                   } as any ;            
 
-    return <div className="relative w-full" style={card}>
+
+    return <div className = "relative w-full" style = { card } >
 
                 { /* for 客戶 : 消費歷史 */ }
                 { type === '客戶'  &&
@@ -92,14 +93,15 @@ const Pet_Service_Card = ( { data , pet , type } : Card ) => {
                         }
 
                         <div className="m_Top_5" style={ row }> 
-                             
+                            
                              <b> 
 
-                                 {  pet?.name ? 
+                                 { pet?.name ? 
                                         <> { string_Short( pet?.name )  } <span className="f_10">( { string_Short( pet?.species )  } ) </span> </> :
-                                       <span className="fRed"> 寵物已刪除 </span>  }
+                                        <span className="fRed"> 寵物已刪除 </span>  }
 
                              </b> 
+
                         </div>
 
                         <div style={ row }> <b className="fDred"> ${ data['amount_paid'] } </b> </div>

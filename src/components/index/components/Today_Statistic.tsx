@@ -3,7 +3,7 @@
 import { FC } from 'react' ;
 import Service_Error from "components/index/list/Service_Error" ;
 import { set_Side_Panel } from "store/actions/action_Global_Layout" ;
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux' ;
 import { 
          get_Completed_BasicBathBeauty_Sum , 
          get_Completed_BasicBathBeauty_Persentage ,
@@ -25,7 +25,6 @@ type Statistic = {
 
 // # 今日統計
 export const Today_Statistic : FC< Statistic > = ( { data } ) => {
-
 
 
     // 顯示 _ 服務異常

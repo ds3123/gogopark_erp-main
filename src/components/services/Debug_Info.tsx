@@ -27,8 +27,11 @@ const Debug_Info = ( ) => {
 
     // -------------------------------------------------------------
 
-    // 方案 : 包月洗澡 _ 條件不符 ( Redux )
-    const invalid_To_Plan             = useSelector(( state : any ) => state.Form.invalid_To_Plan ) ;
+   
+
+     
+
+
 
     // 員工
     const invalid_To_Employee         = useSelector( ( state : any ) => state.Form.invalid_To_Employee ) ;
@@ -89,7 +92,6 @@ const Debug_Info = ( ) => {
 
                     <hr/>
 
-                    <div className="m_Bottom_30"> 方案驗證 <br/> ( invalid_To_Plan ) : <br/> <b className="fRed"> { invalid_To_Plan ? '1' : '0' } </b> </div>
                     
                     <div className="m_Bottom_30"> 員工驗證 <br/> ( invalid_To_Employee ) : <br/> <b className="fRed"> { invalid_To_Employee ? '1' : '0' } </b> </div>
                    

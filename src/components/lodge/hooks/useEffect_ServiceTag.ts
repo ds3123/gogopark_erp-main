@@ -1,27 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-
 import { useState , useEffect } from 'react' ;
 import { Service } from '../edit/Lodge_Service' ; 
 import { useDispatch } from "react-redux" ; 
 import { set_Lodge_Bath_Amount , set_Lodge_Beauty_Amount , set_Lodge_Custom_Amount  } from "store/actions/action_Extra_Service_Fee" ;
 
 
-
 type Item = { 
 
-    title  : string ,
-    amount : string
+   title  : string ,
+   amount : string
     
- } ;
-
-
-type ObjSum = {
-
-    "洗澡" : ( num : number , amountTotal : number , itemArr : any[] ) => void ,
-    "美容" : ( num : number , amountTotal : number , itemArr : any[] ) => void ,
-    "自訂" : ( num : number , amountTotal : number , itemArr : any[] ) => void
-
-}
+} ;
 
 
 type ObjArr = {
@@ -50,6 +39,14 @@ type ObjInput = {
  
  }
 
+
+type ObjSum = {
+
+    "洗澡" : ( num : number , amountTotal : number , itemArr : any[] ) => void ,
+    "美容" : ( num : number , amountTotal : number , itemArr : any[] ) => void ,
+    "自訂" : ( num : number , amountTotal : number , itemArr : any[] ) => void
+
+} 
 
 
 // 取得 _ 洗澡、美容、自訂 標籤：小計金額、次數

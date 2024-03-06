@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-lone-blocks */
 
 import { useEffect, useState } from "react"
@@ -88,12 +89,12 @@ const Employee_Form = ( { register  , errors , setValue , current , control , ed
         if( value ){
 
             axios.get( `/employees/show_employee_with_account/${ value }` ).then( res => { 
-
-                if( res.data.length > 0  ){
+               
+                if( res.data.length > 0  ){   // 重複
 
                   set_Account_Value( value ) ;
                   set_is_Account_Duplicate( true ) ;
-                  dispatch( set_Invalid_To_Employee( true ) ) ;
+                  dispatch( set_Invalid_To_Employee( true ) ) ;  // 使提交鈕失效 
 
                 }else{
 
@@ -102,7 +103,6 @@ const Employee_Form = ( { register  , errors , setValue , current , control , ed
                   dispatch( set_Invalid_To_Employee( false ) ) ; 
 
                 }
-
 
             })   
 
@@ -350,11 +350,13 @@ const Employee_Form = ( { register  , errors , setValue , current , control , ed
                             <p> <span> 所屬品牌 </span> <b style={{color: "red"}}>{errors.Brand?.message}</b> </p>
                             <div className="select">
                                 <select { ...register( "Brand" ) } onChange={ e => get_Brand_Type( e.target.value ) } >
+                                   <option value = "單一店家" > 單一店家 </option>
                                     {
                                         dataBrand.map( (x,y)=>{
                                             return   <option key={y} value={ x['brand'] }> { x['brand'] } </option>
                                         })
                                     }
+
                                 </select>
                             </div>
                         </div>
@@ -363,7 +365,9 @@ const Employee_Form = ( { register  , errors , setValue , current , control , ed
                         <div className="column is-2-desktop">
                             <p> <span> 所屬店別 </span> <b style={{color: "red"}}>{errors.Shop?.message}</b> </p>
                             <div className="select">
+                                
                                 <select { ...register( "Shop" ) } >
+                                    <option value = "單一店家" > 單一店家 </option>
                                     {
                                         brandShop.map( ( x, y) => {
                                             return  <option key={y} value={x} > {x} </option>

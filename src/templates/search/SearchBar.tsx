@@ -26,7 +26,6 @@ const SearchBar = ( { get_Search_Text , refetch } : Search ) => {
 
       get_Search_Text( value ) ;  // 回傳父元件，所輸入文字
 
-
    } ;
 
 

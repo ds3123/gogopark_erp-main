@@ -58,7 +58,7 @@ export const useEffect_Create_Account = () => {
                                                 // 關掉右側面板
                                                 dispatch( set_Side_Panel( false , null ,{} ) ) ;
 
-                                                // 延遲 1000 ms ，前往帳號管理 ( 避免以上新增員工，前往員工管理 )
+                                                // 延遲 500 ms ，前往帳號管理 ( 避免以上新增員工，前往員工管理 )
                                                 setTimeout( () => { 
                                                     
                                                     // 設定 cookie ( for 前往 : 帳號管理 / 5 秒後銷毀 )
@@ -67,7 +67,7 @@ export const useEffect_Create_Account = () => {
                                                     history.push("/wrongpath");   // 錯誤路徑
                                                     history.push("/management");  // 正確路徑
 
-                                                } , 1000 )
+                                                } , 500 ) ;
 
 
                                             }

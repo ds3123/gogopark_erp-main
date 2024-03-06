@@ -1,15 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useSelector } from "react-redux" ;
+
+import { useDispatch, useSelector } from "react-redux" ;
 
 // useContext
 import { useContext } from "react" ;
 import { SidePanelContext } from "templates/panel/Side_Panel" ;
 import useReact_Hook_Form_Context from "contexts/reactHookFormContext" ;
 
-
 import { useFetch_Pet_Plans } from "hooks/react-query/plan/useFetchPlans" ;
 import useCreate_Service_Summay_Fee_Context from "../contexts/serviceSummaryFeeContext" ;
 import { useEffect_Payment_Method_Create } from "../hooks/useEffect_Payment_Method" ;
+import { set_Current_PaymentMethod } from "store/actions/action_Summary";
+import { Payment_Method as payment_Method } from "utils/custom_types/finance_types";
 
 
 
@@ -17,6 +19,8 @@ import { useEffect_Payment_Method_Create } from "../hooks/useEffect_Payment_Meth
 // @ 付款方式 ( Ex. 現金、包月洗澡、包月美容 )
 const Payment_Method = ( ) => {
 
+
+    const dispatch = useDispatch();
 
     // 取得 context 值 : React Hook Form 屬性   
     const { register , setValue , editType } = useReact_Hook_Form_Context() ;  
@@ -39,10 +43,17 @@ const Payment_Method = ( ) => {
 
     
     // # 變動處理 : 設定 _ 付款方式
-    const handle_PaymentMethod     = ( method : string ) => set_Current_Payment_Method( method ) ;
+    const handle_PaymentMethod = ( method : string ) => {
+
+        set_Current_Payment_Method( method ) ;   // 考慮刪除，直接以 Redux 取代 Context  2024.01.02
+        dispatch( set_Current_PaymentMethod( method as payment_Method ) ) ;
+
+    }
+
 
     // 執行 _ 新增服務時，相關 effect 
     useEffect_Payment_Method_Create( current_Create_Tab , setValue , set_Current_Payment_Method ) ;
+
 
   
 

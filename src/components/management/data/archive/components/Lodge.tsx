@@ -1,18 +1,15 @@
 
-
-import Lodge_Rows from "../../../../lodge/Lodge_Rows";
-
+import Lodge_Rows from "../../../../lodge/Lodge_Rows" ;
 import { is_Downloading } from "templates/note/Query_Info" ;
 import { usePagination_Query } from 'hooks/react-query/common/usePagination' ;
 import { fetch_Shop_Lodge_Archive_Page } from "utils/api/api_Lodge" ;
-import { lodgeKeys } from "react-query/query-key/lodgeKeys";
+import { lodgeKeys } from "react-query/query-key/lodgeKeys" ;
 
 
 
 
 // @ 客戶 _ 封存資料
 const Lodge = ( ) => {
-
 
     
      // useQuery 查詢 Key
@@ -27,8 +24,6 @@ const Lodge = ( ) => {
      // # 取得 _ 特定店家，其客戶狀態為 : 審核中、通過
      const { data , isFetching , pagination_Nav } = usePagination_Query( query_Key , query_Func ) ;
 
-
-    
 
 
     return   <>

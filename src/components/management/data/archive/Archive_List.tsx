@@ -5,7 +5,6 @@ import Pets from "components/management/data/archive/components/Pets"
 import Services from "components/management/data/archive/components/Services"
 import Lodge from "components/management/data/archive/components/Lodge"
 import Care from "components/management/data/archive/components/Care"
-
 import cookie from "react-cookies";
 
 

@@ -20,7 +20,7 @@ import { useFetch_Services_By_ServiceDate  } from "hooks/react-query/service/use
 
 
 
-const note_Str = `此區塊僅顯示 : 「基礎」、「洗澡」、「美容」、「安親」，當日業務項目。`;
+const note_Str = `此區塊僅顯示 : 「基礎」、「洗澡」、「美容」、「安親」，當日業務項目。` ;
 
 
 
@@ -50,7 +50,6 @@ const Nav_Qcode_List = ( ) => {
 
 
 
-
     const shop_Id = useAccount_Shop_Id( ); // 目前登入使用者，所屬商店 id
 
 
@@ -58,8 +57,6 @@ const Nav_Qcode_List = ( ) => {
     const date_Services_1  = useFetch_Services_By_ServiceDate( shop_Id , date_1 ) ;
     const date_Services_2  = useFetch_Services_By_ServiceDate( shop_Id , date_2 ) ;
     const date_Services_3  = useFetch_Services_By_ServiceDate( shop_Id , date_3 ) ;
-
-
 
     
     // 排除住宿後，服務單資料

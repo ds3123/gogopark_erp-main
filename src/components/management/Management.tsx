@@ -94,7 +94,7 @@ const Management = () => {
             case '店家成員' : return <Auth_Member_List /> ;
 
             // # 資料管理
-            case '洗美備註' : return <BathBeauty_List /> ;
+           
             case '拒接客戶' : return <Reject_Customer_List /> ;
             case '拒接寵物' : return <Reject_Pet_List /> ;
             case '服務異常' : return <Error_List /> ;
@@ -109,6 +109,7 @@ const Management = () => {
             // # 系統設定
             case '寵物品種' : return <Species_List />  ;
             case '熱門時段' : return <Holidays_List />  ;
+            case '洗美備註' : return <BathBeauty_List /> ;
 
             // # 操作日誌
             case '操作日誌' : return <Log_List />  ;
@@ -136,7 +137,7 @@ const Management = () => {
     // 預設點選
     useEffect( () => {
 
-       click_Second( "財務管理" ) ;
+      // click_Second( "帳號管理" ) ;
        
     } , [] ) ;
 

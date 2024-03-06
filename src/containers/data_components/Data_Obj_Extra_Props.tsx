@@ -71,10 +71,8 @@ const useLodge_Care_Data = () => {
 
 } ;
 
-
 // @ 根據目前位置 ( current )，根據新增個別需要，為提交的資料物件( data )，再附加 _ 屬性、屬性值
 export const useAdd_Data_Obj_Extra_Props = ( ) => {
-
 
     // 登入者所屬商店 id
     const shop_Id    = useAccount_Shop_Id() ;  
@@ -100,7 +98,6 @@ export const useAdd_Data_Obj_Extra_Props = ( ) => {
     const current_Create_Service_Type = useSelector(( state : any ) => state.Service.current_Create_Service_Type ) ;
 
 
-
     // # 取得 _ 欲附加屬性的值
     const { month_Bath_Price , month_Beauty_Price , current_Plan_Id , current_Plan_Type , current_Plan_Note , custom_Plan_Basic_Price } = usePlan_Data();
 
@@ -111,11 +108,16 @@ export const useAdd_Data_Obj_Extra_Props = ( ) => {
 
     const add_Data_Obj_Extra_Props = ( current : string , data : any ) => {
 
+        /*
+             < 重要 : 2024.02.02 >
 
-        // # 目前登入帳號，所屬店家 id
+             # 目前登入帳號，所屬店家 id 
+               * 後續新增各種對象 ( 客人、寵物、洗澡 ... ) ， 在 convert_Columns.ts 檔案中 ，皆須設定 account_id 此屬性 
+               * 代表所新增的對象，所屬店家 id
+        
+        */ 
         data.account_id = shop_Id ; 
         
-
         // 將 "寵物品種 pet_species 資料表 id" ， 改為 : "寵物品種名稱"
         if( data['pet_Species'] && data['pet_Species'] !== '請選擇' ){  // 有寵物區塊欄位
             const pet        = petSpecies.filter( x => x['id'] === parseInt( data['pet_Species'] ) )[0] ;

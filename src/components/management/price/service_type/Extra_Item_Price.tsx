@@ -1,8 +1,8 @@
+/* eslint-disable react/jsx-pascal-case */
 
 import Service_Price_List from "components/management/price/Service_Price_List";
 import { useFetch_Shop_Service_Type_Prices } from "hooks/react-query/price/useFetchPrices" ;
 import { useAccount_Shop_Id } from "hooks/data/useAccount"; 
-
 
 
 
