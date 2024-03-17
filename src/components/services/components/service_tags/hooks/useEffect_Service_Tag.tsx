@@ -1,14 +1,15 @@
 /* eslint-disable react/jsx-pascal-case */
 import { useState , createRef } from 'react' ;
 
-import Service_Tag_1 from '../Service_Tag_1';
-import Service_Tag_2 from '../Service_Tag_2';
-import Service_Tag_3 from '../Service_Tag_3';
-import Service_Tag_4 from '../Service_Tag_4';
-import Service_Tag_5 from '../Service_Tag_5';
+import Service_Tag_1 from '../tag_options/Service_Tag_1';
+import Service_Tag_2 from '../tag_options/Service_Tag_2';
+import Service_Tag_3 from '../tag_options/Service_Tag_3';
+import Service_Tag_4 from '../tag_options/Service_Tag_4';
+import Service_Tag_5 from '../tag_options/Service_Tag_5';
 
 // import Pdf from 'react-to-pdf'
 import { useReactToPrint } from 'react-to-print'
+
 
 
 // 顯示 _ 目前所點選的列印聯內容
@@ -45,7 +46,7 @@ export const useEffect_Click_Print = () => {
 
 
    // 列印尺寸
-   const [ length , set_Length ] = useState({ width: 70 , height: 180 }) ;
+   const [ length , set_Length ] = useState({ width : 70 , height : 180 }) ;
 
 
    // 點選 _ 列印

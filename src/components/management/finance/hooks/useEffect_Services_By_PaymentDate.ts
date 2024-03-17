@@ -3,6 +3,7 @@ import { useFetch_ExtraFees_By_PaymentDate } from "hooks/react-query/service/use
 import { get_Receivable_Services_Data } from "fp/management/finance/service/get_Finance_Services" 
 import { get_Receivable_LodgeCare_Data } from "fp/management/finance/service/get_Finance_Services"
 import { is_Delete } from "fp/state" 
+import { get_Finance_Plan_Services } from "fp/management/finance/plan/get_Plan_Services"
 
 
 // 取得資料 _ < 洗澡美容：應收款 > ＆ < 住宿安親：應收款 > 
@@ -20,17 +21,21 @@ export const useEffect_Get_Services_By_PaymentDate = ( shop_Id : string , query_
 
 
     // 篩選 _ 未銷單、現金支付，且為「基礎單」、「洗澡單」、「美容單」
-    const filter_Services  = get_Receivable_Services_Data( all_Services ) ;
+    const filter_Services      = get_Receivable_Services_Data( all_Services ) ;
 
     // 篩選 _ 加價單：未刪單
-    const filter_ExtraFees = all_ExtraFees.filter( x => !is_Delete( x ) ) ;
+    const filter_ExtraFees     = all_ExtraFees.filter( x => !is_Delete( x ) ) ;
+
+    // 取得 _ 付款方式為「 方案 」的 洗澡單 或 美容單 ( 排除 _ 銷單 )
+    const filter_Plan_Services = get_Finance_Plan_Services( all_Services ) ;
+
 
 
     // -------------------
 
 
     // < 洗澡美容：應收款 > 資料 _ 洗澡美容：應收款 ( 加上 _ 加價單 )
-    const service_Receivable_Data = filter_Services.concat( filter_ExtraFees ) ;
+    const service_Receivable_Data = filter_Services.concat( filter_ExtraFees , filter_Plan_Services ) ;
 
     // < 住宿安親：應收款 > 資料，篩選 _ 未銷單、現金支付，且為：「當日住宿」、「預約住宿」、「當日安親」、「預約安親」
     const lodgeCare_Receivable_Data = get_Receivable_LodgeCare_Data( all_Services ) ;

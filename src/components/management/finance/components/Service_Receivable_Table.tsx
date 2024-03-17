@@ -9,6 +9,7 @@ import { sort_ObjAttr } from 'fp/tool';
 import { set_Modal } from "store/actions/action_Global_Layout" ;
 import { useCallback , useState , useEffect } from "react";
 import { get_Sum } from "utils/number/number";
+import { switch_Service_Id } from "utils/data/switch" ;
 
 
 type Table = {
@@ -32,9 +33,7 @@ type Total = {
 // @ 表單 : 應收款 ( 洗澡、美容 )
 const Service_Receivable_Table = ( { data } : Table ) => {
 
-   
     const dispatch = useDispatch() ;
-
 
     // 小計費用
     const [ total , set_Total ] = useState< Total >({
@@ -42,7 +41,6 @@ const Service_Receivable_Table = ( { data } : Table ) => {
                                                       amount_payable : 0 , // 應收金額
                                                       amount_paid    : 0   // 實收金額
                                                     }) ;
-
   
     // 點選 _ 服務單
     const click_Service = ( service : any ) => dispatch( set_Side_Panel( 
@@ -51,9 +49,8 @@ const Service_Receivable_Table = ( { data } : Table ) => {
                                                                          { service_Type : service['service_type'] , preLoadData : service } 
                                                                        ) ) ;
 
-
     // 依照 q_code 排序
-    const _data = sort_ObjAttr( 'q_code' , 'asc' )( data ) ;
+    const sort_Data = sort_ObjAttr( 'q_code' , 'asc' )( data ) ;
 
 
     // 加總 _ 小計金額
@@ -88,31 +85,26 @@ const Service_Receivable_Table = ( { data } : Table ) => {
    return  <table className = "table is-fullwidth is-hoverable m_Bottom_100" >
 
                 <thead>
-
                     <tr>
-
                       <th> 項 目    </th>
                       <th> 寵物資訊 / 加價內容  </th> 
                       <th> 付款日期 </th>
                       <th> 接送費 </th>
                       <th> 金 額    <span className="f_10 fDblue"> ( 應 收 ) </span> </th>
                       <th> 應收帳款  <span className="f_10 fDblue"> ( 實 收 ) </span> </th>
-                     
                       <th> 備 註    </th>
-
                     </tr>
-
                 </thead>
-
+                
                 <tbody>
 
                     { 
                       
-                      _data.map( ( x : any , y : number ) => {
+                      sort_Data.map( ( x : any , y : number ) => {
 
-                            const extra_Fee_Id = x?.extra_fee_id ; // 加價單 id 
+                            const extra_Fee_Id = x?.extra_fee_id ; // 後續新增 _ 加價單 id 
 
-                            // 1. 加價單
+                            // 1. 後續新增 _ 加價單
                             if( extra_Fee_Id ){
 
                                 // 目前所點選服務單 id
@@ -121,21 +113,21 @@ const Service_Receivable_Table = ( { data } : Table ) => {
                             
                                 return <tr key = { y }> 
 
-                                          <td className="td_Left"> 
+                                          <td className = "td_Left" > 
                                             
-                                             <b className = { `tag is-medium pointer` } 
+                                             <b className = { `tag is-medium pointer fDblue` } 
                                                 onClick   = { () => dispatch( set_Modal( true ,
                                                                                          <Extra_Fee_Info data = { x } /> , 
                                                                                          { data : null , modal_Style : { width : "100%" , left : "0%" , top : "8%" } } )) }> 
 
-                                                <i className = "fas fa-plus-circle"></i>&nbsp;加價 ( { extra_Fee_Id } ) &rarr; &nbsp; 
-                        
-                                                { service_Type }單 ( { service_Id } )
+                                                <i className = "fas fa-plus-circle"></i>&nbsp;加價單&nbsp;
+                                                <span className = "f_9" > ( id : { extra_Fee_Id } ) </span>&nbsp;&rarr;&nbsp; 
+                                                { service_Type }單&nbsp;<span className = "f_9" > ( id : { service_Id } ) </span>
                      
                                              </b>
 
                                           </td>   
-                                          <td className="td_Left"> { x?.pet_name } ( { x?.pet_species } ) </td>      
+                                          <td className = "td_Left" > { x?.pet_name } ( { x?.pet_species } ) </td>      
                                           <td> { ( x?.payment_date ).slice( 5 , 10 ) } </td>
                                           <td> 0 </td>                                 
                                           <td> { x?.amount_paid } </td>                                  
@@ -145,24 +137,54 @@ const Service_Receivable_Table = ( { data } : Table ) => {
                                        </tr>
 
                             } 
-
                           
                             // # 2. 一般洗美服務                         
                             return <tr key = { y }>
 
                                       { /* 項目 */ }
-                                      <td className="td_Left">
+                                      <td className = "td_Left" >
 
-                                         <b className="tag is-medium pointer" onClick = { () => click_Service( x ) } >
+                                         <b className = "tag is-medium pointer" onClick = { () => click_Service( x ) } >
 
-                                           { /* 標示：方案加價  */ }
-                                           {  x?.payment_method === '方案' &&  <b className="fRed m_Right_10"> 方案加價 </b> }  
 
-                                           { x['payment_type'] }  &nbsp;
+                                          { ( x?.payment_method !== '方案' && ( x?.extra_service || x?.extra_beauty ) ) &&
+                                             <>
+                                                 <i className = "fas fa-plus-circle fDblue"></i> &nbsp;
+                                             </> 
+                                          
+                                          } 
 
-                                           <span className="f_9"> { x['service_status'] === '預約_今天' || x['service_status'] === '預約_未來' ? '( 預約 )' : '( 現場 )' } </span>
-                                         
-                                           &nbsp; <b className="tag is-white is-rounded"> Q{ x['q_code'] } </b>
+
+                                           { /* for 方案加價  */ }
+                                           {  x?.payment_method === '方案' && 
+
+                                             <>
+                                                <b className = "fDblue m_Right_10" > 
+                                                   <i className = "fas fa-plus-circle"></i> 方案加價 &rarr;&nbsp; 
+                                                   { x?.service_type }單 <span className = "f_9" > ( id : { switch_Service_Id( x ) } ) </span>
+                                                </b> 
+                                             </>
+                                            
+                                            } 
+
+                                           { /* 方案 ( 加價 ) 不顯示 */ }
+                                           { x?.payment_method === '方案' || 
+                                           
+                                             <>
+                                             
+                                                { x['payment_type'] } &nbsp;
+
+                                                <span className = "f_9" >
+                                                    { x['service_status'] === '預約_今天' || x['service_status'] === '預約_未來' ? 
+                                                     `( 預約 / id ${ switch_Service_Id( x ) } )` : `( 現場 / id ${ switch_Service_Id( x ) }  ) ` } 
+                                                </span>
+
+                                                &nbsp; <b className = "tag is-white is-rounded" > Q{ x['q_code'] } </b>
+
+                                             </> 
+                                             
+                                           } 
+                                          
                                          </b>
 
                                       </td>
@@ -183,7 +205,7 @@ const Service_Receivable_Table = ( { data } : Table ) => {
                                       <td> { x?.pickup_fee }       </td>
                                       
                                       { /* 金額 ( 應收 ) */ }
-                                      <td > { x['amount_payable'] } </td>
+                                      <td> { x['amount_payable'] }  </td>
                                     
                                       { /* 應收帳款 ( 實收 ) */ }
                                       <td> { x['amount_paid'] }     </td>
@@ -198,11 +220,10 @@ const Service_Receivable_Table = ( { data } : Table ) => {
                     }
    
                     { /* 小計列 */ }
-                    { _data.length > 0 &&
+                    { sort_Data.length > 0 &&
 
                         <tr style = {{ background : "rgba(230,230,230,.4)" }}>
                               <td colSpan = { 3 } className = "fBold" > 小 計 </td>
-                              
                               <td className = "fDblue" > { total.pickup_fee } </td>
                               <td className = "fRed" >   { total.amount_payable } </td>
                               <td className = "fRed" >   { total.amount_paid } </td>

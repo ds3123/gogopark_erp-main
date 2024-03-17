@@ -74,11 +74,8 @@ export const useEffect_Create_Beauty = () => {
             create_Beauty_Fun( obj_Beauty , {
 
                 onSuccess : ( res ) => {
-
-                    
-
-
-                    //  # 如果付款方式是 "方案"，再新增 _ 方案 "使用紀錄" ( 資料表 : plan_used_records )
+                
+                    //  # 如果付款方式是 "方案" --> 再新增 _ 方案 "使用紀錄" ( 資料表 : plan_used_records )
                     if( data['payment_Method'] === '方案' ){
 
                         const beauty_Id = res.data ;  // 新增美容單 id

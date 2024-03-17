@@ -1,12 +1,15 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import { FC } from 'react' ;
-import Service_Tag_Section from './Service_Tag_Section' ;
-import Service_Tag_PetInfo from './Service_Tag_PetInfo' ;
-import Service_Tag_ServiceContent from './Service_Tag_ServiceContent' ;
-import Service_Tag_ServiceDate from './Service_Tag_ServiceDate' ;
-import Service_Tag_ArriveLeave from './Service_Tag_ArriveLeave';
+import Service_Tag_Section from '../Service_Tag_Section' ;
+import Service_Tag_PetInfo from '../Service_Tag_PetInfo' ;
+import Service_Tag_ServiceContent from '../Service_Tag_ServiceContent' ;
+import Service_Tag_ServiceDate from '../Service_Tag_ServiceDate' ;
+import Service_Tag_ArriveLeave from '../Service_Tag_ArriveLeave';
 import { string_Replace_WithAsterisks } from 'utils/string/edit_string';
+import { useDispatch } from 'react-redux';
+import { set_Modal } from "store/actions/action_Global_Layout" ;
+import { Service_Tag } from '../Service_Tag';
 
 
 type Tag = {
@@ -16,6 +19,8 @@ type Tag = {
 
 // @ 列印標籤：第三聯 ( 洗澡 / 美容 紀錄表 _ 放美容室 )
 const Service_Tag_3 : FC< Tag > = ( { data } ) => {
+
+    const dispatch = useDispatch() ;
 
 
     // 寵物資料
@@ -39,9 +44,25 @@ const Service_Tag_3 : FC< Tag > = ( { data } ) => {
                            </> ;
 
 
+
+    const back = ( ) => {
+        dispatch( set_Modal(  true , <Service_Tag /> , { data : data , modal_Style : { width : "40%" , left : "30%" , top : "-70px" } }  ) )
+    }
+
+    
+    const click_Show_A4_Page = ( ) => {
+
+        dispatch( set_Modal( true , <> <b onClick = { back }> 返回44 </b> </> , { data : data , modal_Style : { width : "76%" , left : "12%" , top : "-70px" } } ))
+
+    }
+
+
     return <div style={{ color:"black" }}>
     
-                <b className   = "f_15" > [ 第三聯：服務記錄 ] </b> 
+                <b className   = "f_15" > 
+                   [ 第三聯：服務記錄 ] &nbsp;  
+                   <b onClick = { click_Show_A4_Page }  className = "tag is-medium is-link is-rounded pointer"> A4 </b> 
+               </b> 
 
                 <hr className  = "border m_Bottom_30" />
 

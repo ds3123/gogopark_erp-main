@@ -109,8 +109,8 @@ const CashPerformance_Report : FC = () => {
                       expenditure_Total       = { expenditure_Total } />
            
             <div className = "relative" > 
-              <b className = "absolute f_16" style = {{ right : "230px" , top : "-40px" }} > 收入金額 </b>
-              <b className = "absolute f_16" style = {{ right : "80px" , top : "-40px" }}  > 支出金額 </b>
+               <b className = "absolute f_16" style = {{ right : "230px" , top : "-40px" }} > 收入金額 </b>
+               <b className = "absolute f_16" style = {{ right : "80px" , top : "-40px" }}  > 支出金額 </b>
             </div>
             
             <hr className = "m_Bottom_80" />

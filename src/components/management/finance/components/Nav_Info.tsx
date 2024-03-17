@@ -119,6 +119,10 @@ const Nav_Info = ( {
                         { /* 績效 */ }
                         <div className = "tag is-large is-white relative" >
 
+
+                            {/* <p> { is_Fetching_Service_Receivable_Done ? "aaa" : "bbb" }</p> */}
+
+
                             <b className = "m_Right_10" > 
                                  洗美績效 <span className = "f_13" > 總計 </span> :&nbsp; 
                                  <span className = "fRed"> 

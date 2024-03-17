@@ -2,11 +2,11 @@
 /* eslint-disable jsx-a11y/alt-text */
 
 import { FC } from 'react' ;
-import Service_Tag_Section from './Service_Tag_Section' ;
-import Service_Tag_PetInfo from './Service_Tag_PetInfo' ;
-import Service_Tag_CheckStatus from './Service_Tag_CheckStatus' ;
-import Service_Tag_Payment from './Service_Tag_Payment';
-import Service_Tag_ServiceDate from './Service_Tag_ServiceDate' ;
+import Service_Tag_Section from '../Service_Tag_Section' ;
+import Service_Tag_PetInfo from '../Service_Tag_PetInfo' ;
+import Service_Tag_CheckStatus from '../Service_Tag_CheckStatus' ;
+import Service_Tag_Payment from '../Service_Tag_Payment';
+import Service_Tag_ServiceDate from '../Service_Tag_ServiceDate' ;
 
 
 type Tag = {

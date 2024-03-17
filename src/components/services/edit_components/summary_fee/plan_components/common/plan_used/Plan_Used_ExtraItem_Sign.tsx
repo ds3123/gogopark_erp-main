@@ -3,7 +3,7 @@ import { useState , useEffect } from 'react' ;
 import { useEffect_Check_PlanRecord_ExtraItems } from "../../../hooks/useEffect_Plan_Used_ExtraItem_Sign"
 
 
-const num = { height:"17px" , paddingLeft:"4px" , paddingRight:"4px" ,background:"red" ,top:"-13px" , left:"13px" , fontSize:"2pt"} ;
+const num = { height:"22px" , paddingLeft:"4px" , paddingRight:"4px" ,background:"red" ,top:"-13px" , left:"25px" , fontSize:"8pt"} ;
 
 
 
@@ -17,12 +17,12 @@ const Plan_Used_ExtraItem_Sign = ( { plan } : { plan : any } ) => {
 
 
 
-
    return <>
 
-             { is_ExtraItem_Used && <b className="tag absolute fWhite" style={ num }>  ＋加價 </b>  }
+             { is_ExtraItem_Used && <b className = "tag absolute fWhite" style = { num } > ＋加價 </b>  }
 
           </>
+          
 } ;
 
 export default Plan_Used_ExtraItem_Sign

@@ -27,7 +27,7 @@ import { useAccount_Shop_Id } from 'hooks/data/useAccount';
 import { I_Side_Extra_Fee } from 'utils/custom_types/form';
 
 
-// @ 服務單建立後，加價面板
+// @ 左側面版：新增 _ 加價單 ( 後續新增 )
 const Side_Extra_Fee = () => {
 
 
@@ -66,7 +66,7 @@ const Side_Extra_Fee = () => {
 
      
     // React Hook Form
-    const { register , handleSubmit , control , formState : { errors , isValid } } =
+    const { handleSubmit , control , formState : { errors , isValid } } =
          useForm< I_Side_Extra_Fee >({
         
                                        mode     : "all" ,
@@ -104,41 +104,56 @@ const Side_Extra_Fee = () => {
     // 提交處理 : 新增加價單
     const onSubmit : SubmitHandler< I_Side_Extra_Fee > = ( data : I_Side_Extra_Fee ) => {
     
-    
          // 付款日期
          const payment_Date = moment( data.payment_Date ).format( 'YYYY-MM-DD' ) ;  
 
+         // 新增物件
          const obj = {
 
+                        // 店家 id
                         "account_id"         : shop_Id ,
+
+                        // 服務單
                         "service_id"         : service_Id ,     
                         "service_type"       : service_Type ,   
                         
+                        // 客戶資訊
                         "cus_name"           : customer?.name ,
                         "cus_id"             : customer?.id ,
                         "cus_mobile"         : customer?.mobile_phone ,
                         
+                        // 寵物資訊
                         "pet_name"           : pet?.name ,
                         "pet_serial"         : pet?.serial ,
                         "pet_species"        : pet?.species ,
 
+                        // 加價項目
                         "extra_item"         : picked_Items.join( ',' ) ,     
                         "extra_item_price"   : items_Prices_Total ,
+
+                        // 加價美容
                         "extra_beauty"       : picked_Beauties.join( ',' ) ,
                         "extra_beauty_price" : beauties_Prices_Total , 
+
+                        // 自訂加價
                         "extra_custom"       : custom_Item ,
                         "extra_custom_price" : custom_Price ? custom_Price : 0 ,
 
+                        // 現金付款金額
                         "amount_paid"        : amount_Paid ,
+                        
+                        // 經手人
                         "admin_user"         : admin_User ,
+
+                        // 付款日期
                         "payment_date"       : payment_Date ,
 
                      } ;
-
+           
+         // 新增加價單          
          create_Extra_Fee( obj ) ;
 
     } ; 
-
 
 
     // 回復原始狀態
@@ -164,7 +179,7 @@ const Side_Extra_Fee = () => {
                   <form onSubmit = { handleSubmit( onSubmit ) }>
 
                      <div className = { `tag is-large w-full pointer ${ is_On ? 'is-link is-light' : 'is-white' }` } 
-                           onClick   = { () => set_Is_On( !is_On ) } > 
+                           onClick  = { () => set_Is_On( !is_On ) } > 
                      
                         <i className = "fas fa-plus-circle"></i> &nbsp; 加價 &rarr;
                      

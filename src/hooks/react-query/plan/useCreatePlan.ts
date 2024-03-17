@@ -114,7 +114,6 @@ export const useCreate_Plan_Record = () => {
                                                              // 關掉左側提示面板
                                                              dispatch( set_Side_Info( false ) ) ;  
 
-
                                                              // 重導向
                                                              history.push("/wrongpath") ; // 錯誤路徑
                                                              history.push("/services") ;  // 正確路徑

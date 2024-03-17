@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import { FC } from 'react' ;
-import Service_Tag_Section from './Service_Tag_Section' ;
-import Service_Tag_PetInfo from './Service_Tag_PetInfo' ;
-import Service_Tag_ServiceDate from './Service_Tag_ServiceDate' ;
+import Service_Tag_Section from '../Service_Tag_Section' ;
+import Service_Tag_PetInfo from '../Service_Tag_PetInfo' ;
+import Service_Tag_ServiceDate from '../Service_Tag_ServiceDate' ;
 
 
 

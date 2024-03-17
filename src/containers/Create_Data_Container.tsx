@@ -120,7 +120,6 @@ const Create_Data_Container = () => {
     // # 提交表單 ( IService 再確認 2021.07.23 )
     const onSubmit : SubmitHandler< IService > = ( data ) => {
 
-        
         // 已到店 ( 現場單 ) && 未點選 : 實際到店時間
         if( service_Status === '已到店' && data?.actual_Arrive === '00:00' && ( current === '基礎' || current === '洗澡' || current === '美容' )  ){
             alert( '尚未設定或點選 : 實際到店欄位' ) ;

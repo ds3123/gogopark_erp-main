@@ -121,9 +121,20 @@ const root_Reducer = ( state : any , action : any ) => {
  
       if( action.type === 'RESET_APP') { // 重設 Action
 
-         const { Layout } = state ;      
+         const { Layout , Finance , Info } = state ;      
          
-         state = { Layout } ;            // 將所有 state 重設為預設值時， 排除 _ Layout 相關 state 
+
+         /*
+        
+            # 將所有 state 重設為預設值時
+            # 排除 _ 相關 state :
+               * Layout 
+               * Finance : 避免 _ 管理區 > 財務報表 : 下載狀態，設為初始的 false 而不停轉動            ( 2024.03.07 )
+               * Info    : 避免 _ 管理區 > 財務報表 : 切換至特定日期，點選右側面版、再關閉後，設為初始日期 ( 2024.03.08 )
+         
+         */
+
+         state = { Layout  , Finance , Info } ;  //
 
       }
 

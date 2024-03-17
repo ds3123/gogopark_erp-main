@@ -60,6 +60,7 @@ export const useFetch_Services_By_ServiceDate = ( account_id : string , service_
 
 // 取得 _ 特定 [ 付款日期 ] ( 欄位 : payment_date ) : 所有服務
 export const useFetch_Services_By_PaymentDate = ( account_id : string , payment_date : string ) => {
+  
 
     const dispatch = useDispatch() ;
 
@@ -77,8 +78,13 @@ export const useFetch_Services_By_PaymentDate = ( account_id : string , payment_
                                                  dispatch( set_Is_Fetching_Service_Receivable_Done( true ) ) ; // 洗澡美容：應收款
                                                  dispatch( set_Is_Fetching_Lodge_Receivable_Done( true ) ) ;   // 住宿安親：應收款
 
+                                              } ,
+                                              onError : ( error ) => {
+
+                                                 console.log( "useFetch_Services_By_PaymentDate : " , error ) ;
+
                                               } 
-                                            
+
                                            } 
                                          ) ;
 

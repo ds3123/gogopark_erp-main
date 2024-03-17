@@ -9,7 +9,6 @@ import { useHistory } from "react-router-dom" ;
 import { useDispatch } from "react-redux" ;
 import { useCreate_Plan_Record } from "hooks/react-query/plan/useCreatePlan";
 import { set_Side_Info } from "store/actions/action_Global_Layout" ;
-
 import { useQueryClient } from "react-query" ;
 
 
@@ -27,13 +26,12 @@ export const useEffect_Create_Bath = () => {
 
 
     // # 檢查 _ 客戶、寵物在資料 ( customer , pet ) 中，是否已經存在
-    const check_Customer_Data = useCheck_IsExisting_Customer( ) ; // 客戶
-    const check_Pet_Data      = useCheck_IsExisting_Pet( ) ;      // 寵物 
+    const check_Customer_Data = useCheck_IsExisting_Customer() ; // 客戶
+    const check_Pet_Data      = useCheck_IsExisting_Pet() ;      // 寵物 
 
 
     const queryClient         = useQueryClient() ;
 
-    
     // 執行 _ 新增函式
     const create_Bath = async( data : any , shop_Id? : string ) => {
 
@@ -72,10 +70,11 @@ export const useEffect_Create_Bath = () => {
                 // 新增成功後
                 onSuccess : ( res ) => {
 
-                    
-                    // # 如果付款方式是 "方案"，再新增 _ 方案 "使用紀錄" ( 資料表 : plan_used_records )  
+
+                    //  # 如果付款方式是 "方案" --> 再新增 _ 方案 "使用紀錄" ( 資料表 : plan_used_records )
                     if( data['payment_Method'] === "方案" ){
 
+                        // * 新增 _ 方案使用紀錄
                         const bath_Id = res.data ; // 新增洗澡單 id
 
                         const obj_Record = {
@@ -117,13 +116,12 @@ export const useEffect_Create_Bath = () => {
                         // 關掉左側提示面板
                         dispatch( set_Side_Info( false ) ) ;  
 
-
                         // 前往相對應頁面
                         history.push( "/wrongpath" ) ;  // 錯誤路徑
                         history.push( "/services" ) ;   // 正確路徑
 
-                    }   
-
+                    }  
+                    
                 }
 
             } ) ;  
