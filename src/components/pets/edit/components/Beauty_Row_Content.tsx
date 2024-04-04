@@ -1,5 +1,4 @@
 
-
 import { FC } from 'react' ;
 import { useEffect_Edit_Picked_Items as useEffect_ExtraItem } from 'components/services/hooks/useEffect_Extra_Item';
 import { string_Format_Slash } from 'utils/string/edit_string';
@@ -17,6 +16,9 @@ type Content = {
 
 // 服務紀錄內容：美容
 const Beauty_Row_Content : FC< Content > = ( { data } : any ) => {
+
+
+
 
    // 取得 _ "服務( 基礎、洗澡、美容 ) 相對應服務資料表 id"、"服務 Url ( /basics 、/bathes、/beauties ) "
    const { service_Id , service_Url } = switch_Service_Type_Id( data ) ; 
@@ -81,7 +83,6 @@ const Beauty_Row_Content : FC< Content > = ( { data } : any ) => {
                 { b_other && <div> 其他 : <span className = "fDblue" > { data.b_other } </span> </div> }
 
                 { ( !b_body && !b_head && !b_ear && !b_tail && !b_foot && !b_other ) && <span className = "fDblue"> 未點選美容項目 </span>   } 
-           
 
             </div> 
 
@@ -101,7 +102,7 @@ const Beauty_Row_Content : FC< Content > = ( { data } : any ) => {
 
             <div className = "column is-3-desktop border relative" style = {{ wordWrap : "break-word" }} > 
 
-                <b className = "t_Center absolute" style = {{ top : "-25px" , left : "0px" }} >  美容師備註  </b>
+                <b className = "t_Center absolute" style = {{ top : "-25px" , left : "0px" }} >  美容師：當次服務備註  </b>
 
                 <b className = "tag is-medium border hover t_Center absolute pointer" 
                     style    = {{ top : "-32px" , right : "0px" }}

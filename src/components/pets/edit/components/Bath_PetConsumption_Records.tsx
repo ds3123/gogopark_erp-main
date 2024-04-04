@@ -21,7 +21,9 @@ const Bath_PetConsumption_Records : FC< Bath > = ( { pet_Data } ) => {
 
     return <div>
 
-              { records_Bath.map( ( x , y  ) => <Note_Records_Row key = { y } data = { x }  content = { <Bath_Row_Content data = { x } /> } /> ) }
+              { records_Bath.map( ( x , y  ) => <Note_Records_Row key     = { y } 
+                                                                  data    = { x }  
+                                                                  content = { <Bath_Row_Content data = { x } /> } /> ) }
     
            </div>  ;
 

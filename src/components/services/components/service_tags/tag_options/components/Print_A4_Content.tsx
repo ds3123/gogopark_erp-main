@@ -1,7 +1,7 @@
 
 
 // 核取方塊
-const check = ( str : string ) => <span className = "m_Right_10" > 
+const check = ( str : string ) => <span key = { str } className = "m_Right_10" > 
                                     <i className = "far fa-square"></i> { str } 
                                   </span> ;
 
@@ -60,18 +60,19 @@ const check = ( str : string ) => <span className = "m_Right_10" >
   
 
 
+
 // # A4 列印內容
 const A4_Print_Content = () => {
 
   return <div className = "columns is-multiline has-text-centered" >
 
-            <div className = "column is-12-desktop border" > 
+            <div className = "column is-12 border" > 
                <p className = "f_18 f_bold" > 狗狗公園 快樂狗旅館 </p>
                <p className = "f_14 f_bold" > 洗澡美容紀錄表     </p>
             </div>
 
-            <div className = "column is-8 td_Left border" > 寵物編號： </div>
-            <div className = "column is-4 td_Left border" > 櫃檯人員：</div>
+            <div className = "column is-8 td_Left border f_bold" > 寵物編號： </div>
+            <div className = "column is-4 td_Left border f_bold" > 櫃檯人員：</div>
 
             <div className = "column is-2 border" > <b> 日期 / 號 </b> </div>
             <div className = "column is-2 border" > <b> 品種      </b> </div>
@@ -102,28 +103,33 @@ const A4_Print_Content = () => {
                       <p className = "has-text-right" > 預計： ＿＿＿＿＿______＿ 來接 </p>
                   
             </div>
-            <div className = "column is-2 border td_Left" > 
-               <b> 通知情形 : </b>
-               <p> { check( "已聯絡" ) } </p>
-               <p> { check( "未接" ) }   </p>
+            <div className = "column is-2 border td_Left h-v-center" > 
+              <div>
+                <b> 通知情形 : </b>
+                <p> { check( "已聯絡" ) } </p>
+                <p> { check( "未接" ) }   </p>
+              </div>
             </div>
 
             { /* 備註 */ }
-            <div className = "column is-2 border"> <b> 備 註 </b> </div>
+            <div className = "column is-2 border f_bold h-v-center" style={{ height:"90px" }}> 備 註  </div>
             <div className = "column is-10 border td_Left" > </div>
 
-            <div className = "column is-12" ></div>
 
-            <div className = "column is-2 border f_bold" > 流 程 </div>
-            <div className = "column is-7 border f_bold" > 內 容 </div>
-            <div className = "column is-1 border f_bold" > 人 員 </div>
-            <div className = "column is-1 border f_bold" > 時 間 </div>
+
+            <div className = "column is-2 border f_bold h-v-center" > 流 程 </div>
+            <div className = "column is-7 border f_bold h-v-center" > 內 容 </div>
+            <div className = "column is-1 border f_bold h-v-center" > 人 員 </div>
+            <div className = "column is-1 border f_bold h-v-center" > 時 間 </div>
             <div className = "column is-1 border f_bold relative" >  
-                  易~難 <span className = "f_9 absolute" style = {{ top : "33px" , left : "15px" }}> ( 1~5 ) </span>  
+                 <span className = "f_11" > 
+                    易~難 <br/>
+                     <span className = "f_10"> ( 1~5 ) </span>
+                  </span>
             </div>
 
             { /* 大美容 */ }
-            <div className = "column is-2 border f_bold" >大美容</div>
+            <div className = "column is-2 border f_bold h-v-center" > 大美容 </div>
             <div className = "column is-7 border td_Left" > 
 
                <p> <b> 身體 : </b>  </p> 
@@ -167,7 +173,7 @@ const A4_Print_Content = () => {
             <div className = "column is-1 border" > </div>
 
             { /* 洗澡：第一道 */ }
-            <div className = "column is-2 border f_bold" > 洗澡：第一道 </div>
+            <div className = "column is-2 border f_bold h-v-center" > 洗澡：第一道 </div>
             <div className = "column is-7 border td_Left" > 
                 <p> { bath_1?.map( ( x ) => check( x ) ) } </p>
                 <p className = "m_Top_20"> { check( "自備：_______________________" ) }  </p>
@@ -177,7 +183,7 @@ const A4_Print_Content = () => {
             <div className = "column is-1 border" > </div>
 
             { /* 洗澡：第二道 */ }
-            <div className = "column is-2 border f_bold" > 洗澡：第二道 </div>
+            <div className = "column is-2 border f_bold h-v-center" > 洗澡：第二道 </div>
             <div className = "column is-7 border td_Left" > 
                 <p> { bath_2_1?.map( ( x ) => check( x ) ) } </p>
                 <p> { bath_2_2?.map( ( x ) => check( x ) ) } </p>
@@ -198,9 +204,12 @@ const A4_Print_Content = () => {
 
 
             { /* 洗澡：第三道 */ }
-            <div className = "column is-2 border f_bold" > 
-                 <p> 洗澡：第三道 </p>
-                 <p className = "f_10" > ( 必要時或重洗 ) </p>
+            <div className = "column is-2 border f_bold h-v-center" > 
+                 <p> 
+                    洗澡：第三道 <br/>
+                    <span className = "f_10" >  ( 必要時或重洗 )</span>
+                 </p>
+                 
             </div>
             <div className = "column is-7 border td_Left" > 
                 <p> { bath_3_1?.map( ( x ) => check( x ) ) } </p>
@@ -230,7 +239,7 @@ const A4_Print_Content = () => {
             <div className = "column is-1 border" > </div>
 
             { /* 基礎 */ }
-            <div className = "column is-2 border f_bold" > 基 礎 </div>
+            <div className = "column is-2 border f_bold h-v-center" > 基 礎 </div>
             <div className = "column is-7 border td_Left" > 
                <p> { basic_1?.map( ( x ) => check( x ) ) } </p>
                <p> { basic_2?.map( ( x ) => check( x ) ) } </p>
@@ -240,7 +249,7 @@ const A4_Print_Content = () => {
             <div className = "column is-1 border" > </div>
          
             { /* 小美容修剪 */ }
-            <div className = "column is-2 border f_bold" > 小美容修剪 </div>
+            <div className = "column is-2 border f_bold h-v-center" > 小美容修剪 </div>
             <div className = "column is-7 border td_Left" > 
                <p> { basic_3?.map( ( x ) => check( x ) ) } </p>
                <p className = "m_Top_20" > { basic_4?.map( ( x ) => check( x ) ) } </p>
@@ -260,11 +269,12 @@ const A4_Print_Content = () => {
             
             </div>
             
-
             { /* 告知主人 */ }
-            <div className = "column is-2 border f_bold" > 
-                <p> 告知主人 </p> 
-                <p className = "m_Top_10" > { check( "都正常" ) } </p> 
+            <div className = "column is-2 border f_bold h-v-center" > 
+                <p> 
+                    告知主人 <br/>
+                    { check( "都正常" ) } 
+                </p>
             </div>
             <div className = "column is-10 border td_Left" > 
               
@@ -281,7 +291,7 @@ const A4_Print_Content = () => {
             
         
             { /* 客戶意見 */ }
-            <div className = "column is-2 border f_bold" > 客戶意見 </div>
+            <div className = "column is-2 border f_bold h-v-center" > 客戶意見 </div>
             <div className = "column is-6 border td_Left" > 
                
             </div>

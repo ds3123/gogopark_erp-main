@@ -421,7 +421,7 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                        { /* 洗澡美容備註 */ }
                        <div className="columns is-multiline is-mobile m_Top_20">
 
-                          <b className="m_Left_15"> 洗澡美容備註 </b>
+                          <b className="m_Left_15"> 洗澡美容 : 常駐備註 </b>
 
                           { /* checkbox 欄位 */ }
                           { is_Create ||
@@ -457,7 +457,7 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                           </div>
 
                           { /* 客訴及其他備註 */ } 
-                          <b className="m_Left_15"> 客訴及其他備註 ( 私有備註 ) </b>
+                          <b className="m_Left_15"> 客訴及其他備註 : 私有備註 </b>
                           <div className="column is-12-desktop m_Bottom_30">
 
                              { /* 新增 */ }

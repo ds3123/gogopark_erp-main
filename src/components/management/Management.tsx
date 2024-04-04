@@ -69,7 +69,6 @@ const Management = () => {
             // # 財務管理
             case '現金績效'  : return <CashPerformance_Report/> ;
           
-         
             // # 價格管理
             case '品種價格' : return <Species_Price_List/> ;
             // case '服務價格' : return <Service_Price/>  ;   // 所有服務價格

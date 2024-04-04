@@ -29,7 +29,6 @@ type Total = {
 
 
 
-
 // @ 表單 : 應收款 ( 洗澡、美容 )
 const Service_Receivable_Table = ( { data } : Table ) => {
 
@@ -104,7 +103,7 @@ const Service_Receivable_Table = ( { data } : Table ) => {
 
                             const extra_Fee_Id = x?.extra_fee_id ; // 後續新增 _ 加價單 id 
 
-                            // 1. 後續新增 _ 加價單
+                            // 1. 加價單 ( 建立加價單後，後續追加 )
                             if( extra_Fee_Id ){
 
                                 // 目前所點選服務單 id
@@ -138,82 +137,103 @@ const Service_Receivable_Table = ( { data } : Table ) => {
 
                             } 
                           
-                            // # 2. 一般洗美服務                         
-                            return <tr key = { y }>
+                            // 2. 加價單 ( 新增服務單時 ) 
+                            if( ( x?.payment_method === '方案' && x?.amount_payable > 0 ) ){
 
-                                      { /* 項目 */ }
-                                      <td className = "td_Left" >
+                              return <tr key = { y }>
 
-                                         <b className = "tag is-medium pointer" onClick = { () => click_Service( x ) } >
+                                          { /* 項目 */ }
+                                          <td className = "td_Left" >
 
+                                             <b className = "tag is-medium pointer" onClick = { () => click_Service( x ) } >
 
-                                          { ( x?.payment_method !== '方案' && ( x?.extra_service || x?.extra_beauty ) ) &&
-                                             <>
-                                                 <i className = "fas fa-plus-circle fDblue"></i> &nbsp;
-                                             </> 
-                                          
-                                          } 
-
-
-                                           { /* for 方案加價  */ }
-                                           {  x?.payment_method === '方案' && 
-
-                                             <>
                                                 <b className = "fDblue m_Right_10" > 
                                                    <i className = "fas fa-plus-circle"></i> 方案加價 &rarr;&nbsp; 
                                                    { x?.service_type }單 <span className = "f_9" > ( id : { switch_Service_Id( x ) } ) </span>
                                                 </b> 
-                                             </>
-                                            
-                                            } 
-
-                                           { /* 方案 ( 加價 ) 不顯示 */ }
-                                           { x?.payment_method === '方案' || 
-                                           
-                                             <>
                                              
-                                                { x['payment_type'] } &nbsp;
+                                             </b>
 
-                                                <span className = "f_9" >
-                                                    { x['service_status'] === '預約_今天' || x['service_status'] === '預約_未來' ? 
-                                                     `( 預約 / id ${ switch_Service_Id( x ) } )` : `( 現場 / id ${ switch_Service_Id( x ) }  ) ` } 
-                                                </span>
+                                          </td>
 
-                                                &nbsp; <b className = "tag is-white is-rounded" > Q{ x['q_code'] } </b>
+                                          { /* 寵物訊息 */ }
+                                          <td className = "td_Left" > 
 
-                                             </> 
-                                             
-                                           } 
+                                             { 
+                                                x?.pet?.name ?  
+                                                <span> { x?.pet?.name } ( { x?.pet?.species } )  </span>  : 
+                                                <span className="fRed"> 該寵物已刪除               </span>  
+                                             }
+
+                                          </td>
+
+                                          <td> { ( x?.payment_date ).slice( 5 , 10 ) } </td>
+
+                                          <td> { x?.pickup_fee }       </td>
                                           
-                                         </b>
+                                          { /* 金額 ( 應收 ) */ }
+                                          <td> { x['amount_payable'] }  </td>
+                                       
+                                          { /* 應收帳款 ( 實收 ) */ }
+                                          <td> { x['amount_paid'] }    </td>
+                                          
+                                          { /* 付款方式 */ }
+                                          <td className = "td_Left" > { x['admin_service_note'] }  </td>
 
-                                      </td>
-    
-                                      { /* 寵物訊息 */ }
-                                      <td className = "td_Left" > 
+                                      </tr>
 
-                                         { 
-                                            x?.pet?.name ?  
-                                              <span> { x?.pet?.name } ( { x?.pet?.species } )  </span>  : 
-                                              <span className="fRed"> 該寵物已刪除               </span>  
-                                         }
+                            }
 
-                                      </td>
+                            // 3. 一般洗美服務 ( 現金 ) 
+                            if( x?.payment_method === '現金' ){
 
-                                      <td> { ( x?.payment_date ).slice( 5 , 10 ) } </td>
+                              return <tr key = { y }>
 
-                                      <td> { x?.pickup_fee }       </td>
-                                      
-                                      { /* 金額 ( 應收 ) */ }
-                                      <td> { x['amount_payable'] }  </td>
+                                       { /* 項目 */ }
+                                       <td className = "td_Left" >
+
+                                          <b className = "tag is-medium pointer" onClick = { () => click_Service( x ) } >
+
+                                          { x['payment_type'] } &nbsp;
+
+                                          <span className = "f_9" >
+                                                { x['service_status'] === '預約_今天' || x['service_status'] === '預約_未來' ? 
+                                                `( 預約 / id ${ switch_Service_Id( x ) } )` : `( 現場 / id ${ switch_Service_Id( x ) }  ) ` } 
+                                          </span>
+
+                                          &nbsp; <b className = "tag is-white is-rounded" > Q{ x['q_code'] } </b>
+
+                                          </b>
+
+                                       </td>
+
+                                       { /* 寵物訊息 */ }
+                                       <td className = "td_Left" > 
+
+                                          { 
+                                             x?.pet?.name ?  
+                                             <span> { x?.pet?.name } ( { x?.pet?.species } )  </span>  : 
+                                             <span className="fRed"> 該寵物已刪除               </span>  
+                                          }
+
+                                       </td>
+
+                                       <td> { ( x?.payment_date ).slice( 5 , 10 ) } </td>
+
+                                       <td> { x?.pickup_fee }       </td>
+                                       
+                                       { /* 金額 ( 應收 ) */ }
+                                       <td> { x['amount_payable'] }  </td>
                                     
-                                      { /* 應收帳款 ( 實收 ) */ }
-                                      <td> { x['amount_paid'] }     </td>
-                                      
-                                      { /* 付款方式 */ }
-                                      <td className = "td_Left" > { x['admin_service_note'] }  </td>
+                                       { /* 應收帳款 ( 實收 ) */ }
+                                       <td> { x['amount_paid'] }    </td>
+                                       
+                                       { /* 付款方式 */ }
+                                       <td className = "td_Left" > { x['admin_service_note'] } </td>
 
-                                   </tr>
+                                      </tr>
+
+                            }                        
 
                       }) 
                         

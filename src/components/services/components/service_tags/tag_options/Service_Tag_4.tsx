@@ -28,6 +28,7 @@ const Service_Tag_4 : FC< Tag > = ( { data } ) => {
     const customer     = data?.customer ;
 
 
+    
     return <div style={{ color:"black" }}>
             
                 <b className   = "f_15" > [ 第四聯：客戶收執 ] </b> 
@@ -41,7 +42,8 @@ const Service_Tag_4 : FC< Tag > = ( { data } ) => {
                 <Service_Tag_PetInfo pet = { pet } />
 
                 { /* 主人資訊 */ } 
-                <div className = "t_Left m_Bottom_30" > 主人 : { customer?.name } ( { customer?.mobile_phone } )   </div>
+                <div className = "t_Left m_Bottom_30" > 主人 : { customer?.name } ( { customer?.mobile_phone } )    </div>
+                <div className = "t_Left m_Bottom_30" > 地址 : { customer?.address ? customer?.address : "未填寫"  }    </div>
 
                 { /* 檢查情況 */ } 
                 <Service_Tag_Section icon = "fas fa-clipboard-check" title = { `今日 < ${ service_Type } > 服務` } content = { <Service_Tag_CheckStatus data = { data } /> } />

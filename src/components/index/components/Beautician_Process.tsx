@@ -56,10 +56,10 @@ const Beautician_Process = ( { data , register  } : { data : any , register : an
 
                         
 
-                        { /* 洗澡美容備註 */ } 
+                        { /*  洗澡美容 : 常駐備註 */ } 
                         <div className="column is-12-desktop m_Bottm_20" >
 
-                           <i className="fas fa-user f_14"></i> <b className="tag is-medium is-white f_14"> 洗澡美容備註  </b> 
+                           <i className="fas fa-user f_14"></i> <b className="tag is-medium is-white f_14">  洗澡美容 : 常駐備註 </b> 
                            
                             <div className="fBlue m_Left_40 m_Top_10 m_Bottom_50">
 
@@ -72,7 +72,7 @@ const Beautician_Process = ( { data , register  } : { data : any , register : an
                         { /* 客訴及其他備註 ( 私有備註 ) */ } 
                         <div className="column is-12-desktop m_Bottm_20" >
 
-                           <i className="fas fa-user f_14"></i> <b className="tag is-medium is-white f_14"> 客訴及其他備註 </b> ( 私有備註 )  
+                           <i className="fas fa-user f_14"></i> <b className="tag is-medium is-white f_14"> 客訴及其他備註 : 私有備註 </b>  
                            
                             <div className="fBlue m_Left_40 m_Top_10 m_Bottom_50">
 
@@ -84,7 +84,7 @@ const Beautician_Process = ( { data , register  } : { data : any , register : an
 
                         <div className="column is-12-desktop" >
 
-                            <i className="fas fa-pencil-alt f_14"></i>&nbsp;<b className="tag is-medium is-white f_14"> 美容師備註 : </b>
+                            <i className="fas fa-pencil-alt f_14"></i>&nbsp;<b className="tag is-medium is-white f_14"> 美容師：當次服務備註  </b>
                             
                             
                             {/* <b className="fDred f_14"> { data['beautician_note'] ? data['beautician_note'] : '無' } </b> */}

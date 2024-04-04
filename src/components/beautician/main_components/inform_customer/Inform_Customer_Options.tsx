@@ -307,7 +307,7 @@ const Inform_Customer_Options = () => {
 
                        <div className="column is-11-desktop" >
 
-                           <i className="fas fa-pencil-alt"></i>&nbsp;<b className="tag is-medium is-white"> 美容師備註 : </b> &nbsp; &nbsp;
+                           <i className="fas fa-pencil-alt"></i>&nbsp;<b className="tag is-medium is-white"> 美容師 : 當次服務備註  </b> &nbsp; &nbsp;
 
                            {/* 
                                 <div className="select is-normal realtive" >

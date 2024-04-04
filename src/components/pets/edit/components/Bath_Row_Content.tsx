@@ -88,7 +88,7 @@ const Bath_Row_Content : FC< Content > = ( { data } ) => {
 
             <div className = "column is-4-desktop border relative" style = {{ wordWrap : "break-word" }} > 
 
-                <b className = "t_Center absolute" style = {{ top : "-25px" , left : "0px" }} >  美容師備註  </b>
+                <b className = "t_Center absolute" style = {{ top : "-25px" , left : "0px" }} >  美容師 : 當次服務備註  </b>
                 
                 <b className = "tag is-medium border hover t_Center absolute pointer" 
                     style    = {{ top : "-32px" , right : "0px" }}

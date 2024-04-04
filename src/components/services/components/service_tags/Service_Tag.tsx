@@ -5,12 +5,17 @@ import { ModalContext } from "templates/panel/Modal" ;
 import { switch_Service_Id } from "utils/data/switch" ;
 import { useEffect_Show_Current_Tag  , useEffect_Click_Print } from "./hooks/useEffect_Service_Tag" ;
 import Service_Tag_Options  from './Service_Tag_Options' ;
+import { useDispatch } from 'react-redux';
+import { set_Modal } from "store/actions/action_Global_Layout" ;
+import Service_Tag_A4 from './tag_options/Service_Tag_A4';
 
 
 
 // @ 服務單 _ 列印標籤內容 ( for 出單機 )
 export const Service_Tag : FC = () => {
 
+
+    const dispatch = useDispatch() ;
 
     // 目前所點選列印聯
     const [ current_Tag , set_Current_Tag ] = useState< number >( 1 ) ;
@@ -32,8 +37,20 @@ export const Service_Tag : FC = () => {
     const { ref , click_Print } = useEffect_Click_Print() ;
     
 
+    // 顯示 A4 頁面
+    const click_Show_A4_Page = ( ) => {
+
+        dispatch( set_Modal( true , <Service_Tag_A4 data = { service } /> , { data : service , modal_Style : { width : "76%" , left : "12%" , top : "-70px" } } ))
+
+    }
+
 
    return <div className = "p_10">
+
+            { /* */ }
+            <div onClick = { click_Show_A4_Page } className = "tag is-large w-full p-4 m_Bottom_20 pointer hover" >
+              <i className = "fas fa-file-alt"></i> &nbsp; 洗澡美容紀錄表 ( A4 )
+            </div> 
 
             { /* 列印聯選項 */ }
             <div className ="m_Bottom_20 has-text-centered" >

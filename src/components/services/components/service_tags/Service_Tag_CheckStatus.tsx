@@ -1,4 +1,3 @@
-
 import { FC } from 'react' ;
 import { string_Format_Slash } from 'utils/string/edit_string' ; 
 
@@ -6,7 +5,6 @@ import { string_Format_Slash } from 'utils/string/edit_string' ;
 type Status = {
     data : any
 }
-
 
 
 // @ 今日美容情形 ( for 第 四、五 聯 )
@@ -26,13 +24,12 @@ const Service_Tag_CheckStatus : FC< Status > = ( { data } ) => {
             </div>
             
             <div className = "m_Bottom_10" >
-                <p> * 美容師備註 : </p>
+                <p> * 美容師：當次服務備註 : </p>
                 <div className = "relative" style = {{left : "14px"}}>
                     { data?.beautician_note ? <b className = "f_12" > { data?.beautician_note } </b> : "未填寫"  }  
                 </div>
             </div> 
          </>
-
 
 } ;
 

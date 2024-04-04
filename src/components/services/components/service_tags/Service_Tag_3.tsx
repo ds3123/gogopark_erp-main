@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-pascal-case */
-import { FC } from 'react' ;
-import Service_Tag_Section from '../Service_Tag_Section' ;
-import Service_Tag_PetInfo from '../Service_Tag_PetInfo' ;
-import Service_Tag_ServiceContent from '../Service_Tag_ServiceContent' ;
-import Service_Tag_ServiceDate from '../Service_Tag_ServiceDate' ;
-import Service_Tag_ArriveLeave from '../Service_Tag_ArriveLeave';
-import { string_Replace_WithAsterisks } from 'utils/string/edit_string';
 
+import { FC } from 'react' ;
+import Service_Tag_Section from './Service_Tag_Section' ;
+import Service_Tag_PetInfo from './Service_Tag_PetInfo' ;
+import Service_Tag_ServiceContent from './Service_Tag_ServiceContent' ;
+import Service_Tag_ServiceDate from './Service_Tag_ServiceDate' ;
+import Service_Tag_ArriveLeave from './Service_Tag_ArriveLeave';
+import { string_Replace_WithAsterisks } from 'utils/string/edit_string';
 
 
 type Tag = {
@@ -28,7 +28,6 @@ const Service_Tag_3 : FC< Tag > = ( { data } ) => {
     // 寵物 _ 洗澡美容備註
     const pet_Note     = <b className = "f_16"> { pet?.note ? pet?.note : "" }   </b>
 
-
     // 自備物品
     const customer_Object = <>
                                 <div>
@@ -37,13 +36,12 @@ const Service_Tag_3 : FC< Tag > = ( { data } ) => {
                                 <div>
                                     其他 :  { data?.customer_object_other ? <b className = "f_15" > { data?.customer_object_other } </b> : "未填寫"  }  
                                 </div>
-                            </> ;
-
+                           </> ;
 
 
     return <div style={{ color:"black" }}>
     
-                <b className   = "f_15" >  [ 第三聯：服務記錄 ] </b> 
+                <b className   = "f_15" > [ 第三聯：服務記錄 ] </b> 
 
                 <hr className  = "border m_Bottom_30" />
 
@@ -70,7 +68,7 @@ const Service_Tag_3 : FC< Tag > = ( { data } ) => {
                     { /* <Service_Tag_Section icon = "fas fa-medkit" title = "健康相關" content = "老犬、心臟病" /> */ }
 
                     { /* 洗澡美容備註 */ }
-                    <Service_Tag_Section icon = "fas fa-dog" title = "洗澡美容 : 常駐備註" content = { pet_Note } options = { pet?.check_note }  />
+                    <Service_Tag_Section icon = "fas fa-dog" title = "洗澡美容備註" content = { pet_Note } options = { pet?.check_note }  />
 
                     { /* 自備物品 */ } 
                     <Service_Tag_Section icon = "fas fa-sign" title = "自備物品" content = { customer_Object } />

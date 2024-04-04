@@ -433,6 +433,15 @@ body{
 
   }
 
+  // 置中：垂直＋水平
+  .h-v-center{
+
+    display         : flex !important ;
+    justify-content : center !important;
+    align-items     : center !important ;
+
+  }
+
   .date-picker{
 
     position: relative;
