@@ -78,7 +78,7 @@ const Plans_Rows = ( props : any ) => {
                </td>
 
                { /* 客戶 */ }
-               <td className="td_Left">
+               <td className = "td_Left">
 
                    { customer['name'] ?
 

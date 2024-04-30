@@ -4,18 +4,19 @@ import { Service_Tag } from '../Service_Tag';
 import { set_Modal } from "store/actions/action_Global_Layout" ;
 import { useReactToPrint } from 'react-to-print'
 import { createRef } from "react"
-import A4_Print_Content from "./components/Print_A4_Content";
-
+import A4_Print_Content_Beauty from "./components/A4_Print_Content_Beauty";
+import A4_Print_Content_Bath from "./components/A4_Print_Content_Bath";
 
 
 type Tag = {
     data : any
+    type : "洗澡單" |"美容單" ;
 }
 
 
 
-// # 服務單 : 洗澡、美容 ( Ａ4 尺寸 )
-const Service_Tag_A4 : React.FC< Tag > = ( { data } ) => {
+// # 服務單 : 洗澡單 / 美容單 ( Ａ4 尺寸 )
+const Service_Tag_A4 : React.FC< Tag > = ( { data , type } ) => {
 
 
     const dispatch = useDispatch() ;
@@ -47,7 +48,6 @@ const Service_Tag_A4 : React.FC< Tag > = ( { data } ) => {
 
 
 
-
   return <div className = "p-4" style = {{ overflow : "auto" , height : "85vh" , color : "black" }} >
      
             { /* 按鈕：返回、列印 */ }
@@ -67,9 +67,12 @@ const Service_Tag_A4 : React.FC< Tag > = ( { data } ) => {
             </div>
             
             { /* A4 列印內容 */ }
-            <div ref = { ref as any }  className = "border m_Top_20 p-4 m_Bottom_50" style = { { width : "21cm" , margin : "auto" } } >
+            <div ref       = { ref as any }  
+                 className = "border m_Top_20 p-4 m_Bottom_50" 
+                 style     = { { width : "21cm" , margin : "auto" } } >
 
-                <A4_Print_Content />
+               { type === "洗澡單" && <A4_Print_Content_Bath /> } 
+               { type === "美容單" && <A4_Print_Content_Beauty /> } 
 
             </div>
              

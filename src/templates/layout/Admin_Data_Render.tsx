@@ -12,6 +12,7 @@ import Customers_Table from "components/customers/Customers_Table" ; // 客戶
 import Pets_Table from "components/pets/Pets_Table" ;                // 寵物
 import Services_Table from 'components/services/Services_Table';     // 洗美
 import Plans_Table from 'components/plan/Plans_Table';               // 方案
+import Plans_Done_Table from 'components/plan/Plans_Done_Table';     // 方案 ( 已用完 )
 import Lodge_Table from "components/lodge/Lodge_Table" ;             // 住宿
 import Care_Table from "components/lodge/care/Care_Table" ;          // 安親
 import { useFilter_Service_Date } from "hooks/data/useFilter" ; 
@@ -57,17 +58,16 @@ const Admin_Data_Render = ( { data_Type  } : Admin_Data ) => {
     // # 主要查詢
     const { data , isLoading , isFetching , isPreviousData , refetch } = usePagination_List( current_Page , query_API , search_Keyword , filter_Date_1 , filter_Date_2 ) ; 
 
-    
+
+
     return <div className = "relative" >
               
                { !isLoading && <>
                
                                    { /* 第二層標籤、篩選條件、搜尋框  */ } 
                                    <Data_List_Nav get_Search_Text = { get_SearchKeyword } 
-
-                                                  refetch = { refetch }
-                                   
-                                                 data_Type = { data_Type } /> 
+                                                  refetch         = { refetch }
+                                                  data_Type       = { data_Type } /> 
                                  
                                    { /* 資料筆數 */ } 
                                    <Data_List_Sum data_Sum = { data.total } /> 
@@ -79,12 +79,13 @@ const Admin_Data_Render = ( { data_Type  } : Admin_Data ) => {
                { isFetching && is_Downloading() }
 
                { /* 判斷 _ 依資料型態 ( data_Type )，選擇顯示：資料清單表格 ( 客戶、寵物、洗美、方案、安親、住宿 ) */ }  
-               { ( data_Type === 'customer' && !isFetching ) &&  <Customers_Table data = { data } />  }
-               { ( data_Type === 'pet'      && !isFetching ) &&  <Pets_Table      data = { data } />  }
-               { ( data_Type === 'service'  && !isFetching ) &&  <Services_Table  data = { data } />  }
-               { ( data_Type === 'plan'     && !isFetching ) &&  <Plans_Table     data = { data } />  }
-               { ( data_Type === 'lodge'    && !isFetching ) &&  <Lodge_Table     data = { data } />  }
-               { ( data_Type === 'care'     && !isFetching ) &&  <Care_Table      data = { data } />  }
+               { ( data_Type === 'customer'  && !isFetching ) &&  <Customers_Table  data = { data } />  }
+               { ( data_Type === 'pet'       && !isFetching ) &&  <Pets_Table       data = { data } />  }
+               { ( data_Type === 'service'   && !isFetching ) &&  <Services_Table   data = { data } />  }
+               { ( data_Type === 'plan'      && !isFetching ) &&  <Plans_Table      data = { data } />  }
+               { ( data_Type === 'plan_done' && !isFetching ) &&  <Plans_Done_Table data = { data } />  }
+               { ( data_Type === 'lodge'     && !isFetching ) &&  <Lodge_Table      data = { data } />  }
+               { ( data_Type === 'care'      && !isFetching ) &&  <Care_Table       data = { data } />  }
                
 
                { /* 查無相關資料 */ }

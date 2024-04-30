@@ -1,8 +1,10 @@
 /* eslint-disable react/jsx-pascal-case */
-import Plans_Rows from "components/plan/Plans_Rows"
+import Plans_Rows from "components/plan/Plans_Rows" ;
 import { Admin_Table } from "utils/Interface_Type" ;
+import { is_Plan_Done } from "./hooks/useEffect_Plan_Used_Column";
 
 
+// 方案表格 ( 尚未用完 )
 const Plans_Table = ( { data } : Admin_Table ) => {
 
 
@@ -29,7 +31,14 @@ const Plans_Table = ( { data } : Admin_Table ) => {
 
                 <tbody>
 
-                  { data?.data.map( ( item : any , index : any ) => <Plans_Rows key={ index } data={ item } /> )  }
+                   { data?.data.map( ( item : any , index : any ) => {
+
+                        // 不顯示 _ 已使用完的方案
+                        if( is_Plan_Done( item ) ) return ;
+                      
+                        return <Plans_Rows key = { index } data = { item } />
+
+                   })  }
 
                 </tbody>
 

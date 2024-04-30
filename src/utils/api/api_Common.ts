@@ -12,6 +12,6 @@ export const fetch_Type_Page_List = (
                                       search        : string , 
                                       filter_Date_1 : string , 
                                       filter_Date_2 : string  
-                                     ) =>  axios.get( `${ api }?page=${ page }&search=${ search }&date_1=${ filter_Date_1 }&date_2=${ filter_Date_2 }` )
-                                                .then( res => res.data ) ;
+                                     ) => axios.get( `${ api }?page=${ page }&search=${ search }&date_1=${ filter_Date_1 }&date_2=${ filter_Date_2 }` )
+                                               .then( res => res.data ) ;
 

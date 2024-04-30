@@ -28,6 +28,7 @@ export const Service_Tag : FC = () => {
     // 取得 context 值
     const value      = useContext( ModalContext ) as any ;   
 
+
     // 目前所點選的服務單
     const service    = value?.data ;
     const service_Id = switch_Service_Id( service ) ; // 服務單 id
@@ -38,23 +39,44 @@ export const Service_Tag : FC = () => {
     
 
     // 顯示 A4 頁面
-    const click_Show_A4_Page = ( ) => {
+    const click_Show_A4_Page = ( type : "洗澡單" | "美容單" ) => {
 
-        dispatch( set_Modal( true , <Service_Tag_A4 data = { service } /> , { data : service , modal_Style : { width : "76%" , left : "12%" , top : "-70px" } } ))
+        dispatch( set_Modal( true , <Service_Tag_A4 type = { type } data = { service } /> , { data : service , modal_Style : { width : "76%" , left : "12%" , top : "-70px" } } ))
 
     }
 
 
    return <div className = "p_10">
 
-            { /* */ }
-            <div onClick = { click_Show_A4_Page } className = "tag is-large w-full p-4 m_Bottom_20 pointer hover" >
-              <i className = "fas fa-file-alt"></i> &nbsp; 洗澡美容紀錄表 ( A4 )
-            </div> 
+            { /* A4 洗澡單、美容單 */ }
+            <div className = "columns is-multiline" >
 
+                <div className = "column is-6 has-text-centered" >
+                    <div onClick = { () => click_Show_A4_Page( "洗澡單" ) } className = "tag w-full is-large p-4 m_Bottom_20 pointer hover" >
+                       <i className = "fas fa-file-alt"></i> &nbsp; 洗澡單 ( A4 )
+                    </div> 
+                </div>
+
+                <div className = "column is-6 has-text-centered" >
+                    <div onClick = { () => click_Show_A4_Page( "美容單" ) } className = "tag w-full is-large p-4 m_Bottom_20 pointer hover" >
+                       <i className = "fas fa-file-alt"></i> &nbsp; 美容單 ( A4 )
+                    </div> 
+                </div>
+
+            </div>
+            
             { /* 列印聯選項 */ }
-            <div className ="m_Bottom_20 has-text-centered" >
+            <div className = "has-text-centered" >
+
                <Service_Tag_Options current_Tag = { current_Tag } set_Current_Tag = { set_Current_Tag } />
+
+            </div>
+
+            { /* 列印按鈕 */ }
+            <div className = "tag is-large is-success w-full m_Top_20 m_Bottom_20 pointer" onClick = { click_Print } > 
+
+                <i className = "fas fa-print m_Right_10 f_14" ></i>  列 印 
+
             </div>
 
             { /* 列印內容 */ }
@@ -62,15 +84,10 @@ export const Service_Tag : FC = () => {
 
                <div ref = { ref as any } className = "has-text-centered p_Bottom_10" >
 
-                   { show_Current_Tag( current_Tag , service ) }
-               
+                   {  show_Current_Tag( current_Tag , service )  }
+
                </div>
                
-            </div>
-
-            { /* 列印按鈕 */ }
-            <div className = "tag is-large is-success w-full m_Top_20 m_Bottom_20 pointer" onClick = { click_Print } > 
-                <i className = "fas fa-print m_Right_10 f_14" ></i>  列 印 
             </div>
    
          </div>

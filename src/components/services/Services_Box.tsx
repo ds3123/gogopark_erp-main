@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-pascal-case */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react' ;
 import Services from "./Services" ;
 import Plans from "components/plan/Plans" ;
-
+import Plans_Done from 'components/plan/Plans_Done';
 import useCreate_App_Container_Context  from "containers/contexts/appContainerContext" ;
 
 
@@ -37,6 +38,13 @@ export const Services_Box = () => {
                 { service_Second_Nav_Tab === '方 案' && 
                 
                     <div data-testid = "plan-component" >  <Plans />  </div>
+                  
+                }
+            
+                { /* 方案列表 */ }
+                { service_Second_Nav_Tab === '方 案 ( 已用完 )' && 
+                
+                    <div>  <Plans_Done />  </div>
                   
                 }
 

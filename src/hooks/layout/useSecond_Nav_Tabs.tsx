@@ -10,6 +10,7 @@ const arr_Obj = {
     service_plan : [
                      { title : "洗 美" , icon : "fas fa-list-ol"  } ,
                      { title : "方 案" , icon : "fas fa-file-alt" } ,
+                     { title : "方 案 ( 已用完 )" , icon : "fas fa-file-alt" } ,
                    ] ,
 
     lodge_care   : [
@@ -28,14 +29,14 @@ export const useSecond_Nav_Tabs = ( data_Type : Services ) => {
 
   useEffect( () => {
 
-
     switch( data_Type ){
 
-       case 'service' :  set_Tabs( arr_Obj['service_plan'] ) ;  break ;
-       case 'plan'    :  set_Tabs( arr_Obj['service_plan'] ) ;  break ;
+       case 'service'   :  set_Tabs( arr_Obj['service_plan'] ) ;  break ;
+       case 'plan'      :  set_Tabs( arr_Obj['service_plan'] ) ;  break ;
+       case 'plan_done' :  set_Tabs( arr_Obj['service_plan'] ) ;  break ;
 
-       case 'lodge'   :  set_Tabs( arr_Obj['lodge_care'] )   ;  break ;
-       case 'care'    :  set_Tabs( arr_Obj['lodge_care'] )   ;  break ;
+       case 'lodge'     :  set_Tabs( arr_Obj['lodge_care'] )   ;  break ;
+       case 'care'      :  set_Tabs( arr_Obj['lodge_care'] )   ;  break ;
 
     }
 

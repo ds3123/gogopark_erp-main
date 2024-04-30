@@ -117,15 +117,13 @@ const Sign_In = () => {
 
     } ;
 
-
     const classes = useStyles();
     const lS      = { position : "relative" , top:"40px" , left:"15px" , width:"350px" , height : "120px"  } as const ;
 
 
+    return <Container component = "main" maxWidth = "xs" >
 
-    return <Container component="main" maxWidth="xs">
-
-              <img src={ logo } className="m_Top_150" width='350px' style={ lS }/>
+              <img src = { logo } className = "m_Top_150" width = '350px' style = { lS } />
 
               { /* 錯誤提示 */ }
               { is_Account_Error &&
@@ -138,9 +136,9 @@ const Sign_In = () => {
                    </>
               }
 
-              <div className={classes.paper}>
+              <div className = { classes.paper } >
 
-                <form onSubmit = { handleSubmit( onSubmit ) }   >
+                <form onSubmit = { handleSubmit( onSubmit ) } >
 
                     { /* 帳號 */ }
                     <Controller control = { control }
@@ -178,12 +176,12 @@ const Sign_In = () => {
                     </button>
 
                     <div className = "has-text-centered m_Top_30" > 
-                        更新時間 : 2024.03.26
+                        更新時間 : 2024.04.16
                     </div>
 
                 </form>
 
-            </div>
+              </div>
 
             </Container>
 

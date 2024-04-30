@@ -44,13 +44,13 @@ const Second_Nav_Options = ( { data_Type } : Options ) => {
     } ;
 
 
-    return <>   
+    return <div>   
 
                 { /* 第 2 層選項 */
                     second_Tab_Options.map( ( item , index ) => {
 
                         return <b key          = { index }
-                                  className    = { "pointer m_Right_30 tag is-medium is-success " + ( service_Second_Nav_Tab === item.title ? "" : "is-light" )  }
+                                  className    = { "pointer m_Right_20 tag is-medium is-success " + ( service_Second_Nav_Tab === item.title ? "" : "is-light" )  }
                                   onClick      = { () => click_Tab( item ) } >
 
                                   <i className = { item.icon }></i> &nbsp; { item.title } 
@@ -60,7 +60,7 @@ const Second_Nav_Options = ( { data_Type } : Options ) => {
                     })
                 }
         
-           </>
+           </div>
 
 } ;
 

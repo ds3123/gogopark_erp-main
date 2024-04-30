@@ -12,6 +12,15 @@ interface IBath extends Edit_Form_Type {
 }
 
 
+const bath_1 = [ "第一道" , "伊斯特除蚤.皮膚" , "貓咪" , "自備" ] ;
+const bath_2 = [ "第一道" , "伊斯特除蚤.皮膚" , "舒活" , "澎毛" , "淡雅 ( 中大狗 )" , "玫瑰" , "貓咪" , "潤絲" , "自備" ] ;
+const bath_3 = [ "滴食鹽水" ] ;
+const bath_4 = [ "第一道" , "伊斯特除蚤.皮膚" , "舒活" , "澎毛" , "淡雅 ( 中大狗 )" , "玫瑰" , "貓咪" , "潤絲" , "自備" ] ;
+const bath_5 = [ "滴食鹽水" ] ;
+const bath_6 = [ "進烘箱" , "手吹" ] ;
+
+
+
 /* 洗澡單選項 */
 const Bath_Form = ( { register , current , editType, serviceData , setValue } : IBath ) => {
 
@@ -112,41 +121,33 @@ const Bath_Form = ( { register , current , editType, serviceData , setValue } : 
                         <div className="column is-2-desktop"> <b className="tag is-large is-white"> 第一次洗澡 </b> </div>
                         <div className="column is-10-desktop">
 
-                            <input type="radio" value="第一道"         { ...register("bath_Option_1")} /> 第一道  &nbsp; &nbsp;
-                            <input type="radio" value="伊斯特除蚤_皮膚"  { ...register("bath_Option_1")} /> 伊斯特除蚤_皮膚   &nbsp; &nbsp;
-                            <input type="radio" value="貓咪"           { ...register("bath_Option_1")} /> 貓咪 &nbsp; &nbsp;
-                            <input type="radio" value="自備"           { ...register("bath_Option_1")} /> 自備 &nbsp; &nbsp; &nbsp;
+                            { bath_1?.map( ( x , y ) => <span key = { y } > 
+                                                           <input type = "radio" value = { x } { ...register( "bath_Option_1" ) } /> { x }  &nbsp; &nbsp; 
+                                                         </span> )}
 
                             <b className="delete" onClick={ () => clear_Row_Options( '1' )  } ></b>
 
                         </div>
 
-                        <div className="column is-2-desktop"><b className="tag is-large is-white"> 第二次洗澡 </b></div>
-
+                        <div className="column is-2-desktop"> <b className="tag is-large is-white"> 第二次洗澡 </b> </div>
                         <div className="column is-10-desktop">
 
-                            <input type="radio" value="第一道"         {...register("bath_Option_2")} /> 第一道  &nbsp; &nbsp;
-                            <input type="radio" value="伊斯特除蚤_皮膚" {...register("bath_Option_2")} /> 伊斯特除蚤_皮膚 &nbsp; &nbsp;
-                            <input type="radio" value="抗氧"  {...register("bath_Option_2")} /> 抗氧  &nbsp; &nbsp;
-                            <input type="radio" value="白色"  {...register("bath_Option_2")} /> 白色  &nbsp; &nbsp;
-                            <input type="radio" value="護色"  {...register("bath_Option_2")} /> 護色  &nbsp; &nbsp;
-                            <input type="radio" value="澎毛"  {...register("bath_Option_2")} /> 澎毛  &nbsp; &nbsp;
-                            <input type="radio" value="淡雅"  {...register("bath_Option_2")} /> 淡雅  &nbsp; &nbsp;
-                            <input type="radio" value="貓咪"  {...register("bath_Option_2")} /> 貓咪  &nbsp; &nbsp;
-                            <input type="radio" value="潤絲"  {...register("bath_Option_2")} /> 潤絲  &nbsp; &nbsp;
-                            <input type="radio" value="自備"  {...register("bath_Option_2")} /> 自備  &nbsp; &nbsp; &nbsp;
+                            { bath_2?.map( ( x , y ) => <span key = { y } > 
+                                                           <input type = "radio" value = { x } { ...register( "bath_Option_2" ) } /> { x }  &nbsp; &nbsp; 
+                                                         </span> )}
                            
                             <b className="delete" onClick={ () => clear_Row_Options( '2' )  } ></b>
 
                         </div>
 
                         <div className="column is-2-desktop"><b className="tag is-large is-white"> 第一次浸泡 </b></div>
-
                         <div className="column is-10-desktop">
 
-                            <input type="radio" value="滴食鹽水"  {...register("bath_Option_3")} /> 滴食鹽水 &nbsp; &nbsp; &nbsp; 
+                            { bath_3?.map( ( x , y ) => <span key = { y } > 
+                                                           <input type = "radio" value = { x } { ...register( "bath_Option_3" ) } /> { x }  &nbsp; &nbsp; 
+                                                         </span> )}
                           
-                            <b className="delete" onClick={ () => clear_Row_Options( '3' )  } ></b>
+                            <b className="delete" onClick = { () => clear_Row_Options( '3' )  } ></b>
 
                         </div>
 
@@ -156,14 +157,9 @@ const Bath_Form = ( { register , current , editType, serviceData , setValue } : 
 
                         <div className="column is-10-desktop">
 
-                            <input type="radio" value="第一道"  {...register("bath_Option_4")} /> 第一道  &nbsp; &nbsp;
-                            <input type="radio" value="伊斯特除蚤_皮膚"  {...register("bath_Option_4")} /> 伊斯特除蚤_皮膚  &nbsp; &nbsp;
-                            <input type="radio" value="白色"  {...register("bath_Option_4")} /> 白色  &nbsp; &nbsp;
-                            <input type="radio" value="護色"  {...register("bath_Option_4")} /> 護色  &nbsp; &nbsp;
-                            <input type="radio" value="澎毛"  {...register("bath_Option_4")} /> 澎毛  &nbsp; &nbsp;
-                            <input type="radio" value="貓咪"  {...register("bath_Option_4")} /> 貓咪  &nbsp; &nbsp;
-                            <input type="radio" value="潤絲"  {...register("bath_Option_4")} /> 潤絲  &nbsp; &nbsp;
-                            <input type="radio" value="自備"  {...register("bath_Option_4")} /> 自備  &nbsp; &nbsp; &nbsp; 
+                            { bath_4?.map( ( x , y ) => <span key = { y } > 
+                                                           <input type = "radio" value = { x } { ...register( "bath_Option_4" ) } /> { x }  &nbsp; &nbsp; 
+                                                         </span> )}
 
                             <b className="delete" onClick={ () => clear_Row_Options( '4' )  } ></b>
 
@@ -173,7 +169,9 @@ const Bath_Form = ( { register , current , editType, serviceData , setValue } : 
 
                         <div className="column is-10-desktop">
 
-                            <input type="radio" value="滴食鹽水"  {...register("bath_Option_5")} /> 滴食鹽水  &nbsp; &nbsp; &nbsp;
+                            { bath_5?.map( ( x , y ) => <span key = { y } > 
+                                                           <input type = "radio" value = { x } { ...register( "bath_Option_5" ) } /> { x }  &nbsp; &nbsp; 
+                                                         </span> )}
 
                             <b className="delete" onClick={ () => clear_Row_Options( '5' )  } ></b>
 
@@ -183,8 +181,9 @@ const Bath_Form = ( { register , current , editType, serviceData , setValue } : 
                         
                         <div className="column is-10-desktop">
 
-                            <input type="radio" value="進烘箱" {...register("bath_Option_6")} /> 進烘箱  &nbsp; &nbsp;
-                            <input type="radio" value="手吹"  {...register("bath_Option_6")} /> 手吹 &nbsp; &nbsp; &nbsp;
+                            { bath_6?.map( ( x , y ) => <span key = { y } > 
+                                                           <input type = "radio" value = { x } { ...register( "bath_Option_6" ) } /> { x }  &nbsp; &nbsp; 
+                                                         </span> )}
 
                             <b className="delete" onClick={ () => clear_Row_Options( '6' )  } ></b>
 

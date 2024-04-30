@@ -2,15 +2,14 @@
 /* eslint-disable react/jsx-pascal-case */
 import { useEffect } from "react" ;
 import { useDispatch } from "react-redux";
-
 import { set_current_plan_type } from 'store/actions/action_Plan' ;
 import { set_Current_Species_Select_Id } from "store/actions/action_Pet" ;
 import Admin_Data_Render from "templates/layout/Admin_Data_Render" ; 
 
 
-
 /* @ 方案 ( 預設、自訂 ) */
-const Plans = ( ) => {
+const Plans = () => {
+
 
     const dispatch = useDispatch() ;
 
