@@ -27,13 +27,14 @@ export const get_Date = ( num : number )  => {
 };
 
 
-// 取得 : 特定日期，" 加減 " 後的日期
+// 取得 : 特定日期，"加減天數" 後的日期
 export const get_Date_Cal = ( date : string , num : number )=>{
 
-    let dat = new Date( date );
-    dat.setDate(dat.getDate() + num );
+    let _date = new Date( date );
+    
+    _date.setDate( _date.getDate() + num );
 
-    return dat
+    return _date
 
 } ;
 

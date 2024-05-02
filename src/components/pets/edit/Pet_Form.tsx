@@ -35,7 +35,6 @@ const note       = { color: "rgb(0,0,180)" , fontWeight: "bold" } ;
 const note_Input = { color: "rgb(0,0,180)" , fontWeight: "bold" , border : "none"  } ;
 
 
-
 { /* 寵物表單欄位  */ }
 const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Species_id , pet_Serial , control } : Edit_Form_Type ) => {
 
@@ -57,6 +56,9 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
     // 客戶單，目前所填入客戶的所有寵物
     const current_Customer_Pets = useSelector( ( state : any ) => state.Customer.Current_Customer_Pets ) ;
 
+    // 目前所點選寵物
+    const current_Pet           = useSelector( ( state : any ) => state.Pet.current_Pet ) ; 
+
     // 取得 _ 所有寵物品種資料
     const petSpecies            = useFetch_Species() ;
 
@@ -65,14 +67,18 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
     // 品種代號、品種名稱、變動處理 : "品種" 下拉選單 
     const { species_Num , pet_Species_Name , get_Species_Id } = useEffect_Change_Select_Option( petSpecies ) ;
 
+
     // 目前登入者所屬店家，資料表中( pet ) 已有某 "寵物品種" 數量
     const current_Species_Sum = useFetch_Shop_Species_By_SpeciesName( useAccount_Shop_Id() , pet_Species_Name ).length ;
+
 
     // 點選 _ 寵物按鈕
     const click_Pet_Button = useEffect_Click_Set_Pet_Data( setValue , petSpecies ) ;
 
+
     // 變動 _ 品種下拉選單，預先設定 _ 寵物序號
     useEffect_Change_Set_PetSerial_Column( species_Num , current_Species_Sum , setValue ) ;
+
 
     // 目前為新增或編輯狀態
     const is_Create = current ? true : false ;
@@ -219,7 +225,7 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
 
                                <p> 體 型 &nbsp; <b className="fRed"> {errors.pet_Size?.message} </b></p>
 
-                               <div className="control has-icons-left">
+                               <div className = "control has-icons-left" >
 
                                    <div className="select">
 
@@ -428,7 +434,7 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
 
                             <div className="column is-12-desktop m_Top_10">
 
-                                    <BathBeauty_CheckNote register = { register } />
+                                <BathBeauty_CheckNote register = { register } />
 
                             </div>
 
@@ -436,11 +442,11 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
 
                           <div className="column is-12-desktop m_Bottom_30">
 
-                             { /* 新增 */ }
-                             { is_Create && <textarea rows="6" className="textarea" {...register("pet_Note")} placeholder="尚未填寫" style={ note_Input } readOnly={true} /> }
-
-                             { /* 編輯 */ } 
-                             { is_Create || <textarea rows="8" className="textarea" {...register("pet_Note")} placeholder="請輸入備註..." style={ note } /> }
+                             { /* < 新增 > ( 點選既有寵物：僅能檢視，不能修改 ) */ }
+                             { current_Pet && <textarea rows="6" className="textarea" {...register("pet_Note")} placeholder="尚未填寫" style={ note_Input } readOnly={ true } /> }  
+                             
+                             { /* < 新增、修改 > ( 新增時，新增新的寵物：可以編輯內容 ) */ } 
+                             { !current_Pet && <textarea rows="8" className="textarea" {...register("pet_Note")} placeholder = "請輸入備註..." style={ note } /> }
                                
                           </div>
 
@@ -448,11 +454,12 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                           <b className="m_Left_15"> 住宿備註 </b>
                           <div className="column is-12-desktop m_Bottom_30">
 
-                             { /* 新增 */ }
-                             { is_Create && <textarea rows="6" className="textarea" {...register("lodge_Note")} placeholder="尚未填寫" style={ note_Input } readOnly={true} /> }
+                             { /* < 新增 > ( 點選既有寵物：僅能檢視，不能修改 ) */ }
+                             { current_Pet && <textarea rows="6" className="textarea" {...register("lodge_Note")} placeholder="尚未填寫" style={ note_Input } readOnly={true} /> } 
+                             
 
-                             { /* 編輯 */ } 
-                             { is_Create || <textarea rows="5" className="textarea" {...register("lodge_Note")} placeholder="請輸入備註..." style={ note } /> }
+                             { /* < 新增、修改 > ( 新增時，新增新的寵物：可以編輯內容 ) */ } 
+                             { !current_Pet && <textarea rows="5" className="textarea" {...register("lodge_Note")} placeholder="請輸入備註..." style={ note } /> }
 
                           </div>
 
@@ -460,11 +467,11 @@ const Pet_Form = ( { register , watch , setValue , errors , current  , pet_Speci
                           <b className="m_Left_15"> 客訴及其他備註 : 私有備註 </b>
                           <div className="column is-12-desktop m_Bottom_30">
 
-                             { /* 新增 */ }
-                             { is_Create && <textarea rows="6" className="textarea" {...register("private_Note")} placeholder="尚未填寫" style={ note_Input } readOnly={true}/> }
+                             { /* < 新增 > ( 點選既有寵物：僅能檢視，不能修改 ) */ }
+                             { current_Pet && <textarea rows="6" className="textarea" {...register("private_Note")} placeholder="尚未填寫" style={ note_Input } readOnly={true}/> } 
 
-                             { /* 編輯 */ } 
-                             { is_Create || <textarea rows="5" className="textarea" {...register("private_Note")} placeholder="請輸入備註..." style={ note }/> }
+                             { /* < 新增、修改 > ( 新增時，新增新的寵物：可以編輯內容 ) */ } 
+                             { !current_Pet && <textarea rows="5" className="textarea" {...register("private_Note")} placeholder="請輸入備註..." style={ note }/> }
 
                           </div>   
 

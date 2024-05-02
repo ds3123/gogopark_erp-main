@@ -22,7 +22,7 @@ const Plans_Done_Table = ( { data } : Admin_Table  ) => {
                     <th style={{ width:"230px" }}> <b className="fDred">收款</b>日期  </th>
                     <th style={{ width:"250px" }}> <b className="fDblue">開始</b>日期 </th>
                     <th style={{ width:"250px" }}> <b className="fDblue">結束</b>日期 </th>
-                    <th style={{ width:"340px" }}> 期 限 (天)                       </th>
+                    <th style={{ width:"340px" }}> 期 限 (天)                         </th>
                     <th style={{ width:"100px" }}> 使用情形                            </th>
                     <th style={{ width:"90px"  }}> 刪 除                              </th> 
                     { /* <th>  封 存  </th> */ }

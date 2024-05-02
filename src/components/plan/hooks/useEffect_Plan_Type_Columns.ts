@@ -63,38 +63,37 @@ export const useEffect_Set_Plan_Basic_Price = ( shop_Id : string , current_Plan_
     const Month_Beauty_Price = species_5_Prices?.month_Beauty ; // 包月美容價格 ( 預設價格 ) 
 
 
-    // 目前所點選寵物資料
-    const current_Pet  = useSelector( ( state : any ) => state.Pet.current_Pet ) ;
+    // 目前所點選寵物資料 ( 再確認，有些使用地方，可能沒有點選寵物，而導致無法取得寵物個別調整金額 2024.05.02 )
+    const current_Pet = useSelector( ( state : any ) => state.Pet.current_Pet ) ;
 
 
     /*
 
         # 設定 _ 方案基本價格 
-
-         ＊ 如果有調整過 : 包月洗澡、包月美容價格，以此調整過的價格優先 
+          ＊ 如果有調整過 : 包月洗澡、包月美容價格，以此調整過的價格優先 
 
     */
     useEffect( () => {
 
-    
-       // 預設方案
+        
+       // # 預設方案
        if( current_Plan_Name === '包月洗澡' ){ 
 
            const Adjust_Month_Bath = current_Pet?.month_bath_price ; // 調整後 _ 價格
            set_Current_Baisc_Price( Adjust_Month_Bath ? Adjust_Month_Bath : Month_Bath_Price ) ; 
         
-       } ;  
+        } ;  
       
        if( current_Plan_Name === '包月美容' ){ 
 
            const Adjust_Month_Beauty = current_Pet?.month_beauty_price ; // 調整後 _ 價格
            set_Current_Baisc_Price( Adjust_Month_Beauty ? Adjust_Month_Beauty : Month_Beauty_Price ) ; 
         
-       } ; 
+        } ; 
 
        
-    // 自訂方案
-       if( custom_Plan ) set_Current_Baisc_Price( custom_Plan['default_price'] ) ;
+        // # 自訂方案
+        if( custom_Plan ) set_Current_Baisc_Price( custom_Plan['default_price'] ) ;
 
 
        return () => set_Current_Baisc_Price( 0 ) ;

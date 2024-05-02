@@ -1,3 +1,5 @@
+import { string_Short } from "utils/string/edit_string";
+
 
 
   // 核取方塊
@@ -59,15 +61,27 @@
 
   type A4_Common = {
 
+    children : React.ReactNode ;
     type     : "洗澡單" | "美容單" ;
-    children : React.ReactNode 
+    data     : any ;
 
   }
 
 
 
-const A4_Print_Content_Common : React.FC< A4_Common > = ( { children , type } ) => {
+const A4_Print_Content_Common : React.FC< A4_Common > = ( { children , type , data } ) => {
     
+
+    console.log( '11' , data ) ;
+   
+    // 客戶資料
+    const customer = data?.customer ;
+
+    // 寵物資料
+    const pet      = data?.pet ;
+    
+    
+
 
   return <div className = "columns is-multiline has-text-centered" >
 
@@ -76,24 +90,31 @@ const A4_Print_Content_Common : React.FC< A4_Common > = ( { children , type } ) 
             </div>
 
             <div className = "column is-4 border td_Left v-center" style = {h_35}> 
-                <b className = "f_12" > 寵物編號： </b>
+                <b className = "f_12" > 寵物編號：{ pet?.serial } </b>
             </div>
+            
             <div className = "column is-4 border td_Left v-center" style = {h_35}> 
-                <b className = "f_12" > 櫃檯人員： </b>
+                <b className = "f_12" > 櫃檯人員：{ data?.admin_user } </b>
             </div>
 
-            <div className = "column is-2 border h-v-center" style = {h_35}> <b> 日 期 </b> </div>
-            <div className = "column is-2 border h-v-center" style = {h_35}> <b> 品 種      </b> </div>
-            <div className = "column is-2 border h-v-center" style = {h_35}> <b> 寵物名字  </b> </div>
-            <div className = "column is-2 border h-v-center" style = {h_35}> <b> 主人電話  </b> </div>
-            <div className = "column is-2 border td_Left v-center" style = {h_35}> <b> 到店 </b> </div>
+            <div className = "column is-2 border h-v-center" style = {h_35}> <b> 日 期   </b> </div>
+            <div className = "column is-2 border h-v-center" style = {h_35}> <b> 品 種   </b> </div>
+            <div className = "column is-2 border h-v-center" style = {h_35}> <b> 寵物名字 </b> </div>
+            <div className = "column is-2 border h-v-center" style = {h_35}> <b> 主人電話 </b> </div>
+            <div className = "column is-2 border td_Left v-center f_10" style = {h_35}> 
+                 <b> 到店 : { string_Short( data?.way_arrive , 4 ) } </b> 
+            </div>
             <div className = "column is-2 border h-v-center" style = {h_35}> <b> 住 . 接  </b> </div>
 
-            <div className = "column is-2 border" style = {h_35}> </div>
-            <div className = "column is-2 border" style = {h_35}> </div>
-            <div className = "column is-2 border" style = {h_35}> </div>
-            <div className = "column is-2 border" style = {h_35}> </div>
-            <div className = "column is-2 border td_Left v-center" style = {h_35}> <b> 離店 </b> </div>
+            <div className = "column is-2 border h-v-center" style = {h_35}> { data?.service_date } </div>
+            <div className = "column is-2 border h-v-center" style = {h_35}> { pet?.species } </div>
+            <div className = "column is-2 border h-v-center" style = {h_35}> { pet?.name }  </div>
+            <div className = "column is-2 border h-v-center" style = {h_35}> 
+               { customer?.mobile_phone } 
+            </div>
+            <div className = "column is-2 border td_Left v-center f_10" style = {h_35}> 
+                <b> 離店 : { string_Short( data?.way_leave , 4 ) } </b> 
+            </div>
             <div className = "column is-2 border h-v-center" style = {h_35}> <b> 住 . 送 </b> </div>
 
             { /* 主人交代 */ }
@@ -110,7 +131,9 @@ const A4_Print_Content_Common : React.FC< A4_Common > = ( { children , type } ) 
 
             { /* 備註 */ }
             <div className = "column is-2 border f_bold h-v-center" style = { h_35 } > 備 註  </div>
-            <div className = "column is-6 border" style = { h_35 }>  </div>
+            <div className = "column is-6 border td_Left v-center" style = { h_35 }> 
+               { data?.admin_service_note }
+             </div>
             <div className = "column is-4 border td_Left v-center" style = { h_35 }> 
                 <b> 通知情形 : </b> &nbsp; <span> { check( "已聯絡" ) } { check( "未接" ) } </span>
             </div>

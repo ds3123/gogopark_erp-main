@@ -1,16 +1,15 @@
 /* eslint-disable react/jsx-pascal-case */
 import { useState } from "react";
-
 // useContext
 import { useContext } from "react"
 import { SidePanelContext } from "templates/panel/Side_Panel";
-
 import Species_Default_Prices from "components/pets/edit/info/components/Species_Default_Prices" ;
 import Adjust_Price_Section from "components/pets/edit/info/components/Adjust_Price_Section" ;
 import Species_Adjust_Prices from "components/pets/edit/info/components/Species_Adjust_Prices" ;
 import Price_Difference_Info from "components/pets/edit/info/components/Price_Difference_Info" ;
 import { useFetch_Shop_Species_5_Service_Prices } from "hooks/react-query/price/useFetchPrices" ;
 import { IService_5_Prices } from "utils/Interface_Type" ;
+
 
 
 type Status = {

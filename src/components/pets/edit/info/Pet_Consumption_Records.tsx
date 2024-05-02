@@ -6,7 +6,6 @@ import AllServices_PetConsumption_Records from '../components/AllServices_PetCon
 import Service_Tag_Section from 'components/services/components/service_tags/Service_Tag_Section';
 
 
-
 type pet_Records = { 
     pet_Data : any ;  // 寵物資料 
 }
@@ -18,7 +17,6 @@ type TStrategy = {
     "所有紀錄" : ( pet_Data : any ) => JSX.Element ;
 
 }
-
 
 
 // 定義策略对象
@@ -39,7 +37,7 @@ const Pet_Consumption_Records = ( { pet_Data } : pet_Records ) => {
 
 
     // 寵物 _ 洗澡美容備註
-    const pet_Note     = <b className = "f_16"> { pet_Data?.note ? pet_Data?.note : "" }   </b>
+    const pet_Note = <b className = "f_16" > { pet_Data?.note ? pet_Data?.note : "未填寫" } </b>
 
 
     return <div style = { { position : "relative" , top : "20px" } } >
@@ -57,9 +55,9 @@ const Pet_Consumption_Records = ( { pet_Data } : pet_Records ) => {
                 
                 </b>   
 
+                { /* 洗澡美容備註 */ }
                 <div className = "w-full m_Bottom_70 p-5" >
-
-                   { /* 洗澡美容備註 */ }
+                  
                    <Service_Tag_Section icon = "fas fa-dog" title = "洗澡美容 : 常駐備註" content = { pet_Note } options = { pet_Data?.check_note }  />
 
                 </div>

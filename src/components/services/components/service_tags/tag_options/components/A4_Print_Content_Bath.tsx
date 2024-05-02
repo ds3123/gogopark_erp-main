@@ -14,10 +14,10 @@ import A4_Print_Content_Common from "./A4_Print_Content_Common";
 
 
 // # A4 列印內容 : 洗澡單
-const  A4_Print_Content_Bath = () => {
+const  A4_Print_Content_Bath : React.FC< { data : any } > = ( { data } ) => {
 
 
-  return <A4_Print_Content_Common type = "洗澡單" >
+  return <A4_Print_Content_Common type = "洗澡單" data = { data } >
 
             <>
                <div className = "column is-2 border f_bold h-v-center" > { check( "加修剪" ) } </div>

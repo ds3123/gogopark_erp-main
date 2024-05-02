@@ -49,6 +49,7 @@ export const usePlan_Get_Plan_Price = ( data : any ) => {
     const self_Adjust = data?.plan_adjust_price ;  // 自行調整
     const pickup      = data?.pickup_fee ;         // 接送費
 
+    
     // 預設方案 : 包月洗澡
     if( plan_Type === '包月洗澡' && pet?.month_bath_price )   return pet?.month_bath_price + self_Adjust + pickup ;
     

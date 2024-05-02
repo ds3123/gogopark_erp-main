@@ -25,10 +25,10 @@ import A4_Print_Content_Common from "./A4_Print_Content_Common";
 
 
 // # A4 列印內容 : 美容單
-const A4_Print_Content_Beauty = () => {
+const A4_Print_Content_Beauty : React.FC< { data : any } > = ( { data } ) => {
 
 
-  return  <A4_Print_Content_Common type = "美容單" >
+  return  <A4_Print_Content_Common type = "美容單" data = { data } >
 
             <>
               <div className = "column is-2 border f_bold h-v-center" > 大美容 </div>

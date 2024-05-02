@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-pascal-case */
 import { FC , useState } from 'react' ;
 import { useContext } from "react" ;
@@ -11,11 +12,46 @@ import Service_Tag_A4 from './tag_options/Service_Tag_A4';
 
 
 
+
+// A4 洗澡單、美容單
+const A4_Print : FC< { service : any }  > = ( { service } ) => {
+
+    const dispatch = useDispatch() ;
+
+
+    const click_Show_A4_Page = ( type : "洗澡單" | "美容單" ) => {
+
+        dispatch( set_Modal( true , <Service_Tag_A4 type = { type } data = { service } /> , { data : service , modal_Style : { width : "76%" , left : "12%" , top : "-70px" } } ))
+
+    }
+
+
+    return  <div className = "columns is-multiline" >
+
+                <div className = "column is-6 has-text-centered" >
+                    <div onClick = { () => click_Show_A4_Page( "洗澡單" ) } className = "tag w-full is-large p-4 m_Bottom_20 pointer hover" >
+                       <i className = "fas fa-file-alt"></i> &nbsp; 洗澡單 ( A4 )
+                    </div> 
+                </div>
+
+                <div className = "column is-6 has-text-centered" >
+                    <div onClick = { () => click_Show_A4_Page( "美容單" ) } className = "tag w-full is-large p-4 m_Bottom_20 pointer hover" >
+                       <i className = "fas fa-file-alt"></i> &nbsp; 美容單 ( A4 )
+                    </div> 
+                </div>
+
+            </div>
+
+} ;
+
+
+
+
+
+
 // @ 服務單 _ 列印標籤內容 ( for 出單機 )
 export const Service_Tag : FC = () => {
 
-
-    const dispatch = useDispatch() ;
 
     // 目前所點選列印聯
     const [ current_Tag , set_Current_Tag ] = useState< number >( 1 ) ;
@@ -38,33 +74,12 @@ export const Service_Tag : FC = () => {
     const { ref , click_Print } = useEffect_Click_Print() ;
     
 
-    // 顯示 A4 頁面
-    const click_Show_A4_Page = ( type : "洗澡單" | "美容單" ) => {
 
-        dispatch( set_Modal( true , <Service_Tag_A4 type = { type } data = { service } /> , { data : service , modal_Style : { width : "76%" , left : "12%" , top : "-70px" } } ))
-
-    }
-
-
-   return <div className = "p_10">
+   return <div className = "p_10" >
 
             { /* A4 洗澡單、美容單 */ }
-            <div className = "columns is-multiline" >
-
-                <div className = "column is-6 has-text-centered" >
-                    <div onClick = { () => click_Show_A4_Page( "洗澡單" ) } className = "tag w-full is-large p-4 m_Bottom_20 pointer hover" >
-                       <i className = "fas fa-file-alt"></i> &nbsp; 洗澡單 ( A4 )
-                    </div> 
-                </div>
-
-                <div className = "column is-6 has-text-centered" >
-                    <div onClick = { () => click_Show_A4_Page( "美容單" ) } className = "tag w-full is-large p-4 m_Bottom_20 pointer hover" >
-                       <i className = "fas fa-file-alt"></i> &nbsp; 美容單 ( A4 )
-                    </div> 
-                </div>
-
-            </div>
-            
+            <A4_Print service = { service } />
+          
             { /* 列印聯選項 */ }
             <div className = "has-text-centered" >
 

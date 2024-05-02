@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect , useState } from "react" 
 import moment from "moment" 
@@ -19,7 +20,7 @@ const Plan_Start_End = ( { data } : { data : any }  ) => {
     const shop_Id  = useAccount_Shop_Id() ;
 
 
-    // 方案使用天數
+    // 方案使用天數 ( 預設 90 天 )
     const [ plan_Period , set_Plan_Period ] = useState( 90 ) ;
 
 
@@ -60,18 +61,21 @@ const Plan_Start_End = ( { data } : { data : any }  ) => {
     // 計算 _ 第 1 筆使用紀錄 、 方案使用 _ 開始 / 結束日期
     useEffect( () => {
 
-        if( plan_used_records && plan_used_records.length > 0 ){
+        // 排除 _ 已銷單的紀錄
+        const valid_Records = plan_used_records?.filter( ( x : any ) => x?.is_delete === 0 ) ;
+
+        if( valid_Records?.length > 0 ){
   
             // 第 1 筆使用紀錄
-            const first_Record = plan_used_records[ plan_used_records.length - 1 ] ;
-  
-            // 方案使用 _ 開始日期
+            const first_Record = valid_Records[ 0 ] ;
+
+            // 方案使用 _ 開始日期 ( 第 1 筆紀錄的建立日期 )
             const start_Date   = first_Record[ 'created_at' ].slice( 0 , 10 ) ;
   
-            // 方案使用 _ 結束日期
+            // 方案使用 _ 結束日期 ( 根據第 1 筆紀錄建立日期，往後推算方案使用天數 )
             const End_Date     = moment( get_Date_Cal( start_Date , plan_Period ) ).format( "YYYY-MM-DD" ) ;
   
-            set_Plan_Date({ ...plan_Date , start: start_Date , end : End_Date  }) ;
+            set_Plan_Date({ ...plan_Date , start : start_Date , end : End_Date }) ;
   
         }
   
@@ -80,8 +84,8 @@ const Plan_Start_End = ( { data } : { data : any }  ) => {
 
    return <>
    
-             <td style={{ width:"120px" }}> { plan_Date['start'] } </td>
-             <td style={{ width:"120px" }}> { plan_Date['end'] }   </td>
+             <td style={{ width:"120px" }}> { plan_Date['start'] ? plan_Date['start'] : "尚未使用" } </td>
+             <td style={{ width:"120px" }}> { plan_Date['end'] ? plan_Date['end'] : "尚未使用"   }   </td>
              <td> { plan_Period } </td>
    
           </> 

@@ -1,10 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
-
 import { usePlan_Used_Records_Data } from "hooks/data/usePlan_Used_Records_Data" ;
-
 import Plan_Used_Records_Title from "./common/plan_used/Plan_Used_Records_Title" ;
 import Plan_Used_Records_Table from "./common/plan_used/Plan_Used_Records_Table";
-
 
 
 
@@ -25,23 +22,20 @@ const Plan_Used_Records = () => {
 
                  { /* 標題列 */ }   
                  <Plan_Used_Records_Title plan_Type = { plan_Type } applied_Species_Name = { applied_Species_Name }  data = { data } />
-                 
                
-                 <hr className="m_Top_70 m_Bottom_50" />
+                 <hr className = "m_Top_70 m_Bottom_50" />
 
-                 {  // 有 _ 使用紀錄
+                 {   // 有 _ 使用紀錄
                      is_Plan_Used && 
-                         <div className="relative">
-
-                            <Plan_Used_Records_Table _plan_Used_Records = { _plan_Used_Records } />
-                         
+                         <div className = "relative" >
+                             <Plan_Used_Records_Table _plan_Used_Records = { _plan_Used_Records } />
                          </div> 
                  }
 
-                 {  // 沒有 _ 使用紀錄
+                 {   // 沒有 _ 使用紀錄
                      is_Plan_Used ||
-                         <b className="tag is-large is-danger">
-                             <i className="far fa-folder-open"></i> &nbsp; 無方案使用紀錄
+                         <b className = "tag is-large is-danger" >
+                             <i className = "far fa-folder-open" ></i> &nbsp; 無方案使用紀錄
                          </b>
                  }
 

@@ -3,12 +3,11 @@ import { useDispatch } from "react-redux";
 import { set_Modal } from "store/actions/action_Global_Layout" ;
 import { string_Short } from "utils/string/edit_string" ;
 import Info_Administrator from "templates/note/Info_Administrator" ;
-
 import { set_Side_Panel } from "store/actions/action_Global_Layout";
-
 import Update_Service from "components/services/edit/Update_Service";
 import Update_Plan from "components/plan/edit/Update_Plan";
-
+import { is_Service_Delete_Sign } from "templates/info/delete";
+import { switch_Service_Id } from "utils/data/switch";
 
 
 
@@ -21,6 +20,7 @@ type Card = {
 
 // 寵物 _ 服務資訊卡片 ( for 客人 : 消費歷史 、寵物 : 服務紀錄 )
 const Pet_Service_Card = ( { data , pet , type } : Card ) => {
+
 
     const dispatch = useDispatch() ;
 
@@ -36,8 +36,6 @@ const Pet_Service_Card = ( { data , pet , type } : Card ) => {
        return Update_Service        // 編輯服務
 
     } ; 
-
-
 
     // 點選 _ 服務卡檢視按鈕
     const click_View_Detail = ( data : any ) => {
@@ -56,6 +54,7 @@ const Pet_Service_Card = ( { data , pet , type } : Card ) => {
     } 
 
 
+    
     const service_Date = data?.service_date ;  // 服務日期
     const created_Date = data?.created_at ;    // 服務日期
       
@@ -64,7 +63,7 @@ const Pet_Service_Card = ( { data , pet , type } : Card ) => {
     const card = {
                     background:"white" ,
                     boxShadow:"1px 1px 8px 2px rgba(200,200,200,.3)" ,
-                    marginBottom:"10px" ,
+                    marginBottom:"20px" ,
                     position:"relative" ,
                     padding:"10px"
                   } as any ;
@@ -130,6 +129,15 @@ const Pet_Service_Card = ( { data , pet , type } : Card ) => {
                 { type === '寵物'  &&
 
                     <>
+            
+                      { /* 是否銷單 */ }
+                      { data?.is_delete === 1 && <div style={ row }> { is_Service_Delete_Sign() } </div> }  
+
+                      { switch_Service_Id( data ) && 
+                            <span className = "m_Bottom_10 m_Top_10 fDblue f_11"  > 
+                                id : { switch_Service_Id( data ) } 
+                            </span> 
+                        }    
 
                       { data['plan_type'] &&
                       
@@ -151,11 +159,14 @@ const Pet_Service_Card = ( { data , pet , type } : Card ) => {
                                  
                       </div>
 
+                      
                       <div style={ row }>
                             <b className="tag is-medium hover pointer w-full" onClick={ ( ) => click_View_Detail( data ) }>
                                 <i className="fas fa-search"></i> &nbsp; 檢 視
                             </b>
                       </div>
+
+                      
 
 
                     </>   

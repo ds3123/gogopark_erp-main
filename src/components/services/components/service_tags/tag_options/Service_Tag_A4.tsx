@@ -10,7 +10,7 @@ import A4_Print_Content_Bath from "./components/A4_Print_Content_Bath";
 
 type Tag = {
     data : any
-    type : "洗澡單" |"美容單" ;
+    type : "洗澡單" | "美容單" ;
 }
 
 
@@ -26,26 +26,25 @@ const Service_Tag_A4 : React.FC< Tag > = ( { data , type } ) => {
     // 返回上一頁
     const back_To_ServiceTag = ( ) => {
 
-        dispatch( set_Modal( true , <Service_Tag /> , { data : data , modal_Style : { width : "40%" , left : "30%" , top : "-70px" } }  ) )
+       dispatch( set_Modal( true , <Service_Tag /> , { data : data , modal_Style : { width : "40%" , left : "30%" , top : "-70px" } }  ) )
     
     }
 
     // 點選 _ 列印 ( A4 尺寸 )
-   const click_A4_Print = useReactToPrint({
+    const click_A4_Print = useReactToPrint({
 
         pageStyle : `@media print {
                                     @page {
                                             size   : 210mm 297mm ;
                                             margin : 10mm ;
                                            } 
-                                  }`,
+                                  }` ,
 
-        content   : () : any => ref.current,
+        content   : () : any => ref.current ,
         
-    // onAfterPrint : () => handleResetPrint()
+        // onAfterPrint : () => handleResetPrint()
 
     }) ;
-
 
 
   return <div className = "p-4" style = {{ overflow : "auto" , height : "85vh" , color : "black" }} >
@@ -71,8 +70,8 @@ const Service_Tag_A4 : React.FC< Tag > = ( { data , type } ) => {
                  className = "border m_Top_20 p-4 m_Bottom_50" 
                  style     = { { width : "21cm" , margin : "auto" } } >
 
-               { type === "洗澡單" && <A4_Print_Content_Bath /> } 
-               { type === "美容單" && <A4_Print_Content_Beauty /> } 
+               { type === "洗澡單" && <A4_Print_Content_Bath   data = { data } /> } 
+               { type === "美容單" && <A4_Print_Content_Beauty data = { data } /> } 
 
             </div>
              

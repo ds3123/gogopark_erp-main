@@ -6,7 +6,6 @@ type Section = {
     icon     : string ;
     title    : string ;
     content  : string | JSX.Element ;
-
     options? : string ;
 
 }
@@ -14,6 +13,8 @@ type Section = {
 
 // @ 區塊資訊
 const Service_Tag_Section : FC< Section > = ( { icon , title , content , options } ) => {
+
+
 
    
    return <>
@@ -27,11 +28,11 @@ const Service_Tag_Section : FC< Section > = ( { icon , title , content , options
                 
             </div>
 
-            <div className = "border p_10 m_Bottom_20"  style={{ textAlign : "left" }}>
+            <div className = "border p_10 m_Bottom_20 fDblue"  style={{ textAlign : "left" }}>
 
                 <div className = "f_14 m_Bottom_5"> { options?.replace( /,/g , " / " ) } </div> 
                 
-                { content } 
+                { content }  
 
             </div>
    

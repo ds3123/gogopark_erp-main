@@ -101,17 +101,17 @@ const Plans_Rows = ( props : any ) => {
                   }
 
                </td>
-               <td style={{ width:"100px" }}> { plan_Fee } </td>
+               <td style={{ width : "100px" }}> { plan_Fee } </td>
                <td> { data?.created_at?.slice(5,10) }   </td>
                <td> { data?.payment_date?.slice(5,10) } </td>
 
                { /* 開始日期、結束日期  */ }
                <Plan_Start_End data = { data } />
 
-               <td className="relative" style={ left }>
+               <td className = "relative" style = { left }>
 
                    { /* 方案使用情形 */ }  
-                   <Plan_Used_Column data = { data } />
+                   <Plan_Used_Column  data = { data } />
             
                </td>
 
