@@ -7,8 +7,10 @@ import 'react-toastify/dist/ReactToastify.css' ;
 // # Redux
 import { createStore , applyMiddleware } from 'redux' ;
 import { Provider } from 'react-redux' ;
-import thunk from 'redux-thunk' ;
+import { thunk } from 'redux-thunk' ;
+
 import root_Reducer from "store/reducers/root_Reducer" ;
+
 
 // # CSS
 import 'css/app.scss' ;
@@ -24,6 +26,8 @@ import { queryClient } from './react-query/queryClient' ; // 自訂 queryClient
 // Redux Store
 export const store = createStore( root_Reducer , applyMiddleware( thunk ) ) ;
 
+
+ 
 // React-Query Client
 // const queryClient = new QueryClient() ;
 

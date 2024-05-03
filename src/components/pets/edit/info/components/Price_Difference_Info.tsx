@@ -61,7 +61,7 @@ const Price_Difference_Info = ( { species_Prices } : Info ) => {
 
 
 
-   const get_Style = ( fee : number | "" ) => `tag is-medium w-full is-light is-rounded ${ fee > 0 ? 'is-success' : 'is-danger' }` ;
+   const get_Style = ( fee : number | "" ) => `tag is-medium w-full is-light is-rounded ${ ( fee && fee > 0 ) ? 'is-success' : 'is-danger' }` ;
 
 
 

@@ -22,12 +22,14 @@ type Defaut = {
 }
 
 
+const position = { top : "-5px" , left : "10px" } ;
+const columns  = "columns is-multiline is-mobile relative" ;
+
+
 
 const Species_Default_Prices = ( { species , species_Prices } : Defaut ) => {
 
  
-    const position = { top : "-5px" , left : "10px" } ;
-    const columns  = "columns is-multiline is-mobile relative" ;
 
     return <>
     
@@ -53,7 +55,7 @@ const Species_Default_Prices = ( { species , species_Prices } : Defaut ) => {
 
               </div>
                
-          </>
+           </>
     
     
 } ;

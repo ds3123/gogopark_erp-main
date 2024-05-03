@@ -5,7 +5,10 @@ import { useFetch_Shop_Custom_Plan_By_Name } from "hooks/react-query/plan/useFet
 import { useSelector } from "react-redux" ;
 import { useFetch_Shop_Species_5_Service_Prices } from "hooks/react-query/price/useFetchPrices" ;
 import { IService_5_Prices } from "utils/Interface_Type" ;
-
+import { useDispatch } from 'react-redux';
+import { set_Current_Pet } from "store/actions/action_Pet" ;
+import { useAccount_Shop_Id } from "hooks/data/useAccount";
+import { useFilter_SpeciesId_By_SpecisName } from "hooks/data/useFilter" ;
 
 
  // 設定 _ 所選擇方案 : 可洗澡、美容次數
@@ -70,7 +73,8 @@ export const useEffect_Set_Plan_Basic_Price = ( shop_Id : string , current_Plan_
     /*
 
         # 設定 _ 方案基本價格 
-          ＊ 如果有調整過 : 包月洗澡、包月美容價格，以此調整過的價格優先 
+          ＊ 如果有調整過 : 包月洗澡、包月美容價格，以此調整過的價格優先
+             Note : 以下判斷是否再加上 current_Pet 判斷 ? 2024.05.02
 
     */
     useEffect( () => {
@@ -106,6 +110,53 @@ export const useEffect_Set_Plan_Basic_Price = ( shop_Id : string , current_Plan_
 
 
 } ;
+
+
+
+// 設定 _ 方案基本價格 ( 與上述 useEffect_Set_Plan_Basic_Price 類似，考慮是否整併 ) 2024.05.03
+export const useEffect_Plan_Basic_Price = ( data : any ) : number => {
+
+    
+    const dispatch = useDispatch() ;
+ 
+    // 目前登入者，所屬店家 id
+    const shop_Id  = useAccount_Shop_Id() ;
+    
+    // 所選擇方案 : 基本價格 ( 未加上自訂金額、接送費 )
+    const current_Baisc_Price  = useEffect_Set_Plan_Basic_Price( shop_Id , data?.plan_type ) ;  
+ 
+ 
+    useEffect( () => {
+      
+       // 設定 _ 目前所點選的寵物 ( 以讓 useEffect_Set_Plan_Basic_Price 取得該寵物基本價格 )
+       if( data && data?.pet ) dispatch( set_Current_Pet( data?.pet ) ) ; 
+    
+    } , [ data?.pet ] ) ;
+
+ 
+    return current_Baisc_Price ;
+ 
+ } ;
+
+ // 藉由寵物品種，取得 _ 方案基本價格 ( 與上述 useEffect_Plan_Basic_Price 類似，考慮是否整併 ) 2024.05.03
+ export const useEffect_Plan_Price_By_Species = ( data : any ) => {
+
+     // 取得 _ 該品種 5 種基本價格
+     const pet              = data?.pet ;    // 寵物
+     const species_Name     = pet?.species ; // 寵物品種名稱
+     const species_Id       = useFilter_SpeciesId_By_SpecisName( species_Name ) ; // 寵物品種ID
+     const species_5_Prices = useFetch_Shop_Species_5_Service_Prices( "1" , species_Id ) as IService_5_Prices ; 
+ 
+ 
+     // 方案類型 ( 包月洗澡 / 包月美容，或其他自訂方案名稱 )
+     const plan_Type = data?.plan_type ; 
+ 
+     if( plan_Type === "包月洗澡" ) return species_5_Prices.month_Bath ;
+     if( plan_Type === "包月美容" ) return species_5_Prices.month_Beauty ;
+ 
+     return 0 ;
+ 
+ } ;
 
 
 

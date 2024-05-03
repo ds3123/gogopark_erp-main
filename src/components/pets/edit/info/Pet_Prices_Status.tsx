@@ -57,23 +57,21 @@ const Pet_Prices_Status = ( { register , setValue } : Status ) => {
               { /* 是否顯示：調整金額輸入框  */ }
               <b className = { `absolute tag is-medium is-rounded pointer ${ is_Show_Adjust ? "is-primary" : "hover" }` } 
                  style     = { cal }
-                 onClick   = { () => set_Is_Show_Adjust( !is_Show_Adjust ) } >  <i className="fas fa-calculator"></i> </b>
+                 onClick   = { () => set_Is_Show_Adjust( !is_Show_Adjust ) } > <i className="fas fa-calculator"></i> </b>
 
               { /* 品種標準價格  */ }
               <Species_Default_Prices species = { species } species_Prices = { species_5_Prices } /> 
              
               { /* 調整金額輸入框 */ }
               { is_Show_Adjust &&
-                 <Adjust_Price_Section species_Prices = { species_5_Prices } setValue = { setValue } />
+                  <Adjust_Price_Section species_Prices = { species_5_Prices } setValue = { setValue } />
               }
 
               { /* 調整後金額 */ }
               <Species_Adjust_Prices register = { register } />
              
               { /*  調整差價顯示資訊  */ }
-              { is_Show_Adjust || 
-                 <Price_Difference_Info species_Prices = { species_5_Prices } />
-              }
+              { is_Show_Adjust || <Price_Difference_Info species_Prices = { species_5_Prices } /> }
 
              <hr className="m_Bottom_50"/>
     

@@ -110,7 +110,7 @@ const Statistic_Chart = ( ) => {
                 <div className="columns is-multiline is-mobile">
 
                     <div className="column is-12-desktop">
-                        <Line type='line' data={ data_Line } /> <br/>
+                        {/* <Line type='line' data={ data_Line } /> <br/> */}
                     </div>
 
                 </div>
@@ -120,7 +120,7 @@ const Statistic_Chart = ( ) => {
                 <div className="columns is-multiline is-mobile">
 
                     <div className="column is-12-desktop">
-                        <Bar type='bar' data={data_Bar} options={options_Bar} />
+                        {/* <Bar type='bar' data={data_Bar} options={options_Bar} /> */}
                     </div>
 
                 </div>
@@ -130,7 +130,7 @@ const Statistic_Chart = ( ) => {
                 <div className="columns is-multiline is-mobile">
 
                     <div className="column is-offset-2-desktop is-8-desktop">
-                        <Doughnut type='doughnut' data={ data_Doughnut } />
+                        {/* <Doughnut type='doughnut' data={ data_Doughnut } /> */}
                     </div>
 
                 </div>
