@@ -3,7 +3,6 @@
 /* eslint-disable @typescript-eslint/no-redeclare */
 import { FC } from 'react' ;
 import { usePlan_Bath_Beauty_Num } from 'hooks/data/usePlan'
-import { useEffect_Plan_Basic_Price } from 'components/plan/hooks/useEffect_Plan_Type_Columns';
 import { usePlan_Get_Plan_Price } from "hooks/data/usePlan" ;
 
 
@@ -64,7 +63,7 @@ const Plan_Used_Records_Title : FC< Plan_Used_Records_Title > = ( { plan_Type , 
    // 洗澡次數、美容次數
    const service_Num = usePlan_Bath_Beauty_Num( data ) ; 
 
-   
+
 
    return   <>
 
@@ -74,16 +73,16 @@ const Plan_Used_Records_Title : FC< Plan_Used_Records_Title > = ( { plan_Type , 
 
                   [ { ( plan_Type === '包月洗澡' || plan_Type === '包月美容' ) ? '預設' : '自訂' } : { data['id'] } ] &nbsp;  
 
-                  { plan_Type }  ( { applied_Species_Name } ) 
+                  { plan_Type } ( { applied_Species_Name } ) 
 
                 </b>  
 
-                <div className="columns is-multiline is-mobile relative m_Left_5" >
+                <div className = "columns is-multiline is-mobile relative m_Left_5" >
 
-                   <div className="column is-4-desktop"> 
+                   <div className = "column is-4-desktop"> 
                     
-                     <b className="tag is-white is-medium">
-                        洗澡 : <b className="fBlue"> &nbsp; { service_Num['bath'] ? service_Num['bath'] : 0 }  &nbsp;</b> 次 &nbsp;&nbsp;  
+                     <b className = "tag is-white is-medium" >
+                        洗澡 : <b className="fBlue"> &nbsp; { service_Num['bath']   ? service_Num['bath']   : 0 } &nbsp;</b> 次 &nbsp;&nbsp;  
                         美容 : <b className="fBlue"> &nbsp; { service_Num['beauty'] ? service_Num['beauty'] : 0 } &nbsp;</b> 次  
                      </b>
 

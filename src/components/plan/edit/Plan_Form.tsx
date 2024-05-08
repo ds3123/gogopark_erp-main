@@ -50,9 +50,6 @@ const Plan_Title : FC < Title > = ( { editType , current , click_Pet_Button } ) 
 } ;
 
 
-
-
-
 // # 編輯時顯示資訊
 const Plan_Edit_Info : FC< Info > = ( { serviceData } ) => {
 
@@ -69,7 +66,6 @@ const Plan_Edit_Info : FC< Info > = ( { serviceData } ) => {
      const plan_Pay_Price   = get_Edit_Plan_Basic_Price( serviceData ) ;
 
 
-
     return <div className = "columns is-multiline is-mobile" >
 
                 { /* 基本價格 */ }
@@ -81,7 +77,7 @@ const Plan_Edit_Info : FC< Info > = ( { serviceData } ) => {
 
                             <span className = "relative">
                                 <span > { plan_Basic_Price } </span>
-                                <p className = "fRed f_11 absolute" style = {{ left : "0px" , width : "100px" }}> 
+                                <p className = "fRed f_10  absolute" style = {{ left : "0px" , width : "100px" }}> 
                                     ( 改價：{ plan_Pay_Price } 元 )  
                                 </p>
                             </span>

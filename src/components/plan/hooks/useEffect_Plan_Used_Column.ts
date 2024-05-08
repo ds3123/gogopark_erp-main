@@ -1,21 +1,17 @@
 
 type Status = {
-
     plan_type         : string ;
     plan_used_records : any[] ;
     custom_plan       : any
-
 }
 
-
 type Return = {
-
     quota_Bath   : number ;
     quota_Beauty : number ;
     used_Bath    : number ;
     used_Beauty  : number ;
-
 }
+
 
 
 // 判斷 _ 該方案是否使用完畢 ( 和底下 useEffect_Plan_Used_Status 部分邏輯重疊 )

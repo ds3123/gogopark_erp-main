@@ -20,6 +20,10 @@ export const fetch_Pet_Plans = ( pet_Serial : string ) => {
 
              } 
 
+// 取得 _ 店家：所有方案 ( for React Query )
+export const fetch_Shop_All_Plans = ( account_id : string ) => 
+               axios.get( `/plans/show_shop_all_plans/${ account_id }` ).then( res => res.data ) ; 
+
 
 // 取得 _ 所有 : 自訂方案 ( for React Query )
 export const fetch_Custom_Plans = ( account_id : string ) => 

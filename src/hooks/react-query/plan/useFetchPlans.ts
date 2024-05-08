@@ -3,6 +3,7 @@ import { useQuery } from "react-query" ;
 import { planKeys } from "react-query/query-key/planKeys" ;
 import { useDispatch } from "react-redux";
 import { fetch_Pet_Plans , 
+         fetch_Shop_All_Plans ,
          fetch_Custom_Plans , 
          fetch_Plans_By_CreatedDate  , 
          fetch_Plans_By_PaymentDate ,
@@ -29,6 +30,22 @@ export const useFetch_Pet_Plans = ( pet_Serial : string  ) => {
                                                  ) ;
 
    return { data , isError }     
+
+}
+
+
+// 取得 _ 所有 : 方案
+export const useFetch_All_Plans = ( account_id : string ) : any[] => {
+
+   const fallback = [] as any[] ;  // 預設值
+
+   const { data = fallback } = useQuery( 
+                                         planKeys.all_plans , 
+                                         () => fetch_Shop_All_Plans( account_id ) ,
+                                         { enabled : !!account_id } 
+                                       ) ;
+
+   return data      
 
 }
 
@@ -132,7 +149,7 @@ export const useFetch_Shop_Plan_UsedRecord_By_Id = ( account_id : string , recor
 }
 
 
-// 取得 _ 特定店家，特定方案，其所有使用紀錄
+// 取得 _ 特定方案，其所有使用紀錄
 export const useFetch_Shop_Used_Records_By_PlanId = ( account_id : string , plan_id : string ) => {
 
    // 預設值

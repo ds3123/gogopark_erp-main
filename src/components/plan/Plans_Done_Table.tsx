@@ -16,14 +16,18 @@ const Plans_Done_Table = ( { data } : Admin_Table ) => {
 
             <tbody>
 
-                { data?.data.map( ( item : any , index : any ) => {
+                { 
+                
+                  data?.data.map( ( item : any , index : any ) => {
 
                       // 不顯示 _ 尚未使用完的方案
                       if( !is_Plan_Done( item ) ) return ;
                       
-                      return <Plans_Rows key={ index } data={ item } /> ;
+                      return <Plans_Rows key = { index } data = { item } /> ;
 
-                }) }
+                  }) 
+                
+                }
 
             </tbody>
 

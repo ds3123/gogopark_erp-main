@@ -1,8 +1,8 @@
+/* eslint-disable react/jsx-pascal-case */
 import useServiceType from "hooks/layout/useServiceType";
 import { useDispatch } from "react-redux";
 import {set_Side_Panel} from "store/actions/action_Global_Layout";
 import Update_Plan from "components/plan/edit/Update_Plan";
-
 
 
 

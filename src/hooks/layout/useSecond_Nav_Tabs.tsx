@@ -1,5 +1,4 @@
 
-
 import { useState , useEffect } from 'react' ;
 import { Services } from "utils/Interface_Type" ;
 
@@ -10,7 +9,7 @@ const arr_Obj = {
     service_plan : [
                      { title : "洗 美" , icon : "fas fa-list-ol"  } ,
                      { title : "方 案" , icon : "fas fa-file-alt" } ,
-                     { title : "方 案 ( 已用完 )" , icon : "fas fa-file-alt" } ,
+                    //  { title : "方 案 ( 已用完 )" , icon : "fas fa-file-alt" } ,
                    ] ,
 
     lodge_care   : [
@@ -25,7 +24,7 @@ const arr_Obj = {
 // @ 產生第二層標籤 ( Ex. 洗美區塊 -> 洗美、方案 ; 住宿區塊 -> 住宿、安親 )
 export const useSecond_Nav_Tabs = ( data_Type : Services ) => { 
 
-  const [ tabs , set_Tabs ] = useState<any[]>( [] ) ;
+  const [ tabs , set_Tabs ] = useState< any[] >( [] ) ;
 
   useEffect( () => {
 
@@ -39,7 +38,6 @@ export const useSecond_Nav_Tabs = ( data_Type : Services ) => {
        case 'care'      :  set_Tabs( arr_Obj['lodge_care'] )   ;  break ;
 
     }
-
      
   } , [ data_Type ] ) ;
 

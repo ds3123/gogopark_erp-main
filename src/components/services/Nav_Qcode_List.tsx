@@ -49,7 +49,6 @@ const Nav_Qcode_List = ( ) => {
     let date_prev = moment( get_Date_Cal( date_1 , -3 ) ).format( 'YYYY-MM-DD' ) ;
 
 
-
     const shop_Id = useAccount_Shop_Id( ); // 目前登入使用者，所屬商店 id
 
 
