@@ -1,5 +1,10 @@
+/* eslint-disable react/jsx-pascal-case */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState , useEffect } from "react" 
+import { useDispatch } from "react-redux";
 import { sort_Data_By_CreatedDate } from 'utils/data/sort_data'
+import { set_Modal } from "store/actions/action_Global_Layout" ;
+import Plan_Used_Records from "components/services/edit_components/summary_fee/plan_components/Plan_Used_Records" ;
 
 
 
@@ -110,3 +115,19 @@ export const usePlan_Filter_By_Type = ( current : "洗澡" | "美容" , pet_All_
   return plan_Tags 
 
 }
+
+
+// 點選 _ 檢視 : 方案使用紀錄
+export const usePlan_Click_Check_Used_Records = () => {
+
+     const dispatch = useDispatch() ;
+
+     // 點選 _ 檢視 : 寵物資訊
+     const click_Check_Used_Records = ( plan_Data : any ) => 
+        
+              dispatch( set_Modal( true , <Plan_Used_Records /> , { data : plan_Data , modal_Style : { width : "80%" , height : "90%" , left : "10%" , bottom : "0px" } } )) ;
+
+
+     return click_Check_Used_Records ;      
+
+} ;

@@ -1,11 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
-
-import { useDispatch , useSelector } from "react-redux" ;
-import { set_Modal } from "store/actions/action_Global_Layout" ;
-import Plan_Used_Records from "components/services/edit_components/summary_fee/plan_components/Plan_Used_Records" ;
 import { string_Short } from "utils/string/edit_string" ;
-import Plan_Used_ExtraItem_Sign from "./plan_used/Plan_Used_ExtraItem_Sign" ;
 import Create_Use_Plan_Box from "./plan_apply/Create_Use_Plan_Box" ;
+import Plan_Used_Records_Button from "components/plan/components/Plan_Used_Records_Button";
 
 
 
@@ -37,14 +33,8 @@ type Tag = {
 const Plan_Used_Tag = ( { plan , index } : Tag ) => {
 
 
-    const dispatch      = useDispatch() ; 
-
     // 標籤樣式
     const { tag_Style } = get_Tag_Style( plan ) ;  
-
-    // 點選 _ 檢視 : 寵物資訊
-    const click_Check_Used_Records = ( plan_Data : any ) => 
-                                       dispatch( set_Modal( true , <Plan_Used_Records /> , { data : plan_Data , modal_Style : { width : "80%" , left : "10%" , bottom : "0px" } } )) ;
 
 
     return  <b className = { tag_Style } style = { { boxShadow : "0px 1px 2px 1px rgba( 0 , 0 , 0 , .2 )" , borderRadius : "20px" } } >
@@ -56,14 +46,8 @@ const Plan_Used_Tag = ( { plan , index } : Tag ) => {
                 { /* 方案點選使用 / 復原點選使用、查無自訂方案、額度使用完畢  */ } 
                 <Create_Use_Plan_Box tag_Index = { index } clicked_Plan = { plan } />
 
-                { /* 點選顯示 _ 已使用列表 ( Modal )  */ }
-                <span className = "tag is-rounded is-primary relative" onClick = { () => click_Check_Used_Records( plan ) } > 
-                    
-                    { /* 標示 : 方案是否有使用 "加價項目" */ }
-                    <Plan_Used_ExtraItem_Sign plan = { plan } /> 
-                    <i className = "fas fa-list" ></i>    
-
-                </span>
+                { /* 點選 _ 檢視 : 方案使用紀錄 */ }
+                <Plan_Used_Records_Button plan = { plan } />
                     
             </b>
 

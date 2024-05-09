@@ -6,19 +6,20 @@ import Update_Plan from "components/plan/edit/Update_Plan";
 
 
 
-
 // @ 方案類型( "預設" / "自訂" )
 const Plan_Type = ( { data } : { data : any } ) => {
 
 
    const dispatch = useDispatch() ; 
 
+
    // 方案類型
    const plan_Type  = data['plan_type'] ;     
    const _plan_Type = ( plan_Type === "包月洗澡" || plan_Type === "包月美容" ) ? plan_Type : null;
 
+
    // 方案類型欄位 : 顏色、Icon
-   const { color , icon }  = useServiceType( _plan_Type, false , 'medium' ); 
+   const { color , icon } = useServiceType( _plan_Type , false , 'medium' ); 
 
 
    // 點選 _ 方案

@@ -18,6 +18,7 @@ import {
 
 
 
+
 // 取得 _ 特定寵物，所有 ( 主人購買 ) 方案
 export const useFetch_Pet_Plans = ( pet_Serial : string  ) => {
 
@@ -38,11 +39,20 @@ export const useFetch_Pet_Plans = ( pet_Serial : string  ) => {
 export const useFetch_All_Plans = ( account_id : string ) : any[] => {
 
    const fallback = [] as any[] ;  // 預設值
+   
 
    const { data = fallback } = useQuery( 
                                          planKeys.all_plans , 
                                          () => fetch_Shop_All_Plans( account_id ) ,
-                                         { enabled : !!account_id } 
+                                         { 
+                                           enabled : !!account_id ,
+                                           onError : ( error : any ) => {
+
+                                                       if( error ) alert( `查詢錯誤，請稍後再試：${ error?.message }` )
+
+                                                    }
+                                          
+                                          } 
                                        ) ;
 
    return data      

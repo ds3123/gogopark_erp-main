@@ -78,9 +78,9 @@ const Plan_Status_Tabs : FC< Tab > = ( { plan_Options } ) => {
 
                                                                       return <div key = { y } className = "m_Left_10" data-testid = "plan-option-row" >
 
-                                                                              <Plan_Used_Tag plan = { x } index = { y } />
+                                                                               <Plan_Used_Tag plan = { x } index = { y } />
 
-                                                                          </div>
+                                                                             </div>
 
                                                                 }) 
                                               }
