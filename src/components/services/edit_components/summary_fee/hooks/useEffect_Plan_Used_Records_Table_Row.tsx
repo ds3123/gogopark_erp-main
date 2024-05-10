@@ -1,14 +1,8 @@
 
 import { useFetch_Shop_Service_Prices } from "hooks/react-query/price/useFetchPrices" ;
 import { useAccount_Shop_Id } from "hooks/data/useAccount" ; 
-import { useAcchout_Shop_User } from "hooks/data/useAccount" ;
-import { update_Plan_Record_By_Id } from "utils/api/api_Plan" ;
-import { update_Service_By_Service_Url_Id } from "utils/api/api_Service" ;
-import { Toast } from 'templates/note/Toast' ;
 import { useDispatch } from "react-redux" ;
-import { set_Side_Panel } from "store/actions/action_Global_Layout" ;
 import { useHistory } from "react-router-dom" ;
-import cookie from 'react-cookies' ;
 import { useQueryClient } from "react-query" ;
 import { delete_ServiceOrder_By_PlanUsedRecord , undo_Delete_ServiceOrder_By_PlanUsedRecord }  from "fp/services/delete/delete_ServiceOrder" ;
 
@@ -63,27 +57,6 @@ export const useEffect_Set_Extra_Items = () => {
 
 } ;
 
-
-// 設定 _ 該服務紀錄：到店日期
-export const useEffect_Set_Service_Date = () => {
-
-
-    const set_Service_Date = ( record : any ) : string => {
-    
-        let service_Date = null ;
-
-        if( record?.service_type === '洗澡' ) service_Date = record.bath?.service_date ;
-        if( record?.service_type === '美容' ) service_Date = record.beauty?.service_date ;
-    
-        return service_Date
-
-    } ;
-
-
-    return set_Service_Date
-
-
-} ;
 
 
 // 點選 _ 使用紀錄 -> 銷單

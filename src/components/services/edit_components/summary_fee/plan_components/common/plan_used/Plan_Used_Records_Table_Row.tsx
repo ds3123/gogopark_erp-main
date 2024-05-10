@@ -1,8 +1,8 @@
 import { useAccount_Shop_Id } from "hooks/data/useAccount" ; 
 import { useFetch_Shop_Plan_UsedRecord_By_Id } from "hooks/react-query/plan/useFetchPlans" ;
-import { useEffect_Set_Extra_Items , useEffect_Set_Service_Date  } from "../../../hooks/useEffect_Plan_Used_Records_Table_Row" ;
+import { useEffect_Set_Extra_Items } from "../../../hooks/useEffect_Plan_Used_Records_Table_Row" ;
 import { useEffect_Click_Delete_Service , useEffect_Click_Undo_Delete_Service } from "../../../hooks/useEffect_Plan_Used_Records_Table_Row" ;
-
+import { get_PlanRecord_ServiceDate } from "funcs/plan/plan_used_records";
 
 
 type Row = {
@@ -25,8 +25,6 @@ const Plan_Used_Records_Table_Row = ( { record_Id , service_Id } : Row ) => {
     // 取得 _ 加價項目字串
     const set_Extra_Items = useEffect_Set_Extra_Items() ;
 
-    // 取得 _ 該服務紀錄：到店日期
-    const set_Service_Date = useEffect_Set_Service_Date() ;
 
 
     // 點選 _ 使用紀錄 -> 銷單
@@ -81,9 +79,9 @@ const Plan_Used_Records_Table_Row = ( { record_Id , service_Id } : Row ) => {
                   <span style = { line } > { data?.service_note }  </span>            
                 
                 </td>
-                <td className="td_Left" > { set_Extra_Items( data ) }  </td>
-                <td> { data?.created_at?.slice( 0,10 ) } </td>
-                <td> { set_Service_Date( data ) }                    </td>
+                <td className="td_Left" > { set_Extra_Items( data ) } </td>
+                <td> { data?.created_at?.slice( 0,10 ) }              </td>
+                <td> { get_PlanRecord_ServiceDate( data ) }           </td>
                 <td> 
                       { data?.is_delete === 0 ? 
                               "成立" : 

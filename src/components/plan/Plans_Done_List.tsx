@@ -184,7 +184,6 @@ const Filter_Column : FC< Filter > = ( { title , value , action } ) => {
 // # 已用完方案列表 ( 右側面板 )
 const Plans_Done_List : FC = () => {
 
-
     // 客戶 : 姓名
     const [ cus_Name , set_Cus_Name ] = useState( '' ) ; 
 
@@ -216,7 +215,7 @@ const Plans_Done_List : FC = () => {
 
 
     // 篩選 _ 已用完方案    
-    const done_Plans = all_Plans?.filter( is_Plan_Done ) ;
+    const done_Plans = useMemo( () => all_Plans?.filter( is_Plan_Done ) , [ all_Plans ] ) ;
 
 
     // 篩選欄位
@@ -237,7 +236,7 @@ const Plans_Done_List : FC = () => {
 
         if( data?.length === 0 ){
           click_Clean();
-          alert( '沒有符合篩選條件的方案' )
+          return alert( '沒有符合篩選條件的方案' )
         } 
         
         set_Filter_Data( data ) ; 
@@ -258,6 +257,12 @@ const Plans_Done_List : FC = () => {
 
     } ;
 
+    useEffect( () => {
+      
+      if( done_Plans?.length > 0 ) set_Filter_Data( done_Plans ) ; 
+       
+    } , [ done_Plans ] ) ;
+
     
     const has_Data = filter_Data?.length > 0 ;
 
@@ -277,51 +282,57 @@ const Plans_Done_List : FC = () => {
              </span>
 
            </b> 
-          
-           <div className = "columns is-multiline m_Top_30" > 
 
-              <Filter_Column title = "寵物名字"    value = { pet_Name }    action = { set_Pet_Name } />            
-              <Filter_Column title = "寵物品種"    value = { pet_Species } action = { set_Pet_Species } />            
-              <Filter_Column title = "寵物序號"    value = { pet_Serial }  action = { set_Pet_Serial } />     
-              <Filter_Column title = "客戶手機號碼" value = { cus_Mobile } action = { set_Cus_Mobile } />            
-              <Filter_Column title = "客戶姓名"     value = { cus_Name }  action = { set_Cus_Name } />            
-              <Filter_Column title = "客戶身分字號" value = { cus_Id }     action = { set_Cus_Id } />            
-                    
-              <div className = "column is-12"> 
-                 <b onClick = { click_Filter } className = "tag is-large is-success w-full pointer" > 
-                 <i className = "fas fa-filter"></i> &nbsp; 篩 選 _ 已 用 完 方 案 
-                 </b>
+           { done_Plans?.length > 0 ? 
+
+           <>
+
+              <div className = "columns is-multiline m_Top_30" > 
+
+                <Filter_Column title = "寵物名字"    value = { pet_Name }    action = { set_Pet_Name } />            
+                <Filter_Column title = "寵物品種"    value = { pet_Species } action = { set_Pet_Species } />            
+                <Filter_Column title = "寵物序號"    value = { pet_Serial }  action = { set_Pet_Serial } />     
+                <Filter_Column title = "客戶手機號碼" value = { cus_Mobile } action = { set_Cus_Mobile } />            
+                <Filter_Column title = "客戶姓名"     value = { cus_Name }  action = { set_Cus_Name } />            
+                <Filter_Column title = "客戶身分字號" value = { cus_Id }     action = { set_Cus_Id } />            
+                      
+                <div className = "column is-12"> 
+                  <b onClick = { click_Filter } className = "tag is-large is-success w-full pointer" > 
+                    <i className = "fas fa-filter"></i> &nbsp; 篩 選 _ 已 用 完 方 案 
+                  </b>
+                </div>
+
               </div>
 
-           </div>
-
-           { !has_Data && <div className = "tag is-large is-white w-full m_Top_50 fDred" > 
+              { !has_Data && <div className = "tag is-large is-white w-full m_Top_50 fDred" > 
                               <i className = "fas fa-info" ></i> &nbsp; 尚未取得資料 
                           </div>  }
-            
-           { has_Data && 
-           
-              <>
-                  <List_Title />
-                  {
-                      filter_Data?.map( ( x : any , y : number ) => {
 
-                              const pet = x?.pet ;
-                              const cus = x?.customer ;
+              { has_Data && 
 
-                        return <div key = { y } className = "columns p-4 m_Bottom_20" >
-                                  <div className = "column is-3" > <Plan_Type data = { x } /> </div>
-                                  <div className = "column is-3" > <b className = "f_14" > <p> { pet?.name }  <span className = "f_11"> ( { pet?.species } ) </span> </p> </b> { pet?.serial }   </div>
-                                  <div className = "column is-3" > <b className = "f_14" > <p> { cus?.name }  <span className = "f_12"> ( { cus?.mobile_phone } ) </span> </p> </b>  { cus?.id } </div>
-                                  <div className = "column is-offset-1 is-1 has-text-centered" > <Plan_Used_Records_Button plan = { x } /> </div>
-                               </div> ;
+                <>
+                    <List_Title />
+                    {
+                        filter_Data?.map( ( x : any , y : number ) => {
 
-                      }) 
-                  }
-              </>  
-           
-           } 
-             
+                                const pet = x?.pet ;
+                                const cus = x?.customer ;
+
+                          return <div key = { y } className = "columns p-4 m_Bottom_20" >
+                                    <div className = "column is-3" > <Plan_Type data = { x } /> </div>
+                                    <div className = "column is-3" > <b className = "f_14" > <p> { pet?.name }  <span className = "f_11"> ( { pet?.species } ) </span> </p> </b> { pet?.serial }   </div>
+                                    <div className = "column is-3" > <b className = "f_14" > <p> { cus?.name }  <span className = "f_12"> ( { cus?.mobile_phone } ) </span> </p> </b>  { cus?.id } </div>
+                                    <div className = "column is-offset-1 is-1 has-text-centered" > <Plan_Used_Records_Button plan = { x } /> </div>
+                                </div> ;
+
+                        }) 
+                    }
+                </>  
+
+              } 
+
+           </> : <div> { is_Downloading() } </div>      }
+          
          </div>
 
 } ;

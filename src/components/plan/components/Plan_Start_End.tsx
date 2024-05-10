@@ -3,9 +3,10 @@
 import { useEffect , useState } from "react" 
 import moment from "moment" 
 import { get_Date_Cal } from "utils/time/date"
-
 import { useAccount_Shop_Id } from "hooks/data/useAccount";
 import { useFetch_Shop_Custom_Plan_By_Name } from "hooks/react-query/plan/useFetchPlans"
+import { fetch_Shop_Plan_UsedRecord_By_Id } from "utils/api/api_Plan" ;
+import { get_PlanRecord_ServiceDate } from "funcs/plan/plan_used_records";
 
 
 
@@ -39,24 +40,53 @@ const Plan_Start_End = ( { data } : { data : any }  ) => {
     const custom_Plan = useFetch_Shop_Custom_Plan_By_Name( shop_Id , data?.plan_type ) ; 
 
 
-
-  
+    
     // 設定 _ 方案使用天數
     useEffect( () => {
           
-        /*
-           
-          預設方案( Ex. 包月洗澡 / 包月美容 ) ： 90 天
-          自訂方案                         ： 依照所設定的天數
-        
-        */
+      /*
+          
+        預設方案( Ex. 包月洗澡 / 包月美容 ) ： 90 天
+        自訂方案                         ： 依照所設定的天數
+      
+      */
 
-        if( custom_Plan ) set_Plan_Period( custom_Plan?.plan_name ? custom_Plan?.plan_period : 90 ) ;
+      if( custom_Plan ) set_Plan_Period( custom_Plan?.plan_name ? custom_Plan?.plan_period : 90 ) ;
  
     } , [ custom_Plan ] ) ;
 
 
+    // 取得 _ 第 1 筆方案使用紀錄：服務日期
+    const get_First_Record_ServiceDate = async( first_Record : any ) : Promise< string | null >=> {
+
+         // 第 1 筆方案使用紀錄 
+         const record_Id = first_Record?.id ;         // 資料表 id 
+         const shop_Id   = first_Record?.account_id ; // 所屬店家 id
+ 
+         // 取得 _ 方案使用紀錄
+         const record       = await fetch_Shop_Plan_UsedRecord_By_Id( shop_Id , record_Id ) ;
+         
+         // 取得 _ 方案使用紀錄：服務日期 ( 到店日期：service_date )
+         const service_Date = get_PlanRecord_ServiceDate( record ) ;
+
+         return service_Date ;
+    
+    } ;
+
+    
+    // 設定 _ 方案：開始、結束日期
+    const set_Plan_Start_End_Dates = async( valid_Records : any[] ) => {
+
+        const first_Record_ServiceDate = await get_First_Record_ServiceDate( valid_Records[ 0 ] ) as string ;
+
+        // 方案使用 _ 結束日期 ( 根據第 1 筆紀錄建立日期，往後推算方案使用天數 )
+        const End_Date = moment( get_Date_Cal( first_Record_ServiceDate , plan_Period ) ).format( "YYYY-MM-DD" ) ;
   
+        // 設定日期
+        set_Plan_Date({ ...plan_Date , start : first_Record_ServiceDate , end : End_Date }) ;
+
+    }
+
 
     // 計算 _ 第 1 筆使用紀錄 、 方案使用 _ 開始 / 結束日期
     useEffect( () => {
@@ -65,17 +95,8 @@ const Plan_Start_End = ( { data } : { data : any }  ) => {
         const valid_Records = plan_used_records?.filter( ( x : any ) => x?.is_delete === 0 ) ;
 
         if( valid_Records?.length > 0 ){
-  
-            // 第 1 筆使用紀錄
-            const first_Record = valid_Records[ 0 ] ;
-
-            // 方案使用 _ 開始日期 ( 第 1 筆紀錄的建立日期 )
-            const start_Date   = first_Record[ 'created_at' ].slice( 0 , 10 ) ;
-  
-            // 方案使用 _ 結束日期 ( 根據第 1 筆紀錄建立日期，往後推算方案使用天數 )
-            const End_Date     = moment( get_Date_Cal( start_Date , plan_Period ) ).format( "YYYY-MM-DD" ) ;
-  
-            set_Plan_Date({ ...plan_Date , start : start_Date , end : End_Date }) ;
+           
+           set_Plan_Start_End_Dates( valid_Records ) ;
   
         }
   
