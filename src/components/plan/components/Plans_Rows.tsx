@@ -111,7 +111,7 @@ const Plans_Rows = ( props : any ) => {
 
                { /* 方案使用情形 */ }  
                <td className = "relative" style = { left }>
-                   <Plan_Used_Column  data = { data } />
+                   <Plan_Used_Column data = { data } />
                </td>
 
                <td> 

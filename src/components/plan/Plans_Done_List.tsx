@@ -278,10 +278,15 @@ const Plans_Done_List : FC = () => {
              <i className = "fas fa-file-alt"></i> &nbsp; 方案 ( 已用完 ) &nbsp; 
 
              <span className = "tag is-rounded is-white f_14" > 
-                 資料筆數 : &nbsp; <span className = "fDblue" > { filter_Data?.length  } </span>  
+                 筆數 : &nbsp; <span className = "fDblue" > { filter_Data?.length  } </span>  
              </span>
 
            </b> 
+
+           <span className = "m_Left_20"> 
+              <i className="fas fa-info-circle pointer m_Right_5"></i> 
+              搜尋範圍 : 最近 300 筆方案紀錄 
+           </span>
 
            { done_Plans?.length > 0 ? 
 

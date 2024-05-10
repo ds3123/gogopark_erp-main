@@ -152,7 +152,6 @@ const Nav_Qcode_List = ( ) => {
                        if( service && service['service_status'] === '已到店' ) type = '到店' ;
                        if( service && ( service['service_status'] === '預約_今天' || service['service_status'] === '預約_未來' ) ) type = '預約' ;
 
-
                        return <div className="title is-6" key={ i } >
 
                                    <b className="tag is-medium is-white pointer"> Q{ x } </b> &nbsp; &nbsp;
@@ -166,10 +165,17 @@ const Nav_Qcode_List = ( ) => {
                                            
                                            <i className = { style['icon'] }></i> &nbsp; { string_Short( service['service_type'] , 2 ) } &nbsp;
 
-                                           {  string_Short( service['pet']['name'] ) } ( { string_Short( service['pet']['species'] ) } )
+                                           { string_Short( service['pet']['name'] ) } ( { string_Short( service['pet']['species'] ) } )
 
                                        </b>
 
+                                   }
+
+                                   { /* 銷單 */ }
+                                   { service && service?.is_delete === 1 && 
+                                        <b className = "tag fRed is-white f_12 absolute" style = {{ right : "0px" }}> 
+                                            <i className="fas fa-trash-alt"></i> 
+                                        </b> 
                                    }
 
                                </div> ;
