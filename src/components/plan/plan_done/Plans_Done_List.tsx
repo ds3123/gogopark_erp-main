@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-pascal-case */
-import { FC , useState , useEffect , useMemo } from 'react' ;
+import { FC , useState , useMemo } from 'react' ;
 import { useAccount_Shop_Id } from "hooks/data/useAccount" ;
 import { useFetch_All_Plans } from "hooks/react-query/plan/useFetchPlans";
 import { is_Plan_Done } from "../hooks/useEffect_Plan_Used_Column";
@@ -11,6 +11,7 @@ import { Filter_Columns } from './types/column';
 import Plan_Type from '../components/Plan_Type';
 import List_Title from './components/List_Title';
 import Filter_Column from './components/Filter_Column';
+import { useEffect_Init_Data } from './hooks/useEffect_Init_Data';
 
 
 
@@ -92,11 +93,10 @@ const Plans_Done_List : FC = () => {
 
     } ;
 
-    useEffect( () => {
-      
-      if( done_Plans?.length > 0 ) set_Filter_Data( done_Plans ) ; 
-       
-    } , [ done_Plans ] ) ;
+
+    // 初始顯示資料
+    useEffect_Init_Data( done_Plans , set_Filter_Data ) ;
+
 
     
     const has_Data = filter_Data?.length > 0 ;
