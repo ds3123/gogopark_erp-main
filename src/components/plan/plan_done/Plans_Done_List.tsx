@@ -11,6 +11,7 @@ import { Filter_Columns } from './types/column';
 import Filter_Title from './components/Filter_Title';
 import Plan_Type from '../components/Plan_Type';
 import List_Title from './components/List_Title';
+import List_Result from './components/List_Result';
 import Filter_Column from './components/Filter_Column';
 import { useEffect_Init_Data } from './hooks/useEffect_Init_Data';
 import { Filter_Note , No_Filter_Data } from './components/Filter_Snippet';
@@ -141,7 +142,9 @@ const Plans_Done_List : FC = () => {
                 <>
                     <List_Title />
 
-                    {
+                    <List_Result data = { filter_Data } />
+
+                    {/* {
                         filter_Data?.map( ( x : any , y : number ) => {
 
                                 const pet = x?.pet ;
@@ -155,7 +158,7 @@ const Plans_Done_List : FC = () => {
                                 </div> ;
 
                         }) 
-                    }
+                    } */}
                 </>  
 
               } 
