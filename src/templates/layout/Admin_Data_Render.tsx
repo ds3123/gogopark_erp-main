@@ -61,7 +61,7 @@ const Admin_Data_Render = ( { data_Type  } : Admin_Data ) => {
 
 
     return <div className = "relative" >
-              
+
                { !isLoading && <>
                
                                    { /* 第二層標籤、篩選條件、搜尋框  */ } 

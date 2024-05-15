@@ -3,7 +3,6 @@
 import { useEffect } from 'react' ;
 import Services from "./Services" ;
 import Plans from "components/plan/Plans" ;
-import Plans_Done from 'components/plan/Plans_Done';
 import useCreate_App_Container_Context  from "containers/contexts/appContainerContext" ;
 import { useDispatch } from 'react-redux';
 import { set_Side_Panel } from "store/actions/action_Global_Layout" ;
@@ -51,13 +50,6 @@ export const Services_Box = () => {
                   
                 }
             
-                { /* 方案列表 */ }
-                { service_Second_Nav_Tab === '方 案 ( 已用完 )' && 
-                
-                    <div> <Plans_Done /> </div>
-                  
-                }
-
                 { /* 方案列表 ( 已用完 ) */ }
                 <b onClick = { () => show_Plans_Done() }  className = "tag is-medium is-link is-rounded pointer absolute" style = {{ top:"10px" , left : "230px" }}> 
                     <i className = "fas fa-file-alt"/> &nbsp; 方 案 ( 已用完 ) 
