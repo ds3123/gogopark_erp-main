@@ -3,12 +3,18 @@
 import { FC , useMemo } from 'react' ;
 import { is_Plan_Done } from 'components/plan/hooks/useEffect_Plan_Used_Column';
 import Plan_Type from './Plan_Type';
+import { useDispatch } from 'react-redux';
+import { set_Modal } from "store/actions/action_Global_Layout" ;
+import Plan_Used_Records from "components/services/edit_components/summary_fee/plan_components/Plan_Used_Records" ;
+
 
 
 
 // 寵物 : 尚未使用完方案
 const Pet_Not_Done_Plans : FC< { data : any[] , current_Pet : any } > = ( { data , current_Pet } ) => {
 
+
+  const dispatch = useDispatch() ;
 
   // 該寵物方案：尚未使用完 ( 近 300 筆 )
   const pet_Not_Done_Plans = useMemo( () => data?.filter( x => x?.pet?.serial === current_Pet?.serial && !is_Plan_Done( x ) ) , [ data ] ) ;
@@ -17,13 +23,19 @@ const Pet_Not_Done_Plans : FC< { data : any[] , current_Pet : any } > = ( { data
   if( pet_Not_Done_Plans?.length === 0 ) return null ;
 
 
+  // 點選方案
+  const click_Plan = ( plan_Data : any ) => 
+        dispatch( set_Modal( true , <Plan_Used_Records /> , { data : plan_Data , modal_Style : { width : "80%" , height : "90%" , left : "10%" , bottom : "0px" } } )) ;
+
+
+
   return <div className = "m_Top_10">
 
             <p className = "m_Bottom_5 fDblue">  未用完方案 : </p> 
 
             { pet_Not_Done_Plans?.map( ( x : any , y : number ) => 
 
-                <div key = { y } > <Plan_Type data = { x } />  </div> 
+                <div key = { y } onClick = { () => click_Plan( x )  } > <Plan_Type data = { x } />  </div> 
             
             )}
              
