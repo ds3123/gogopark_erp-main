@@ -12,6 +12,7 @@ import Plan_Type from '../components/Plan_Type';
 import List_Title from './components/List_Title';
 import Filter_Column from './components/Filter_Column';
 import { useEffect_Init_Data } from './hooks/useEffect_Init_Data';
+import { Filter_Note } from './components/Filter_Snippet';
 
 
 
@@ -118,10 +119,7 @@ const Plans_Done_List : FC = () => {
 
            </b> 
 
-           <span className = "m_Left_20"> 
-              <i className="fas fa-info-circle pointer m_Right_5"></i> 
-              搜尋範圍 : 最近 300 筆方案紀錄
-           </span>
+           <Filter_Note />
 
            { done_Plans?.length > 0 ? 
 
