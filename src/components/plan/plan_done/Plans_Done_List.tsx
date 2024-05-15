@@ -15,6 +15,7 @@ import { useEffect_Init_Data } from './hooks/useEffect_Init_Data';
 import { Filter_Note , No_Filter_Data } from './components/Filter_Snippet';
 import Clean_Button from './components/Clean_Button';
 import Filter_Button from './components/Filter_Button';
+import { useStore_Plan } from 'store/zustand/plan_store'; 
 
 
 
@@ -50,6 +51,10 @@ const Plans_Done_List : FC = () => {
 
     // 取得 _ 特定店家，所有的方案
     const all_Plans  = useFetch_All_Plans( shop_Id ) ; 
+
+
+    useStore_Plan.setState( { shop_plans : all_Plans } ) ;
+
 
 
     // 篩選 _ 已用完方案    

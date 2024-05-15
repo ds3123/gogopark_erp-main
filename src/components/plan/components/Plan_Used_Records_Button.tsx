@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-pascal-case */
 import { FC } from 'react' 
 import Plan_Used_ExtraItem_Sign from "components/services/edit_components/summary_fee/plan_components/common/plan_used/Plan_Used_ExtraItem_Sign";
