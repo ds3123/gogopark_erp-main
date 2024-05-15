@@ -10,41 +10,10 @@ import { execute_Filter } from "./functions/execute_filter"
 import { Filter_Columns } from './types/column';
 import Plan_Type from '../components/Plan_Type';
 import List_Title from './components/List_Title';
-
-
-type Filter = {
-
-  title  : string ;
-  value  : string ;
-  action : ( value : string ) => void ;
-
-}
+import Filter_Column from './components/Filter_Column';
 
 
 
-// 篩選欄位
-const Filter_Column : FC< Filter > = ( { title , value , action } ) => {
-
-   return <div className = "column is-2"> 
-
-            <b className = "f_14" > { title } </b>
-
-            <div className = "control has-icons-left" >
-
-                <span className="icon is-small is-left"> <i className="fas fa-expand"></i> </span>
-
-                <input className = "input"  
-                       type      = "text"
-                       value     = { value }
-                       onChange  = { e => action( e.target.value ) } />
-
-          </div>
-   
-</div>
-
-
-
-} ;
 
 
 // # 已用完方案列表 ( 右側面板 )
