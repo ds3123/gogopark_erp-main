@@ -8,6 +8,7 @@ import Plan_Used_Records_Button from "components/plan/components/Plan_Used_Recor
 import { is_Downloading } from "templates/note/Query_Info" ;
 import { execute_Filter } from "./functions/execute_filter" 
 import { Filter_Columns } from './types/column';
+import Filter_Title from './components/Filter_Title';
 import Plan_Type from '../components/Plan_Type';
 import List_Title from './components/List_Title';
 import Filter_Column from './components/Filter_Column';
@@ -109,15 +110,7 @@ const Plans_Done_List : FC = () => {
               <i className = "fas fa-sync-alt"></i> 
            </b> 
 
-           <b className = "tag is-large is-rounded f_18 relative" > 
-                        
-             <i className = "fas fa-file-alt"></i> &nbsp; 方案 ( 已用完 ) &nbsp; 
-
-             <span className = "tag is-rounded is-white f_14" > 
-                 筆數 : &nbsp; <span className = "fDblue" > { filter_Data?.length  } </span>  
-             </span>
-
-           </b> 
+           <Filter_Title  data = { filter_Data } />
 
            <Filter_Note />
 
