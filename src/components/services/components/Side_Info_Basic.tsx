@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import { useDispatch , useSelector } from "react-redux" ;
 import { set_Modal } from "store/actions/action_Global_Layout"
 import Pet_Records from "components/services/edit_components/Pet_Records"

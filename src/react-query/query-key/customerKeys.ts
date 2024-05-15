@@ -29,4 +29,8 @@ export const customerKeys = {
     "all_shops_query_by_column" : ( column : "id" | "mobile_phone" , value : string | undefined ) => [ ...customerKeys.all_customers , "all_shops_query_by_column" , column , value ] , 
 
 
+    // 特定客戶：所有寵物 
+    "customer_pets_by_customer_id"  : ( customer_id : string ) => [ "customer_pets_by_customer_id" , customer_id ] ,
+
+
 }

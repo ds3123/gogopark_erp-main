@@ -35,8 +35,8 @@ const List_Result_Row : React.FC< { data : any } > = ( { data } ) => {
             
             <div className = "column is-offset-1 is-1 has-text-centered" > 
 
-                 <Plan_Used_Records_Button plan = { data } /> 
-                 
+               <Plan_Used_Records_Button plan = { data } /> 
+
             </div>
 
           </div>

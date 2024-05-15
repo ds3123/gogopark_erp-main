@@ -11,8 +11,8 @@ const List_Title : FC = () =>
          <hr/>  
          <div className = "columns is-multiline m_Top_50" > 
            { column( "方案類型" ) }
-           { column( "寵物名字 ( 品種 / 編號 )" ) }
-           { column( "客戶姓名 ( 手機 / 身分證字號 )" ) }
+           { column( "寵物資訊" ) }
+           { column( "客戶資訊" ) }
            { column( "方案使用紀錄" ) }
          </div>    
        </>   ;

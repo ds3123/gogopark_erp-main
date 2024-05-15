@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState , useEffect } from "react" ;
 import axios from "utils/axios" ;
-import { get_Services_Have_Gone_Home_By_Date } from "utils/api/api_Service" ;
 
 
 
@@ -27,31 +26,6 @@ export const useRead_After_Date_Services = ( date : string ) => {
 
 } ; 
 
-
-
-// # 客戶 ----
-
-
-// * 取得 : 客戶寵物 ( 依客戶身分證字號 )
-export const useRead_Customer_Pets = ( cus_Id : string ) => {
-
-   const [ cusPets , set_cusPets ] = useState([]) ;
-
-   useEffect(( ) => {
-
-       if( cus_Id ) axios.get( `/customers/show_pets/${ cus_Id }` ).then(res => {
-
-               if( res.data.length > 0 ) set_cusPets( res.data ) ;
-
-          }
-
-       );
-
-   } , [  ] ) ;
-
-   return cusPets ;
-
-} ;
 
 
 // # 寵物 ---

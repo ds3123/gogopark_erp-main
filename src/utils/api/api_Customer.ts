@@ -32,6 +32,10 @@ export const fetch_All_Shops_Customers_Query_By_Column = ( column : "id" | "mobi
              axios.get< any[] >( `/customers/show_by_param_all/${ column }/${ value }` ).then( res => res.data ) ;                
 
 
+// 取得 _ 特定客戶：所有寵物 ( for React Query )
+export const fetch_Customer_Pets_By_CustomerId = ( customer_id : string ) => 
+    axios.get< any[] >( `/customers/show_pets/${ customer_id }` ).then( res => res.data ) ;
+
     
 
 // [ POST ] ---------------

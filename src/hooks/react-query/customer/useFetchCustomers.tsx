@@ -5,7 +5,8 @@ import { useQuery } from "react-query" ;
 import { customerKeys } from "react-query/query-key/customerKeys" ; 
 import { fetch_Shop_Customers_With_Pets , 
          fetch_Shop_Customers_Query_By_Column ,
-         fetch_All_Shops_Customers_Query_By_Column  
+         fetch_All_Shops_Customers_Query_By_Column ,
+         fetch_Customer_Pets_By_CustomerId
        } from "utils/api/api_Customer" ;
 
 
@@ -61,3 +62,19 @@ export const useFetch_All_Shops_Customers_Query_By_Column = ( column : "id" | "m
 } ;
 
 
+
+// 取得 _ 特定客戶：所有寵物   
+export const useFetch_Customer_Pets_By_CustomerId  = ( customer_id : string ) => {
+
+  // 預設值
+  const fallback = [] as any[] ;  
+
+  const { data = fallback } = useQuery( 
+                                        customerKeys.customer_pets_by_customer_id( customer_id ) , 
+                                        () => fetch_Customer_Pets_By_CustomerId( customer_id ),
+                                        { enabled : !!customer_id }  
+                                      ) ; 
+                                    
+  return data  
+
+}
