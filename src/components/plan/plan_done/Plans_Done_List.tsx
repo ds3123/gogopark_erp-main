@@ -3,24 +3,13 @@
 import { FC , useState , useEffect , useMemo } from 'react' ;
 import { useAccount_Shop_Id } from "hooks/data/useAccount" ;
 import { useFetch_All_Plans } from "hooks/react-query/plan/useFetchPlans";
-import { is_Plan_Done } from "./hooks/useEffect_Plan_Used_Column";
-import { compose } from 'fp/tool' ;
+import { is_Plan_Done } from "../hooks/useEffect_Plan_Used_Column";
 import useServiceType from "hooks/layout/useServiceType";
 import Plan_Used_Records_Button from "components/plan/components/Plan_Used_Records_Button";
 import { is_Downloading } from "templates/note/Query_Info" ;
+import { execute_Filter } from "./functions/execute_filter" 
+import { Filter_Columns } from './types/column';
 
-
-type Columns = {
-
-  cus_Mobile : string ;
-  cus_Name   : string ;
-  cus_Id     : string ;
-
-  pet_Name    : string ;
-  pet_Serial  : string ;
-  pet_Species : string ;
-
-}
 
 type Filter = {
 
@@ -67,82 +56,10 @@ const Plan_Type = ( { data } : { data : any } ) => {
 } ;
 
 
-// 篩選 _ 客戶 : 手機號碼
-const filter_Cus_Mobile = ( cus_Mobile : string ) => ( data : any[] ) : any[] => {  
-
-    if( !cus_Mobile ) return data ;
-
-    return data?.filter( x => ( x?.customer?.mobile_phone )?.includes( cus_Mobile ) ) ;
-
-}
-
-// 篩選 _ 客戶 : 姓名
-const filter_Cus_Name = ( cus_Name : string ) => ( data : any[] ) : any[] => {  
-
-  if( !cus_Name ) return data ;
-    
-  return data?.filter( x => ( x?.customer?.name )?.includes( cus_Name ) ) ;
-
-}
-
-// 篩選 _ 客戶 : 身分證字號
-const filter_Cus_Id = ( cus_Id : string ) => ( data : any[] ) : any[] => {  
-
-  if( !cus_Id ) return data ;
-    
-  return data?.filter( x => ( x?.customer_id )?.includes( cus_Id ) ) ;
-
-}
-
-// 篩選 _ 寵物 : 名字
-const filter_Pet_Name = ( pet_Name : string ) => ( data : any[] ) : any[] => {  
-
-  if( !pet_Name ) return data ;
-    
-  return data?.filter( x => ( x?.pet?.name )?.includes( pet_Name ) ) ;
-
-}
-
-
-// 篩選 _ 寵物 : 品種
-const filter_Pet_Species = ( pet_Species : string ) => ( data : any[] ) : any[] => {  
-
-  if( !pet_Species ) return data ;
-    
-  return data?.filter( x => ( x?.pet?.species )?.includes( pet_Species ) ) ;
-
-}
-
-
-// 篩選 _ 寵物 : 序號
-const filter_Pet_Serial = ( pet_Serial : string ) => ( data : any[] ) : any[] => {  
-
-  if( !pet_Serial ) return data ;
-    
-  return data?.filter( x => ( x?.pet?.serial )?.includes( pet_Serial ) ) ;
-
-}
-
-
-// 執行篩選
-const execute_Filter = ( data : any[] , obj : Columns ) : any[] => { 
-
-  return compose(
-                  filter_Cus_Mobile( obj.cus_Mobile ) , 
-                  filter_Cus_Name( obj.cus_Name ) ,
-                  filter_Cus_Id( obj.cus_Id ) ,
-                  filter_Pet_Name( obj.pet_Name ) ,
-                  filter_Pet_Species( obj.pet_Species ) ,
-                  filter_Pet_Serial( obj.pet_Serial ) 
-                 )( data ) ; 
-
-} ;
-
-
-
 // 標題欄位
 const column = ( title : string ) => 
        <div className = "column is-3 has-text-centered f_13 f_bold" > { title } </div>
+
 
 const List_Title : FC = () => 
           <>
@@ -219,7 +136,7 @@ const Plans_Done_List : FC = () => {
 
 
     // 篩選欄位
-    const obj : Columns = {
+    const obj : Filter_Columns = {
                             cus_Name   : cus_Name   ,
                             cus_Mobile : cus_Mobile ,
                             cus_Id     : cus_Id     ,
@@ -285,7 +202,7 @@ const Plans_Done_List : FC = () => {
 
            <span className = "m_Left_20"> 
               <i className="fas fa-info-circle pointer m_Right_5"></i> 
-              搜尋範圍 : 最近 300 筆方案紀錄 ( Test )
+              搜尋範圍 : 最近 300 筆方案紀錄
            </span>
 
            { done_Plans?.length > 0 ? 

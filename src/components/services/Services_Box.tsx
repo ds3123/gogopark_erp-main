@@ -6,7 +6,7 @@ import Plans from "components/plan/Plans" ;
 import useCreate_App_Container_Context  from "containers/contexts/appContainerContext" ;
 import { useDispatch } from 'react-redux';
 import { set_Side_Panel } from "store/actions/action_Global_Layout" ;
-import Plans_Done_List from 'components/plan/Plans_Done_List';
+import Plans_Done_List from 'components/plan/plan_done/Plans_Done_List';
 
 
 
