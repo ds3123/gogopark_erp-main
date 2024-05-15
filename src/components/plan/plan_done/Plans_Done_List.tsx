@@ -4,18 +4,17 @@ import { FC , useState , useMemo } from 'react' ;
 import { useAccount_Shop_Id } from "hooks/data/useAccount" ;
 import { useFetch_All_Plans } from "hooks/react-query/plan/useFetchPlans";
 import { is_Plan_Done } from "../hooks/useEffect_Plan_Used_Column";
-import Plan_Used_Records_Button from "components/plan/components/Plan_Used_Records_Button";
 import { is_Downloading } from "templates/note/Query_Info" ;
 import { execute_Filter } from "./functions/execute_filter" 
 import { Filter_Columns } from './types/column';
 import Filter_Title from './components/Filter_Title';
-import Plan_Type from '../components/Plan_Type';
 import List_Title from './components/List_Title';
 import List_Result from './components/List_Result';
 import Filter_Column from './components/Filter_Column';
 import { useEffect_Init_Data } from './hooks/useEffect_Init_Data';
 import { Filter_Note , No_Filter_Data } from './components/Filter_Snippet';
 import Clean_Button from './components/Clean_Button';
+import Filter_Button from './components/Filter_Button';
 
 
 
@@ -127,11 +126,7 @@ const Plans_Done_List : FC = () => {
                 <Filter_Column title = "客戶姓名"     value = { cus_Name }  action = { set_Cus_Name } />            
                 <Filter_Column title = "客戶身分字號" value = { cus_Id }     action = { set_Cus_Id } />            
                       
-                <div className = "column is-12"> 
-                  <b onClick = { click_Filter } className = "tag is-large is-success w-full pointer" > 
-                    <i className = "fas fa-filter"></i> &nbsp; 篩 選 _ 已 用 完 方 案 
-                  </b>
-                </div>
+                <Filter_Button filter = { click_Filter } />
 
               </div>
 
@@ -139,27 +134,10 @@ const Plans_Done_List : FC = () => {
 
               { has_Data && 
 
-                <>
-                    <List_Title />
-
-                    <List_Result data = { filter_Data } />
-
-                    {/* {
-                        filter_Data?.map( ( x : any , y : number ) => {
-
-                                const pet = x?.pet ;
-                                const cus = x?.customer ;
-
-                          return <div key = { y } className = "columns p-4 m_Bottom_20" >
-                                    <div className = "column is-3" > <Plan_Type data = { x } /> </div>
-                                    <div className = "column is-3" > <b className = "f_14" > <p> { pet?.name }  <span className = "f_11"> ( { pet?.species } ) </span> </p> </b> { pet?.serial }   </div>
-                                    <div className = "column is-3" > <b className = "f_14" > <p> { cus?.name }  <span className = "f_12"> ( { cus?.mobile_phone } ) </span> </p> </b>  { cus?.id } </div>
-                                    <div className = "column is-offset-1 is-1 has-text-centered" > <Plan_Used_Records_Button plan = { x } /> </div>
-                                </div> ;
-
-                        }) 
-                    } */}
-                </>  
+                  <>
+                      <List_Title />
+                      <List_Result data = { filter_Data } />
+                  </>  
 
               } 
 
