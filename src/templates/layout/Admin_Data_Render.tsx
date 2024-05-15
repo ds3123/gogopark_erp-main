@@ -12,7 +12,6 @@ import Customers_Table from "components/customers/Customers_Table" ; // 客戶
 import Pets_Table from "components/pets/Pets_Table" ;                // 寵物
 import Services_Table from 'components/services/Services_Table';     // 洗美
 import Plans_Table from 'components/plan/Plans_Table';               // 方案
-import Plans_Done_Table from 'components/plan/Plans_Done_Table';     // 方案 ( 已用完 )
 import Lodge_Table from "components/lodge/Lodge_Table" ;             // 住宿
 import Care_Table from "components/lodge/care/Care_Table" ;          // 安親
 import { useFilter_Service_Date } from "hooks/data/useFilter" ; 
@@ -83,7 +82,6 @@ const Admin_Data_Render = ( { data_Type  } : Admin_Data ) => {
                { ( data_Type === 'pet'       && !isFetching ) &&  <Pets_Table       data = { data } />  }
                { ( data_Type === 'service'   && !isFetching ) &&  <Services_Table   data = { data } />  }
                { ( data_Type === 'plan'      && !isFetching ) &&  <Plans_Table      data = { data } />  }
-               {/* { ( data_Type === 'plan_done' && !isFetching ) &&  <Plans_Done_Table data = { data } />  } */}
                { ( data_Type === 'lodge'     && !isFetching ) &&  <Lodge_Table      data = { data } />  }
                { ( data_Type === 'care'      && !isFetching ) &&  <Care_Table       data = { data } />  }
                
