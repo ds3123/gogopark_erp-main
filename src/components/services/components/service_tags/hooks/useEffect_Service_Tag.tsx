@@ -5,7 +5,8 @@ import Service_Tag_1 from '../tag_options/Service_Tag_1';
 import Service_Tag_2 from '../tag_options/Service_Tag_2';
 import Service_Tag_3 from '../tag_options/Service_Tag_3';
 import Service_Tag_4 from '../tag_options/Service_Tag_4';
-import Service_Tag_5 from '../tag_options/Service_Tag_5';
+//import Service_Tag_5 from '../tag_options/Service_Tag_5';
+import Service_Tag_5 from '../Service_Tag_5';
 
 // import Pdf from 'react-to-pdf'
 import { useReactToPrint } from 'react-to-print'

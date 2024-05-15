@@ -24,7 +24,8 @@ const Plans_Done = () => {
 
     } , [] ) ;
 
-    return <Admin_Data_Render data_Type = { "plan_done" } />
+    // return <Admin_Data_Render data_Type = { "plan_done" } />
+    return <></>
 
 } ;
 

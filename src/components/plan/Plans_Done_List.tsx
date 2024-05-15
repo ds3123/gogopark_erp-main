@@ -7,7 +7,7 @@ import { is_Plan_Done } from "./hooks/useEffect_Plan_Used_Column";
 import { compose } from 'fp/tool' ;
 import useServiceType from "hooks/layout/useServiceType";
 import Plan_Used_Records_Button from "components/plan/components/Plan_Used_Records_Button";
-import { is_Downloading , no_Query_Data } from "templates/note/Query_Info" ;
+import { is_Downloading } from "templates/note/Query_Info" ;
 
 
 type Columns = {

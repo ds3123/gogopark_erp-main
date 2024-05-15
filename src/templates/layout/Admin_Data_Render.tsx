@@ -83,7 +83,7 @@ const Admin_Data_Render = ( { data_Type  } : Admin_Data ) => {
                { ( data_Type === 'pet'       && !isFetching ) &&  <Pets_Table       data = { data } />  }
                { ( data_Type === 'service'   && !isFetching ) &&  <Services_Table   data = { data } />  }
                { ( data_Type === 'plan'      && !isFetching ) &&  <Plans_Table      data = { data } />  }
-               { ( data_Type === 'plan_done' && !isFetching ) &&  <Plans_Done_Table data = { data } />  }
+               {/* { ( data_Type === 'plan_done' && !isFetching ) &&  <Plans_Done_Table data = { data } />  } */}
                { ( data_Type === 'lodge'     && !isFetching ) &&  <Lodge_Table      data = { data } />  }
                { ( data_Type === 'care'      && !isFetching ) &&  <Care_Table       data = { data } />  }
                

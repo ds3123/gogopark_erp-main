@@ -32,7 +32,7 @@ export const useSecond_Nav_Tabs = ( data_Type : Services ) => {
 
        case 'service'   :  set_Tabs( arr_Obj['service_plan'] ) ;  break ;
        case 'plan'      :  set_Tabs( arr_Obj['service_plan'] ) ;  break ;
-       case 'plan_done' :  set_Tabs( arr_Obj['service_plan'] ) ;  break ;
+      //  case 'plan_done' :  set_Tabs( arr_Obj['service_plan'] ) ;  break ;
 
        case 'lodge'     :  set_Tabs( arr_Obj['lodge_care'] )   ;  break ;
        case 'care'      :  set_Tabs( arr_Obj['lodge_care'] )   ;  break ;

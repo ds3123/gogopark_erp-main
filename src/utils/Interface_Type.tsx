@@ -3,7 +3,7 @@ import { EditType } from "./custom_types/form";
 
 
 /* @ 定義 _ 全局 Interface、Type */
-export type Services  = 'customer' | 'pet' | 'service' | 'care' | 'lodge' | 'plan' | 'plan_done' ;
+export type Services  = 'customer' | 'pet' | 'service' | 'care' | 'lodge' | 'plan' ;
 
 
 // 主要服務
