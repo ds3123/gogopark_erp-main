@@ -119,9 +119,9 @@ const Plans_Done_List : FC = () => {
 
               <div className = "columns is-multiline m_Top_30" > 
 
+                <Filter_Column title = "寵物編號"    value = { pet_Serial }  action = { set_Pet_Serial } />     
                 <Filter_Column title = "寵物名字"    value = { pet_Name }    action = { set_Pet_Name } />            
                 <Filter_Column title = "寵物品種"    value = { pet_Species } action = { set_Pet_Species } />            
-                <Filter_Column title = "寵物序號"    value = { pet_Serial }  action = { set_Pet_Serial } />     
                 <Filter_Column title = "客戶手機號碼" value = { cus_Mobile } action = { set_Cus_Mobile } />            
                 <Filter_Column title = "客戶姓名"     value = { cus_Name }  action = { set_Cus_Name } />            
                 <Filter_Column title = "客戶身分字號" value = { cus_Id }     action = { set_Cus_Id } />            
