@@ -13,7 +13,7 @@ import Plan_Type from '../components/Plan_Type';
 import List_Title from './components/List_Title';
 import Filter_Column from './components/Filter_Column';
 import { useEffect_Init_Data } from './hooks/useEffect_Init_Data';
-import { Filter_Note } from './components/Filter_Snippet';
+import { Filter_Note , No_Filter_Data } from './components/Filter_Snippet';
 import Clean_Button from './components/Clean_Button';
 
 
@@ -134,14 +134,13 @@ const Plans_Done_List : FC = () => {
 
               </div>
 
-              { !has_Data && <div className = "tag is-large is-white w-full m_Top_50 fDred" > 
-                              <i className = "fas fa-info" ></i> &nbsp; 尚未取得資料 
-                          </div>  }
+              { !has_Data && <No_Filter_Data /> }
 
               { has_Data && 
 
                 <>
                     <List_Title />
+
                     {
                         filter_Data?.map( ( x : any , y : number ) => {
 
