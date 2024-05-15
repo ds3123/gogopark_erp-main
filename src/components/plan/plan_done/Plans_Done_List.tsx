@@ -14,7 +14,7 @@ import List_Title from './components/List_Title';
 import Filter_Column from './components/Filter_Column';
 import { useEffect_Init_Data } from './hooks/useEffect_Init_Data';
 import { Filter_Note } from './components/Filter_Snippet';
-
+import Clean_Button from './components/Clean_Button';
 
 
 
@@ -106,11 +106,10 @@ const Plans_Done_List : FC = () => {
 
   return <div className = "relative" >
          
-           <b onClick = { click_Clean } className = "button hover absolute" style = {{ right : "30px" }} >
-              <i className = "fas fa-sync-alt"></i> 
-           </b> 
+           
+           <Clean_Button clean = { click_Clean } />
 
-           <Filter_Title  data = { filter_Data } />
+           <Filter_Title data = { filter_Data } />
 
            <Filter_Note />
 
