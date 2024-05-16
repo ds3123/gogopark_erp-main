@@ -25,7 +25,7 @@ const Pet_Not_Done_Plans : FC< { data : any[] , current_Pet : any } > = ( { data
 
   // 點選方案
   const click_Plan = ( plan_Data : any ) => 
-        dispatch( set_Modal( true , <Plan_Used_Records /> , { data : plan_Data , modal_Style : { width : "80%" , height : "90%" , left : "10%" , bottom : "0px" } } )) ;
+        dispatch( set_Modal( true , <Plan_Used_Records /> , { data : plan_Data , modal_Style : { width : "80%" , height : "70%" , left : "10%" , bottom : "0px" } } )) ;
 
 
 

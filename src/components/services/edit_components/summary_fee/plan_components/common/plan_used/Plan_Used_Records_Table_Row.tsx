@@ -5,6 +5,7 @@ import { useEffect_Click_Delete_Service , useEffect_Click_Undo_Delete_Service } 
 import { get_PlanRecord_ServiceDate } from "funcs/plan/plan_used_records";
 
 
+
 type Row = {
 
     service_Id : string ; // 服務單 id
@@ -22,10 +23,11 @@ const Plan_Used_Records_Table_Row = ( { record_Id , service_Id } : Row ) => {
     // 查詢 _ 特定方案使用紀錄( 包含該紀錄所屬 : 方案 / 洗澡單 / 美容單 內容 )
     const data            = useFetch_Shop_Plan_UsedRecord_By_Id( shop_Id , record_Id ) ;
 
+
     // 取得 _ 加價項目字串
     const set_Extra_Items = useEffect_Set_Extra_Items() ;
 
-
+    
 
     // 點選 _ 使用紀錄 -> 銷單
     const click_Delete_Service = useEffect_Click_Delete_Service() ;
@@ -35,12 +37,15 @@ const Plan_Used_Records_Table_Row = ( { record_Id , service_Id } : Row ) => {
     const click_Undo_Delete_Service = useEffect_Click_Undo_Delete_Service() ;
 
 
+    // 尚未載入資料
+    if( !data ) return <div className = "m_Top_20 f_12 fDblue m_Left_20" > <b> 資料載入中... </b> </div> ;
+
+    
     const is_Bath_Deleted   = data?.service_type === '洗澡' && !( data?.bath?.q_code ) ;   // 洗澡 ( 資料表：bath )   資料已刪除
     const is_Beauty_Deleted = data?.service_type === '美容' && !( data?.beauty?.q_code ) ; // 美容 ( 資料表：beauty ) 資料已刪除
 
-
-
     const line = data?.is_delete === 1 ?  { textDecoration : "line-through red" } : { textDecoration : "none" }
+
     
     return  <tr>
              

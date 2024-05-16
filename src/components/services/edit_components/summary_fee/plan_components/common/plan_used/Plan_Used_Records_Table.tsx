@@ -4,6 +4,7 @@ import Plan_Used_Records_Table_Row from './Plan_Used_Records_Table_Row' ;
 
 
 
+
 type Plan_Used_Records_Table = {
 
     _plan_Used_Records : any[] ;
@@ -13,6 +14,7 @@ type Plan_Used_Records_Table = {
 
 // @ 方案使用列表
 const Plan_Used_Records_Table = ( { _plan_Used_Records } : Plan_Used_Records_Table ) => {
+
 
 
    return <table className = "table is-fullwidth is-hoverable" >
