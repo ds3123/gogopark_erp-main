@@ -3,10 +3,10 @@
 import { useQuery, useQueryClient } from "react-query" ;
 import { commonKeys } from "react-query/query-key/commonKeys" ;
 import { fetch_Type_Page_List } from "utils/api/api_Common" ;
-import { useState } from 'react' ;
+import { useState , useEffect } from 'react' ;
 import { useAccount_Shop_Id } from "hooks/data/useAccount";
 import Page_Button_Nav from "templates/button/Page_Button_Nav" ;
-
+import { useStore_Data } from "store/zustand/data_store";
 
 type Query = ( shop_Id : string , page : number ) => any
 
@@ -49,6 +49,14 @@ export const usePagination_List = ( page : number = 1  , api : string , search :
                                                    }  
 
                                                  ) ;
+
+
+   // 設定是否正在取得資料                                              
+   useEffect( () => {
+
+      useStore_Data.setState( { is_fetching : isFetching } ) ;
+      
+   } , [ isFetching ] ) ;
 
    return { data , isLoading  , isFetching , isError , error , isPreviousData , refetch }
 

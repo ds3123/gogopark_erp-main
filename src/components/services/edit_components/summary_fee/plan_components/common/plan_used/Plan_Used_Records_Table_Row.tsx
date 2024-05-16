@@ -38,7 +38,11 @@ const Plan_Used_Records_Table_Row = ( { record_Id , service_Id } : Row ) => {
 
 
     // 尚未載入資料
-    if( !data ) return <div className = "m_Top_20 f_12 fDblue m_Left_20" > <b> 資料載入中... </b> </div> ;
+    if( !data ) return <tr className = "f_12 fDblue" >
+                          <td style={{ border : "none" }} > 
+                             <b className = "relative f_12" style={{ top:"20px", left : "-80px" }} > 資料載入中... </b> 
+                          </td>
+                       </tr> ;
 
     
     const is_Bath_Deleted   = data?.service_type === '洗澡' && !( data?.bath?.q_code ) ;   // 洗澡 ( 資料表：bath )   資料已刪除

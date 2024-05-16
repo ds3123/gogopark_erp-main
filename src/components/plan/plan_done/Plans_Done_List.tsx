@@ -46,11 +46,11 @@ const Plans_Done_List : FC = () => {
 
 
     // 目前登入使用者，所屬商店 id
-    const shop_Id    = useAccount_Shop_Id() ; 
+    const shop_Id   = useAccount_Shop_Id() ; 
 
 
     // 取得 _ 特定店家，所有的方案
-    const all_Plans  = useFetch_All_Plans( shop_Id ) ; 
+    const all_Plans = useFetch_All_Plans( shop_Id ) ; 
 
 
     useStore_Plan.setState( { shop_plans : all_Plans } ) ;

@@ -7,15 +7,15 @@ import useCreate_App_Container_Context  from "containers/contexts/appContainerCo
 import { useDispatch } from 'react-redux';
 import { set_Side_Panel } from "store/actions/action_Global_Layout" ;
 import Plans_Done_List from 'components/plan/plan_done/Plans_Done_List';
+import { useStore_Data } from 'store/zustand/data_store';
 
 
 
 // @ 洗美區塊 ( 次分類標籤 : 洗美、方案 )
 export const Services_Box = () => {
 
+
     const dispatch     = useDispatch() ;
-
-
 
 
     // 設定 _ 服務 ( 第二層 Ex. 洗美、方案 ; 住宿、安親 ) 點選標籤 
@@ -34,6 +34,9 @@ export const Services_Box = () => {
     } , [] ) ;
 
 
+    const is_Data_Fetching = useStore_Data( state => state.is_fetching ) ;
+
+
     return <div className = "relative">
 
                 { /* 洗美列表 */ }
@@ -45,15 +48,19 @@ export const Services_Box = () => {
                  
                 { /* 方案列表 */ }
                 { service_Second_Nav_Tab === '方 案' && 
-                
+
                     <div data-testid = "plan-component" > <Plans /> </div>
-                  
+                
                 }
-            
+
                 { /* 方案列表 ( 已用完 ) */ }
-                <b onClick = { () => show_Plans_Done() }  className = "tag is-medium is-link is-rounded pointer absolute" style = {{ top:"10px" , left : "230px" }}> 
-                    <i className = "fas fa-file-alt"/> &nbsp; 方 案 ( 已用完 ) 
-                </b>
+                { !is_Data_Fetching && 
+
+                    <b onClick = { () => show_Plans_Done() }  className = "tag is-medium is-link is-rounded pointer absolute" style = {{ top:"10px" , left : "230px" }}> 
+                        <i className = "fas fa-file-alt"/> &nbsp; 方 案 ( 已用完 ) 
+                    </b>
+
+                }
   
            </div>
 
