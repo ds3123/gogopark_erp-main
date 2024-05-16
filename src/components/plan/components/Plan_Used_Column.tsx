@@ -41,15 +41,6 @@ const Deault_Plan_Bath = ( { click_Check_Used_List , quota_Bath , used_Bath } : 
 
                 </b>
 
-                { /* 方案使用完畢  */ }
-                { used_Bath === 4 &&
-
-                    <b data-testid = "month-bath-finished" className="tag is-warning absolute" style={{ top:"53px" , left:"145px" }} >  
-                        <i className="fas fa-folder-open"></i> &nbsp; 已用完 
-                    </b>
-                
-                } 
- 
            </div>  
 
 } ;
@@ -82,15 +73,6 @@ const Deault_Plan_Beauty = ( { click_Check_Used_List , quota_Bath , used_Bath , 
                     <b className="tag is-rounded is-danger"> { used_Beauty } / 1 </b>
 
                 </b>
-
-                { /* 方案使用完畢  */ }
-                { ( used_Bath === 3 && used_Beauty === 1 ) &&
-
-                    <b className="tag is-warning absolute" style={{ top:"53px" , left:"145px" }} >  
-                        <i className="fas fa-folder-open"></i> &nbsp; 已用完 
-                    </b>
-
-                } 
 
             </div>
 
@@ -131,15 +113,7 @@ const Custom_Plan = ( { custom_Plan , click_Check_Used_List , quota_Bath , used_
                     </b>
 
                 }
-
-                { /* 方案使用完畢 */ }
-                { ( used_Bath === custom_Plan?.bath_num && used_Beauty === custom_Plan?.beauty_num ) && 
-
-                    <b className="tag is-warning absolute" style={{ top:"53px" , left:"145px" }} >  
-                    <i className="fas fa-folder-open"></i> &nbsp; 已用完 
-                    </b>
-
-                }
+                
 
             </div>
 

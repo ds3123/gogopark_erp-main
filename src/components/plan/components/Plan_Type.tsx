@@ -3,6 +3,19 @@ import useServiceType from "hooks/layout/useServiceType";
 import { useDispatch } from "react-redux";
 import {set_Side_Panel} from "store/actions/action_Global_Layout";
 import Update_Plan from "components/plan/edit/Update_Plan";
+import { is_Plan_Done } from 'components/plan/hooks/useEffect_Plan_Used_Column';
+
+
+// 方案使用完標示
+const plan_Done_Sign = ( data : any ) => {
+
+    if( is_Plan_Done( data ) ) return <b className = "tag is-warning is-rounded m_Left_10" > 
+                                           <i className = "fas fa-folder-open"></i>&nbsp;已用完 
+                                      </b> 
+
+    return null ;
+
+} ;
 
 
 
@@ -33,6 +46,7 @@ const Plan_Type = ( { data } : { data : any } ) => {
                 
                     <b className = { color+" pointer" } onClick = { click_Plan_Type } >
                         <i className = { icon } ></i> &nbsp;  [ 預設 :  { data['id'] } ]  { plan_Type }
+                        { plan_Done_Sign( data ) }
                     </b>
                 
                 }
@@ -45,7 +59,8 @@ const Plan_Type = ( { data } : { data : any } ) => {
                     </b>
                 
                 }
-   
+
+               
           </>  
 
 } ;

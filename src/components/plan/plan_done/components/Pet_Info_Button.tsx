@@ -13,7 +13,7 @@ const Pet_Info_Button : React.FC< { data : any } > = ( { data } ) => {
 
 
     // 店家所有方案 ( 近 300 筆 )
-    const shop_All_Plans     = useStore_Plan( state => state.shop_plans ) ;
+    const shop_All_Plans = useStore_Plan( state => state.shop_plans ) ;
     
 
   return <>

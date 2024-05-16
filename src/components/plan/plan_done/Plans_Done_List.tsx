@@ -53,6 +53,7 @@ const Plans_Done_List : FC = () => {
     const all_Plans = useFetch_All_Plans( shop_Id ) ; 
 
 
+    // 設定 _ 特定店家，所有的方案 ( for 檔案：Pet_Info_Button.tsx --> 再確認是否有效能問題 2024.05.16 )
     useStore_Plan.setState( { shop_plans : all_Plans } ) ;
 
 
@@ -146,7 +147,7 @@ const Plans_Done_List : FC = () => {
 
               } 
 
-           </> : <div> { is_Downloading() } </div>      }
+           </> : <div> { is_Downloading() } </div>  }
           
          </div>
 

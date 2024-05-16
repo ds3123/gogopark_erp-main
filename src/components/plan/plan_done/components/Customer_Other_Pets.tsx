@@ -1,5 +1,7 @@
+/* eslint-disable react/jsx-pascal-case */
 import { useDispatch } from "react-redux" ;
 import { set_Modal } from "store/actions/action_Global_Layout" ;
+import Pet_Plans from "components/pets/components/Pet_Plans";
 
 
 
@@ -16,8 +18,8 @@ const Customer_Other_Pets : React.FC< { data : any[] , current_Pet : any } > = (
 
 
     // 點選方案
-    const click_Plan = ( ) => 
-            dispatch( set_Modal( true , <></> , { data : null , modal_Style : { width : "80%" , height : "70%" , left : "10%" , bottom : "0px" } } )) ;
+    const click_Plan = ( pet_Data : any ) => 
+            dispatch( set_Modal( true , <Pet_Plans pet_Data = { pet_Data } /> , { data : null , modal_Style : { width : "80%" , height : "70%" , left : "10%" , bottom : "0px" } } )) ;
 
 
 
@@ -37,7 +39,7 @@ const Customer_Other_Pets : React.FC< { data : any[] , current_Pet : any } > = (
                             if( x?.name === current_Pet?.name ) return null ;  // 略過目前寵物
 
                             return <b key       = { y } 
-                                      onClick   = { click_Plan }
+                                      onClick   = { () => click_Plan( x ) }
                                       className = "tag is-medium m_Right_10 m_Bottom_10 is-warning pointer"> 
 
                                       { x?.name }  <span className = "f_9 m_Left_5" > ( { x?.species } ) </span>

@@ -21,3 +21,13 @@ export const no_Query_Data = () => {
            </div>
 
 } ;
+
+
+// 方案用完標籤
+export const plan_Done_Tag = () => {
+
+  return <b className = "tag is-link is-rounded" style = {{ "paddingLeft" : "12px" , "paddingRight" : "12px"  }} >  
+             <i className = "fas fa-folder-open"></i> &nbsp; 已用完 
+         </b>
+
+} ;

@@ -4,7 +4,7 @@ import { create } from "zustand"
 
 export type DataStore = {
     
-     is_fetching : boolean , // 所有店家方案
+     is_fetching : boolean , // 是否取得資料中
 
 }
 

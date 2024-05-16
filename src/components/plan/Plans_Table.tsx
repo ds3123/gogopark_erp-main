@@ -2,10 +2,10 @@
 import Plan_Table_Columns from "./components/Plan_Table_Columns";
 import Plans_Rows from "components/plan/components/Plans_Rows" ;
 import { Admin_Table } from "utils/Interface_Type" ;
-import { is_Plan_Done } from "./hooks/useEffect_Plan_Used_Column";
 
 
-// 方案表格 ( 尚未用完 )
+
+// 方案表格 
 const Plans_Table = ( { data } : Admin_Table ) => {
 
 
@@ -17,8 +17,8 @@ const Plans_Table = ( { data } : Admin_Table ) => {
 
                    { data?.data.map( ( item : any , index : any ) => {
 
-                        // 不顯示 _ 已使用完的方案
-                        if( is_Plan_Done( item ) ) return ;
+                        // 不顯示 _ 已使用完的方案 
+                        // if( is_Plan_Done( item ) ) return ;
                       
                         return <Plans_Rows key = { index } data = { item } />
 

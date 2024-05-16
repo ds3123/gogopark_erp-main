@@ -1,5 +1,5 @@
 
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux" ;
 import { useFetch_Pet_Plans } from "hooks/react-query/plan/useFetchPlans" ;
 
 
@@ -9,6 +9,7 @@ export const useEffect_Get_Current_Pet_Plans = () => {
 
      // 目前在寵物區，所點選寵物資料
      const current_Pet                  = useSelector( ( state : any ) => state.Pet.current_Pet ) ;
+
      // 寵物編號
      const current_Pet_Serial           = current_Pet ? current_Pet['serial'] : '' ; 
      

@@ -24,13 +24,13 @@ export const useFetch_Pet_Plans = ( pet_Serial : string  ) => {
 
    const fallback = [] as any[] ;  // 預設值
 
-   const { data = fallback , isError } = useQuery( 
-                                                   planKeys.pet_all_plans( pet_Serial ) , 
-                                                   () => fetch_Pet_Plans( pet_Serial ) ,
-                                                   { enabled : !!pet_Serial } 
-                                                 ) ;
+   const { data = fallback , isError , isFetching } = useQuery( 
+                                                         planKeys.pet_all_plans( pet_Serial ) , 
+                                                         () => fetch_Pet_Plans( pet_Serial ) ,
+                                                         { enabled : !!pet_Serial } 
+                                                      ) ;
 
-   return { data , isError }     
+   return { data , isError , isFetching }     
 
 }
 
