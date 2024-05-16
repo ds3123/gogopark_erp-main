@@ -7,8 +7,25 @@ import { useAccount_Shop_Id } from "hooks/data/useAccount";
 import { useFetch_Shop_Custom_Plan_By_Name } from "hooks/react-query/plan/useFetchPlans"
 import { fetch_Shop_Plan_UsedRecord_By_Id } from "utils/api/api_Plan" ;
 import { get_PlanRecord_ServiceDate } from "funcs/plan/plan_used_records";
+import { get_Interval_Dates } from "utils/time/date";
 
 
+
+
+// 顯示內容 : 期限 ( 天 )
+const period_Output = ( start : string , end : string  ) : string => {
+
+  if( !start || !end ) return "尚未使用" ;
+
+  const arr   = get_Interval_Dates( start , end ) ;
+  const today = moment( new Date() ).format('YYYY-MM-DD' ) ; 
+  const index = arr.indexOf( today ) ;
+
+  if( index === -1 ) return "不在區間" ;
+
+  return `${ index + 1 } / 90` ;
+
+} ;
 
 
 
@@ -101,13 +118,14 @@ const Plan_Start_End = ( { data } : { data : any }  ) => {
         }
   
       } , [ plan_Period ] ) ;
-    
+
+     
 
    return <>
    
-             <td style={{ width:"120px" }}> { plan_Date['start'] ? plan_Date['start'] : "尚未使用" } </td>
-             <td style={{ width:"120px" }}> { plan_Date['end'] ? plan_Date['end'] : "尚未使用"   }   </td>
-             <td> { plan_Period } </td>
+            <td style={{ width:"120px" }}> { plan_Date['start'] ? plan_Date['start'] : "尚未使用" } </td>
+            <td style={{ width:"120px" }}> { plan_Date['end'] ? plan_Date['end'] : "尚未使用"   }   </td>
+            <td> { period_Output( plan_Date.start , plan_Date.end ) }                  </td>
    
           </> 
 
