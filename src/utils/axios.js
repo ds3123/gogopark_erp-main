@@ -16,15 +16,15 @@ const axios = baseURL => {
         
         // baseURL : baseURL || 'http://localhost/Laravel_Projects/gogopark/public/index.php/api' ,    // 本機開發
          
-        // baseURL : baseURL || 'http://localhost:7777/Laravel_Projects/gogopark/public/index.php/api' ,  // 本機開發 ( for Mac )
+        baseURL : baseURL || 'http://localhost:7777/Laravel_Projects/gogopark/public/index.php/api' ,  // 本機開發 ( for Mac )
 
         // baseURL : baseURL || 'http://demo04.cchouse.com.tw/backend_new/public/index.php/api' ,      // Demo4 測試空間 ( backend 資料夾 )
         
         // baseURL : baseURL || 'http://demo05.cchouse.com.tw/backend/public/index.php/api' ,          // Demo5 測試空間 ( backend 資料夾 )
   
-        //baseURL : baseURL || 'http://erp2021.gogopark.com.tw/backend/public/index.php/api' ,        // ERP2021       ( backend 資料夾 )        
+        // baseURL : baseURL || 'http://erp2021.gogopark.com.tw/backend/public/index.php/api' ,        // ERP2021       ( backend 資料夾 )        
                            
-        baseURL : baseURL || 'https://pet.cchouse.com.tw/backend/public/index.php/api' ,            // pet_cchouse_2023 ( backend 資料夾 )        
+        // baseURL : baseURL || 'https://pet.cchouse.com.tw/backend/public/index.php/api' ,            // pet_cchouse_2023 ( backend 資料夾 )        
       
         timeout : 100000  // ( 原先為 1000 ms --> 設長點，避免資料過多情況下，來不及取得，即拋出 timeout 錯誤 : Error: timeout of 1000ms exceeded )
 

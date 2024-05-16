@@ -1,35 +1,41 @@
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useStore_Plan } from "store/zustand/plan_store";
-import Pet_Not_Done_Plans from './Pet_Not_Done_Plans';
+import { useDispatch } from "react-redux";
+import { set_Modal } from "store/actions/action_Global_Layout" ;
+import Pet_Plans from "components/pets/components/Pet_Plans";
 
 
 // # 寵物資訊
 const Pet_Info_Button : React.FC< { data : any } > = ( { data } ) => {
 
 
+    const dispatch = useDispatch() ;
+
+
     // 寵物資料
     const pet = data?.pet ;
 
 
-    // 店家所有方案 ( 近 300 筆 )
-    const shop_All_Plans = useStore_Plan( state => state.shop_plans ) ;
+    // 點選寵物
+    const click_Pet = ( pet_Data : any ) => 
+          dispatch( set_Modal( true , <Pet_Plans pet_Data = { pet_Data } /> , { data : null , modal_Style : { width : "80%" , height : "70%" , left : "10%" , bottom : "0px" } } )) ;
+
     
 
-  return <>
+  return <div>
 
 
-              <b className = "f_14" > 
+              <b className = "f_14 tag hover pointer"  
+                 onClick   = { () => click_Pet( pet ) } > 
+
                  <p> { pet?.name }  <span className = "f_11"> ( { pet?.species } ) </span> </p> 
+
               </b> 
               
-              <p> { pet?.serial } </p>  
-
-
-              <Pet_Not_Done_Plans data = { shop_All_Plans } current_Pet = { pet } />
+              <p className = "m_Top_10 m_Left_10"> { pet?.serial } </p>  
 
              
-         </>
+         </div>
 } ;
 
 export default Pet_Info_Button  
