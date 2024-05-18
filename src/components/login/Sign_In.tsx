@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/alt-text */
-
 import { useState } from 'react';
 
 // Material UI
@@ -176,7 +175,7 @@ const Sign_In = () => {
                     </button>
 
                     <div className = "has-text-centered m_Top_30" > 
-                        更新時間 : 2024.05.10
+                        更新時間 : 2024.05.18
                     </div>
 
                 </form>
